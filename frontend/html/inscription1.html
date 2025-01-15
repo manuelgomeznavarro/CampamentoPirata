@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción 1</title>
+</head>
+<body>
+
+    <div id="header">
+
+        <ul>
+            <li>Programación</li>
+            <li>Ubicación</li>
+            <li>Precios</li>
+            <li>Quienes somos</li>
+        </ul>
+
+        <button id="signIn" value="signIn"> Iniciar sesión</button>
+        <button id="signUp" value="signUp"> Registrarse</button>
+    </div>
+
+    <div id="registration" value="registration">
+
+        <h1> Plazas limitadas: ¡Confirma tu aventura hoy!</h1>
+
+        <form action="" method="post" id="form">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name">
+            <span name="errorName" id="errorName"></span>
+
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" name="lastName"><br><br>
+            <span name="errorLastName" id="errorLastName"></span>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email">
+            <span name="errorEmail" id="errorEmail"></span>
+
+            <label for="dni"> DNI</label>
+            <input type="text" id="dni" name="dni"><br><br>
+            <span name="errorDni" id="errorDni"></span>
+
+            <label for="phone1">Teléfono 1:</label>
+            <input type="tel" id="phone1" name="phone1">
+            <span name="errorPhone1" id="errorPhone1"></span>
+
+            <label for="phone2">Teléfono 2:</label>
+            <input type="tel" id="phone2" name="phone2"><br><br>
+            <span name="errorPhone2" id="errorPhone2"></span>
+
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" name="city">
+            <span name="errorCity" id="errorCity"></span>
+
+            <label for="postalCode">Código postal:</label>
+            <input type="text" id="postalCode" name="postalCode"><br><br>
+            <span name="errorPostalCode" id="errorPostalCode"></span>
+
+            <input type="submit" id="nextButton" value="Siguiente"></input>
+
+        </form>
+    </div>
+
+    <script src="../js/inscription1.js"></script>
+</body>
+</html>
