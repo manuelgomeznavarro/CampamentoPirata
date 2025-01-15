@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let email = document.getElementById("email").value;
         if(!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
             console.log("El email no es válido.");
-            document.getElementById("email").focus();
+            // document.getElementById("email").focus();
             let errorEmail = document.getElementById("errorEmail");
             errorEmail.style.color = "red";
             errorEmail.innerHTML = "Introduzca un email correcto.";
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("password").addEventListener("blur", function () {
         let contra = document.getElementById("password").value;
-        if (!(/^[\wáéíóúÁÉÍÓÚñÑüÜ.\-]+$/.test(contra)) || contra == null || contra.length < 8) {
+        if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(contra)) || contra == null) {
             console.log("No ha introducido la contraseña de forma correcta.")
-            document.getElementById("password").focus();
+            // document.getElementById("password").focus();
             let errorPassword = document.getElementById("errorPassword");
             errorPassword.style.color = "red";
             errorPassword.innerHTML = "Introduzca una contraseña correcta.";
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let email = document.getElementById("email").value;
         if(!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
             console.log("El email no es válido.");
-            document.getElementById("email").focus();
+            // document.getElementById("email").focus();
             let errorEmail = document.getElementById("errorEmail");
             errorEmail.style.color = "red";
             errorEmail.innerHTML = "Introduzca un email correcto.";
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let contra = document.getElementById("password").value;
-        if (!(/^[\wáéíóúÁÉÍÓÚñÑüÜ.\-]+$/.test(contra)) || contra == null || contra.length < 8) {
+        if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(contra)) || contra == null) {
             console.log("No ha introducido la contraseña de forma correcta.")
-            document.getElementById("password").focus();
+            // document.getElementById("password").focus();
             let errorPassword = document.getElementById("errorPassword");
             errorPassword.style.color = "red";
             errorPassword.innerHTML = "Introduzca una contraseña correcta.";
