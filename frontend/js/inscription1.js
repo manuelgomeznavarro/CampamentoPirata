@@ -5,16 +5,6 @@ form.addEventListener('submit', function (event) {
     validateForm();
 });
 
-
-
-// const name = document.querySelector('#name').value.trim();
-// const lastName = document.querySelector('#lastName').value.trim();
-// const email = document.querySelector('#email').value;
-// const dni = document.querySelector('#dni').value;
-// const phone1 = document.querySelector('#phone1').value.trim();
-// const phone2 = document.querySelector('#phone2').value.trim();
-// const city = document.querySelector('#city').value;
-// const postalCode = document.querySelector('#postalCode').value;
 const nextButton = document.querySelector('#nextButton');
 const errorName = document.querySelector('#errorName');
 const errorLastName = document.querySelector('#errorLastName');
@@ -29,16 +19,13 @@ const errorPostalCode = document.querySelector('#errorPostalCode');
 document.getElementById("name").addEventListener("blur", validateName);
 
 function validateName() {
-    // console.log("1nombre");
     const name = document.querySelector('#name').value.trim();
     if (name == "") {
-        // console.log("2nombre");
         errorName.style.color = "red";
         errorName.innerHTML = "Por favor, introduzca un nombre.";
         return false;
     } else {
         errorName.innerHTML = "";
-        // console.log("3nombre");
         return true;
     }
 }
@@ -63,12 +50,10 @@ function validateEmail() {
     const email = document.getElementById("email").value.trim();
     const emailRegex = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(email)) {
-        console.log("El email no es válido.");
         errorEmail.style.color = "red";
         errorEmail.innerHTML = "Introduzca un email correcto.";
         return false;
     } else {
-        console.log("Email válido.");
         errorEmail.innerHTML = "";
         return true;
     }
