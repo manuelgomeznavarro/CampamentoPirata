@@ -4,51 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <main>
-        <img src="../assets/img/logo.png" alt="Logo de tesoro perdido">
+        <section class="sign-up-container">
+            <figure>
+                <img src="../assets/img/logo.png" alt="Logo de tesoro perdido">
+            </figure>
 
-        <h1>Crear cuenta</h1>
+            <h1>Crear cuenta</h1>
 
-        <form action="">
-            <label for="email">Correo electrónico:</label>
-            <br>
-            <input type="email" name="email" id="email">
-            <br>
-            <label for="password">Contraseña:</label>
-            <br>
-            <input type="password" name="password" id="password">
-            <br>
-            <input type="checkbox" name="remember" id="remember">
-            <label for="remember">Recordarme</label>
-            <p>
-                Al hacer clic en «Aceptar y crear cuenta» o «Continuar como», aceptas las <b><u>Condiciones de uso</u></b>, la <b><u>Política de privacidad</u></b> y la <b><u>Política de cookies</u></b> de ¡A toda vela!
-            </p>
-            <button type="submit">Aceptar y crear cuenta</button>
-        </form>
+            <form action="">
 
-        <hr>
+                <div>
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" name="email" id="email">
+                </div>
 
-        <section class="sign-up-social-media">
-            <div>
-                <img src="../assets/icons/googleIcon.svg" alt="">
-            </div>
-            <div>
-                <img src="../assets/icons/facebookIcon.svg" alt="">
-            </div>
-            <div>
-                <img src="../assets/icons/macIcon.svg" alt="">
-            </div>
-            <div>
-                <img src="../assets/icons/linkedinIcon.svg" alt="">
-            </div>
-            <div>
-                <img src="../assets/icons/microsoftIcon.svg" alt="">
-            </div>
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" id="password">
+                </div>
+
+                <div>
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Recordarme</label>
+                </div>
+
+                <p>
+                    Al hacer clic en «Aceptar y crear cuenta» o «Continuar como», aceptas las <b><u>Condiciones de uso</u></b>, la <b><u>Política de privacidad</u></b> y la <b><u>Política de cookies</u></b> de ¡A toda vela!
+                </p>
+
+                <button type="submit">Aceptar y crear cuenta</button>
+            </form>
+
+            <hr>
+
+            <section class="sign-up-social-media">
+                <h3>También puede registrarse con sus redes sociales</h3>
+
+                <div class="sign-up-social-media-icons">
+                    <div>
+                        <img src="../assets/icons/googleIcon.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../assets/icons/facebookIcon.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../assets/icons/macIcon.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../assets/icons/linkedinIcon.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../assets/icons/microsoftIcon.svg" alt="">
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
-
     <script src="../js/crearCuenta.js"></script>
 </body>
 </html>
