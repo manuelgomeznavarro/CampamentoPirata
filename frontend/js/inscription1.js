@@ -25,7 +25,6 @@ const errorPhone2 = document.querySelector('#errorPhone2');
 const errorCity = document.querySelector('#errorCity');
 const errorPostalCode = document.querySelector('#errorPostalCode');
 
-validateEmail();
 
 document.getElementById("name").addEventListener("blur", validateName);
 
@@ -75,12 +74,11 @@ function validateEmail() {
     }
 }
 
-document.getElementById("phone1").addEventListener("blur", validatePhones);
+document.getElementById("phone1").addEventListener("blur", validatePhone1);
 
-function validatePhones() {
+function validatePhone1() {
     const phoneRegex = /^[0-9]{9}$/;
     const phone1 = document.querySelector('#phone1').value.trim();
-    const phone2 = document.querySelector('#phone2').value.trim();
     if (!phoneRegex.test(phone1)) {
         errorPhone1.style.color = "red";
         errorPhone1.innerHTML = "Introduzca un teléfono válido.";
@@ -89,12 +87,28 @@ function validatePhones() {
         errorPhone1.innerHTML = "";
         return true;
     }
-    if (phone2 !== "" && !phoneRegex.test(phone2)) {
+}
+
+document.getElementById("phone2").addEventListener("blur", validatePhone2);
+function validatePhone2(){
+    const phoneRegex = /^[0-9]{9}$/;
+    const phone2 = document.querySelector('#phone2').value.trim();
+    if (phone2 ==="") {
+        errorPhone2.innerHTML = "";
+        return true;
+    }
+
+    if(!phoneRegex.test(phone2)){
         errorPhone2.style.color = "red";
         errorPhone2.innerHTML = "Introduzca un teléfono válido.";
         return false;
     }
-    return true;
+
+    else{
+        errorPhone2.innerHTML = "";
+        return true;
+    }
+
 }
 
 document.getElementById("dni").addEventListener("blur", validateDni);
@@ -146,12 +160,13 @@ function validateForm() {
     const isNameCorrect = validateName();
     const isLastNameCorrect = validateLastName();
     const isEmailCorrect = validateEmail();
-    const isPhoneCorrect = validatePhones();
+    const isPhoneCorrect1 = validatePhone1();
+    const isPhoneCorrect2 = validatePhone2();
     const isDniCorrect = validateDni();
     const isValidateCityCorrect = validateCity();
     const isPostalCodeCorrect = validatePostalCode();
 
-    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect && isDniCorrect && isValidateCityCorrect && isPostalCodeCorrect) {
+    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isValidateCityCorrect && isPostalCodeCorrect) {
         return true;
     } else {
         return false;
