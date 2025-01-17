@@ -1,97 +1,81 @@
+// Función para añadir validaciones a un formulario
+function addValidationToForm(form) {
+    const errorName = form.querySelector('#errorName');
+    const errorLastName = form.querySelector('#errorLastName');
+    const errorBorn = form.querySelector('#errorBorn');
+    const errorSize = form.querySelector('#errorSize');
+
+    form.querySelector('#name').addEventListener('blur', () => {
+        const name = form.querySelector('#name').value.trim();
+        if (name === "") {
+            errorName.style.color = "red";
+            errorName.textContent = "Por favor, introduzca un nombre.";
+        } else {
+            errorName.textContent = "";
+        }
+    });
+
+    form.querySelector('#lastName').addEventListener('blur', () => {
+        const lastName = form.querySelector('#lastName').value.trim();
+        if (lastName === "") {
+            errorLastName.style.color = "red";
+            errorLastName.textContent = "Por favor, introduzca un apellido.";
+        } else {
+            errorLastName.textContent = "";
+        }
+    });
+
+    form.querySelector('#born').addEventListener('blur', () => {
+        const born = form.querySelector('#born').value.trim();
+        const bornDate = new Date(born);
+        const currentDate = new Date();
+        const sevenYearsAgo = new Date();
+        const eigthYearsAgo = new Date();
+        sevenYearsAgo.setFullYear(currentDate.getFullYear() - 7);
+        eigthYearsAgo.setFullYear(currentDate.getFullYear() - 8);
+
+        if (isNaN(bornDate.getTime()) || bornDate > sevenYearsAgo || bornDate < eigthYearsAgo) {
+            errorBorn.style.color = "red";
+            errorBorn.textContent = "Introduzca una fecha válida de hace al menos siete años.";
+        } else {
+            errorBorn.textContent = "";
+        }
+    });
+
+    form.querySelector('#size').addEventListener('blur', () => {
+        const size = form.querySelector('#size').selectedIndex;
+        if (size == null || size === 0) {
+            errorSize.style.color = "red";
+            errorSize.textContent = "Introduzca una talla válida.";
+        } else {
+            errorSize.textContent = "";
+        }
+    });
+}
+
+// Selecciona el formulario inicial y botón de añadir participante
 const form = document.querySelector('form');
+const newParticipantBtn = document.querySelector('.new-participant-btn');
+const formContainer = document.querySelector('.forms-container');
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    validateForm();
+// Inicializa la validación para el formulario inicial
+addValidationToForm(form);
+
+// Clonar y añadir validación a nuevos formularios
+newParticipantBtn.addEventListener('click', () => {
+    const lastForm = formContainer.querySelector('form:last-of-type');
+    const newForm = lastForm.cloneNode(true);
+
+    // Limpia los valores de los inputs
+    newForm.querySelectorAll('input, select').forEach((input) => {
+        if (input.type !== "button") {
+            input.value = "";
+        }
+    });
+
+    // Añade el nuevo formulario al contenedor
+    formContainer.appendChild(newForm);
+
+    // Añade validación al nuevo formulario
+    addValidationToForm(newForm);
 });
-
-
-const nextButton = document.querySelector('#nextButton');
-const errorName = document.querySelector('#errorName');
-const errorLastName = document.querySelector('#errorLastName');
-const errorBorn = document.querySelector('#errorBorn');
-const errorSize = document.querySelector('#errorSize');
-
-
-document.getElementById("name").addEventListener("blur", validateName);
-
-function validateName() {
-    const name = document.querySelector('#name').value.trim();
-    if (name == "") {
-        errorName.style.color = "red";
-        errorName.innerHTML = "Por favor, introduzca un nombre.";
-        return false;
-    } else {
-        errorName.innerHTML = "";
-        return true;
-    }
-}
-
-document.getElementById("lastName").addEventListener("blur", validateLastName);
-
-function validateLastName() {
-    const lastName = document.querySelector('#lastName').value.trim();
-    if (lastName === "") {
-        errorLastName.style.color = "red";
-        errorLastName.innerHTML = "Por favor, introduzca un apellido.";
-        return false;
-    } else {
-        errorLastName.innerHTML = "";
-        return true;
-    }
-}
-
-
-document.getElementById("born").addEventListener("blur", validateBorn);
-
-function validateBorn() {
-    const born = document.querySelector('#born').value.trim();
-    const bornDate = new Date(born);
-    const currentDate = new Date();
-    const sevenYearsAgo = new Date();
-    const eigthYearsAgo = new Date();
-    sevenYearsAgo.setFullYear(currentDate.getFullYear() - 7);
-    eigthYearsAgo.setFullYear(currentDate.getFullYear() - 8);
-
-    if (isNaN(bornDate.getTime()) || bornDate > sevenYearsAgo || bornDate < eigthYearsAgo) {
-        errorBorn.style.color = "red";
-        errorBorn.innerHTML = "Introduzca una fecha válida de hace al menos siete años.";
-        return false;
-    } else {
-        errorBorn.innerHTML = "";
-        return true;
-    }
-}
-
-document.getElementById("size").addEventListener("blur", validateSize);
-
-function validateSize() {
-    const size = document.querySelector('#size').selectedIndex;
-    console.log(size);
-    if (size == null || size == 0) {
-        errorSize.style.color = "red";
-        errorSize.innerHTML = "Introduzca una talla válida.";
-        return false;
-    } else {
-        errorSize.innerHTML = "";
-        return true;
-    }
-}
-
-
-
-function validateForm() {
-
-    const isNameCorrect = validateName();
-    const isLastNameCorrect = validateLastName();
-    const isBornCorrect = validateBorn();
-    const isSizeCorrect = validateSize();
-
-    if (isNameCorrect && isLastNameCorrect && isBornCorrect && isSizeCorrect) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-

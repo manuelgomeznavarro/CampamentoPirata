@@ -7,47 +7,58 @@
 </head>
 <body>
     <br>
-        <h1 id="title">Iniciar sesión</h1>
-        <br>
-    <form action="" method="post" id="form">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name">
-        <span name="errorName" id="errorName"></span>
+    <h1 id="title">Iniciar sesión</h1>
+    <br>
+    <div>
+        <div class="forms-container">
+            <form action="" method="post" id="form">
+                <h3>Nuevo alumno</h3>
 
-        <label for="lastName">Apellido:</label>
-        <input type="text" id="lastName" name="lastName"><br><br>
-        <span name="errorLastName" id="errorLastName"></span>
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name">
+                <span name="errorName" id="errorName"></span>
+        
+                <label for="lastName">Apellido:</label>
+                <input type="text" id="lastName" name="lastName"><br><br>
+                <span name="errorLastName" id="errorLastName"></span>
+        
+                <label for="born">Fecha de Nacimiento:</label>
+                <input type="date" id="born" name="born">
+                <span name="errorBorn" id="errorBorn"></span>
+        
+                <label for="size">Talla de camiseta:</label>
+                <select name="size" id="size">
+                    <option value="" disabled selected>--Selecione una talla de camiseta--</option>
+                    <option value="xxs">XXS</option>
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                </select>
+                <span name="errorSize" id="errorSize"></span>
+        
+                <label for="allergy">Alergias, intolerancias o medicación necesaria</label>
+                <input type="tel" id="alerlly" name="alerlly"><br><br>
+                <span name="errorAllergy" id="errorAllergy"></span>
+        
+                <label for="info">Información a tener en cuenta</label>
+                <input type="text" id="info" name="info">
+                <span name="errorInfo" id="errorInfo"></span>
+        
+                <label for="participant">¿Participa en el campamento con algún conocido?</label>
+                <input type="text" id="participant" name="participant"><br><br>
+                <span name="errorParticipant" id="errorParticipant"></span>
+        
+            </form>
 
-        <label for="born">Fecha de Nacimiento:</label>
-        <input type="date" id="born" name="born">
-        <span name="errorBorn" id="errorBorn"></span>
 
-        <label for="size">Talla de camiseta:</label>
-        <select name="size" id="size">
-            <option value="" disabled selected>--Selecione una talla de camiseta--</option>
-            <option value="xxs">XXS</option>
-            <option value="xs">XS</option>
-            <option value="s">S</option>
-            <option value="m">M</option>
-        </select>
-        <span name="errorSize" id="errorSize"></span>
+        </div>
+        <button class="new-participant-btn" type="button">Añadir otro alumno</button>
 
-        <label for="allergy">Alergias, intolerancias o medicación necesaria</label>
-        <input type="tel" id="alerlly" name="alerlly"><br><br>
-        <span name="errorAllergy" id="errorAllergy"></span>
+    </div>
 
-        <label for="info">Información a tener en cuenta</label>
-        <input type="text" id="info" name="info">
-        <span name="errorInfo" id="errorInfo"></span>
+    <button type="submit" id="beforeButton">Volver</button>
+    <button type="submit" id="nextButton">Siguiente</button>
 
-        <label for="participant">¿Participa en el campamento con algún conocido?</label>
-        <input type="text" id="participant" name="participant"><br><br>
-        <span name="errorParticipant" id="errorParticipant"></span>
-
-        <input type="submit" id="beforeButton" value="Volver"></input>
-        <input type="submit" id="nextButton" value="Siguiente"></input>
-
-    </form>
     <script src="../js/inscription2.js"></script>
 
 </body>
