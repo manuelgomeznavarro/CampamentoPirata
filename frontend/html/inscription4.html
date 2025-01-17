@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de pago</title>
+</head>
+<body>
+    <form action="" method="post">
+
+        <label for="creditCard">Número de tarjeta</label>
+        <input type="number" name="creditCard" id="creditCard">
+        <span name="errorCreditCard" id="errorCreditCard"></span>
+        <br>
+
+        <label for="name">Nombre del titular</label>
+        <input type="text" id="name" name="name">
+        <span name="errorName" id="errorName"></span><br>
+
+        <label for="expirationDate1">Fecha de vencimiento</label>
+        <input type="number" name="date1" id="date1" placeholder="MM" min="1" max="12">
+        <span name="errorDate1" id="errorDate1"></span>
+
+        <label for="expirationDate2"></label>
+        <input type="number" name="date2" id="date2" placeholder="YY" min="0" max="99">
+        <span name="errorDate2" id="errorDate2"></span>
+
+        <label for="cvv">CVV</label>
+        <input type="number" name="cvv" id="cvv">
+        <span name="errorCvv" id="errorCvv"></span><br>
+
+        <input type="checkbox" name="remember" id="remember"> Recordar <br>
+
+        <input type="submit" id="backtButton" value="Volver"></input>
+        <input type="submit" id="payButton" value="Pagar"></input>
+        
+        <script src="../js/inscription4.js"></script>
+    </form>
+</body>
+</html>
