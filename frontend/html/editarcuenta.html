@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción 1</title>
+</head>
+<body>
+
+    <header>
+
+        <ul>
+            <li>Programación</li>
+            <li>Ubicación</li>
+            <li>Precios</li>
+            <li>Quienes somos</li>
+        </ul>
+
+        <button id="reserv" value="reserv">Reserva</button>
+    </header>
+
+    <div id="edit" value="edit">
+
+        <h1>Información de Contacto</h1>
+
+        <form action="" method="post" id="contactForm" name="contactForm">
+
+            <label for="name">Nombre*:</label>
+            <input type="text" id="name" name="name">
+            <span name="errorName" id="errorName"></span>
+            <br><br>
+
+            <label for="email">Correo electrónico*:</label>
+            <input type="email" id="email" name="email">
+            <span name="errorEmail" id="errorEmail"></span>
+            <br><br>
+
+            <label for="phone1">Teléfono 1*:</label>
+            <input type="tel" id="phone1" name="phone1">
+            <span name="errorPhone1" id="errorPhone1"></span>
+            <br><br>
+
+            <label for="phone2">Teléfono 2:</label>
+            <input type="tel" id="phone2" name="phone2">
+            <span name="errorPhone2" id="errorPhone2"></span>
+            <br><br>
+
+            <label for="city">Ciudad*:</label>
+            <input type="text" id="city" name="city">
+            <span name="errorCity" id="errorCity"></span>
+            <br><br>
+
+            <input type="submit" id="nextButton" value="Guardar cambios"></input>
+
+        </form>
+    </div>
+
+    <script src="../js/editarCuenta.js"></script>
+</body>
+</html>
