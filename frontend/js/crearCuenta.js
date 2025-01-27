@@ -5,20 +5,20 @@ const formSignUp = document.querySelector('form');
 
 function validator(e, regex, errorString) {
     const element = e.target;
-
     const inputValue = element.value;
+    const parentElement = element.parentElement;
 
     if(!(regex.test(inputValue) || inputValue == null)) {
-        if (!(element.nextElementSibling.tagName == "SPAN")) {
+        if (!(parentElement.nextElementSibling.tagName == "SPAN")) {
             const errorEmail = document.createElement('span');
             errorEmail.style.color = "red";
             errorEmail.textContent = errorString;
 
-            element.after(errorEmail);
+            parentElement.after(errorEmail);
         }
     } else {
-        if (element.nextElementSibling.tagName == "SPAN") {
-            element.nextElementSibling.remove();
+        if (parentElement.nextElementSibling.tagName == "SPAN") {
+            parentElement.nextElementSibling.remove();
         }
     }
 }
@@ -34,20 +34,22 @@ passwordInput.addEventListener('blur', (e) => {
 
 function validatorSubmit(e, regex, errorString) {
     const inputValue = e.value;
+    const parentElement = e.parentElement;
+
 
     if(!(regex.test(inputValue) || inputValue == null)) {
-        if (!(e.nextElementSibling.tagName == "SPAN")) {
+        if (!(parentElement.nextElementSibling.tagName == "SPAN")) {
             const errorEmail = document.createElement('span');
             errorEmail.style.color = "red";
             errorEmail.textContent = errorString;
 
-            e.after(errorEmail);
+            parentElement.after(errorEmail);
         }
 
         return false;
     } else {
-        if (e.nextElementSibling.tagName == "SPAN") {
-            e.nextElementSibling.remove();
+        if (parentElement.nextElementSibling.tagName == "SPAN") {
+            parentElement.nextElementSibling.remove();
         }
 
         return true;
