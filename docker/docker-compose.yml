@@ -22,6 +22,9 @@ services:
       - ../mongo_data:/data/db
     networks:
       - laravel_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
 networks:
   laravel_network:
@@ -29,4 +32,5 @@ networks:
 
 volumes:
   mongo_data:
+
 
