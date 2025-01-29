@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Tutor extends Model
+{
+    protected $connection = 'mongodb';
+    protected $collection = 'tutors';
+    protected $fillable = [
+        'name',
+        'lastname',
+        'email',
+        'dni',
+        'phone',
+        'phone2',
+        'city',
+        'postal_code',
+        'inscriptions',
+    ];
+
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
+    }
+
+    public function incidents()
+    {
+        return $this->hasMany(Incident::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+}
