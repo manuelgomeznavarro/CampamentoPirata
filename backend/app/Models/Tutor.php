@@ -17,7 +17,6 @@ class Tutor extends Model
         'phone2',
         'city',
         'postal_code',
-        'inscriptions',
     ];
 
     public function inscriptions()
