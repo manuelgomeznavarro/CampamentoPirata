@@ -14,7 +14,6 @@ class Child extends Model
         'birthdate',
         't_shirt_size',
         'alergy_intolerance',
-        'email',
         'aditional_info',
         'acquaintance',
         'group_id',
