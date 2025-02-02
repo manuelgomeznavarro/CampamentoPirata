@@ -7,74 +7,36 @@ use Illuminate\Http\Request;
 
 class TimelineController extends Controller
 {
-    // Obtener todos los timelines
     public function index()
     {
         $timelines = Timeline::all();
-        return response()->json($timelines);
+        return response()->json($timelines, 200);
+
     }
 
-    // Crear un nuevo timeline
     public function store(Request $request)
     {
-        $request->validate([
-            'date' => 'required|date',
-            'admin_id' => 'required|string'
-        ]);
-
-        $timeline = Timeline::create($request->all());
-
-        return response()->json([
-            'mensaje' => 'Timeline creado correctamente',
-            'timeline' => $timeline
-        ], 201);
+        $timelines = Timeline::create($request->all());
+        return response()->json($timelines, 201);
     }
 
-    // Obtener un timeline por ID
-    public function show($id)
+    public function show($idTimelines)
     {
-        $timeline = Timeline::find($id);
-
-        if (!$timeline) {
-            return response()->json(['mensaje' => 'Timeline no encontrado'], 404);
-        }
-
-        return response()->json($timeline);
+        $timelines = Timeline::findOrFail($idTimelines);
+        return response()->json($timelines, 200);
     }
 
-    // Actualizar un timeline
-    public function update(Request $request, $id)
+    public function update(Request $request, $idTimelines)
     {
-        $timeline = Timeline::find($id);
-
-        if (!$timeline) {
-            return response()->json(['mensaje' => 'Timeline no encontrado'], 404);
-        }
-
-        $request->validate([
-            'date' => 'sometimes|date',
-            'admin_id' => 'sometimes|string'
-        ]);
-
-        $timeline->update($request->all());
-
-        return response()->json([
-            'mensaje' => 'Timeline actualizado correctamente',
-            'timeline' => $timeline
-        ]);
+        $timelines = Timeline::findOrFail($idTimelines);
+        $timelines->update($request->all());
+        return response()->json($timelines, 200);
     }
 
-    // Eliminar un timeline
-    public function destroy($id)
+    public function destroy($idTimelines)
     {
-        $timeline = Timeline::find($id);
-
-        if (!$timeline) {
-            return response()->json(['mensaje' => 'Timeline no encontrado'], 404);
-        }
-
-        $timeline->delete();
-
-        return response()->json(['mensaje' => 'Timeline eliminado correctamente']);
+        $timelines = Timeline::findOrFail($idTimelines);
+        $timelines->delete();
+        return response()->json(['message' => 'Timeline eliminado correctamente'], 200);
     }
 }

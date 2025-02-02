@@ -7,74 +7,35 @@ use Illuminate\Http\Request;
 
 class PriceController extends Controller
 {
-    // Obtener todos los prices
     public function index()
     {
         $prices = Price::all();
-        return response()->json($prices);
+        return response()->json($prices, 200);
     }
 
-    // Crear un nuevo price
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|string|max:255'
-        ]);
-
-        $price = Price::create($request->all());
-
-        return response()->json([
-            'mensaje' => 'Price creado correctamente',
-            'price' => $price
-        ], 201);
+        $prices = Price::create($request->all());
+        return response()->json($prices, 201);
     }
 
-    // Obtener un Price por ID
-    public function show($id)
+    public function show($idPrices)
     {
-        $price = Price::find($id);
-
-        if (!$price) {
-            return response()->json(['mensaje' => 'Price no encontrado'], 404);
-        }
-
-        return response()->json($price);
+        $prices = Price::findOrFail($idPrices);
+        return response()->json($prices, 200);
     }
 
-    // Actualizar un tutor
-    public function update(Request $request, $id)
+    public function update(Request $request, $idPrices)
     {
-        $price = Price::find($id);
-
-        if (!$price) {
-            return response()->json(['mensaje' => 'Price no encontrado'], 404);
-        }
-
-        $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'price' => 'sometimes|string|max:255'
-        ]);
-
-        $price->update($request->all());
-
-        return response()->json([
-            'mensaje' => 'Price actualizado correctamente',
-            'price' => $price
-        ]);
+        $prices = Price::findOrFail($idPrices);
+        $prices->update($request->all());
+        return response()->json($prices, 200);
     }
 
-    // Eliminar un price
-    public function destroy($id)
+    public function destroy($idPrices)
     {
-        $price = Price::find($id);
-
-        if (!$price) {
-            return response()->json(['mensaje' => 'Price no encontrado'], 404);
-        }
-
-        $price->delete();
-
-        return response()->json(['mensaje' => 'Price eliminado correctamente']);
+        $prices = Price::findOrFail($idPrices);
+        $prices->delete();
+        return response()->json(['message' => 'Precio eliminado correctamente'], 200);
     }
 }

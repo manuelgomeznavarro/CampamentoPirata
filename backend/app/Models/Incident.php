@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Incident extends Model
 {
+    use HasFactory;
     protected $table = 'incidents';
     protected $fillable = [
         'title',
@@ -26,3 +28,4 @@ class Incident extends Model
         return $this->belongsTo(Admin::class);
     }
 }
+

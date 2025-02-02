@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('activity_monitor', function (Blueprint $table) {
             $table->foreignId('activity_id')->constrained()->onDelete('cascade');
