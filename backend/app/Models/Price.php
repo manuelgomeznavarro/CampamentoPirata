@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'prices';
+    protected $table = 'prices';
     protected $fillable = [
         'name',
         'price',

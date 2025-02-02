@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'activities';
+    protected $table = 'activities';
     protected $fillable = [
         'name',
         'description',

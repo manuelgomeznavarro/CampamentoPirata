@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Monitor extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'monitors';
+    protected $table = 'monitors';
     protected $fillable = [
         'name',
         'lastname',

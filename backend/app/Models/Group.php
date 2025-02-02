@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    protected $connection ='mongodb';
-    protected $collection = 'groups';
+    protected $table = 'groups';
     protected $fillable = [
         'name',
         'administrator_id',
