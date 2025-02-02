@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inscription extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'inscriptions';
+    protected $table = 'inscriptions';
     protected $fillable = [
         'inscription_date',
         'tutor_id',

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timeline extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'timelines';
+    protected $table = 'timelines';
     protected $fillable = [
         'date',
         'admin_id',

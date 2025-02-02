@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutor extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'tutors';
+    protected $table = 'tutors';
     protected $fillable = [
         'name',
         'lastname',

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'admin';
+    protected $table = 'admin';
     protected $fillable = [
         'name',
         'lastname',

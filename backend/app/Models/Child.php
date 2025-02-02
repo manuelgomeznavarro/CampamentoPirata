@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Child extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'children';
+    protected $table = 'children';
     protected $fillable = [
         'name',
         'lastname',
