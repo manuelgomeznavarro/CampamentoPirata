@@ -12,8 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('activity_monitor', function (Blueprint $table) {
-            $table->foreignId('activity_id')->constrained();
-            $table->foreignId('monitor_id')->constrained();
+            $table->foreignId('activity_id')->constrained()->onDelete('cascade');
+            $table->foreignId('monitor_id')->constrained()->onDelete('cascade');
             $table->primary(['activity_id', 'monitor_id']);
         });
     }

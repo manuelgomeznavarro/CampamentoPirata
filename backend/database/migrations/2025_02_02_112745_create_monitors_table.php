@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('phone');
             $table->string('phone2')->nullable();
-            $table->foreignId('admin_id')->constrained('admins')->onDelete('set null');
+            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->timestamps();
         });
     }
