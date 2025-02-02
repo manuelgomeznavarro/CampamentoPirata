@@ -19,7 +19,7 @@ use App\Http\Controllers\MonitorController;
 //Route::apiResource('monitors', MonitorController::class);
 Route::apiResource('admins', AdminController::class);
 Route::apiResource('monitors', MonitorController::class);
-
+// Route::get('/monitors', [MonitorController::class, 'index']);
 // If you need authentication, wrap it in middleware:
 /*
 Route::middleware('auth:api')->group(function () {

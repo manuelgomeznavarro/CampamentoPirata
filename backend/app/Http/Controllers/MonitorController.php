@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Monitor;
@@ -9,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 class MonitorController extends Controller
 {
     /**
-     * Display a listing of monitors
+     * Mostrar todos los monitores
      */
     public function index()
     {
@@ -18,7 +17,7 @@ class MonitorController extends Controller
     }
 
     /**
-     * Store a new monitor
+     * Almacenar un nuevo monitor
      */
     public function store(Request $request)
     {
@@ -29,7 +28,7 @@ class MonitorController extends Controller
             'dni' => 'required|string|unique:monitors,dni',
             'phone' => 'required|string',
             'phone2' => 'nullable|string',
-            'admin_id' => 'required|exists:admins,_id'
+            'admin_id' => 'nullable|exists:admins,id' // Corrección aquí
         ]);
 
         if ($validator->fails()) {
@@ -41,7 +40,7 @@ class MonitorController extends Controller
     }
 
     /**
-     * Display the specified monitor
+     * Mostrar un monitor específico
      */
     public function show($id)
     {
@@ -55,7 +54,7 @@ class MonitorController extends Controller
     }
 
     /**
-     * Update the specified monitor
+     * Actualizar un monitor
      */
     public function update(Request $request, $id)
     {
@@ -72,7 +71,7 @@ class MonitorController extends Controller
             'dni' => 'string|unique:monitors,dni,' . $id,
             'phone' => 'string',
             'phone2' => 'nullable|string',
-            'admin_id' => 'exists:admins,_id'
+            'admin_id' => 'nullable|exists:admins,id' // Corrección aquí
         ]);
 
         if ($validator->fails()) {
@@ -84,7 +83,7 @@ class MonitorController extends Controller
     }
 
     /**
-     * Remove the specified monitor
+     * Eliminar un monitor
      */
     public function destroy($id)
     {
