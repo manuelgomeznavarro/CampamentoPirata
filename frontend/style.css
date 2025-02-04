@@ -76,6 +76,32 @@ header .sign-in {
     font-style: normal;
     font-weight: 700;
 }
+.sign-in-container {
+    display: none;
+    position: fixed;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
+    margin-left: 0%;
+    margin-top: 100px;
+    height: auto;
+    width: 687px;
+    background-color: var(--light-blue);
+    padding: 34px;
+    z-index: 16;
+}
+
+.overlay-sign-in {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
 
 button {
     display: flex;
@@ -166,6 +192,7 @@ main .hero .boat .sun {
     border-radius: 500px;
     background: var(--burning-coral);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    z-index: 7;
 }
 
 main .hero .boat figure {
@@ -181,6 +208,7 @@ main .wave {
     z-index: 10;
     bottom: 190px;
     left: -65px;
+    z-index: 7;
 }
 
 main .wave img {
@@ -536,14 +564,31 @@ main .fade-container .facilities div .facilities-pic img {
 }
 
 .sign-up-container {
-    display: flex;
+    display: none;
+    position: fixed;
     flex-wrap: wrap;
     /* justify-content: center; */
     align-items: center;
+    margin-left: 0%;
+    margin-top: 100px;
     height: auto;
     width: 687px;
     background-color: var(--light-blue);
     padding: 34px;
+    z-index: 12;
+}
+
+.overlay-sign-up {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.5); Fondo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
 .sign-up-container > * {

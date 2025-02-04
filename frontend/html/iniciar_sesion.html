@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
-        <section class="login-container">
-            <figure>
-                <a href="index.html"><img src="../assets/img/logo.png" alt="Logo de tesoro perdido"></a>
-            </figure>
+    <section class="login-container">
+        <figure>
+            <a href="index.html"><img src="../assets/img/logo.png" alt="Logo de tesoro perdido"></a>
+        </figure>
         <h1 id="title" class="tittle">Iniciar sesión</h1>
         <br>
-        <br><p class="access">Accede desde</p> 
+        <br>
+        <p class="access">Accede desde</p>
         <section class="sign-up-social-media">
 
             <div class="sign-up-social-media-icons">
@@ -33,27 +36,29 @@
                     <img src="../assets/icons/microsoftIcon.svg" alt="">
                 </div>
             </div>
-        
-        <br>
-        <hr>
-        
-        <form action="" id="">
-            <label for="email" id="mail" class="mail">Correo electrónico</label>
+
             <br>
-            <input type="email" name="email" id="email"><span id="errorEmail"></span>
-            <br>
-            <label for="password" class="password">Contraseña</label>
-            <br>
-            <input type="password" name="password" id="password"><span id="errorPassword"></span>
-            <br>
-            <input type="submit" value="Iniciar Sesión" name="login" id="login" class="login">
-            <p class="messageLogin">¿No tienes una cuenta?</p>
-            <input type="submit" value="Regístrate" name="register" id="register" class="register">
-        </form>
-        <div id="error"></div>
+            <hr>
+
+            <form action="" id="form">
+                <label for="email" id="mail" class="mail">Correo electrónico</label>
+                <br>
+                <input type="email" name="email" id="email"><span id="errorEmail"></span>
+                <br>
+                <label for="password" class="password">Contraseña</label>
+                <br>
+                <input type="password" name="password" id="password"><span id="errorPassword"></span>
+                <br>
+                <input type="submit" value="Iniciar Sesión" name="login" id="login" class="login">
+                <p class="messageLogin">¿No tienes una cuenta?</p>
+                <input type="submit" value="Regístrate" name="register" id="register" class="register">
+            </form>
+            <div id="error"></div>
         </section>
     </section>
     </main>
     <script src="../js/iniciar_sesion.js"></script>
+    <script src="../js/validacion_inicio_sesion.js"></script>
 </body>
+
 </html>
