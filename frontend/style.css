@@ -8,7 +8,15 @@
 :root {
     --light-blue: #BFD6E8;
     --dark-blue: #1D2D44;
+    --base-color1: #111B34;
+    --brand-color: #BFD7EAF5;
+    --burning-coral: #FF5A5F;
+    --background-color3: #F1F8FF;
+    --brand-color2: #C81D25;
+    --clear-sky-dark3: #9CB8D4;
 }
+
+/* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
 *  {
     box-sizing: border-box;
@@ -19,14 +27,399 @@
 html {
     /* font-size: 62.5%; */
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    background-color: var(--base-color1);
+}
+
+header {
+    display: flex;
+    margin: 28px;
+    width: 90vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    place-self: center;
+}
+
+header figure img {
+    width: 83%;
+}
+
+header nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+header .sign-in {
+    display: flex;
+    padding: 8px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 9999px;
+    border: 1px solid #2D2B2B;
+    background-color: var(--brand-color);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+button {
+    display: flex;
+    padding: 8px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 9999px;
+    border: none;
+    background-color: var(--burning-coral);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--base-color1);
+    cursor: pointer;
+    z-index: 200;
 }
 
 main {
-    height: 100dvh;
-    width: 100dvw;
+    width: 99vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; 
+    place-self: center;
+    overflow-x: hidden;
+} 
+
+main > * {
+    width: 85vw;
+}
+
+main .hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 500px;
+    width: auto;
+}
+
+main .hero .texts {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+main .hero .texts h1 {
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 74px;
+    color: white;
+    width: 60%;
+}
+
+main .hero .texts h1 span {
+    color: var(--burning-coral);
+}
+
+main .hero .texts h4 {
+    font-size: 36px;
+    color: white;
+    width: 55%;
+    font-weight: 400;
+}
+
+main .hero .texts button {
+    padding: 10px;
+    width: 30%;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--base-color1);
+}
+
+main .hero .boat {
+    position: relative;
+    height: 500px;
+    width: 500px;
+}
+
+main .hero .boat .sun {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    flex-shrink: 0;
+    border-radius: 500px;
+    background: var(--burning-coral);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+main .hero .boat figure {
+    position: absolute;
+    top: 10px;
+    left: 34px;
+    z-index: 11;
+}
+
+main .wave {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    bottom: 190px;
+    left: -65px;
+}
+
+main .wave img {
+    width: 117%;
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 11;
+    bottom: 510px;
+    width: 100%;
+    height: 2325px;
+    background: linear-gradient(180deg, #DCE8FA 0%, #BCD4F6 10%, #325798 63.68%, #111B34 100%);
+}
+
+main section h2 {
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 54px;
+    color: var(--base-color1);
+    width: auto;
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+main section > div {
+    margin-bottom: 100px;
+}
+
+main .activities {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+main .activities .cards-container {
+    display: flex;
+    gap: 75px;
+    place-self: center;
+    max-width: 1135px;
+}
+
+main .activities .cards-container .card {
+    flex-direction: column;
+    display: flex;
+    width: 320px;
+    height: 373px;
+    padding-bottom: 28px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 16px;
+    background: var(--background-color3);
+}
+
+main .activities .cards-container .card figure img { 
+    border-radius: 16px 16px 0px 0px;
+}
+
+main .activities .cards-container .card div {
+    display: flex;
+    place-self: center;
+    flex-direction: column;
+    margin: 16px 37.5px 0;
+    /* width: 70%; */
+}
+main .activities .cards-container .card div h6 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+main .map {
+    width: auto;
+}
+
+main .map h2 span {
+    color: var(--brand-color2);
+}
+
+main .map figure {
+    place-self: center;
+    max-width: 1135px;
+}
+
+main .map figure img {
+    border-radius: 16px;
+}
+
+main .prices {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+main .prices .prices-content {
+    display: flex;
+    place-self: center;
+    max-width: 1135px;
+    height: 420px;
+    border-radius: 16px;
+    background-color: var(--background-color3);
+}
+
+main .prices .prices-content figure img {
+    border-radius: 16px 0 0 16px;
+}
+
+main .prices .prices-content div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 84px;
+}
+
+main .prices .prices-content div h3 {
+    font-family: "Luckiest Guy";
+    font-size: 42px;
+    color: var(--base-color1);
+    width: 80%;
+    text-align: center;
+}
+
+main .prices .prices-content div button {
+    font-size: 32px;
+    font-weight: 700;
+    padding: 16px;
+    width: 50%;
+}
+
+main .team > div {
+    max-width: 1135px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background-color3);
+    padding: 60px 170px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    border-radius: 16px;
+    place-self: center;
+}
+
+main .team > div figure img {
+    border-radius: 50%;
+}
+
+main .team > div .team-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+main .team > div .team-info h5 {
+    font-family: "Luckiest Guy";
+    font-size: 32px;
+    color: var(--base-color1);
+}
+
+main .team > div .team-info P {
+    font-size: 16px;
+    font-weight: 600;
+    width: 90%;
+}
+
+main .team > div button {
+    padding: 12px;
+    width: 40%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px; 
+} 
+
+footer {
+    display: flex;
+    flex-direction: column;
+    width: 99vw;
+    padding: 50px 96px 32px;
+    gap: 28px;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: row;
+}
+
+footer .footer-content div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .footer-content div h5 {
+    color: var(--background-color3);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 42px;
+}
+
+footer .footer-content div p {
+    color: var(--clear-sky-dark3);
+    font-size: 20px;
+    font-weight: 500;
+    width: 75%;
+    margin-bottom: 42px;
+}
+
+footer .footer-content div a {
+    /* color: white; */
+    color: var(--burning-coral);
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+footer hr {
+    border: 1px solid var(--brand-color);
+}
+
+footer .footer-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .footer-info p {
+    color: var(--background-color3);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+footer .footer-info div {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
 
 .sign-up-container {
