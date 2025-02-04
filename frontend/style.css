@@ -14,6 +14,7 @@
     --background-color3: #F1F8FF;
     --brand-color2: #C81D25;
     --clear-sky-dark3: #9CB8D4;
+    --clear-sky-light2: #E2F2FB;
 }
 
 /* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
@@ -535,6 +536,204 @@ main .fade-container .facilities div .facilities-pic img {
     border-radius: 16px;
 }
 
+/* Contenedor principal */
+.prices {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.prices .price-cards .plan-header h2 {
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--base-color1);
+    /* margin-bottom: 2rem; */
+    margin: 0;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(322px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Tarjeta de precios */
+.plan-card {
+    background: var(--clear-sky-light2);
+    border: 1px solid #bbb;
+    border-radius: 16px;
+    padding: 30px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: all 250ms ease-in-out;
+    min-height: 515px;
+}
+
+/* .plan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1rem;
+} */
+
+.plan-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.plan-type {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Precio */
+.plan-price {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 1rem 0;
+}
+
+/* Descripción */
+.plan-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.description-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.description-text {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Características */
+.plan-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Hover & Focus */
+.plan-card:hover,
+.plan-card:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background: #EBF0FF;
+    border-color: #2F54BE;
+    outline: none;
+}
+
+.quienes-somos-main .fade-container {
+    background: linear-gradient(180deg, #BCD4F6 0.16%, #729EE5 21.7%, #325798 82.22%, #111B34 90.64%);
+}
+
+.quienes-somos-main .fade-container .who-we-are-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container  {
+    display: flex;
+    flex-direction: column;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    max-width: 1135px;
+    place-self: center;
+    background-color: var(--clear-sky-light2);
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 76px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure img {
+    border-radius: 16px 0px 0px 16px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card hr {
+    color: #000;
+    height: 290px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .small-who-we-are-card-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1135px;
+    place-self: center;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .small-who-we-are-card-container h4 {
+    color: var(--base-color1);
+    font-family: "Luckiest Guy";
+    font-size: 48px;
+    
+}
+
 .sign-up-container {
     display: flex;
     flex-wrap: wrap;
@@ -773,3 +972,15 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: bold;
 }
 
+
+@media (max-width: 480px) {
+    main .fade-container .prices .price-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 480px) and (max-width: 780px) {
+    main .fade-container .prices .price-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
