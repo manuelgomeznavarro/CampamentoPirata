@@ -1,0 +1,70 @@
+header {
+    background-color: #111B34;
+    width: 100%;
+    height: 172px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;               /* Activa Flexbox */
+    align-items: center;         /* Centra verticalmente el contenido */
+    /* justify-content: space-between;  Opcional: distribuye el espacio entre el logo y el menú */
+    padding: 0 20px;  
+}
+body {
+    background-color: #BFD7EA;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 0%;
+    margin: 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+li {
+    list-style-type: none;
+    color: #F1F8FF;
+    font-size: 24px;
+    margin-left: 144px;
+}
+
+.container-logo{
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.container-pages ul {
+    display: flex;               /* Alinea los <li> horizontalmente */
+    gap: 20px;                   /* Espacio entre cada elemento de la lista */
+    padding: 0;                  /* Elimina el padding predeterminado del <ul> */
+    margin: 0;                   /* Elimina el margen predeterminado del <ul> */
+    align-items: center;         /* Centra verticalmente los <li> si es necesario */
+}
+
+.container-title-inscription {
+    display: flex;
+    align-items: center;
+    margin-left: center;
+    font-size: 36px;
+    color: #111B34;
+    /* padding-left: 50px; */
+}
+
+.container-form-inscription {
+    display: flex;
+    align-items: center;
+    margin-left: center;
+    font-size: 20px;
+    color: #111B34;
+    /* padding-left: 50px; */
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 20px;                      /* Espacio entre columnas */
+    width: 100%;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;                      /* Espacio entre los inputs */
+}

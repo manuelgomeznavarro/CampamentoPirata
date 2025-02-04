@@ -3,6 +3,9 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     validateForm();
+    if(validateForm()==true){
+        window.location.href = "inscription2.html";
+    }
 });
 
 const nextButton = document.querySelector('#nextButton');
