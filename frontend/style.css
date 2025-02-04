@@ -119,7 +119,7 @@ main {
     width: 100%;
     height: 1px;
     border: none;
-    background-color: #000;
+    background-color: #111b34;
     margin-bottom: 24px;
 }
 
@@ -159,3 +159,111 @@ main {
     background-color: #FFF;
     border-radius: 10px;
 }
+
+.login-container {
+    /* justify-content: center; */
+    align-items: center;
+    height: auto;
+    width: 687px;
+    background-color: var(--light-blue);
+    padding: 34px;
+    margin:0 auto;
+    margin-top: 30px;
+}
+
+.login-container h1 {
+    color: var(--dark-blue);
+    text-align: center;
+    font-family: "Eczar", serif;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login, .register {
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.login {
+    background: #112b54;
+}
+
+.register{
+    color: #112b54;
+    border: 2px solid #112b54;
+    background: #bfd6e8;
+    font-style: #112b54;
+}
+
+.register:hover {
+    background: #0f182e;
+    color: #FFF;
+}
+
+.login:hover{
+    background: #0f182e;
+    color:#FFF;
+}
+
+
+.messageLogin {
+    color: #111b34;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#email, #password {
+    border-radius: 10px;
+    border: 1px solid #112b54; 
+    padding: 10px; 
+    width: 50%; 
+    background-color: #FFF; 
+}
+
+.login-container hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: #111b34;
+    margin-bottom: 24px;
+}
+
+.sign-up-social-media-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center; 
+    gap: 16px;
+}
+
+.sign-up-social-media-icons div {
+    width: 68px;
+    height: 68px;
+    padding: 7px 13px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.access{
+    text-align: center;
+    padding-bottom: 10px;
+    color:#111b34;
+    font-weight: bold;
+}
+
