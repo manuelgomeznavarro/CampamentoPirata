@@ -128,7 +128,7 @@ main {
     align-items: center;
     flex-direction: column; 
     place-self: center;
-    overflow-x: hidden;
+    overflow: hidden;
 } 
 
 main > * {
