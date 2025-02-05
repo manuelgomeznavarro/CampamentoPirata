@@ -733,8 +733,18 @@ main .fade-container .facilities div .facilities-pic img {
     margin-bottom: 76px;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure img {
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-i {
     border-radius: 16px 0px 0px 16px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .right-i {
+    border-radius: 0px 16px 16px 0px;
 }
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card hr {
@@ -745,6 +755,13 @@ main .fade-container .facilities div .facilities-pic img {
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card p {
     font-size: 24px;
     font-weight: 500;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-t {
+    margin-left: 20px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .right-t {
     margin-right: 20px;
 }
 
@@ -759,8 +776,10 @@ main .fade-container .facilities div .facilities-pic img {
     color: var(--base-color1);
     font-family: "Luckiest Guy";
     font-size: 48px;
-    
+    margin-bottom: 8px;
 }
+
+.quienes-somos-main .fade-container 
 
 .sign-up-container {
     display: none;
