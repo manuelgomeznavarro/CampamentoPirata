@@ -120,6 +120,7 @@ button {
     color: var(--base-color1);
     cursor: pointer;
     z-index: 200;
+    font-family: 'Poppins', sans-serif;
 }
 
 main {
@@ -388,6 +389,7 @@ main .team > div button {
 } 
 
 footer {
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     width: 99vw;
@@ -731,14 +733,27 @@ main .fade-container .facilities div .facilities-pic img {
     background-color: var(--clear-sky-light2);
     gap: 32px;
     align-items: center;
-    margin-bottom: 76px;
+    margin-bottom: 66px;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
-    display: flex;
-    align-items: stretch;
-    height: 100%;
+.quienes-somos-main figure {
+    display: inline-block; /* O 'block' si prefieres */
+    width: fit-content; /* Se ajusta al tamaño de la imagen */
+    height: auto; /* Ajuste automático de altura */
+    margin: 0; /* Opcional, para evitar espacios adicionales */
 }
+
+.quienes-somos-main figure img {
+    display: block; /* Evita espacios adicionales por imágenes en línea */
+    width: auto; /* O 100% si necesitas responsividad */
+    height: auto; /* Mantiene la proporción */
+}
+
+    /* .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+    } */
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-i {
     border-radius: 16px 0px 0px 16px;
@@ -778,6 +793,10 @@ main .fade-container .facilities div .facilities-pic img {
     font-family: "Luckiest Guy";
     font-size: 48px;
     margin-bottom: 8px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container {
+    margin-bottom: 66px;
 }
 
 .quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container {
@@ -846,10 +865,16 @@ main .fade-container .facilities div .facilities-pic img {
 .quienes-somos-main .fade-container .faqs-container {
     display: flex;
     flex-direction: column;
+    margin-bottom: 66px;
 }
 
-.quienes-somos-main .fade-container .faqs-container h2 {
-    color: var(--background-color3);
+.quienes-somos-main .fade-container .contact-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quienes-somos-main .fade-container .faqs-container h2, .quienes-somos-main .fade-container .contact-container h2 {
+    color: var(--clear-sky-light2);
 }
 
 .quienes-somos-main .fade-container .faqs-container .faq-cards-container {
@@ -887,12 +912,97 @@ main .fade-container .facilities div .facilities-pic img {
     height: 35px;
     cursor: pointer;
 }
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1135px;
+    place-self: center;
+    gap: 70px;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+    width: 100%;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container div p {
+    color: var(--clear-sky-light2);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container hr {
+    border-color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1135px;
+    place-self: center;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container h4 {
+    color: var(--);
+    font-family: "Luckiest Guy";
+    font-size: 48px;
+    margin: 80px 0 36px 0;
+    color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div label {
+    color: var(--clear-sky-light2);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div input {
+    width: 100%;
+    min-height: 36px;
+    height: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form .incident-text input {
+    min-height: 84px;
+}
 
 .payment-main {
     background-color: var(--brand-color);
     padding: 40px 0;
 }
 
+.quienes-somos-main .fade-container .contact-container .incident-form-container form button {
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    width: 56%;
+    padding: 12px
+    /* height:  ; */
+}
 
 .sign-up-container {
     display: none;
