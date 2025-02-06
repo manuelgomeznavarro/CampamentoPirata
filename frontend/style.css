@@ -741,19 +741,26 @@ main .fade-container .facilities div .facilities-pic img {
 }
 
 .quienes-somos-main figure {
-    display: inline-block; /* O 'block' si prefieres */
-    width: fit-content; /* Se ajusta al tamaño de la imagen */
-    height: auto; /* Ajuste automático de altura */
-    margin: 0; /* Opcional, para evitar espacios adicionales */
+    display: inline-block;
+    /* O 'block' si prefieres */
+    width: fit-content;
+    /* Se ajusta al tamaño de la imagen */
+    height: auto;
+    /* Ajuste automático de altura */
+    margin: 0;
+    /* Opcional, para evitar espacios adicionales */
 }
 
 .quienes-somos-main figure img {
-    display: block; /* Evita espacios adicionales por imágenes en línea */
-    width: auto; /* O 100% si necesitas responsividad */
-    height: auto; /* Mantiene la proporción */
+    display: block;
+    /* Evita espacios adicionales por imágenes en línea */
+    width: auto;
+    /* O 100% si necesitas responsividad */
+    height: auto;
+    /* Mantiene la proporción */
 }
 
-    /* .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
+/* .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
         display: flex;
         align-items: stretch;
         height: 100%;
@@ -877,7 +884,8 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
 }
 
-.quienes-somos-main .fade-container .faqs-container h2, .quienes-somos-main .fade-container .contact-container h2 {
+.quienes-somos-main .fade-container .faqs-container h2,
+.quienes-somos-main .fade-container .contact-container h2 {
     color: var(--clear-sky-light2);
 }
 
@@ -916,6 +924,7 @@ main .fade-container .facilities div .facilities-pic img {
     height: 35px;
     cursor: pointer;
 }
+
 .quienes-somos-main .fade-container .contact-container .ways-to-contact-container {
     display: flex;
     flex-direction: row;
@@ -1005,7 +1014,7 @@ main .fade-container .facilities div .facilities-pic img {
     line-height: 24px;
     width: 56%;
     padding: 12px
-    /* height:  ; */
+        /* height:  ; */
 }
 
 .sign-up-container {
@@ -1274,7 +1283,7 @@ main .fade-container .facilities div .facilities-pic img {
     width: auto;
 } */
 
-.profile-container-global{
+.profile-container-global {
     display: flex;
     margin-left: auto;
 }
@@ -1321,6 +1330,7 @@ main .fade-container .facilities div .facilities-pic img {
     position: relative;
     top: 60px;
 }
+
 .child-title {
     font-family: 'Poppins', sans-serif;
     color: var(--base-color1);
@@ -1446,6 +1456,86 @@ main .fade-container .facilities div .facilities-pic img {
     background: var(--Color-de-Contraste, #FF5A5F);
     margin-left: 85%;
 }
+
+/* Progreso */
+
+.exp {
+    position: relative;
+    align-content: center;
+    margin-left: 20%;
+    width: 1213px;
+    height: 24px;
+    flex-shrink: 0;
+    background-color: rgba(0, 102, 255, 0.22);
+    fill: rgba(0, 102, 255, 0.22);
+    border-radius: 16px;
+}
+
+.activities-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 20%;
+}
+
+.habilities-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 60%;
+    bottom: 70px;
+}
+
+.text-activities {
+    width: 400px;
+    height: 345px;
+    flex-shrink: 0;
+    margin-left: 20%;
+}
+
+.text-habilities {
+    position: relative;
+    width: 400px;
+    height: 345px;
+    flex-shrink: 0;
+    margin-left: 60%;
+    bottom: 350px;
+}
+
+.comentaries-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 20%;
+    bottom: 400px;
+}
+
+.comentaries-box {
+    position: relative;
+    width: 610px;
+    height: 352px;
+    margin-left: 60%;
+    flex-shrink: 0;
+    border: 3px solid #000;
+    background: rgba(217, 217, 217, 0.00);
+    background-color: var(--clear-sky-light2);
+    bottom: 450px;
+    align-content: center;
+    padding: 50px;
+}
+
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
