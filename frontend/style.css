@@ -20,7 +20,7 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
-*  {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -78,6 +78,7 @@ header .sign-in {
     font-style: normal;
     font-weight: 700;
 }
+
 .sign-in-container {
     display: none;
     position: fixed;
@@ -127,12 +128,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
     place-self: center;
     overflow: hidden;
-} 
+}
 
-main > * {
+main>* {
     width: 85vw;
 }
 
@@ -239,7 +240,7 @@ main section h2 {
     margin-bottom: 56px;
 }
 
-main section > div {
+main section>div {
     margin-bottom: 100px;
 }
 
@@ -269,7 +270,7 @@ main .activities .cards-container .card {
     background: var(--background-color3);
 }
 
-main .activities .cards-container .card figure img { 
+main .activities .cards-container .card figure img {
     border-radius: 16px 16px 0px 0px;
 }
 
@@ -280,6 +281,7 @@ main .activities .cards-container .card div {
     margin: 16px 37.5px 0;
     /* width: 70%; */
 }
+
 main .activities .cards-container .card div h6 {
     font-size: 22px;
     font-weight: 700;
@@ -344,7 +346,7 @@ main .prices .prices-content div button {
     width: 50%;
 }
 
-main .team > div {
+main .team>div {
     max-width: 1135px;
     display: flex;
     flex-direction: row;
@@ -357,35 +359,35 @@ main .team > div {
     place-self: center;
 }
 
-main .team > div figure img {
+main .team>div figure img {
     border-radius: 50%;
 }
 
-main .team > div .team-info {
+main .team>div .team-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-main .team > div .team-info h5 {
+main .team>div .team-info h5 {
     font-family: "Luckiest Guy";
     font-size: 32px;
     color: var(--base-color1);
 }
 
-main .team > div .team-info P {
+main .team>div .team-info P {
     font-size: 16px;
     font-weight: 600;
     width: 90%;
 }
 
-main .team > div button {
+main .team>div button {
     padding: 12px;
     width: 40%;
     font-size: 16px;
     font-weight: 700;
-    line-height: 24px; 
-} 
+    line-height: 24px;
+}
 
 footer {
     display: flex;
@@ -463,7 +465,8 @@ main .programming-cards-container {
     flex-direction: column;
 }
 
-.fade-container div h2, .payment-main .payment-container h2 {
+.fade-container div h2,
+.payment-main .payment-container h2 {
     font-family: "Luckiest Guy", serif;
     font-size: 56px;
     font-weight: 400;
@@ -476,7 +479,7 @@ main .programming-cards-container {
 
 main .programming-cards-container .cards-container {
     display: flex;
-    gap: 75px;  
+    gap: 75px;
     place-self: center;
     /* max-width: 120%; */
     width: 120%;
@@ -495,7 +498,7 @@ main .programming-cards-container .cards-container .card {
     background: var(--background-color3);
 }
 
-main .programming-cards-container .cards-container .card figure img { 
+main .programming-cards-container .cards-container .card figure img {
     border-radius: 16px 16px 0px 0px;
 }
 
@@ -506,6 +509,7 @@ main .programming-cards-container .cards-container .card div {
     margin: 0 37.5px;
     /* width: 70%; */
 }
+
 main .programming-cards-container .cards-container .card div h6 {
     font-size: 22px;
     font-weight: 700;
@@ -533,7 +537,7 @@ main .fade-container .about-place .about-place-content {
 main .fade-container .about-place .about-place-content p {
     font-size: 32px;
     font-weight: 500;
-    line-height: 44px; 
+    line-height: 44px;
     color: var(--base-color1);
     width: 48%;
 }
@@ -697,7 +701,7 @@ main .fade-container .facilities div .facilities-pic img {
 .plan-card:hover,
 .plan-card:focus {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     background: #EBF0FF;
     border-color: #2F54BE;
     outline: none;
@@ -712,7 +716,7 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container  {
+.quienes-somos-main .fade-container .who-we-are-container {
     display: flex;
     flex-direction: column;
 }
@@ -800,7 +804,7 @@ main .fade-container .facilities div .facilities-pic img {
     padding-bottom: 24px;
 }
 
-.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card > figure img {
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card>figure img {
     border-radius: 16px 16px 0px 0px;
 }
 
@@ -922,7 +926,7 @@ main .fade-container .facilities div .facilities-pic img {
     z-index: 100;
 }
 
-.sign-up-container > * {
+.sign-up-container>* {
     width: 100%;
 }
 
@@ -938,9 +942,9 @@ main .fade-container .facilities div .facilities-pic img {
     display: flex;
     flex-direction: column;
     align-items: center;
-}   
+}
 
-.sign-up-container form > * {
+.sign-up-container form>* {
     margin-bottom: 24px;
 }
 
@@ -956,7 +960,7 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 500;
 }
 
-.sign-up-container form div label + input  {
+.sign-up-container form div label+input {
     width: 100%;
     height: 50px;
     border-radius: 10px;
@@ -969,7 +973,7 @@ main .fade-container .facilities div .facilities-pic img {
     width: 15px;
 }
 
-.sign-up-container form div input + label {
+.sign-up-container form div input+label {
     display: inline;
     margin-left: 4px;
     font-size: 16px;
@@ -1011,7 +1015,7 @@ main .fade-container .facilities div .facilities-pic img {
     align-items: center;
 }
 
-.sign-up-container .sign-up-social-media > * {
+.sign-up-container .sign-up-social-media>* {
     width: 100%;
 }
 
@@ -1049,7 +1053,7 @@ main .fade-container .facilities div .facilities-pic img {
     width: 687px;
     background-color: var(--light-blue);
     padding: 34px;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 30px;
 }
 
@@ -1066,7 +1070,9 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
     align-items: center;
 }
-.login, .register {
+
+.login,
+.register {
     width: 100%;
     text-align: center;
     color: #FFF;
@@ -1083,7 +1089,7 @@ main .fade-container .facilities div .facilities-pic img {
     background: #112b54;
 }
 
-.register{
+.register {
     color: #112b54;
     border: 2px solid #112b54;
     background: #bfd6e8;
@@ -1095,9 +1101,9 @@ main .fade-container .facilities div .facilities-pic img {
     color: #FFF;
 }
 
-.login:hover{
+.login:hover {
     background: #0f182e;
-    color:#FFF;
+    color: #FFF;
 }
 
 
@@ -1107,12 +1113,13 @@ main .fade-container .facilities div .facilities-pic img {
     padding: 10px;
 }
 
-#email, #password {
+#email,
+#password {
     border-radius: 10px;
-    border: 1px solid #112b54; 
-    padding: 10px; 
-    width: 50%; 
-    background-color: #FFF; 
+    border: 1px solid #112b54;
+    padding: 10px;
+    width: 50%;
+    background-color: #FFF;
 }
 
 .login-container hr {
@@ -1126,15 +1133,15 @@ main .fade-container .facilities div .facilities-pic img {
 .sign-up-social-media-icons {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     gap: 16px;
 }
 
 .sign-up-social-media-icons div {
     width: 68px;
     height: 68px;
-    padding: 7px 13px; 
+    padding: 7px 13px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1142,13 +1149,193 @@ main .fade-container .facilities div .facilities-pic img {
     border-radius: 10px;
 }
 
-.access{
+.access {
     text-align: center;
     padding-bottom: 10px;
-    color:#111b34;
+    color: #111b34;
     font-weight: bold;
 }
 
+/* Perfil Tutor */
+
+/* main .profile {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+} */
+
+.profile-container-global{
+    display: flex;
+    margin-left: auto;
+}
+
+.profile {
+    width: 100%;
+    max-width: 300px;
+    margin: 32px;
+    padding: 2rem;
+    min-height: 500px;
+    margin-left: 5%;
+}
+
+.profile-card {
+    background: var(--clear-sky-light2);
+    width: 280px;
+    border: 1px solid #bbb;
+    border-radius: 16px;
+    padding: 30px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: all 250ms ease-in-out;
+}
+
+.profile-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.children-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    max-width: 150px;
+    margin: 0;
+    position: relative;
+    top: 60px;
+}
+.child-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    max-width: 150px;
+}
+
+.profile-type {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-card-info {
+    background: var(--clear-sky-light2);
+    width: 280px;
+    border: 1px solid #bbb;
+    border-radius: 16px;
+    padding: 30px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: all 250ms ease-in-out;
+}
+
+.info-title {
+    color: var(--Color-fondo-1, #111B34);
+    /* text-align: center; */
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.profile-container {
+    display: flex;
+    width: 277px;
+    height: 459px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.children-container {
+    display: flex;
+    height: 494px;
+    width: 70%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+}
+
+.children-card {
+    display: flex;
+    width: 271px;
+    height: 335px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-items: center;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(113, 113, 113, 0.25);
+}
+
+.children-text {
+    width: 234px;
+    color: var(--Color-fondo-1, #111B34);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.154px;
+}
+
+.weekly-button {
+    display: flex;
+    padding: 13px 32px;
+    width: 234px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    align-self: stretch;
+    border-radius: 28px;
+    background: var(--Color-de-Contraste, #FF5A5F);
+}
+
+.edit-button {
+    display: flex;
+    width: 194px;
+    height: 45px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+    /* border-radius: 5px;  */
+    background: var(--Color-de-Contraste, #FF5A5F);
+    margin-left: 85%;
+}
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
