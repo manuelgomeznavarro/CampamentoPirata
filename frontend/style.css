@@ -15,11 +15,12 @@
     --brand-color2: #C81D25;
     --clear-sky-dark3: #9CB8D4;
     --clear-sky-light2: #E2F2FB;
+    --clear-sky-light3: #D9E9F5;
 }
 
 /* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
-*  {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -77,6 +78,7 @@ header .sign-in {
     font-style: normal;
     font-weight: 700;
 }
+
 .sign-in-container {
     display: none;
     position: fixed;
@@ -127,12 +129,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
     place-self: center;
     overflow: hidden;
-} 
+}
 
-main > * {
+main>* {
     width: 85vw;
 }
 
@@ -239,7 +241,7 @@ main section h2 {
     margin-bottom: 56px;
 }
 
-main section > div {
+main section>div {
     margin-bottom: 100px;
 }
 
@@ -269,7 +271,7 @@ main .activities .cards-container .card {
     background: var(--background-color3);
 }
 
-main .activities .cards-container .card figure img { 
+main .activities .cards-container .card figure img {
     border-radius: 16px 16px 0px 0px;
 }
 
@@ -280,6 +282,7 @@ main .activities .cards-container .card div {
     margin: 16px 37.5px 0;
     /* width: 70%; */
 }
+
 main .activities .cards-container .card div h6 {
     font-size: 22px;
     font-weight: 700;
@@ -344,7 +347,7 @@ main .prices .prices-content div button {
     width: 50%;
 }
 
-main .team > div {
+main .team>div {
     max-width: 1135px;
     display: flex;
     flex-direction: row;
@@ -357,37 +360,38 @@ main .team > div {
     place-self: center;
 }
 
-main .team > div figure img {
+main .team>div figure img {
     border-radius: 50%;
 }
 
-main .team > div .team-info {
+main .team>div .team-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-main .team > div .team-info h5 {
+main .team>div .team-info h5 {
     font-family: "Luckiest Guy";
     font-size: 32px;
     color: var(--base-color1);
 }
 
-main .team > div .team-info P {
+main .team>div .team-info P {
     font-size: 16px;
     font-weight: 600;
     width: 90%;
 }
 
-main .team > div button {
+main .team>div button {
     padding: 12px;
     width: 40%;
     font-size: 16px;
     font-weight: 700;
-    line-height: 24px; 
-} 
+    line-height: 24px;
+}
 
 footer {
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     width: 99vw;
@@ -463,7 +467,8 @@ main .programming-cards-container {
     flex-direction: column;
 }
 
-.fade-container div h2 {
+.fade-container div h2,
+.payment-main .payment-container h2 {
     font-family: "Luckiest Guy", serif;
     font-size: 56px;
     font-weight: 400;
@@ -476,7 +481,7 @@ main .programming-cards-container {
 
 main .programming-cards-container .cards-container {
     display: flex;
-    gap: 75px;  
+    gap: 75px;
     place-self: center;
     /* max-width: 120%; */
     width: 120%;
@@ -495,7 +500,7 @@ main .programming-cards-container .cards-container .card {
     background: var(--background-color3);
 }
 
-main .programming-cards-container .cards-container .card figure img { 
+main .programming-cards-container .cards-container .card figure img {
     border-radius: 16px 16px 0px 0px;
 }
 
@@ -506,6 +511,7 @@ main .programming-cards-container .cards-container .card div {
     margin: 0 37.5px;
     /* width: 70%; */
 }
+
 main .programming-cards-container .cards-container .card div h6 {
     font-size: 22px;
     font-weight: 700;
@@ -533,7 +539,7 @@ main .fade-container .about-place .about-place-content {
 main .fade-container .about-place .about-place-content p {
     font-size: 32px;
     font-weight: 500;
-    line-height: 44px; 
+    line-height: 44px;
     color: var(--base-color1);
     width: 48%;
 }
@@ -697,7 +703,7 @@ main .fade-container .facilities div .facilities-pic img {
 .plan-card:hover,
 .plan-card:focus {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     background: #EBF0FF;
     border-color: #2F54BE;
     outline: none;
@@ -712,7 +718,7 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container  {
+.quienes-somos-main .fade-container .who-we-are-container {
     display: flex;
     flex-direction: column;
 }
@@ -731,14 +737,34 @@ main .fade-container .facilities div .facilities-pic img {
     background-color: var(--clear-sky-light2);
     gap: 32px;
     align-items: center;
-    margin-bottom: 76px;
+    margin-bottom: 66px;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
-    display: flex;
-    align-items: stretch;
-    height: 100%;
+.quienes-somos-main figure {
+    display: inline-block;
+    /* O 'block' si prefieres */
+    width: fit-content;
+    /* Se ajusta al tamaño de la imagen */
+    height: auto;
+    /* Ajuste automático de altura */
+    margin: 0;
+    /* Opcional, para evitar espacios adicionales */
 }
+
+.quienes-somos-main figure img {
+    display: block;
+    /* Evita espacios adicionales por imágenes en línea */
+    width: auto;
+    /* O 100% si necesitas responsividad */
+    height: auto;
+    /* Mantiene la proporción */
+}
+
+/* .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+    } */
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-i {
     border-radius: 16px 0px 0px 16px;
@@ -780,7 +806,216 @@ main .fade-container .facilities div .facilities-pic img {
     margin-bottom: 8px;
 }
 
-.quienes-somos-main .fade-container 
+.quienes-somos-main .fade-container .our-monitors-container {
+    margin-bottom: 66px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container {
+    max-width: 1135px;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    place-self: center;
+    gap: 84px;
+    justify-content: center;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 322px;
+    background-color: var(--brand-color);
+    border-radius: 16px;
+    padding-bottom: 24px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card>figure img {
+    border-radius: 16px 16px 0px 0px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 36px;
+    gap: 24px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content .monitor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content .monitor-info h5 {
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content .monitor-info p {
+    color: var(--base-color1);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content hr {
+    height: 1px;
+    border-color: var(--base-color1);
+}
+
+.quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content div {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.quienes-somos-main .fade-container .faqs-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 66px;
+}
+
+.quienes-somos-main .fade-container .contact-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quienes-somos-main .fade-container .faqs-container h2,
+.quienes-somos-main .fade-container .contact-container h2 {
+    color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .faqs-container .faq-cards-container {
+    display: flex;
+    flex-direction: column;
+    width: 1135px;
+    place-self: center;
+    gap: 32px;
+}
+
+.quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card .faq-card-content {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--clear-sky-light3);
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card .faq-card-content h6 {
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card .faq-card-content figure img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1135px;
+    place-self: center;
+    gap: 70px;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+    width: 100%;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container div p {
+    color: var(--clear-sky-light2);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.quienes-somos-main .fade-container .contact-container .ways-to-contact-container hr {
+    border-color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1135px;
+    place-self: center;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container h4 {
+    color: var(--);
+    font-family: "Luckiest Guy";
+    font-size: 48px;
+    margin: 80px 0 36px 0;
+    color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div label {
+    color: var(--clear-sky-light2);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form div input {
+    width: 100%;
+    min-height: 36px;
+    height: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--clear-sky-light2);
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form .incident-text input {
+    min-height: 84px;
+}
+
+.payment-main {
+    background-color: var(--brand-color);
+    padding: 40px 0;
+}
+
+.quienes-somos-main .fade-container .contact-container .incident-form-container form button {
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    width: 56%;
+    padding: 12px
+        /* height:  ; */
+}
 
 .sign-up-container {
     display: none;
@@ -810,7 +1045,7 @@ main .fade-container .facilities div .facilities-pic img {
     z-index: 100;
 }
 
-.sign-up-container > * {
+.sign-up-container>* {
     width: 100%;
 }
 
@@ -828,7 +1063,7 @@ main .fade-container .facilities div .facilities-pic img {
     align-items: center;
 }
 
-.sign-up-container form > * {
+.sign-up-container form>* {
     margin-bottom: 24px;
 }
 
@@ -844,7 +1079,7 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 500;
 }
 
-.sign-up-container form div label + input  {
+.sign-up-container form div label+input {
     width: 100%;
     height: 50px;
     border-radius: 10px;
@@ -857,7 +1092,7 @@ main .fade-container .facilities div .facilities-pic img {
     width: 15px;
 }
 
-.sign-up-container form div input + label {
+.sign-up-container form div input+label {
     display: inline;
     margin-left: 4px;
     font-size: 16px;
@@ -899,7 +1134,7 @@ main .fade-container .facilities div .facilities-pic img {
     align-items: center;
 }
 
-.sign-up-container .sign-up-social-media > * {
+.sign-up-container .sign-up-social-media>* {
     width: 100%;
 }
 
@@ -937,7 +1172,7 @@ main .fade-container .facilities div .facilities-pic img {
     width: 687px;
     background-color: var(--light-blue);
     padding: 34px;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 30px;
 }
 
@@ -954,7 +1189,9 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
     align-items: center;
 }
-.login, .register {
+
+.login,
+.register {
     width: 100%;
     text-align: center;
     color: #FFF;
@@ -971,7 +1208,7 @@ main .fade-container .facilities div .facilities-pic img {
     background: #112b54;
 }
 
-.register{
+.register {
     color: #112b54;
     border: 2px solid #112b54;
     background: #bfd6e8;
@@ -983,9 +1220,9 @@ main .fade-container .facilities div .facilities-pic img {
     color: #FFF;
 }
 
-.login:hover{
+.login:hover {
     background: #0f182e;
-    color:#FFF;
+    color: #FFF;
 }
 
 
@@ -995,12 +1232,13 @@ main .fade-container .facilities div .facilities-pic img {
     padding: 10px;
 }
 
-#email, #password {
+#email,
+#password {
     border-radius: 10px;
-    border: 1px solid #112b54; 
-    padding: 10px; 
-    width: 50%; 
-    background-color: #FFF; 
+    border: 1px solid #112b54;
+    padding: 10px;
+    width: 50%;
+    background-color: #FFF;
 }
 
 .login-container hr {
@@ -1014,15 +1252,15 @@ main .fade-container .facilities div .facilities-pic img {
 .sign-up-social-media-icons {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     gap: 16px;
 }
 
 .sign-up-social-media-icons div {
     width: 68px;
     height: 68px;
-    padding: 7px 13px; 
+    padding: 7px 13px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1030,11 +1268,272 @@ main .fade-container .facilities div .facilities-pic img {
     border-radius: 10px;
 }
 
-.access{
+.access {
     text-align: center;
     padding-bottom: 10px;
-    color:#111b34;
+    color: #111b34;
     font-weight: bold;
+}
+
+/* Perfil Tutor */
+
+/* main .profile {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+} */
+
+.profile-container-global {
+    display: flex;
+    margin-left: auto;
+}
+
+.profile {
+    width: 100%;
+    max-width: 300px;
+    margin: 32px;
+    padding: 2rem;
+    min-height: 500px;
+    margin-left: 5%;
+}
+
+.profile-card {
+    background: var(--clear-sky-light2);
+    width: 280px;
+    border: 1px solid #bbb;
+    border-radius: 16px;
+    padding: 30px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: all 250ms ease-in-out;
+}
+
+.profile-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.children-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    max-width: 150px;
+    margin: 0;
+    position: relative;
+    top: 60px;
+}
+
+.child-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 24px;
+    font-weight: 700;
+    max-width: 150px;
+}
+
+.profile-type {
+    font-family: 'Poppins', sans-serif;
+    color: var(--base-color1);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-card-info {
+    background: var(--clear-sky-light2);
+    width: 280px;
+    border: 1px solid #bbb;
+    border-radius: 16px;
+    padding: 30px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: all 250ms ease-in-out;
+}
+
+.info-title {
+    color: var(--Color-fondo-1, #111B34);
+    /* text-align: center; */
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.profile-container {
+    display: flex;
+    width: 277px;
+    height: 459px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.children-container {
+    display: flex;
+    height: 494px;
+    width: 70%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+}
+
+.children-card {
+    display: flex;
+    width: 271px;
+    height: 335px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-items: center;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(113, 113, 113, 0.25);
+}
+
+.children-text {
+    width: 234px;
+    color: var(--Color-fondo-1, #111B34);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.154px;
+}
+
+.weekly-button {
+    display: flex;
+    padding: 13px 32px;
+    width: 234px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    align-self: stretch;
+    border-radius: 28px;
+    background: var(--Color-de-Contraste, #FF5A5F);
+}
+
+.edit-button {
+    display: flex;
+    width: 194px;
+    height: 45px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+    /* border-radius: 5px;  */
+    background: var(--Color-de-Contraste, #FF5A5F);
+    margin-left: 85%;
+}
+
+/* Progreso */
+
+.exp {
+    position: relative;
+    align-content: center;
+    margin-left: 20%;
+    width: 1213px;
+    height: 24px;
+    flex-shrink: 0;
+    background-color: rgba(0, 102, 255, 0.22);
+    fill: rgba(0, 102, 255, 0.22);
+    border-radius: 16px;
+}
+
+.activities-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 20%;
+}
+
+.habilities-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 60%;
+    bottom: 70px;
+}
+
+.text-activities {
+    width: 400px;
+    height: 345px;
+    flex-shrink: 0;
+    margin-left: 20%;
+}
+
+.text-habilities {
+    position: relative;
+    width: 400px;
+    height: 345px;
+    flex-shrink: 0;
+    margin-left: 60%;
+    bottom: 350px;
+}
+
+.comentaries-title {
+    color: var(--base-color1);
+    width: auto;
+    font-family: "Luckiest Guy", serif;
+    font-size: 56px;
+    font-weight: 400;
+    position: relative;
+    max-width: 400px;
+    margin-left: 20%;
+    bottom: 400px;
+}
+
+.comentaries-box {
+    position: relative;
+    width: 610px;
+    height: 352px;
+    margin-left: 60%;
+    flex-shrink: 0;
+    border: 3px solid #000;
+    background: rgba(217, 217, 217, 0.00);
+    background-color: var(--clear-sky-light2);
+    bottom: 450px;
+    align-content: center;
+    padding: 50px;
 }
 
 /* Dashboard Monitor */
