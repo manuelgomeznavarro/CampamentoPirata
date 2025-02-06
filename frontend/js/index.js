@@ -145,9 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    
-
-
     //JS SIGN IN
 
     document.addEventListener("DOMContentLoaded", function () {
