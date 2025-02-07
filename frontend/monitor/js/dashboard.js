@@ -1,12 +1,24 @@
 const btnAsistencia = document.getElementById('btnAsistencia');
 const btnDashboard = document.getElementById('btnDashboard');
 const btnCronograma = document.getElementById('btnCronograma');
+const btnInfoGrupos = document.getElementById('btnInfoGrupos');
 const tablaAsistencia = document.getElementById('tablaAsistencia');
 const tablaCronograma = document.getElementById('tablaCronograma');
+const infoPerfil = document.getElementById('info-perfil');
+const infoGrupos = document.getElementById('info-grupos');
 const activityCard = document.getElementById('activity-card');
 const activityDescription = document.getElementsByClassName('activity-description');
 const dashBoardContentContainer = document.getElementById('dashboard-content-container');
 
+btnInfoGrupos.addEventListener('click',function(){
+    if(infoGrupos.style.display ==="none"){
+        infoGrupos.style.display = "block";
+        activityCard.style.display = "none";
+        tablaAsistencia.style.display = "none";
+        tablaCronograma.style.display = "none";
+        dashBoardContentContainer.style.display = "none";
+    }
+})
 
 btnCronograma.addEventListener('click',function(){
     if(tablaCronograma.style.display ==="none"){
@@ -14,6 +26,7 @@ btnCronograma.addEventListener('click',function(){
         activityCard.style.display = "none";
         tablaAsistencia.style.display = "none";
         dashBoardContentContainer.style.display = "none";
+        infoGrupos.style.display = "none";
     }
 })
 
@@ -23,6 +36,7 @@ btnDashboard.addEventListener('click',function(){
         activityCard.style.display = "block";
         tablaAsistencia.style.display = "none";
         tablaCronograma.style.display = "none";
+        infoGrupos.style.display = "none";
     }
 })
 
@@ -32,8 +46,20 @@ btnAsistencia.addEventListener('click',function(){
         activityCard.style.display = "none";
         dashBoardContentContainer.style.display = "none";
         tablaCronograma.style.display = "none";
+        infoGrupos.style.display = "none";
     } 
 })
+
+document.querySelectorAll('.info-perfil').forEach(function(elemento) {
+    elemento.addEventListener('click', function() {
+        let contacto = document.getElementById('contacto-alumno');
+        if (window.getComputedStyle(contacto).display === "none") {
+            contacto.style.display = "block";
+        } else {
+            contacto.style.display = "none";
+        }
+    });
+});
 
 document.querySelectorAll('.editable').forEach(cell =>{
     cell.addEventListener('click', ()=>{
@@ -58,15 +84,21 @@ document.querySelectorAll('.editable').forEach(cell =>{
     });
 })
 
-document.querySelectorAll('menu-item').forEach(item=>{
-    item.addEventListener('click', ()=>{
-        document.querySelector('.menu-item').forEach(el => el.classList.remove('active'));
-        this.classList.add('active');
-        document.querySelectorAll('contenido').forEach(el =>el.classList.remove('active'));
-        let targetId = this.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
-    })
-})
+document.querySelectorAll('.menu-item').forEach(function(boton) {
+    // Agrego un evento 'click' a cada botón
+    boton.addEventListener('click', function() {
+        // Elimino la clase 'activo' de todos los botones
+        // Esto es para que solo un botón tenga la clase 'activo' a la vez
+        document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('activo'));
+        // Agrego la clase 'activo' al botón al que se le hizo click
+        this.classList.add('activo');
+
+        let titulo = document.getElementById('dashboard-title');
+        // Cambio el texto del título por el texto del botón al que se le hizo click
+        titulo.textContent = this.textContent;
+    });
+});
+
 
 document.querySelectorAll('.asistencia').forEach(checkbox => {
     checkbox.addEventListener('change', function() {

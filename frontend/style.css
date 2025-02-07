@@ -1775,8 +1775,6 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 400;
 }
 
-.notes-icon {}
-
 /* Changes Card */
 .changes-card {
     min-height: 300px;
@@ -1814,9 +1812,10 @@ main .fade-container .facilities div .facilities-pic img {
     cursor: pointer;
 }
 
-.menu-item.active{
-    font-weight: bold;
-    color:var(--base-color1);
+.menu-item.activo {
+    background-color: var(--brand-color);
+    color: var(--dark-blue);
+    border-radius: 10px;
 }
 
 table{
@@ -1979,6 +1978,76 @@ table{
     align-items: center;
     flex-shrink: 0;
 }
+
+/* 
+display: flex;
+    width: 194px;
+    height: 45px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+    /* border-radius: 5px;  */
+
+.nombre-grupos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--dark-blue);
+    border-radius: 15px;
+    height: 50px;
+    width: 250px;
+    color: white;
+    place-self: center;
+    font-size: 18px;
+}
+
+.contenedor-perfiles{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 14px;
+    cursor: pointer;
+}
+
+
+.contenedor-perfiles div{
+    gap:36px;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-perfiles div p{
+    background-color: var(--clear-sky-light2);
+    padding: 8px;
+    width: 26vw;
+    color: var(--base-color1);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.contenedor-perfiles div img{ 
+    border-radius: 50%;
+}
+
+.contacto-alumno{
+    width: 20vw;
+    height: 30vh;
+    flex-direction: column;
+    border: 3px solid var(--dark-blue);
+    background: var(--clear-sky-light2);
+    margin-top: 25px;
+}
+
+.contenedor-oculto{
+    display: flex;
+    flex-direction: row;
+    gap:400px;
+}
+
+
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
