@@ -1801,13 +1801,184 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 400;
 }
 
-.changes-icon {
-
+/* Cambios botones para el JS */
+.contenido{
+    display: none;
 }
 
+.contenido.active{
+    display: block;
+}
 
+.menu-item {
+    cursor: pointer;
+}
 
+.menu-item.active{
+    font-weight: bold;
+    color:var(--base-color1);
+}
 
+table{
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.table-title{
+    background-color: var(--brand-color);
+}
+
+.table-row{
+    background-color: #d6e6f2;
+}
+
+.cronograma-table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cronograma-table th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.cronograma-table th {
+    background-color: var(--clear-sky-light2);
+    color: var(--base-color1);
+}
+
+.cronograma-table img {
+    width: 25px;
+    height: 25px;
+}
+
+.cronograma-table td {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.editable{
+    cursor:pointer;
+}
+
+.editable input{
+    width: 90%;
+    height: 80%;
+    padding: 5px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.menu-options {
+    display: flex;
+    max-width: 254px;
+    width: 254px;
+    height: 357px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.70);
+}
+
+.button-options {
+    display: flex;
+    width: 200px;
+    height: 55px;
+    padding: 18px 33px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: var(--Cielo-sereno-oscuro-3, #9CB8D4);
+}
+
+.dashboard-menu {
+    width: 86vw;
+    height: 92vh;
+    display: flex;
+    padding: 16px 44px 16px 44px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.menu-content {
+    width: 70%;
+    height: 829px;
+    flex-shrink: 0;
+    margin-top: 70px;
+    background: var(--Cielo-sereno-claro-3, #D9E9F5);
+}
+
+.menu-content-default {
+    display: flex;
+    /* width: 511px;
+    height: 65px; */
+    margin-top: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-shrink: 0;
+    color: var(--Color-fondo-1, #111B34);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.button-options-selected {
+    display: flex;
+    width: 200px;
+    height: 55px;
+    padding: 18px 33px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: var(--Cielo-sereno-oscuro-1, #5A7A94);
+}
+
+.menu-content-default-title {
+    display: flex;
+    /* width: 511px;
+    height: 65px; */
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-shrink: 0;
+    color: var(--Color-fondo-1, #111B34);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.menu-content-one {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    /* width: 511px;
+    height: 65px; */
+    /* margin-top: 40%; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
