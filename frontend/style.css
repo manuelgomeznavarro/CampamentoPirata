@@ -1537,14 +1537,13 @@ main .fade-container .facilities div .facilities-pic img {
 }
 
 /* Dashboard Monitor */
-
-
 .container {
     overflow-y: hidden;
 }
 /* Sidebar */
 .sidebar {
     width: 14vw;
+    height: 92vh;
     background: #111B34;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -1554,10 +1553,6 @@ main .fade-container .facilities div .facilities-pic img {
     gap: 24px;
 }
 
-.header{
-    display: flex;
-    flex-direction: row;
-}
 
 .dashboard-profile{
     display: flex;
@@ -1567,8 +1562,9 @@ main .fade-container .facilities div .facilities-pic img {
 
 .dashboard-container{
     width: 86vw;
+    height: 92vh;
     display: flex;
-    padding: 16px 44px 31px 44px;
+    padding: 16px 44px 16px 44px;
     flex-direction: column;
     gap: 20px;
 }
@@ -1650,6 +1646,7 @@ main .fade-container .facilities div .facilities-pic img {
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
+    flex-direction: row;
 }
 
 .user-info {
