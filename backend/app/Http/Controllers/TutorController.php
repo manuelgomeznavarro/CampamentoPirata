@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutor;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class TutorController extends Controller
 {
@@ -15,9 +18,54 @@ class TutorController extends Controller
     
     public function store(Request $request)
     {
-    
-        $tutors = Tutor::create($request->all());
-        return response()->json($tutors, 201);
+        try {
+            $existingUser = User::where('email', $request->email)->first();
+
+            if ($existingUser) {
+                return response()->json([
+                    'message' => 'Este email ya esta siendo usado',
+                    'error' => 'Duplicate email'
+                ], 422);
+            }
+
+            DB::beginTransaction();
+            
+            // Create the tutor
+            $tutor = Tutor::create([
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'dni' => $request->dni,
+                'phone' => $request->phone,
+                'phone2' => $request->phone2,
+                'city' => $request->city,
+                'postal_code' => $request->postal_code,
+            ]);
+
+            // Create the associated user
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'tutor',
+                'role_id' => $tutor->id
+            ]);
+
+            DB::commit();
+            
+            // return response()->json([
+            //     'message' => 'Tutor creado correctamente',
+            //     'tutor' => $tutor
+            // ], 201);
+
+            $tutors = Tutor::all();
+            return response()->json($tutors, 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Error creating tutor',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
     
     

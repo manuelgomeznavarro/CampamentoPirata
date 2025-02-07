@@ -12,12 +12,16 @@ class Monitor extends Model
     protected $fillable = [
         'name',
         'lastname',
-        'email',
         'dni',
         'phone',
         'phone2',
         'admin_id',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'role_id')->where('role', 'monitor');
+    }
 
     public function groups() {
         return $this->belongsTo(Group::class);

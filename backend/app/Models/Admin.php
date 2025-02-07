@@ -12,11 +12,15 @@ class Admin extends Model
     protected $fillable = [
         'name',
         'lastname',
-        'email',
         'dni',
         'phone',
         'phone2'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'role_id')->where('role', 'admin');
+    }
 
     public function incidents()
     {

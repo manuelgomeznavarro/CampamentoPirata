@@ -12,14 +12,17 @@ class Tutor extends Model
     protected $fillable = [
         'name',
         'lastname',
-        'email',
-        'password',
         'dni',
         'phone',
         'phone2',
         'city',
         'postal_code',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'role_id')->where('role', 'tutor');
+    }
 
     public function inscriptions()
     {
