@@ -1537,14 +1537,13 @@ main .fade-container .facilities div .facilities-pic img {
 }
 
 /* Dashboard Monitor */
-
 .container {
     overflow-y: hidden;
 }
 /* Sidebar */
 .sidebar {
     width: 14vw;
-    height: 100vh;
+    height: 92vh;
     background: #111B34;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -1554,10 +1553,6 @@ main .fade-container .facilities div .facilities-pic img {
     gap: 24px;
 }
 
-.header{
-    display: flex;
-    flex-direction: row;
-}
 
 .dashboard-profile{
     display: flex;
@@ -1567,11 +1562,11 @@ main .fade-container .facilities div .facilities-pic img {
 
 .dashboard-container{
     width: 86vw;
+    height: 92vh;
     display: flex;
-    padding: 16px 44px 0 44px;
+    padding: 16px 44px 16px 44px;
     flex-direction: column;
     gap: 20px;
-    align-items: center;
 }
 
 .dashboard-container button {
@@ -1582,16 +1577,23 @@ main .fade-container .facilities div .facilities-pic img {
 
 .dashboard-container > div{
     width: 100%;
-
 }
 
 .dashboard-content-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 
-.dashboard-content-container > div{
+.notes-changes-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.notes-changes-container > div{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1634,6 +1636,7 @@ main .fade-container .facilities div .facilities-pic img {
 .main-content {
     background: #9CB8D4;
     display: flex;
+    overflow-y: auto;
 }
 
 .header {
@@ -1643,6 +1646,7 @@ main .fade-container .facilities div .facilities-pic img {
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
+    flex-direction: row;
 }
 
 .user-info {
@@ -1747,8 +1751,7 @@ main .fade-container .facilities div .facilities-pic img {
 
 /* Notes Card */
 .notes-card {
-    width: 520px;
-    height: 300px;
+    min-height: 300px;
     background: #D9E9F5;
     box-shadow: 6px 6px 54px rgba(0, 0, 0, 0.05);
     border-radius: 14px;
@@ -1776,8 +1779,7 @@ main .fade-container .facilities div .facilities-pic img {
 
 /* Changes Card */
 .changes-card {
-    width: 520px;
-    height: 300px;
+    min-height: 300px;
     background: #D9E9F5;
     box-shadow: 6px 6px 54px rgba(0, 0, 0, 0.05);
     border-radius: 14px;
