@@ -39,15 +39,15 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item active" id="btnDashboard">Dashboard</div>
-                    <div class="menu-item" id="btnAsistencia">Control de asistencia</div>
-                    <div class="menu-item" id="btnCronograma">Cronograma</div>
-                    <div class="menu-item">Información del grupo</div>
+                    <btnDash class="menu-item" id="btnDashboard">Dashboard</btnDash>
+                    <btnDash class="menu-item" id="btnAsistencia">Control de asistencia</btnDash>
+                    <btnDash class="menu-item" id="btnCronograma">Cronograma</btnDash>
+                    <btnDash class="menu-item" id="btnInfoGrupos">Información del grupo</btnDash>
                 </div>
             </div>
             <div class="dashboard-container">
                 <!-- Dashboard Title -->
-                <h3 class="dashboard-title">Dashboard</h3>
+                <h3 class="dashboard-title" id="dashboard-title">Dashboard</h3>
                 <!-- Activity Card -->
                 <div id="tablaAsistencia" style="display: none;">
                     <table border="1">
@@ -95,7 +95,7 @@
                                 <th>Viernes</th>
                             </tr>
                         </thead>
-                
+
                         <tbody>
                             <!-- Filas de horas -->
                             <tr>
@@ -173,8 +173,44 @@
                         </tbody>
                     </table>
                 </div>
+                
+                <div id="info-grupos" class="info-grupos" style="display: none;">
+                    <div id="nombre-grupos" class="nombre-grupos">Equipo Pistola Agua</div>
+                    <div class="contenedor-oculto">
+                        <div class="contenedor-perfiles">
+                            <div class="info-perfil" id="info-perfil">
+                                <img src="https://placehold.co/60x60" alt="fotoAlumno">
+                                <p>Aurelin Tchouamení del Olmo Parera</p>
+                            </div>
+                            <div class="info-perfil" id="info-perfil">
+                                <img src="https://placehold.co/60x60" alt="fotoAlumno">
+                                <p>Lucía Rodríguez García</p>
+                            </div>
+                            <div class="info-perfil" id="info-perfil">
+                                <img src="https://placehold.co/60x60" alt="fotoAlumno">
+                                <p>María García Pérez</p>
+                            </div>
+                            <div class="info-perfil" id="info-perfil">
+                                <img src="https://placehold.co/60x60" alt="fotoAlumno">
+                                <p>Daniel Fernández López</p>
+                            </div>
+                        </div>
+                        <div id="contacto-alumno" class="contacto-alumno" style="display: none;">
+                            <p>Contacto</p>
+                            <img src="https://placehold.co/30x30" alt="telfContacto">
+                            <input type="number">
+                            <img src="https://placehold.co/30x30" alt="mailContacto">
+                            <input type="mail">
+                            <p>Habilidades</p>
+                            <textarea name="habilidades" id="habilidades"></textarea>
+                            <p>Comentarios</p>
+                            <textarea name="comentarios" id="comentarios"></textarea>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="activity-card" id="activity-card">
-                    
+
                     <div class="card-header" id="card-header">Próxima actividad</div>
                     <div class="card-content" id="card-content">
                         <div class="activity-details">
@@ -207,7 +243,7 @@
                             </div>
                             <!-- <img src="../.." alt="Icon" class="notes-icon"> -->
                         </div>
-    
+
                         <!-- Changes Card -->
                         <div class="changes-card">
                             <div class="card-header">Cambios actividades</div>
@@ -217,7 +253,7 @@
                                 <div class="change-item">Cambio en la actividad 3</div>
                             </div>
                             <!-- <img src="https://via.placeholder.com/56x56" alt="Icon" class="changes-icon"> -->
-                            
+
                         </div>
                     </div>
                     <!-- Edit Button -->

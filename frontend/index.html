@@ -26,7 +26,7 @@
                 <li><a href="#">Quienes somos</a></li>
             </ul>
         </nav>
-        <div>
+        <div class="header-btns-container">
             <button class="sign-in" id="sign-in">Iniciar sesión</button>
             <button class="sign-up" id="sign-up">Regístrate</button>
         </div>
@@ -34,10 +34,10 @@
         <div class="overlay-sign-up" id="overlay-sign-up">
             <section class="sign-up-container" id="sign-up-container">
                 <figure>
-                    <img src="../assets/img/logo.png" alt="Logo de tesoro perdido">
+                    <a href=""><img src="./assets/img/logo.png" alt="Logo de tesoro perdido"></a>
                 </figure>
 
-                <h1>Crear cuenta</h1>
+                <h1>CREAR CUENTA</h1>
 
                 <form action="" id="sign-up-form">
 
@@ -72,19 +72,19 @@
 
                     <div class="sign-up-social-media-icons">
                         <div>
-                            <img src="../assets/icons/googleIcon.svg" alt="">
+                            <img src="./assets/icons/googleIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/facebookIcon.svg" alt="">
+                            <img src="./assets/icons/facebookIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/macIcon.svg" alt="">
+                            <img src="./assets/icons/macIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/linkedinIcon.svg" alt="">
+                            <img src="./assets/icons/linkedinIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/microsoftIcon.svg" alt="">
+                            <img src="./assets/icons/microsoftIcon.svg" alt="">
                         </div>
                     </div>
                 </section>
@@ -94,52 +94,52 @@
         <div class="overlay-sign-in" id="overlay-sign-in">
             <section class="sign-in-container" id="sign-in-container">
                 <figure>
-                    <a href="index.html"><img src="../assets/img/logo.png" alt="Logo de tesoro perdido"></a>
+                    <a href="index.html"><img src="./assets/img/logo.png" alt="Logo de tesoro perdido"></a>
                 </figure>
-                <h1 id="title" class="tittle">Iniciar sesión</h1>
-                <br>
-                <br>
-                <p class="access">Accede desde</p>
+
+                <h1>INICIAR SESIÓN</h1>
+
                 <section class="sign-up-social-media">
+                    <h3>Accede desde</h3>
         
                     <div class="sign-up-social-media-icons">
                         <div>
-                            <img src="../assets/icons/googleIcon.svg" alt="">
+                            <img src="./assets/icons/googleIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/facebookIcon.svg" alt="">
+                            <img src="./assets/icons/facebookIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/macIcon.svg" alt="">
+                            <img src="./assets/icons/macIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/linkedinIcon.svg" alt="">
+                            <img src="./assets/icons/linkedinIcon.svg" alt="">
                         </div>
                         <div>
-                            <img src="../assets/icons/microsoftIcon.svg" alt="">
+                            <img src="./assets/icons/microsoftIcon.svg" alt="">
                         </div>
                     </div>
-        
-                    <br>
-                    <hr>
-        
-                    <form action="" id="">
-                        <label for="email-sign-in" id="mail" class="mail">Correo electrónico</label>
-                        <br>
-                        <input type="email" name="email-sign-in" id="email-sign-in"><span id="errorEmail"></span>
-                        <br>
-                        <label for="password-sign-in" class="password-sign-in">Contraseña</label>
-                        <br>
-                        <input type="password-sign-in" name="password-sign-in" id="password-sign-in"><span id="errorPassword"></span>
-                        <br>
-                        <input type="submit" value="Iniciar Sesión" name="login" id="login" class="login">
-                        <p class="messageLogin">¿No tienes una cuenta?</p>
-                        <input type="submit" value="Regístrate" name="register" id="register" class="register">
-                    </form>
-                    <div id="error"></div>
                 </section>
-            </section>
 
+                <hr>
+        
+                <form>
+                    <div>
+                        <label for="email-sign-in" id="mail" class="mail">Correo electrónico:</label>
+                        <input type="email" name="email-sign-in" id="email-sign-in">
+                        <span id="errorEmail"></span>
+                    </div>
+
+                    <div>
+                        <label for="password-sign-in" class="password-sign-in">Contraseña:</label>
+                        <input type="password-sign-in" name="password-sign-in" id="password-sign-in">
+                        <span id="errorPassword"></span>
+                    </div>
+
+                    <input type="submit" value="Iniciar sesión" name="login" id="login" class="login">
+                </form>
+                <button class="register">Regístrate</button>
+            </section>
     </header>
     <main>
         <div class="hero">
@@ -289,7 +289,7 @@
             </div>
         </div>
     </footer>
-    <script src="./js/index.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

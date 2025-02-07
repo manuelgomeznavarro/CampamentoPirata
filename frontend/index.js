@@ -1,4 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const role = localStorage.getItem('role');
+
+    if (role) {
+        switch (role) {
+            case 'tutor':
+                const headerBtnsContianer = document.querySelector('header .header-btns-container');
+
+                const reservationBtn = document.createElement('a');
+                reservationBtn.classList.add('anchor-button');
+                reservationBtn.href = './tutor/inscripcion/inscripcion.html';
+                reservationBtn.innerText = 'Reserva';
+
+                const tutorProfilePicContainer = document.createElement('figure');
+                const tutorProfilePic = document.createElement('img');
+                tutorProfilePic.src = 'https://placehold.co/40x40';
+
+                tutorProfilePicContainer.appendChild(tutorProfilePic);
+                
+                headerBtnsContianer.innerHTML = "";
+                headerBtnsContianer.appendChild(reservationBtn);
+                headerBtnsContianer.appendChild(tutorProfilePicContainer);
+
+                break;
+
+            case 'monitor':
+                location.assign('./monitor/html/dashboard.html');
+
+                break;
+
+            case 'admin':
+                location.assign('./admin/dashboard.html');
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
     const inicio = document.getElementById("sign-in");
     const registrar = document.getElementById("sign-up");
     const overlay_sign_up = document.getElementById("overlay-sign-up");
@@ -137,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                console.log("Ciemta creada con éxito", data);
+                console.log("Cuenta creada con éxito", data);
             })
             .catch(error => {
                 console.error('Error al registrar el usuario', error);
@@ -147,71 +186,86 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //JS SIGN IN
 
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("email-sign-in").addEventListener("blur", function () {
-            let email = document.getElementById("email-sign-in").value;
-            if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
-                console.log("El email no es válido.");
-                // document.getElementById("email").focus();
-                let errorEmail = document.getElementById("errorEmail");
-                errorEmail.style.color = "red";
-                errorEmail.innerHTML = "Introduzca un email correcto.";
-            } else {
-                console.log("Email válido.");
-                let errorEmail = document.getElementById("errorEmail");
-                errorEmail.innerHTML = "";
-            }
-        });
+    const emailInputSignIn = document.querySelector('#email-sign-in');
+    const passwordInputSignIn = document.querySelector('#password-sign-in');
+    const formSignIn = document.querySelector(".sign-in-container form");
+    const errorEmailSignIn = document.getElementById("errorEmail");
+    const errorPasswordSignIn = document.getElementById("errorPassword");
 
-        document.getElementById("password-sign-in").addEventListener("blur", function () {
-            let contra = document.getElementById("password-sign-in").value;
-            if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(contra)) || contra == null) {
-                console.log("No ha introducido la contraseña de forma correcta.")
-                // document.getElementById("password").focus();
-                let errorPassword = document.getElementById("errorPassword");
-                errorPassword.style.color = "red";
-                errorPassword.innerHTML = "Introduzca una contraseña correcta.";
-            } else {
-                console.log("Contraseña válida.");
-                let errorPassword = document.getElementById("errorPassword");
-                errorPassword.innerHTML = "";
-            }
-        });
-
-        const form = document.getElementById("login");
-
-        form.addEventListener("submit", function (event) {
-            const error = document.getElementById("error");
-
-            let email = document.getElementById("email-sign-in").value;
-            if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
-                console.log("El email no es válido.");
-                // document.getElementById("email").focus();
-                let errorEmail = document.getElementById("errorEmail");
-                errorEmail.style.color = "red";
-                errorEmail.innerHTML = "Introduzca un email correcto.";
-            } else {
-                console.log("Email válido.");
-                let errorEmail = document.getElementById("errorEmail");
-                errorEmail.innerHTML = "";
-            }
-
-            let contra = document.getElementById("password-sign-in").value;
-            if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(contra)) || contra == null) {
-                console.log("No ha introducido la contraseña de forma correcta.")
-                // document.getElementById("password").focus();
-                let errorPassword = document.getElementById("errorPassword");
-                errorPassword.style.color = "red";
-                errorPassword.innerHTML = "Introduzca una contraseña correcta.";
-            } else {
-                console.log("Contraseña válida.");
-                let errorPassword = document.getElementById("errorPassword");
-                errorPassword.innerHTML = "";
-            }
-
-            if (document.getElementById("errorEmail").innerHTML != "" || document.getElementById("errorPassword").innerHTML != "") {
-                event.preventDefault();
-            }
-        });
+    emailInputSignIn.addEventListener("blur", () => {
+        const email = emailInputSignIn.value;
+        if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
+            errorEmailSignIn.style.color = "red";
+            errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
+        } else {
+            errorEmailSignIn.innerHTML = "";
+        }
     });
+
+    // passwordInputSignIn.addEventListener("blur", () => {
+    //     const password = passwordInputSignIn.value;
+    //     if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+    //         errorPasswordSignIn.style.color = "red";
+    //         errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+    //     } else {
+    //         errorPasswordSignIn.innerHTML = "";
+    //     }
+    // });
+
+    // SIGN IN
+    function iniciarSesion(userData) {
+        fetch('http://127.0.0.1:8000/login', {
+            method: 'POST', //Método para enviar los datos al servidor
+            headers: {
+                'Content-Type': 'application/json' //Envío de datos en formato JSON
+            },
+            body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al registrar el usuario');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Sesion iniciada con éxito", data);
+                localStorage.setItem('role', data.role);
+                localStorage.setItem('role_id', data.role_id);
+            })
+            .catch(error => {
+                console.error('Error al iniciar sesión', error);
+            });
+    }
+
+    formSignIn.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = emailInputSignIn.value;
+        if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
+            errorEmailSignIn.style.color = "red";
+            errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
+        } else {
+            errorEmailSignIn.innerHTML = "";
+        }
+
+        const password = passwordInputSignIn.value;
+        // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+        //     errorPasswordSignIn.style.color = "red";
+        //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+        // } else {
+        //     errorPasswordSignIn.innerHTML = "";
+        // }
+
+        // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
+            const userInfo = {
+                email: email,
+                password: password
+            }
+            console.log(userInfo);
+            
+
+            iniciarSesion(userInfo);
+        // }
+    });
+    
 });
