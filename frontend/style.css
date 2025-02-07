@@ -1801,11 +1801,78 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 400;
 }
 
-.changes-icon {
-
+/* Cambios botones para el JS */
+.contenido{
+    display: none;
 }
 
+.contenido.active{
+    display: block;
+}
 
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item.active{
+    font-weight: bold;
+    color:var(--base-color1);
+}
+
+table{
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.table-title{
+    background-color: var(--brand-color);
+}
+
+.table-row{
+    background-color: #d6e6f2;
+}
+
+.cronograma-table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cronograma-table th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.cronograma-table th {
+    background-color: var(--clear-sky-light2);
+    color: var(--base-color1);
+}
+
+.cronograma-table img {
+    width: 25px;
+    height: 25px;
+}
+
+.cronograma-table td {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.editable{
+    cursor:pointer;
+}
+
+.editable input{
+    width: 90%;
+    height: 80%;
+    padding: 5px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
 
 
 
