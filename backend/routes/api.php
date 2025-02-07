@@ -13,6 +13,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,9 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 
@@ -97,10 +98,4 @@ Route::get('/payments/{id}', [PaymentController::class, 'show']);
 Route::put('/payments/{id}', [PaymentController::class, 'update']);
 Route::delete('/payments/{id}', [PaymentController::class, 'destroy']);
 
-
-
-
-
-
-
-
+Route::post('/login', [AuthController::class, 'login']);
