@@ -1538,13 +1538,13 @@ main .fade-container .facilities div .facilities-pic img {
 
 /* Dashboard Monitor */
 
+
 .container {
     overflow-y: hidden;
 }
 /* Sidebar */
 .sidebar {
     width: 14vw;
-    height: 100vh;
     background: #111B34;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -1568,7 +1568,7 @@ main .fade-container .facilities div .facilities-pic img {
 .dashboard-container{
     width: 86vw;
     display: flex;
-    padding: 16px 44px 0 44px;
+    padding: 16px 44px 31px 44px;
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -1634,6 +1634,7 @@ main .fade-container .facilities div .facilities-pic img {
 .main-content {
     background: #9CB8D4;
     display: flex;
+    overflow-y: auto;
 }
 
 .header {
