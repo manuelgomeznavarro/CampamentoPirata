@@ -39,9 +39,9 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item active">Dashboard</div>
-                    <div class="menu-item">Control de asistencia</div>
-                    <div class="menu-item">Cronograma</div>
+                    <div class="menu-item active" id="btnDashboard">Dashboard</div>
+                    <div class="menu-item" id="btnAsistencia">Control de asistencia</div>
+                    <div class="menu-item" id="btnCronograma">Cronograma</div>
                     <div class="menu-item">Información del grupo</div>
                 </div>
             </div>
@@ -49,9 +49,134 @@
                 <!-- Dashboard Title -->
                 <h3 class="dashboard-title">Dashboard</h3>
                 <!-- Activity Card -->
-                <div class="activity-card">
-                    <div class="card-header">Próxima actividad</div>
-                    <div class="card-content">
+                <div id="tablaAsistencia" style="display: none;">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th class="table-title">Alumnos</th>
+                                <th class="table-title">Asistencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-row">Daniel Fernández López</td>
+                                <td class="table-row"><input type="checkbox" class="asistencia"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-row">María García Pérez</td>
+                                <td class="table-row"><input type="checkbox" class="asistencia"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-row">Carlos Martínez Sánchez</td>
+                                <td class="table-row"><input type="checkbox" class="asistencia"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-row">Lucía Rodríguez García</td>
+                                <td class="table-row"><input type="checkbox" class="asistencia"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="tablaCronograma" style="display: none;">
+                    <table class="cronograma-table">
+                        <!-- Fila de mes -->
+                        <thead>
+                            <tr>
+                                <th colspan="6">Febrero 2025</th>
+                            </tr>
+                            <tr>
+                                <!-- Columna con icono y días -->
+                                <th><img src="https://placehold.co/25x25" alt="Icono"></th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                
+                        <tbody>
+                            <!-- Filas de horas -->
+                            <tr>
+                                <td>09:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>10:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>11:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>12:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>13:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>14:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>15:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>16:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>17:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="activity-card" id="activity-card">
+                    
+                    <div class="card-header" id="card-header">Próxima actividad</div>
+                    <div class="card-content" id="card-content">
                         <div class="activity-details">
                             <div class="activity-title">Búsqueda del tesoro perdido</div>
                             <div class="activity-time">10:30 / 13:30</div>
@@ -70,7 +195,7 @@
                     </div>
                 </div>
 
-                <div class="dashboard-content-container">
+                <div class="dashboard-content-container" id="dashboard-content-container">
                     <!-- Notes Card -->
                     <div class="notes-changes-container">
                         <div class="notes-card">
@@ -102,6 +227,7 @@
 
         </div>
     </div>
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
