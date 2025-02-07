@@ -43,7 +43,7 @@ header {
     place-self: center;
 }
 
-header > figure img {
+header>figure img {
     width: 83%;
 }
 
@@ -65,7 +65,7 @@ header .header-btns-container {
     gap: 16px;
 }
 
-header .header-btns-container > figure {
+header .header-btns-container>figure {
     display: inline-block;
     /* O 'block' si prefieres */
     width: fit-content;
@@ -76,8 +76,8 @@ header .header-btns-container > figure {
     /* Opcional, para evitar espacios adicionales */
 }
 
-header .header-btns-container > figure img {
-    border-radius   : 50%;
+header .header-btns-container>figure img {
+    border-radius: 50%;
     display: block;
     /* Evita espacios adicionales por imágenes en línea */
     width: auto;
@@ -125,6 +125,7 @@ input {
     border: 1px solid rgba(0, 0, 0, 0.62);
     background: #FFF;
 }
+
 .anchor-button {
     display: flex;
     justify-content: center;
@@ -1037,20 +1038,22 @@ main .fade-container .facilities div .facilities-pic img {
         /* height:  ; */
 }
 
-.overlay-sign-up, .overlay-sign-in {
+.overlay-sign-up,
+.overlay-sign-in {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
     z-index: 300;
 }
 
-.sign-up-container , .sign-in-container {
+.sign-up-container,
+.sign-in-container {
     display: none;
     position: fixed;
     flex-wrap: wrap;
@@ -1066,11 +1069,13 @@ main .fade-container .facilities div .facilities-pic img {
 }
 
 
-.sign-up-container > *, .sign-in-container > * {
+.sign-up-container>*,
+.sign-in-container>* {
     width: 100%;
 }
 
-.sign-up-container h1, .sign-in-container h1 {
+.sign-up-container h1,
+.sign-in-container h1 {
     color: var(--dark-blue);
     text-align: center;
     font-family: "Luckiest Guy", serif;
@@ -1079,21 +1084,25 @@ main .fade-container .facilities div .facilities-pic img {
     margin: 24px 0;
 }
 
-.sign-up-container form, .sign-in-container form  {
+.sign-up-container form,
+.sign-in-container form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sign-up-container form > *, .sign-in-container form > * {
+.sign-up-container form>*,
+.sign-in-container form>* {
     margin-bottom: 24px;
 }
 
-.sign-up-container form div, .sign-in-container form div {
+.sign-up-container form div,
+.sign-in-container form div {
     width: 100%;
 }
 
-.sign-up-container form div label, .sign-in-container form div label  {
+.sign-up-container form div label,
+.sign-in-container form div label {
     width: 100%;
     display: block;
     font-size: 20px;
@@ -1101,7 +1110,8 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 500;
 }
 
-.sign-up-container form div label+input, .sign-in-container form div label+input {
+.sign-up-container form div label+input,
+.sign-in-container form div label+input {
     width: 100%;
     height: 50px;
     border-radius: 10px;
@@ -1109,12 +1119,14 @@ main .fade-container .facilities div .facilities-pic img {
     background: #FFF;
 }
 
-.sign-up-container form div input, .sign-in-container form div input {
+.sign-up-container form div input,
+.sign-in-container form div input {
     height: 15px;
     width: 15px;
 }
 
-.sign-up-container form div input+label, .sign-in-container form div input+label {
+.sign-up-container form div input+label,
+.sign-in-container form div input+label {
     display: inline;
     margin-left: 4px;
     font-size: 16px;
@@ -1122,7 +1134,8 @@ main .fade-container .facilities div .facilities-pic img {
     font-weight: 400;
 }
 
-.sign-up-container form p, .sign-in-container form p {
+.sign-up-container form p,
+.sign-in-container form p {
     color: var(--dark-blue);
     text-align: center;
     font-size: 16px;
@@ -1130,7 +1143,8 @@ main .fade-container .facilities div .facilities-pic img {
     width: 91%;
 }
 
-.sign-up-container form button, .sign-in-container form button  {
+.sign-up-container form button,
+.sign-in-container form button {
     width: 100%;
     text-align: center;
     color: #FFF;
@@ -1158,17 +1172,20 @@ main .fade-container .facilities div .facilities-pic img {
     margin: 24px 0;
 }
 
-.sign-up-container .sign-up-social-media, .sign-in-container .sign-up-social-media  {
+.sign-up-container .sign-up-social-media,
+.sign-in-container .sign-up-social-media {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sign-up-container .sign-up-social-media > *, .sign-in-container .sign-up-social-media > * {
+.sign-up-container .sign-up-social-media>*,
+.sign-in-container .sign-up-social-media>* {
     width: 100%;
 }
 
-.sign-up-container .sign-up-social-media h3, .sign-in-container .sign-up-social-media h3 {
+.sign-up-container .sign-up-social-media h3,
+.sign-in-container .sign-up-social-media h3 {
     color: var(--dark-blue);
     text-align: center;
     font-size: 20px;
@@ -1176,7 +1193,8 @@ main .fade-container .facilities div .facilities-pic img {
     margin-bottom: 24px;
 }
 
-.sign-up-container .sign-up-social-media .sign-up-social-media-icons, .sign-in-container .sign-up-social-media .sign-up-social-media-icons {
+.sign-up-container .sign-up-social-media .sign-up-social-media-icons,
+.sign-in-container .sign-up-social-media .sign-up-social-media-icons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1184,7 +1202,8 @@ main .fade-container .facilities div .facilities-pic img {
     gap: 16px;
 }
 
-.sign-up-container .sign-up-social-media .sign-up-social-media-icons div, .sign-in-container .sign-up-social-media .sign-up-social-media-icons div {
+.sign-up-container .sign-up-social-media .sign-up-social-media-icons div,
+.sign-in-container .sign-up-social-media .sign-up-social-media-icons div {
     width: 86px;
     height: 86px;
     padding: 7px 13px;
@@ -2146,7 +2165,7 @@ display: flex;
     align-self: stretch;
     /* border-radius: 5px;  */
 
-.nombre-grupos{
+.nombre-grupos {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2160,7 +2179,7 @@ display: flex;
     font-size: 18px;
 }
 
-.contenedor-perfiles{
+.contenedor-perfiles {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -2169,13 +2188,13 @@ display: flex;
 }
 
 
-.contenedor-perfiles div{
-    gap:36px;
+.contenedor-perfiles div {
+    gap: 36px;
     display: flex;
     align-items: center;
 }
 
-.contenedor-perfiles div p{
+.contenedor-perfiles div p {
     background-color: var(--clear-sky-light2);
     padding: 8px;
     width: 26vw;
@@ -2184,11 +2203,11 @@ display: flex;
     font-weight: 700;
 }
 
-.contenedor-perfiles div img{ 
+.contenedor-perfiles div img {
     border-radius: 50%;
 }
 
-.contacto-alumno{
+.contacto-alumno {
     width: 20vw;
     height: 30vh;
     flex-direction: column;
@@ -2197,13 +2216,83 @@ display: flex;
     margin-top: 25px;
 }
 
-.contenedor-oculto{
+.contenedor-oculto {
     display: flex;
     flex-direction: row;
-    gap:400px;
+    gap: 400px;
 }
 
+#button-revisar-inscripcion {
+    display: flex;
+    width: 320px;
+    height: 49px;
+    padding: 10px;
+    margin: 40px auto;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--Cielo-sereno-claro-3, #D9E9F5);
+    background: #141414;
+    place-self: end;
+    margin-bottom: 5px;
+}
 
+.nombre-inscripcion {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    max-height: 40px;
+    padding: 9px 16px 12px 16px;
+    margin: 12px auto;
+    /* align-items: center; */
+    gap: 270px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Cielo-sereno-oscuro-1, #5A7A94);
+}
+
+.nombre-incidencia {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    max-height: 40px;
+    padding: 9px 16px 12px 16px;
+    margin: 12px auto;
+    /* align-items: center; */
+    gap: 270px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Cielo-sereno-oscuro-1, #5A7A94);
+}
+
+.coment-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 14px;
+    align-items: center;
+}
+
+#respuesta-soporte {
+    width: 541px;
+    height: 305px;
+    flex-shrink: 0;
+    border: 1px solid #000;
+    background: #FFF;
+}
+
+#texto-responder-incidencia {
+    width: auto;
+    height: 26px;
+    flex-shrink: 0;
+    color: var(--Color-fondo-1, #111B34);
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {

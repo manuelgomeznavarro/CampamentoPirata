@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btnCrearMonitores.addEventListener('click', function () {
         if (formCrearMonitores.style.display === "none") {
-            console.log("hola");
             formCrearMonitores.style.display = "flex";
             grupos.style.display = "none";
             listaMonitores.style.display = "none";
