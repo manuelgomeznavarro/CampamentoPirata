@@ -51,17 +51,61 @@
                 <h3 class="dashboard-title">Monitores</h3>
                 <!-- Activity Card -->
                 <div class="menu-options">
-                    <button class="button-options">Pagos</button>
-                    <button class="button-options">Actualizar Tarifas</button>
-                    <button class="button-options">Descuentos</button>
+                    <button class="button-options" id="btnCrearMonitores">Crear Monitores</button>
+                    <button class="button-options" id="btnGrupos">Grupos</button>
+                    <button class="button-options" id="btnListaMonitores">Lista de Monitores</button>
                 </div>
                 <div class="menu-content">
-                    <p class="menu-content-default">Selecciona una opción</p>
+                    <div class="form-crear-monitor" id="form-crear-monitor" style="display: none;">
+                        <form action="">
+                            <div>
+                                <label for="nombre-nuevo-monitor">Nombre*</label>
+                                <input type="text" name="nombre-nuevo-monitor" id="nombre-nuevo-monitor">
+                            </div>
+                            <div>
+                                <label for="apellidos-nuevo-monitor">Apellidos*</label>
+                                <input type="text" name="apellidos-nuevo-monitor" id="apellidos-nuevo-monitor">
+                            </div>
+                            <div>
+                                <label for="correo-nuevo-monitor">Correo electrónico*</label>
+                                <input type="text" name="correo-nuevo-monitor" id="correo-nuevo-monitor">
+                            </div>
+                            <div>
+                                <label for="dni-nuevo-monitor">DNI*</label>
+                                <input type="text" name="dni-nuevo-monitor" id="dni-nuevo-monitor">
+                            </div>
+                            <div>
+                                <label for="telf1-nuevo-monitor">Teléfono 1*</label>
+                                <input type="text" name="telf1-nuevo-monitor" id="telf1-nuevo-monitor">
+                            </div>
+                            <div>
+                                <label for="telf2-nuevo-monitor">Teléfono 2</label>
+                                <input type="text" name="telf2-nuevo-monitor" id="telf2-nuevo-monitor">
+                            </div>
+                        </form>
+                        <div class="info-monitor-card">
+                            <p>Información Monitor</p>
+                            <img class="" src="https://placehold.co/200x200" alt="">
+                            <button>Guardar cambios</button>
+                        </div>
+                    </div>
+                    <div class="grupos" id="grupos" style="display: none;">
+                        <button id="button-crear-grupo">Crear Grupo</button>
+                        <div class="nombre-grupo">Grupo 1</div>
+                        <div class="nombre-grupo">Grupo 2</div>
+                    </div>
+                    <div class="lista-monitores" id="lista-monitores" style="display: none;">
+                        <p class="menu-content-default-title">Lista de Monitores</p>
+                        <div class="nombre-monitor">Monitor 1</div>
+                        <div class="nombre-monitor">Monitor 2</div>
+                        <div class="nombre-monitor">Monitor 3</div>
+                        <div class="nombre-monitor">Monitor 4</div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <script src="../admin/monitores.js"></script>
 </body>
 
 </html>
