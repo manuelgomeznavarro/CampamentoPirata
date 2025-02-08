@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 <body>
     <header>
         <figure>
-            <img src="../assets/img/logo.svg" alt="">
+            <img src="../../assets/img/logo.svg" alt="">
         </figure>
         <nav>
             <ul>
@@ -23,71 +26,214 @@
             </ul>
         </nav>
         <div class="header-btns-container">
-            <button class="sign-in">Iniciar sesión</button>
-            <button class="sign-up">Regístrate</button>
+            <button class="sign-in" id="sign-in">Iniciar sesión</button>
+            <button class="sign-up" id="sign-up">Regístrate</button>
         </div>
     </header>
-    <main class="payment-main">
-        <div class="payment-container">
-            <h2>INSCRIPCIONES</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>La asamblea pirata</h6>
-                        <p>Compartir historias, planear aventuras y debatir estrategias como auténticos capitanes del mar.</p>
+
+    <main class="inscription-container">
+        <div class="form-container">
+            <div class="steps-wrapper">
+                <!-- Step 1: Tutor -->
+                <div class="step active" data-step="1">
+                    <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <div class="form-section">
+                        <div class="form-data-container">
+                            <div>
+                                <div>
+                                    <label for="tutor-name">Nombre*</label>
+                                    <input type="text" name="tutor-name" id="tutor-name">
+                                </div>
+                                <div>
+                                    <label for="tutor-email-inscription">Correo electrónico*</label>
+                                    <input type="email" name="email" id="tutor-email-inscription">
+                                </div>
+                                <div>
+                                    <label for="tutor-tel1">Teléfono 1*</label>
+                                    <input type="tel" name="tutor-tel1" id="tutor-tel1">
+                                </div>
+                                <div>
+                                    <label for="tutor-city">Ciudad*</label>
+                                    <input type="text" name="tutor-city" id="tutor-city">
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="tutor-lastname">Apellidos*</label>
+                                    <input type="text" name="tutor-lastname" id="tutor-lastname">
+                                </div>
+                                <div>
+                                    <label for="tutor-dni">DNI*</label>
+                                    <input type="text" name="tutor-dni" id="tutor-dni">
+                                </div>
+                                <div>
+                                    <label for="tutor-tel2">Teléfono 2</label>
+                                    <input type="tel" name="tutor-tel2" id="tutor-tel2">
+                                </div>
+                                <div>
+                                    <label for="tutor-postal-code">Código Postal*</label>
+                                    <input type="number" name="tutor-postal-code" id="tutor-postal-code">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="siguiente">Siguiente</button>
                     </div>
                 </div>
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>Arte en el galeón</h6>
-                        <p>Da rienda a tu creatividad diseñando mapas, decorando cofres del tesoro y creando banderas para sus equipos.</p>
+    
+                <!-- Step 2: Alumno -->
+                <div class="step" data-step="2">
+                    <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <div class="form-section">
+                        <div class="form-data-container">
+                            <div>
+                                <div>
+                                    <label for="child-name">Nombre*</label>
+                                    <input type="text" name="child-name" id="child-name">
+                                </div>
+                                <div>
+                                    <label for="child-born-date">Fecha de nacimiento*</label>
+                                    <input type="email" name="child-born-date" id="child-born-date">
+                                </div>
+                                <div>
+                                    <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>
+                                    <input type="text" name="child-alergy-intolerance" id="child-alergy-intolerance">
+                                </div>
+                                <div>
+                                    <label for="child-comes-with-someone">¿Participa en el campamento con algún conocido?</label>
+                                    <input type="text" name="child-comes-with-someone" id="child-comes-with-someone">
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="child-lastname">Apellidos*</label>
+                                    <input type="text" name="child-lastname" id="child-lastname">
+                                </div>
+                                <div>
+                                    <label for="child-t-shirt-size">Talla de camiseta*</label>
+                                    <input type="text" name="child-t-shirt-size" id="child-t-shirt-size">
+                                </div>
+                                <div>
+                                    <label for="child-more-info">Información a tener en cuenta</label>
+                                    <input type="text" name="child-more-info" id="child-more-info">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navigation-buttons">
+                            <button class="volver">Volver</button>
+                            <button class="siguiente">Siguiente</button>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>Tormenta de agua</h6>
-                        <p>Equipados con mangueras y globos, los piratas se enfrentan en un combate refrescante.</p>
+    
+                <!-- Step 3: Horarios -->
+                <div class="step" data-step="3">
+                    <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <div class="form-section">
+                        <div class="incription-prices-container">
+                            <div class="incription-prices">
+                                <label class="price-card-label">
+                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <div class="plan-card">
+                                        <div class="plan-header">
+                                            <h2 class="plan-title">Bahía Coral</h2>
+                                            <p class="plan-type">Precio por día</p>
+                                        </div>
+                                        <div class="plan-price">39€</div>
+                                        <div class="plan-description">
+                                            <h3 class="description-title">(24€ SIN COMIDA) Incluído en este plan</h3>
+                                            <p class="description-text">Texto descriptivo del plan</p>
+                                        </div>
+                                        <ul class="plan-features">
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica 1</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica 2</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </label>
+                                <label class="price-card-label">
+                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <div class="plan-card">
+                                        <div class="plan-header">
+                                            <h2 class="plan-title">Costa Tropical</h2>
+                                            <p class="plan-type">Precio por semana</p>
+                                        </div>
+                                        <div class="plan-price">185€</div>
+                                        <div class="plan-description">
+                                            <h3 class="description-title">Incluído en este plan</h3>
+                                            <p class="description-text">Texto descriptivo del plan</p>
+                                        </div>
+                                        <ul class="plan-features">
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica premium 1</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica premium 2</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </label>
+                                <label class="price-card-label">
+                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <div class="plan-card">
+                                        <div class="plan-header">
+                                            <h2 class="plan-title">Balsa Botín</h2>
+                                            <p class="plan-type">Precio por mes</p>
+                                        </div>
+                                        <div class="plan-price">700€</div>
+                                        <div class="plan-description">
+                                            <h3 class="description-title">Incluído en este plan</h3>
+                                            <p class="description-text">Texto descriptivo del plan</p>
+                                        </div>
+                                        <ul class="plan-features">
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica empresa 1</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                                <span class="feature-text">Característica empresa 2</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="navigation-buttons">
+                            <button class="volver">Volver</button>
+                            <button class="siguiente">Siguiente</button>
+                        </div>
                     </div>
+                    
                 </div>
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>Tormenta de agua 2</h6>
-                        <p>Equipados con mangueras y globos, los piratas se enfrentan en un combate refrescante.</p>
+    
+                <!-- Step 4: Pago -->
+                <div class="step" data-step="4">
+                    <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <div class="form-section">
+                        <input type="text" placeholder="Número de tarjeta" required>
+                        <input type="text" placeholder="Nombre del titular" required>
+                        <input type="month" placeholder="Fecha de vencimiento" required>
+                        <input type="text" placeholder="CVV" required>
+                        <button class="paypal-button">Pagar con PayPal</button>
                     </div>
-                </div>
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>Tormenta de agua 3 </h6>
-                        <p>Equipados con mangueras y globos, los piratas se enfrentan en un combate refrescante.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <figure>
-                        <img src="https://placehold.co/408x126" alt="">
-                    </figure>
-                    <div>
-                        <h6>Tormenta de agua 4</h6>
-                        <p>Equipados con mangueras y globos, los piratas se enfrentan en un combate refrescante.</p>
+                    <div class="navigation-buttons">
+                        <button class="volver">Volver</button>
+                        <button class="siguiente">Realizar Inscripción</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    
+
     <footer>
         <div class="footer-content">
             <div>
@@ -96,7 +242,7 @@
                 </figure>
                 <h5>Realiza la Inscripción</h5>
                 <p>No tardes más en unirte a nuestra tripulación</p>
-                <a href="">Reserva  -></a>
+                <a href="">Reserva -></a>
             </div>
             <div>
                 <figure>
@@ -104,7 +250,7 @@
                 </figure>
                 <h5>Elige la mejor opción</h5>
                 <p>Escoge la tarifa que mejor se ajuste a lo que necesitas</p>
-                <a href="">Más información  -></a>
+                <a href="">Más información -></a>
             </div>
             <div>
                 <figure>
@@ -112,7 +258,7 @@
                 </figure>
                 <h5>Aprende jugando</h5>
                 <p>Descubre la gran variedad de actividades que tenemos</p>
-                <a href="">Más información  -></a>
+                <a href="">Más información -></a>
             </div>
             <div>
                 <figure>
@@ -120,7 +266,7 @@
                 </figure>
                 <h5>Sobre nosotros</h5>
                 <p>Aprende acerca de nosotros, y como trabajamos</p>
-                <a href="">Más información  -></a>
+                <a href="">Más información -></a>
             </div>
         </div>
         <hr>
@@ -145,5 +291,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="./inscripcion.js"></script>
 </body>
 </html>

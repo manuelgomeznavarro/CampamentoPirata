@@ -633,14 +633,6 @@ main .fade-container .facilities div .facilities-pic img {
     min-height: 515px;
 }
 
-/* .plan-header {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 1rem;
-} */
-
 .plan-title {
     font-family: 'Poppins', sans-serif;
     color: var(--base-color1);
@@ -2467,6 +2459,233 @@ td {
 
 .logo{
     cursor: pointer;
+}
+
+.inscription-container {
+    background-color: var(--brand-color);
+}
+
+.inscription-container h1 {
+    color: var(--base-color1);
+    text-align: center;
+    font-family: "Luckiest Guy";
+    font-size: 56px;
+    margin: 56px 0;
+}
+
+.inscription-container .form-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.inscription-container .steps-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.inscription-container .step {
+    flex: 0 0 100%;
+    min-width: 100%;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.inscription-container .step.active {
+    opacity: 1;
+}
+
+.inscription-container .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+    max-width: 1350px;
+    place-self: center;
+    width: 100%;
+    align-items: center;
+}
+
+.inscription-container .form-section .form-data-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 216px;
+}
+
+.inscription-container .form-section .form-data-container > div {
+    width: 100%;
+    gap: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .inscription-container .form-section .form-data-container input {
+    width: 100%;
+    min-height: 36px;
+    height: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--clear-sky-light2);
+} */
+
+.inscription-container .form-section div label {
+    width: 100%;
+    display: block;
+    font-size: 20px;
+    color: #000;
+    font-weight: 500;
+}
+
+.inscription-container .form-section div label+input {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.62);
+    background: #FFF;
+}
+
+.inscription-container .form-section div input {
+    height: 15px;
+    width: 15px;
+}
+
+.inscription-container .form-section div input+label {
+    display: inline;
+    margin-left: 4px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+}
+
+.inscription-container button {
+    background-color: var(--base-color1);
+    color: var(--background-color3);
+    font-size: 24px;
+    padding: 10px;
+    width: 26%;
+}
+
+.inscription-container .navigation-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;
+}
+
+/* button {
+    padding: 10px 20px;
+    cursor: pointer;
+} */
+
+.inscription-container .plan-option {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+/* Add these CSS modifications */
+/* Add these new transitions and animations */
+.price-card-label {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.plan-card {
+    /* ... existing styles ... */
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s ease,
+                box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a glowing border effect */
+.plan-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Selected state animations */
+input[type="radio"]:checked + .plan-card {
+    border-color: #2F54BE;
+    background: #EBF0FF;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
+    
+    &::after {
+        opacity: 1;
+        border-color: #2F54BE;
+        animation: glow-pulse 2s infinite;
+    }
+}
+
+/* Hover effects for non-selected cards */
+.price-card-label:not(:has(input:checked)) .plan-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    appearance: none; /* Remove default browser styling */
+    opacity: 0; /* Ensure complete invisibility */
+}
+
+/* Remove any residual focus rings on the actual radio */
+.visually-hidden:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* Pulse animation for selected card */
+@keyframes glow-pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 0.8; transform: scale(1); }
+}
+
+/* Card hover entrance animation */
+.price-card-label {
+    &:hover {
+        transform: scale(1.02);
+    }
+    
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Smooth radio selection transition */
+input[type="radio"] + .plan-card {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s ease,
+                box-shadow 0.5s ease;
+}
+
+.incription-prices {
+    display: flex;
+    gap: 80px;
 }
 
 @media (max-width: 480px) {
