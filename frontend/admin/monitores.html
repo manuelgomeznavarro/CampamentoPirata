@@ -17,7 +17,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo">
+            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo" id="logo-monitores-admin">
             <div class="dashboard-profile">
                 <div class="language-selector">
                     <img src="https://placehold.co/40x27" alt="Language Flag">
@@ -39,11 +39,11 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item">Dashboard</div>
-                    <div class="menu-item">Gestión de Pagos</div>
-                    <div class="menu-item active">Monitores</div>
-                    <div class="menu-item">Inscripciones y registros</div>
-                    <div class="menu-item">Excursiones y actividades</div>
+                    <div class="menu-item" id="dashboard-admin">Dashboard</div>
+                    <div class="menu-item" id="gestionPago-admin">Gestión de Pagos</div>
+                    <div class="menu-item" id="seccionMonitores-admin">Monitores</div>
+                    <div class="menu-item" id="inscripcionesRegistros-admin">Inscripciones y registros</div>
+                    <div class="menu-item" id="excursiones-admin">Excursiones y actividades</div>
                 </div>
             </div>
             <div class="dashboard-menu">
@@ -90,9 +90,25 @@
                         </div>
                     </div>
                     <div class="grupos" id="grupos" style="display: none;">
-                        <button id="button-crear-grupo">Crear Grupo</button>
+                        <button class="button-crear-grupo" id="btnCrearGrupo">Crear Grupo</button>
                         <div class="nombre-grupo">Grupo 1</div>
                         <div class="nombre-grupo">Grupo 2</div>
+                    </div>
+                    <div class="creacion-grupo" id="creacion-grupo" style="display: none;">
+                        <div id="botones-crear-grupo">
+                            <button class="button-crear-grupo" id="">Añadir Monitor</button>
+                            <button class="button-crear-grupo" id="">Añadir Participante</button>
+                            <div class="lista-personas">
+                                <div class="elemento-persona">Monitor 1</div>
+                                <div class="elemento-persona">Monitor 2</div>
+                            </div>
+                            <div class="lista-personas">
+                                <div class="elemento-persona">Participante 1</div>
+                                <div class="elemento-persona">Participante 2</div>
+                                <div class="elemento-persona">Participante 3</div>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="lista-monitores" id="lista-monitores" style="display: none;">
                         <p class="menu-content-default-title">Lista de Monitores</p>
@@ -105,7 +121,7 @@
             </div>
         </div>
     </div>
-    <script src="../admin/monitores.js"></script>
+    <script src="monitores.js"></script>
 </body>
 
 </html>

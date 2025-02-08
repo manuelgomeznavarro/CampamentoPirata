@@ -17,7 +17,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo">
+            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo" id="logo-dashboard">
             <div class="dashboard-profile">
                 <div class="language-selector">
                     <img src="https://placehold.co/40x27" alt="Language Flag">
@@ -39,11 +39,11 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item active">Dashboard</div>
-                    <div class="menu-item">Gestión de Pagos</div>
-                    <div class="menu-item">Monitores</div>
-                    <div class="menu-item">Inscripciones y registros</div>
-                    <div class="menu-item">Excursiones y actividades</div>
+                    <div class="menu-item" id="dashboard-admin">Dashboard</div>
+                    <div class="menu-item" id="gestionPago-admin">Gestión de Pagos</div>
+                    <div class="menu-item" id="seccionMonitores-admin">Monitores</div>
+                    <div class="menu-item" id="inscripcionesRegistros-admin">Inscripciones y registros</div>
+                    <div class="menu-item" id="excursiones-admin">Excursiones y actividades</div>
                 </div>
             </div>
             <div class="dashboard-container">
@@ -93,6 +93,7 @@
 
         </div>
     </div>
+    <script src="dashboardAdmin.js"></script>
 </body>
 
 </html>
