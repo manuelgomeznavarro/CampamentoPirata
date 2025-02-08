@@ -34,17 +34,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let defaultButton = document.getElementById('inscripcionesRegistros-admin');
     //Agrego la clase 'activo' al botón Dashboard
     defaultButton.classList.add('activo');
-    let defaultButton2 = document.getElementById('btnRevisar');
-    defaultButton2.classList.add('activo');
+
 
     document.querySelectorAll('.button-options').forEach(function (boton) {
         // Agrego un evento 'click' a cada botón
         boton.addEventListener('click', function () {
-            // Elimino la clase 'activo' de todos los botones
+
+            if (this.classList.contains('activo')) {
+                boton.classList.remove('activo');
+            } else {
+                // Elimino la clase 'activo' de todos los botones
             // Esto es para que solo un botón tenga la clase 'activo' a la vez
             document.querySelectorAll('.button-options').forEach(b => b.classList.remove('activo'));
             // Agrego la clase 'activo' al botón al que se le hizo click
             this.classList.add('activo');
+            }
         });
     });
 
@@ -60,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let titulo = document.getElementById('dashboard-title');
             // Cambio el texto del título por el texto del botón al que se le hizo click
             titulo.textContent = this.textContent;
+
         });
     });
 
