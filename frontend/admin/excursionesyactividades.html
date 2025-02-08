@@ -17,7 +17,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo">
+            <img src="../assets/img/logo.svg" alt="Logo de tesoro perdido" class="logo" id="logo-excursiones">
             <div class="dashboard-profile">
                 <div class="language-selector">
                     <img src="https://placehold.co/40x27" alt="Language Flag">
@@ -39,20 +39,116 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item">Dashboard</div>
-                    <div class="menu-item">Gestión de Pagos</div>
-                    <div class="menu-item">Monitores</div>
-                    <div class="menu-item">Inscripciones y registros</div>
-                    <div class="menu-item active">Excursiones y actividades</div>
+                    <div class="menu-item" id="dashboard-admin">Dashboard</div>
+                    <div class="menu-item" id="gestionPago-admin">Gestión de Pagos</div>
+                    <div class="menu-item" id="seccionMonitores-admin">Monitores</div>
+                    <div class="menu-item" id="inscripcionesRegistros-admin">Inscripciones y registros</div>
+                    <div class="menu-item" id="excursiones-admin">Excursiones y actividades</div>
                 </div>
             </div>
             <div class="dashboard-menu">
                 <!-- Dashboard Title -->
                 <h3 class="dashboard-title">Excursiones y Actividades</h3>
+                <div id="tablaExcursiones">
+                    <table class="excursiones-table">
+                        <!-- Fila de mes -->
+                        <thead>
+                            <tr>
+                                <th colspan="6">Febrero 2025</th>
+                            </tr>
+                            <tr>
+                                <!-- Columna con icono y días -->
+                                <th><img src="https://placehold.co/25x25" alt="Icono"></th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <!-- Filas de horas -->
+                            <tr>
+                                <td>09:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>10:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>11:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>12:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>13:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>14:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>15:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>16:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                            <tr>
+                                <td>17:00</td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                                <td class="editable"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
             </div>
         </div>
     </div>
+    <script src="./excursiones.js"></script>
 </body>
 
 </html>

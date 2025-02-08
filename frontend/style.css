@@ -1917,6 +1917,20 @@ main .fade-container .facilities div .facilities-pic img {
     border-radius: 10px;
 }
 
+.button-options.activo {
+    background-color: var(--dark-blue);
+    color: var(--background-color3);
+    display: flex;
+    width: 200px;
+    height: 55px;
+    padding: 18px 33px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 28px;
+}
+
 table {
     width: 50%;
     border-collapse: collapse;
@@ -2419,6 +2433,40 @@ display: flex;
 
 #button-crear-grupo-enviar{
     margin: 40px auto;
+}
+
+/* Sección Excursiones */
+.excursiones-table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.excursiones-table th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.excursiones-table th {
+    background-color: var(--clear-sky-light2);
+    color: var(--base-color1);
+}
+
+.excursiones-table img {
+    width: 25px;
+    height: 25px;
+}
+
+.excursiones-table td {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.logo{
+    cursor: pointer;
 }
 
 @media (max-width: 480px) {
