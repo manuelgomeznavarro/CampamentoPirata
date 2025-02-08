@@ -1,42 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const role = localStorage.getItem('role');
+    function checkRole() {
+        const role = localStorage.getItem('role');
 
-    if (role) {
-        switch (role) {
-            case 'tutor':
-                const headerBtnsContainer = document.querySelector('header .header-btns-container');
+        if (role) {
+            switch (role) {
+                case 'tutor':
+                    const headerBtnsContainer = document.querySelector('header .header-btns-container');
 
-                const reservationBtn = document.createElement('a');
-                reservationBtn.classList.add('anchor-button');
-                reservationBtn.href = './tutor/inscripcion/inscripcion.html';
-                reservationBtn.innerText = 'Reserva';
+                    const reservationBtn = document.createElement('a');
+                    reservationBtn.classList.add('anchor-button');
+                    reservationBtn.href = './tutor/inscripcion/inscripcion.html';
+                    reservationBtn.innerText = 'Reserva';
 
-                const tutorProfilePicContainer = document.createElement('figure');
-                const tutorProfilePic = document.createElement('img');
-                tutorProfilePic.src = 'https://placehold.co/40x40';
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
+                    tutorProfilePic.src = 'https://placehold.co/40x40';
 
-                tutorProfilePicContainer.appendChild(tutorProfilePic);
-                
-                headerBtnsContainer.innerHTML = "";
-                headerBtnsContainer.appendChild(reservationBtn);
-                headerBtnsContainer.appendChild(tutorProfilePicContainer);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
+                    
+                    headerBtnsContainer.innerHTML = "";
+                    headerBtnsContainer.appendChild(reservationBtn);
+                    headerBtnsContainer.appendChild(tutorProfilePicContainer);
 
-                break;
+                    break;
 
-            case 'monitor':
-                location.assign('./monitor/html/dashboard.html');
+                case 'monitor':
+                    location.assign('./monitor/html/dashboard.html');
 
-                break;
+                    break;
 
-            case 'admin':
-                location.assign('./admin/dashboard.html');
+                case 'admin':
+                    location.assign('./admin/dashboard.html');
 
-                break;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
+
+    checkRole();
 
     const inicio = document.getElementById("sign-in");
     const registrar = document.getElementById("sign-up");
@@ -153,16 +157,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (emailValidator && passwordValidator) {
             console.log("Registro exitoso");
-            crearCuenta(userData);
+            crearCuenta(userData)
+                .then(singIn(userData));
 
         } else {
             console.log("Registro fallido");
         }
     })
-    
+
     //FETCH SIGN UP
     function crearCuenta(userData) {
-        fetch('http://127.0.0.1:8000/api/tutors', {
+        return fetch('http://127.0.0.1:8000/api/tutors', {
             method: 'POST', //Método para enviar los datos al servidor
             headers: {
                 'Content-Type': 'application/json' //Envío de datos en formato JSON
@@ -192,6 +197,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorEmailSignIn = document.getElementById("errorEmail");
     const errorPasswordSignIn = document.getElementById("errorPassword");
 
+    // fetch('http://127.0.0.1:8000/api/login', {
+    //         method: 'POST', //Método para enviar los datos al servidor
+    //         headers: {
+    //             'Content-Type': 'application/json' //Envío de datos en formato JSON
+    //         },
+    //         body: JSON.stringify({
+    //             email: "abc@d.e",
+    //             password: "1234"
+    //         }) //Se convierte el objeto JS a una cadena JSON
+    //     })
+    //     .then(response => {
+    //         debugger;
+
+    //         console.log(response);
+    //         if (!response.ok) {
+    //             throw new Error('Error al registrar el usuario');
+    //         }
+    //         response.json();
+    //         console.log(response);
+            
+
+    //         return response;
+    //     })
+    //     .then(data => {
+    //         debugger;
+    //         console.log("Sesion iniciada con éxito", data);
+    //         localStorage.setItem('role', data.role);
+    //         localStorage.setItem('role_id', data.role_id);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error al iniciar sesión', error);
+    //     });
+
     emailInputSignIn.addEventListener("blur", () => {
         const email = emailInputSignIn.value;
         if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
@@ -201,68 +239,6 @@ document.addEventListener("DOMContentLoaded", function () {
             errorEmailSignIn.innerHTML = "";
         }
     });
-
-    formSignIn.addEventListener('submit', logIn);
-
-    // function handleSubmit(e) {
-    //     const form = e.currentTarget;
-    //         fetch(form.action, {
-    //             method: form.method,
-    //             body: new FormData(form)
-    //         });
-
-    //     e.preventDefault();
-    // }
-
-
-    
-
-    function logIn(e) {
-        // const form = e.currentTarget;
-
-        const email = emailInputSignIn.value;
-        const password = passwordInputSignIn.value;
-        const userInfo = {
-            email: email,
-            password: password
-        }
-
-
-
-        fetch('http://127.0.0.1:8000/api/login', {
-                method: 'POST', //Método para enviar los datos al servidor
-                headers: {
-                    'Content-Type': 'application/json' //Envío de datos en formato JSON
-                },
-                body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al registrar el usuario');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Sesion iniciada con éxito", data);
-                    localStorage.setItem('role', data.role);
-                    localStorage.setItem('role_id', data.role_id);
-                })
-                .catch(error => {
-                    console.error('Error al iniciar sesión', error);
-                });
-
-        // fetch(form.action, {
-        //   method: form.method,
-        //   body: new FormData(form)
-        // });
-
-        e.preventDefault();
-    }
-
-    // console.log(formSignIn);
-    
-
-    // formSignIn.addEventListener('submit', logIn());
 
     // passwordInputSignIn.addEventListener("blur", () => {
     //     const password = passwordInputSignIn.value;
@@ -275,97 +251,99 @@ document.addEventListener("DOMContentLoaded", function () {
     // });
 
     // SIGN IN
-    // function iniciarSesion(userData) {
-    //     return fetch('http://127.0.0.1:8000/login', {
-    //         method: 'POST', //Método para enviar los datos al servidor
-    //         headers: {
-    //             'Content-Type': 'application/json' //Envío de datos en formato JSON
-    //         },
-    //         body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
-    //     })
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error('Error al registrar el usuario');
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             console.log("Sesion iniciada con éxito", data);
-    //             localStorage.setItem('role', data.role);
-    //             localStorage.setItem('role_id', data.role_id);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error al iniciar sesión', error);
-    //         });
-    // }
+    function singIn(userData) {
+        return fetch('http://127.0.0.1:8000/api/login', {
+            method: 'POST', //Método para enviar los datos al servidor
+            headers: {
+                    'Content-Type': 'application/json' //Envío de datos en formato JSON
+                },
+                body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
+            })
+                .then(response => {
+                    // if (!response.success) {
+                    //     throw new Error('Error al registrar el usuario');
+                    // }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Sesion iniciada con éxito", data);
+                    localStorage.setItem('role', data.user.role);
+                    localStorage.setItem('role_id', data.user.role_id);
 
-    // formSignIn.addEventListener("submit", (e) => {
-    //     e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
-    //     e.stopPropagation();  // Detiene la propagación del evento
-    //     e.stopImmediatePropagation();  // Detiene todos los demás manejadores de eventos
+                    formSignIn.reset();
+
+                    checkRole();
+
+                    closeForm();
+                })
+                .catch(error => {
+                    console.error('Error al iniciar sesión', error);
+                });
+        }
+
+    formSignIn.addEventListener("submit", (e) => {
+        e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
+        e.stopPropagation();  // Detiene la propagación del evento
+        e.stopImmediatePropagation();  // Detiene todos los demás manejadores de eventos
         
         
         
-    //     const email = emailInputSignIn.value;
-    //     if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
-    //         errorEmailSignIn.style.color = "red";
-    //         errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
-    //     } else {
-    //         errorEmailSignIn.innerHTML = "";
-    //     }
+        const email = emailInputSignIn.value;
+        // if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
+        //     errorEmailSignIn.style.color = "red";
+        //     errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
+        // } else {
+        //     errorEmailSignIn.innerHTML = "";
+        // }
         
-    //     const password = passwordInputSignIn.value;
-    //     // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
-    //         //     errorPasswordSignIn.style.color = "red";
-    //         //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
-    //         // } else {
-    //             //     errorPasswordSignIn.innerHTML = "";
-    //             // }
+        const password = passwordInputSignIn.value;
+        // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+            //     errorPasswordSignIn.style.color = "red";
+            //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+            // } else {
+                //     errorPasswordSignIn.innerHTML = "";
+                // }
                 
-    //             // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
-    //                 const userInfo = {
-    //                     email: email,
-    //                     password: password
-    //                 }
-    //                 // console.log(userInfo);
+                // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
+                    const userInfo = {
+                        email: email,
+                        password: password
+                    }
+                    // console.log(userInfo);
                     
-    //                 console.log("hola");
+                    console.log(userInfo);
 
-    //         axios.post('http://127.0.0.1:8000/api/login', {
-    //             email: email,
-    //             password: password
-    //         })
-    //         .then(response => {
-    //             console.log('Respuesta del servidor:', response.data);
-    //           })
-    //           .catch(error => {
-    //             console.error('Error en la petición:', error);
-    //           });
+                    singIn(userInfo);
 
-    //         // fetch('http://127.0.0.1:8000/api/login', {
-    //         //     method: 'POST', //Método para enviar los datos al servidor
-    //         //     headers: {
-    //         //         'Content-Type': 'application/json' //Envío de datos en formato JSON
-    //         //     },
-    //         //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
-    //         // })
-    //         //     .then(response => {
-    //         //         console.log(response);
+
+            //  fetch('http://127.0.0.1:8000/api/login', {
+            //     method: 'POST', //Método para enviar los datos al servidor
+            //     headers: {
+            //         'Content-Type': 'application/json' //Envío de datos en formato JSON
+            //     },
+            //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
+            // })
+            //     .then(response => {
+            //         console.log(response.json());
+            //         debugger;
                     
-    //         //         if (!response.ok) {
-    //         //             throw new Error('Error al registrar el usuario');
-    //         //         }
-    //         //         return response.json();
-    //         //     })
-    //         //     .then(data => {
-    //         //         console.log("Sesion iniciada con éxito", data);
-    //         //         localStorage.setItem('role', data.role);
-    //         //         localStorage.setItem('role_id', data.role_id);
-    //         //     })
-    //         //     .catch(error => {
-    //         //         console.error('Error al iniciar sesión', error);
-    //         //     });
+            //         // if (!response.ok) {
+            //         //     throw new Error('Error al registrar el usuario');
+            //         // }
+            //         console.log(response.json);
+
+            //         return response.json();
+            //     })
+            //     .then(data => {
+            //         console.log("Sesion iniciada con éxito", data);
+            //         localStorage.setItem('role', data.role);
+            //         localStorage.setItem('role_id', data.role_id);
+            //     })
+            //     .catch(error => {
+            //         console.error('Error al iniciar sesión', error);
+            //     });
         
-    // });
-    
-});
+    });
+
+
+})
