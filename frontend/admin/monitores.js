@@ -2,15 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnCrearMonitores = document.getElementById("btnCrearMonitores");
     const btnGrupos = document.getElementById("btnGrupos");
     const btnListaMonitores = document.getElementById("btnListaMonitores");
+    const btnCrearGrupo = document.getElementById("btnCrearGrupo");
     const formCrearMonitores = document.getElementById("form-crear-monitor");
     const grupos = document.getElementById("grupos");
     const listaMonitores = document.getElementById("lista-monitores");
+    const creacionGrupo = document.getElementById("creacion-grupo");
 
     btnCrearMonitores.addEventListener('click', function () {
         if (formCrearMonitores.style.display === "none") {
             formCrearMonitores.style.display = "flex";
             grupos.style.display = "none";
             listaMonitores.style.display = "none";
+            creacionGrupo.style.display = "none";
         } else {
             formCrearMonitores.style.display = "none";
         }
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             grupos.style.display = "block";
             formCrearMonitores.style.display = "none";
             listaMonitores.style.display = "none";
+            creacionGrupo.style.display = "none";
         } else {
             grupos.style.display = "none";
         }
@@ -31,8 +35,20 @@ document.addEventListener('DOMContentLoaded', function () {
             listaMonitores.style.display = "block";
             formCrearMonitores.style.display = "none";
             grupos.style.display = "none";
+            creacionGrupo.style.display = "none";
         } else {
             listaMonitores.style.display = "none";
+        }
+    });
+
+    btnCrearGrupo.addEventListener('click', function () {
+        if (creacionGrupo.style.display === "none") {
+            creacionGrupo.style.display = "flex";
+            formCrearMonitores.style.display = "none";
+            grupos.style.display = "none";
+            listaMonitores.style.display = "none";
+        } else {
+            creacionGrupo.style.display = "none";
         }
     });
 });

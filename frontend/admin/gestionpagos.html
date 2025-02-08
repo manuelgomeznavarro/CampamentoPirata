@@ -51,17 +51,92 @@
                 <h3 class="dashboard-title">Gestión de Pagos</h3>
                 <!-- Activity Card -->
                 <div class="menu-options">
-                    <button class="button-options">Pagos</button>
-                    <button class="button-options">Actualizar Tarifas</button>
-                    <button class="button-options">Descuentos</button>
+                    <button class="button-options" id="btnPagos">Pagos</button>
+                    <button class="button-options" id="btnTarifas">Actualizar Tarifas</button>
+                    <button class="button-options" id="btnDescuentos">Descuentos</button>
                 </div>
-                <div class="menu-content">
-                    <p class="menu-content-default">Selecciona una opción</p>
+                <div class="menu-content" id="menu-content" style="display: block;">
+                    <!-- <p class="menu-content-default">Selecciona una opción</p> -->
+                    <div class="info-pagos" id="info-pagos" style="display: none;">
+                        <p class="menu-content-default-title">Pagos</p>
+                        <img src="https://placehold.co/804x478" class="menu-content-one" alt="Language Flag">
+                    </div>
+                    <div class="info-descuentos" id="info-descuentos" style="display: block;">
+                        <p class="menu-content-default-title">Descuentos</p>
+                    </div>
+                </div>
+                <div class="info-tarifas" id="info-tarifas" style="display: none;">
+                    <p class="menu-content-default-title">Actualizar Tarifas</p>
+                    <div class="cards-tarifas">
+                        <div class="tarifa-card">
+                            <div class="plan-header">
+                                <h2 class="plan-title">Bahía Coral</h2>
+                                <p class="plan-type">Precio por día</p>
+                            </div>
+                            <div class="plan-price">39€</div>
+                            <div class="plan-description">
+                                <h3 class="description-title">(24€ SIN COMIDA) Incluído en este plan</h3>
+                                <p class="description-text">Texto descriptivo del plan</p>
+                            </div>
+                            <ul class="plan-features">
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 1</span>
+                                </li>
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tarifa-card">
+                            <div class="plan-header">
+                                <h2 class="plan-title">Bahía Coral</h2>
+                                <p class="plan-type">Precio por día</p>
+                            </div>
+                            <div class="plan-price">39€</div>
+                            <div class="plan-description">
+                                <h3 class="description-title">(24€ SIN COMIDA) Incluído en este plan</h3>
+                                <p class="description-text">Texto descriptivo del plan</p>
+                            </div>
+                            <ul class="plan-features">
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 1</span>
+                                </li>
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tarifa-card">
+                            <div class="plan-header">
+                                <h2 class="plan-title">Bahía Coral</h2>
+                                <p class="plan-type">Precio por día</p>
+                            </div>
+                            <div class="plan-price">39€</div>
+                            <div class="plan-description">
+                                <h3 class="description-title">(24€ SIN COMIDA) Incluído en este plan</h3>
+                                <p class="description-text">Texto descriptivo del plan</p>
+                            </div>
+                            <ul class="plan-features">
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 1</span>
+                                </li>
+                                <li class="feature-item">
+                                    <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
+                                    <span class="feature-text">Característica 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <script src="gestionpagos.js"></script>
 </body>
 
 </html>
