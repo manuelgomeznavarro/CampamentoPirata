@@ -1907,6 +1907,10 @@ main .fade-container .facilities div .facilities-pic img {
     cursor: pointer;
 }
 
+#logo-monitor{
+    cursor: pointer;
+}
+
 .menu-item.activo {
     background-color: var(--brand-color);
     color: var(--dark-blue);
@@ -2220,6 +2224,16 @@ display: flex;
     display: flex;
     flex-direction: row;
     gap: 400px;
+}
+
+.input-contacto{
+    max-width: 78%;
+    max-height: 10%;
+}
+
+.img-contacto{
+    max-width: 30%;
+    max-height: 10%;
 }
 
 #button-revisar-inscripcion {
