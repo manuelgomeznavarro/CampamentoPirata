@@ -202,6 +202,68 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    formSignIn.addEventListener('submit', logIn);
+
+    // function handleSubmit(e) {
+    //     const form = e.currentTarget;
+    //         fetch(form.action, {
+    //             method: form.method,
+    //             body: new FormData(form)
+    //         });
+
+    //     e.preventDefault();
+    // }
+
+
+    
+
+    function logIn(e) {
+        // const form = e.currentTarget;
+
+        const email = emailInputSignIn.value;
+        const password = passwordInputSignIn.value;
+        const userInfo = {
+            email: email,
+            password: password
+        }
+
+
+
+        fetch('http://127.0.0.1:8000/api/login', {
+                method: 'POST', //Método para enviar los datos al servidor
+                headers: {
+                    'Content-Type': 'application/json' //Envío de datos en formato JSON
+                },
+                body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al registrar el usuario');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Sesion iniciada con éxito", data);
+                    localStorage.setItem('role', data.role);
+                    localStorage.setItem('role_id', data.role_id);
+                })
+                .catch(error => {
+                    console.error('Error al iniciar sesión', error);
+                });
+
+        // fetch(form.action, {
+        //   method: form.method,
+        //   body: new FormData(form)
+        // });
+
+        e.preventDefault();
+    }
+
+    // console.log(formSignIn);
+    
+
+    // formSignIn.addEventListener('submit', logIn());
+
     // passwordInputSignIn.addEventListener("blur", () => {
     //     const password = passwordInputSignIn.value;
     //     if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
@@ -237,60 +299,73 @@ document.addEventListener("DOMContentLoaded", function () {
     //         });
     // }
 
-    formSignIn.addEventListener("submit", (e) => {
-        e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
-        e.stopPropagation();  // Detiene la propagación del evento
-        e.stopImmediatePropagation();  // Detiene todos los demás manejadores de eventos
+    // formSignIn.addEventListener("submit", (e) => {
+    //     e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
+    //     e.stopPropagation();  // Detiene la propagación del evento
+    //     e.stopImmediatePropagation();  // Detiene todos los demás manejadores de eventos
         
         
         
-        const email = emailInputSignIn.value;
-        if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
-            errorEmailSignIn.style.color = "red";
-            errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
-        } else {
-            errorEmailSignIn.innerHTML = "";
-        }
+    //     const email = emailInputSignIn.value;
+    //     if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
+    //         errorEmailSignIn.style.color = "red";
+    //         errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
+    //     } else {
+    //         errorEmailSignIn.innerHTML = "";
+    //     }
         
-        const password = passwordInputSignIn.value;
-        // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
-            //     errorPasswordSignIn.style.color = "red";
-            //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
-            // } else {
-                //     errorPasswordSignIn.innerHTML = "";
-                // }
+    //     const password = passwordInputSignIn.value;
+    //     // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+    //         //     errorPasswordSignIn.style.color = "red";
+    //         //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+    //         // } else {
+    //             //     errorPasswordSignIn.innerHTML = "";
+    //             // }
                 
-                // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
-                    const userInfo = {
-                        email: email,
-                        password: password
-                    }
-                    // console.log(userInfo);
+    //             // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
+    //                 const userInfo = {
+    //                     email: email,
+    //                     password: password
+    //                 }
+    //                 // console.log(userInfo);
                     
-                    console.log("hola");
+    //                 console.log("hola");
 
-            // fetch('http://127.0.0.1:8000/login', {
-            //     method: 'POST', //Método para enviar los datos al servidor
-            //     headers: {
-            //         'Content-Type': 'application/json' //Envío de datos en formato JSON
-            //     },
-            //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
-            // })
-            //     .then(response => {
-            //         if (!response.ok) {
-            //             throw new Error('Error al registrar el usuario');
-            //         }
-            //         return response.json();
-            //     })
-            //     .then(data => {
-            //         console.log("Sesion iniciada con éxito", data);
-            //         localStorage.setItem('role', data.role);
-            //         localStorage.setItem('role_id', data.role_id);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error al iniciar sesión', error);
-            //     });
-        // }
-    });
+    //         axios.post('http://127.0.0.1:8000/api/login', {
+    //             email: email,
+    //             password: password
+    //         })
+    //         .then(response => {
+    //             console.log('Respuesta del servidor:', response.data);
+    //           })
+    //           .catch(error => {
+    //             console.error('Error en la petición:', error);
+    //           });
+
+    //         // fetch('http://127.0.0.1:8000/api/login', {
+    //         //     method: 'POST', //Método para enviar los datos al servidor
+    //         //     headers: {
+    //         //         'Content-Type': 'application/json' //Envío de datos en formato JSON
+    //         //     },
+    //         //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
+    //         // })
+    //         //     .then(response => {
+    //         //         console.log(response);
+                    
+    //         //         if (!response.ok) {
+    //         //             throw new Error('Error al registrar el usuario');
+    //         //         }
+    //         //         return response.json();
+    //         //     })
+    //         //     .then(data => {
+    //         //         console.log("Sesion iniciada con éxito", data);
+    //         //         localStorage.setItem('role', data.role);
+    //         //         localStorage.setItem('role_id', data.role_id);
+    //         //     })
+    //         //     .catch(error => {
+    //         //         console.error('Error al iniciar sesión', error);
+    //         //     });
+        
+    // });
     
 });
