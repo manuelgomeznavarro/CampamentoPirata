@@ -1518,16 +1518,21 @@ main .fade-container .facilities div .facilities-pic img {
 
 .weekly-button {
     display: flex;
-    padding: 13px 32px;
+    padding: 13px 10px;
     width: 234px;
     font-weight: 700;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 70px;
     align-self: stretch;
     border-radius: 28px;
     background: var(--Color-de-Contraste, #FF5A5F);
+    text-decoration: none;
+}
+
+.weekly-button:visited{
+    color: var(--dark-blue);
 }
 
 .edit-button {
@@ -2686,6 +2691,18 @@ input[type="radio"] + .plan-card {
 .incription-prices {
     display: flex;
     gap: 80px;
+}
+
+/* EDITAR PERFIL TUTOR */
+
+.editarPerfilTutor {
+    width: 15vw;
+    height: 3vh;
+}
+
+.editarPerfilAlumno {
+    width: 15vw;
+    height: 3vh;
 }
 
 .inscription-summary-container {
