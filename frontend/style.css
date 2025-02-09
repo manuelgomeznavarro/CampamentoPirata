@@ -2517,8 +2517,8 @@ td {
 .inscription-container .form-section .form-data-container > div {
     width: 100%;
     gap: 32px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 /* .inscription-container .form-section .form-data-container input {
@@ -2686,6 +2686,91 @@ input[type="radio"] + .plan-card {
 .incription-prices {
     display: flex;
     gap: 80px;
+}
+
+.inscription-summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+    padding: 24px;
+}
+
+.inscription-summary-container h3 {
+    color: var(--base-color1);
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32.5px;
+    letter-spacing: 0.5px;
+}
+
+.inscription-summary-cards-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.inscription-summary-card {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.inscription-summary-card  h4 {
+    display: flex;
+    width: 100%;
+    padding: 4px 16px;
+    align-items: center;
+    background-color: var(--base-color1);
+    color: var(--background-color3);
+    border-radius: 16px 16px 0px 0px;
+    font-size: 24px;    
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.inscription-summary-card > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    border-radius: 0px 0px 16px 16px;
+    background-color: var(--clear-sky-light3);
+    padding: 8px 12px;
+    gap: 16px;
+}
+
+.inscription-summary-card > div div {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.inscription-summary-card > div div h6 {
+    color: var(--base-color1);
+    font-size: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    width: auto;
+}
+
+.inscription-summary-card > div div p {
+    border-radius: 4px;
+    color: var(--base-color1);
+    font-size: 14px;
+    font-weight: 400;
+    background-color: var(--clear-sky-dark3);
+    width: 100%;
+    padding: 4px 8px;
+}
+
+.inscription-summary-card .one-column {
+    grid-template-columns: 1fr;
+    height: 100%;
 }
 
 @media (max-width: 480px) {

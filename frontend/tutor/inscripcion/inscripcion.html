@@ -32,7 +32,7 @@
     </header>
 
     <main class="inscription-container">
-        <div class="form-container">
+        <form class="form-container">
             <div class="steps-wrapper">
                 <!-- Step 1: Tutor -->
                 <div class="step active" data-step="1">
@@ -45,30 +45,28 @@
                                     <input type="text" name="tutor-name" id="tutor-name">
                                 </div>
                                 <div>
-                                    <label for="tutor-email-inscription">Correo electrónico*</label>
-                                    <input type="email" name="email" id="tutor-email-inscription">
-                                </div>
-                                <div>
-                                    <label for="tutor-tel1">Teléfono 1*</label>
-                                    <input type="tel" name="tutor-tel1" id="tutor-tel1">
-                                </div>
-                                <div>
-                                    <label for="tutor-city">Ciudad*</label>
-                                    <input type="text" name="tutor-city" id="tutor-city">
-                                </div>
-                            </div>
-                            <div>
-                                <div>
                                     <label for="tutor-lastname">Apellidos*</label>
                                     <input type="text" name="tutor-lastname" id="tutor-lastname">
+                                </div>
+                                <div>
+                                    <label for="tutor-email-inscription">Correo electrónico*</label>
+                                    <input type="email" name="email" id="tutor-email-inscription">
                                 </div>
                                 <div>
                                     <label for="tutor-dni">DNI*</label>
                                     <input type="text" name="tutor-dni" id="tutor-dni">
                                 </div>
                                 <div>
+                                    <label for="tutor-tel1">Teléfono 1*</label>
+                                    <input type="tel" name="tutor-tel1" id="tutor-tel1">
+                                </div>
+                                <div>
                                     <label for="tutor-tel2">Teléfono 2</label>
                                     <input type="tel" name="tutor-tel2" id="tutor-tel2">
+                                </div>
+                                <div>
+                                    <label for="tutor-city">Ciudad*</label>
+                                    <input type="text" name="tutor-city" id="tutor-city">
                                 </div>
                                 <div>
                                     <label for="tutor-postal-code">Código Postal*</label>
@@ -91,30 +89,28 @@
                                     <input type="text" name="child-name" id="child-name">
                                 </div>
                                 <div>
-                                    <label for="child-born-date">Fecha de nacimiento*</label>
-                                    <input type="email" name="child-born-date" id="child-born-date">
-                                </div>
-                                <div>
-                                    <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>
-                                    <input type="text" name="child-alergy-intolerance" id="child-alergy-intolerance">
-                                </div>
-                                <div>
-                                    <label for="child-comes-with-someone">¿Participa en el campamento con algún conocido?</label>
-                                    <input type="text" name="child-comes-with-someone" id="child-comes-with-someone">
-                                </div>
-                            </div>
-                            <div>
-                                <div>
                                     <label for="child-lastname">Apellidos*</label>
                                     <input type="text" name="child-lastname" id="child-lastname">
+                                </div>
+                                <div>
+                                    <label for="child-born-date">Fecha de nacimiento*</label>
+                                    <input type="date" name="child-born-date" id="child-born-date">
                                 </div>
                                 <div>
                                     <label for="child-t-shirt-size">Talla de camiseta*</label>
                                     <input type="text" name="child-t-shirt-size" id="child-t-shirt-size">
                                 </div>
                                 <div>
+                                    <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>
+                                    <input type="text" name="child-alergy-intolerance" id="child-alergy-intolerance">
+                                </div>
+                                <div>
                                     <label for="child-more-info">Información a tener en cuenta</label>
                                     <input type="text" name="child-more-info" id="child-more-info">
+                                </div>
+                                <div>
+                                    <label for="child-comes-with-someone">¿Participa en el campamento con algún conocido?</label>
+                                    <input type="text" name="child-comes-with-someone" id="child-comes-with-someone">
                                 </div>
                             </div>
                         </div>
@@ -132,7 +128,7 @@
                         <div class="incription-prices-container">
                             <div class="incription-prices">
                                 <label class="price-card-label">
-                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <input type="radio" name="plan" value="A" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
                                             <h2 class="plan-title">Bahía Coral</h2>
@@ -156,7 +152,7 @@
                                     </div>
                                 </label>
                                 <label class="price-card-label">
-                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <input type="radio" name="plan" value="B" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
                                             <h2 class="plan-title">Costa Tropical</h2>
@@ -180,7 +176,7 @@
                                     </div>
                                 </label>
                                 <label class="price-card-label">
-                                    <input type="radio" name="plan" class="visually-hidden">
+                                    <input type="radio" name="plan" value="C" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
                                             <h2 class="plan-title">Balsa Botín</h2>
@@ -208,32 +204,159 @@
                         
                         <div class="navigation-buttons">
                             <button class="volver">Volver</button>
-                            <button class="siguiente">Siguiente</button>
+                            <button id="insert-summary-data-btn" class="siguiente">Siguiente</button>
                         </div>
                     </div>
                     
                 </div>
     
                 <!-- Step 4: Pago -->
+                <!-- <div class="step" data-step="4">
+                    <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <div class="form-section">
+                        <div class="inscription-payment-container">
+                            <div class="inscription-payment-credit-card">
+                                <div>
+                                    <h4>Tarjeta de crédito</h4>
+                                    <div>
+                                        <figure>
+                                            <img src="" alt="">
+                                        </figure>
+                                        <figure>
+                                            <img src="" alt="">
+                                        </figure>
+                                        <figure>
+                                            <img src="" alt="">
+                                        </figure>
+                                        <figure>
+                                            <img src="" alt="">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="credit-card">Número de tarjeta</label>
+                                    <input type="number" name="credit-card" id="credit-card">
+                                </div>
+                                <div>
+                                    <label for="credit-name">Nombre del titular</label>
+                                    <input type="number" name="credit-name" id="credit-name">
+                                </div>
+                                
+                            </div>
+                            <div class="inscription-payment-paypal">
+                                <div>
+                                    <h4>Paypal</h4>
+                                    <figure>
+                                        <img src="" alt="">
+                                    </figure>
+                                    <button class="paypal-button">Pagar con PayPal</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navigation-buttons">
+                            <button class="volver">Volver</button>
+                            <button class="siguiente">Realizar Inscripción</button>
+                        </div>
+                    </div>
+                    
+                </div> -->
+
                 <div class="step" data-step="4">
                     <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
                     <div class="form-section">
-                        <input type="text" placeholder="Número de tarjeta" required>
-                        <input type="text" placeholder="Nombre del titular" required>
-                        <input type="month" placeholder="Fecha de vencimiento" required>
-                        <input type="text" placeholder="CVV" required>
-                        <button class="paypal-button">Pagar con PayPal</button>
-                    </div>
-                    <div class="navigation-buttons">
-                        <button class="volver">Volver</button>
-                        <button class="siguiente">Realizar Inscripción</button>
+                        <div class="inscription-summary-container">
+                            <h3>RESUMEN INSCRIPCIÓN</h3>
+                            <div class="inscription-summary-cards-container">
+                                <div class="inscription-summary-card">
+                                    <h4>Tutor</h4>
+                                    <div>
+                                        <div>
+                                            <h6>Nombre:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Apellidos:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Correo electrónico:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>DNI:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Teléfono 1:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Teléfono 2:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Ciudad:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Código Postal:</h6>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inscription-summary-card">
+                                    <h4>Horario</h4>
+                                    <div class="one-column">
+                                        <div>
+                                            <h6>Horario seleccionado:</h6>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inscription-summary-card">
+                                    <h4>Niño</h4>
+                                    <div>
+                                        <div>
+                                            <h6>Nombre:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Apellidos:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Fecha de nacimiento:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Talla de camiseta:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Alergias, intolerancias o medicación necesaria:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>Información a tener en cuenta:</h6>
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <h6>¿Participa en el campamento con algún conocido?</h6>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navigation-buttons">
+                            <button class="volver">Volver</button>
+                            <button type="submit">Realizar Inscripción</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
-    
-
     <footer>
         <div class="footer-content">
             <div>
@@ -272,7 +395,7 @@
         <hr>
         <div class="footer-info">
             <figure>
-                <img src="./assets/img/logo.svg" alt="">
+                <img src="../../assets/img/logo.svg" alt="">
             </figure>
             <p>By Daniel Simón, Manuel Gómez and Gonzalo Pozo</p>
             <div>

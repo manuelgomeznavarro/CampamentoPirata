@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => {
                     console.error('Error al iniciar sesión', error);
                 });
-        }
+    }
 
     formSignIn.addEventListener("submit", (e) => {
         e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
