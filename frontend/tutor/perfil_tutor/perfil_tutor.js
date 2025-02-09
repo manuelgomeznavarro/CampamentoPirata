@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    //FETCH SIGN UP
+    //FETCH Editar datos
     function introducirDatos(userData) {
         return fetch(`http://127.0.0.1/api/tutors/${localStorage.getItem('role_id')}`, {
             method: 'PUT', //Método para enviar los datos al servidor
@@ -47,5 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error al introducir datos', error);
             });
     }
-    
+
+    document.getElementById('save-button').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const userData = {
+            nombreTutor: document.getElementById('editarNombreTutor').value,
+            emailTutor: document.getElementById('editarEmailTutor').value,
+            telefonoTutor1: document.getElementById('telfTutor1').value,
+            telefonoTutor2: document.getElementById('telfTutor2').value,
+            direccionTutor: document.getElementById('location').value,
+        };
+        console.log(userData);
+        introducirDatos(userData)
+        .then(data => console.log("Datos introducidos con éxito", data))
+        .catch(error => console.error('Error al introducir datos', error));
+    });
 });
+
