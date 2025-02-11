@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("Niño creado con éxito", data);
                     // localStorage.setItem('role', data.user.role);
                     // localStorage.setItem('role_id', data.user.role_id);
-                    return data;
+                    return data.id;
                 })
                 .catch(error => {
                     console.error('Error al crear al niño', error);
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(error => {
                     console.error('Error al crear la Inscripción', error);
                 });
-    }
+    }   
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const childInfo = {
             name: summaryParagraphs[9].innerText,
             lastname: summaryParagraphs[10].innerText,
-            bithdate: summaryParagraphs[11].innerText,
+            birthdate: summaryParagraphs[11].innerText,
             t_shirt_size: summaryParagraphs[12].innerText,
             alergy_intolerance: summaryParagraphs[13].innerText,
             aditional_info: summaryParagraphs[14].innerText,
@@ -234,18 +234,18 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(childInfo);
 
         updateTutorInfo(tutorInfo, localStorage.getItem('role_id'))
-            .then(createChild(childInfo))
-            .then(allChilds => {
-                console.log(allChilds);
+            .then(createChild(childInfo)
+                .then(childId => {
+                    console.log(childId);
                 
-                const childId = allChilds[allChilds.length - 1].id;
+                    const inscripcionInfo = {
+                        inscription_date: new Date(Date.now()).toISOString().split('T')[0],
+                        tutor_id: localStorage.getItem('role_id'),
+                        child_id: childId
+                    }
 
-                createInscription({
-                    inscription_date: Date.now(),
-                    tutor_id: localStorage.getItem('role_id'),
-                    child_id: childId
+                    createInscription(inscripcionInfo)
                 })
-            })
-
+        )
     })
 });
