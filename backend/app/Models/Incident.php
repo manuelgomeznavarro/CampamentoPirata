@@ -10,8 +10,8 @@ class Incident extends Model
     use HasFactory;
     protected $table = 'incidents';
     protected $fillable = [
-        'title',
         'subject',
+        'description',
         'date',
         'status',
         'tutor_id',

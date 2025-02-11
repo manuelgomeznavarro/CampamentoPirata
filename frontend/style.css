@@ -2790,6 +2790,10 @@ input[type="radio"] + .plan-card {
     height: 100%;
 }
 
+.faq-card-content-answer{
+    display: none;
+}
+
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
         grid-template-columns: repeat(1, 1fr);

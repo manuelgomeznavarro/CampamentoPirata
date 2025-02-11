@@ -302,8 +302,8 @@ class DatabaseSeeder extends Seeder
         // 14. Create Incidents
         DB::table('incidents')->insert([
             [
-                'title' => 'Minor Ankle Sprain',
-                'subject' => 'Injury Report',
+                'subject' => 'Minor Ankle Sprain',
+                'description' => 'Injury Report',
                 'date' => '2025-07-01',
                 'status' => 'Resolved',
                 'tutor_id' => 1,
@@ -312,8 +312,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Training Schedule Adjustment',
-                'subject' => 'Schedule Change Request',
+                'subject' => 'Training Schedule Adjustment',
+                'description' => 'Schedule Change Request',
                 'date' => '2025-07-02',
                 'status' => 'Pending',
                 'tutor_id' => 2,
