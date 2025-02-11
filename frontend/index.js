@@ -48,42 +48,50 @@ document.addEventListener("DOMContentLoaded", function () {
     const contenedor_sign_up = document.getElementById("sign-up-container");
     const contenedor_sign_in = document.getElementById("sign-in-container");
     const overlay_sign_in = document.getElementById("overlay-sign-in");
+    const close_buttons = document.querySelectorAll(".close-btn");
 
-    //JS HOME
-    function closeForm() {
-        //Se cierra cualquier formulario que esté abierto
-        overlay_sign_up.style.display = "none";
-        contenedor_sign_up.style.display = "none";
-        overlay_sign_in.style.display = "none";
+    function closeForm(overlay, container) {
+        container.classList.add("fade-out");
+        overlay.classList.add("fade-out");
+        setTimeout(() => {
+            overlay.classList.remove("show");
+            container.classList.remove("show");
+            container.classList.remove("fade-out");
+            overlay.classList.remove("fade-out");
+        }, 300);
     }
 
     registrar.addEventListener("click", () => {
-        closeForm();
-        overlay_sign_up.style.display = "flex";
-        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+        overlay_sign_up.classList.add("show");
+        contenedor_sign_up.classList.add("show");
     });
 
     overlay_sign_up.addEventListener("click", (event) => {
         if (event.target === overlay_sign_up) {
-            overlay_sign_up.style.display = "none";  // Oculta la superposición
-            contenedor_sign_up.style.display = "none";  // Oculta el contenedor de registro
+            closeForm(overlay_sign_up, contenedor_sign_up);
         }
     });
 
     inicio.addEventListener("click", () => {
-        closeForm();
-        overlay_sign_in.style.display = "flex";
-        contenedor_sign_in.style.display = "block";
-    })
+        overlay_sign_in.classList.add("show");
+        contenedor_sign_in.classList.add("show");
+    });
 
     overlay_sign_in.addEventListener("click", (event) => {
         if (event.target === overlay_sign_in) {
-            closeForm();
+            closeForm(overlay_sign_in, contenedor_sign_in);
         }
     });
 
+    close_buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            const parentContainer = event.target.closest(".sign-up-container, .sign-in-container");
+            const parentOverlay = parentContainer.parentElement;
+            closeForm(parentOverlay, parentContainer);
+        });
+    });
+    
     //JS SIGN UP
-
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
     const rememberInput = document.querySelector('#remember');

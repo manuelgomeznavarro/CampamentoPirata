@@ -1042,23 +1042,48 @@ main .fade-container .facilities div .facilities-pic img {
     justify-content: center;
     align-items: center;
     z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
+.overlay-sign-up.show,
+.overlay-sign-in.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Modal container styling */
 .sign-up-container,
 .sign-in-container {
     display: none;
     position: fixed;
     flex-wrap: wrap;
-    /* justify-content: center; */
     align-items: center;
-    margin-left: 0%;
     height: auto;
     width: 687px;
     background-color: var(--light-blue);
     padding: 34px;
     z-index: 12;
     border-radius: 16px;
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
+
+
+.sign-up-container.show,
+.sign-in-container.show {
+    display: block;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Fade-out animation to center */
+.fade-out {
+    opacity: 0 !important;
+    transform: scale(0.8) translateY(20px) !important;
+}
+
 
 
 .sign-up-container>*,
@@ -1360,6 +1385,66 @@ main .fade-container .facilities div .facilities-pic img {
     padding-bottom: 10px;
     color: #111b34;
     font-weight: bold;
+}
+
+/* New animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+}
+
+/* Add new keyframes */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(20px); }
+}
+
+/* New closing animation classes */
+.animate-overlay-out {
+animation: fadeOut 0.3s ease-in forwards;
+}
+
+.animate-form-out {
+animation: slideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* New close button styles */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 42px;
+    cursor: pointer;
+    color: var(--base-color1);
+    transition: transform 0.2s;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+/* New animation classes */
+.animate-overlay {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.animate-form {
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sign-header-container {
+    display: flex;
+    align-items: center;
+    gap: 66%;
 }
 
 /* Perfil Tutor */
