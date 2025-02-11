@@ -57,6 +57,32 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
+        // 9. Create Tutors (Parents/Guardians)
+        DB::table('tutors')->insert([
+            [
+                'name' => 'Dell',
+                'lastname' => 'Curry',
+                'dni' => '33333333E',
+                'phone' => '666123456',
+                'phone2' => null,
+                'city' => 'Charlotte',
+                'postal_code' => '28202',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Dwyane',
+                'lastname' => 'Wade',
+                'dni' => '44444444F',
+                'phone' => '666654321',
+                'phone2' => '666987654',
+                'city' => 'Miami',
+                'postal_code' => '33131',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+
         // 3. Create Users for Admins and Monitors
         DB::table('users')->insert([
             [
@@ -87,6 +113,22 @@ class DatabaseSeeder extends Seeder
                 'email' => 'espoelstra@heat.com',
                 'password' => Hash::make('Password1@'),
                 'role' => 'monitor',
+                'role_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'email' => 'dcurry@hornets.com',
+                'password' => Hash::make('Password1@'),
+                'role' => 'tutor',
+                'role_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'email' => 'dwade@heat.com',
+                'password' => Hash::make('Password1@'),
+                'role' => 'tutor',
                 'role_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -171,31 +213,7 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        // 9. Create Tutors (Parents/Guardians)
-        DB::table('tutors')->insert([
-            [
-                'name' => 'Dell',
-                'lastname' => 'Curry',
-                'dni' => '33333333E',
-                'phone' => '666123456',
-                'phone2' => null,
-                'city' => 'Charlotte',
-                'postal_code' => '28202',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Dwyane',
-                'lastname' => 'Wade',
-                'dni' => '44444444F',
-                'phone' => '666654321',
-                'phone2' => '666987654',
-                'city' => 'Miami',
-                'postal_code' => '33131',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+        
 
         // 10. Create Children (Young Players)
         DB::table('children')->insert([
