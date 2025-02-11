@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('t_shirt_size');
             $table->text('alergy_intolerance')->nullable();
-            $table->string('email')->unique();
             $table->text('aditional_info')->nullable();
             $table->string('acquaintance')->nullable();
             $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('set null');
