@@ -1531,7 +1531,7 @@ main .fade-container .facilities div .facilities-pic img {
     text-decoration: none;
 }
 
-.weekly-button:visited{
+.weekly-button:visited {
     color: var(--dark-blue);
 }
 
@@ -2223,6 +2223,7 @@ display: flex;
 }
 
 .contacto-alumno {
+    display: flex;
     width: 20vw;
     height: 30vh;
     flex-direction: column;
@@ -2239,12 +2240,12 @@ display: flex;
 
 .input-contacto {
     max-width: 78%;
-    max-height: 10%;
+    max-height: 50%;
 }
 
 .img-contacto {
     max-width: 30%;
-    max-height: 10%;
+    max-height: 50%;
 }
 
 #button-revisar-inscripcion {
@@ -2421,14 +2422,14 @@ display: flex;
     line-height: normal;
 }
 
-.contenedor-botones-inscripcion{
+.contenedor-botones-inscripcion {
     display: flex;
     flex-direction: row;
     gap: 20px;
     justify-content: center;
 }
 
-#button-crear-grupo-enviar{
+#button-crear-grupo-enviar {
     margin: 40px auto;
 }
 
@@ -2462,7 +2463,7 @@ td {
     vertical-align: middle;
 }
 
-.logo{
+.logo {
     cursor: pointer;
 }
 
@@ -2519,7 +2520,7 @@ td {
     gap: 216px;
 }
 
-.inscription-container .form-section .form-data-container > div {
+.inscription-container .form-section .form-data-container>div {
     width: 100%;
     gap: 32px;
     display: grid;
@@ -2602,8 +2603,8 @@ td {
 .plan-card {
     /* ... existing styles ... */
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                border-color 0.3s ease,
-                box-shadow 0.5s ease;
+        border-color 0.3s ease,
+        box-shadow 0.5s ease;
     position: relative;
     overflow: hidden;
 }
@@ -2623,12 +2624,12 @@ td {
 }
 
 /* Selected state animations */
-input[type="radio"]:checked + .plan-card {
+input[type="radio"]:checked+.plan-card {
     border-color: #2F54BE;
     background: #EBF0FF;
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
-    
+
     &::after {
         opacity: 1;
         border-color: #2F54BE;
@@ -2652,8 +2653,10 @@ input[type="radio"]:checked + .plan-card {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-    appearance: none; /* Remove default browser styling */
-    opacity: 0; /* Ensure complete invisibility */
+    appearance: none;
+    /* Remove default browser styling */
+    opacity: 0;
+    /* Ensure complete invisibility */
 }
 
 /* Remove any residual focus rings on the actual radio */
@@ -2665,9 +2668,20 @@ input[type="radio"]:checked + .plan-card {
 
 /* Pulse animation for selected card */
 @keyframes glow-pulse {
-    0% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.02); }
-    100% { opacity: 0.8; transform: scale(1); }
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
 }
 
 /* Card hover entrance animation */
@@ -2675,17 +2689,17 @@ input[type="radio"]:checked + .plan-card {
     &:hover {
         transform: scale(1.02);
     }
-    
+
     &:active {
         transform: scale(0.98);
     }
 }
 
 /* Smooth radio selection transition */
-input[type="radio"] + .plan-card {
+input[type="radio"]+.plan-card {
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                border-color 0.3s ease,
-                box-shadow 0.5s ease;
+        border-color 0.3s ease,
+        box-shadow 0.5s ease;
 }
 
 .incription-prices {
@@ -2736,7 +2750,7 @@ input[type="radio"] + .plan-card {
     width: auto;
 }
 
-.inscription-summary-card  h4 {
+.inscription-summary-card h4 {
     display: flex;
     width: 100%;
     padding: 4px 16px;
@@ -2744,12 +2758,12 @@ input[type="radio"] + .plan-card {
     background-color: var(--base-color1);
     color: var(--background-color3);
     border-radius: 16px 16px 0px 0px;
-    font-size: 24px;    
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: 0.5px;
 }
 
-.inscription-summary-card > div {
+.inscription-summary-card>div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -2759,7 +2773,7 @@ input[type="radio"] + .plan-card {
     gap: 16px;
 }
 
-.inscription-summary-card > div div {
+.inscription-summary-card>div div {
     width: auto;
     display: flex;
     flex-direction: column;
@@ -2767,7 +2781,7 @@ input[type="radio"] + .plan-card {
     gap: 8px;
 }
 
-.inscription-summary-card > div div h6 {
+.inscription-summary-card>div div h6 {
     color: var(--base-color1);
     font-size: 20px;
     font-weight: 500;
@@ -2775,7 +2789,7 @@ input[type="radio"] + .plan-card {
     width: auto;
 }
 
-.inscription-summary-card > div div p {
+.inscription-summary-card>div div p {
     border-radius: 4px;
     color: var(--base-color1);
     font-size: 14px;
@@ -2790,8 +2804,20 @@ input[type="radio"] + .plan-card {
     height: 100%;
 }
 
-.faq-card-content-answer{
+.faq-card-content-answer {
     display: none;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    background: var(--Cielo-sereno-claro-1, #F1F8FF);
+}
+
+.input-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 @media (max-width: 480px) {
