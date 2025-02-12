@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     preguntas.forEach(pregunta => {
 
-        const flecha = pregunta.querySelector('.faq-cards-content img');
-        const respuesta = pregunta.querySelector('  .faq-card-content-answer');
+        const flecha = pregunta.querySelector('img');
+        const respuesta = pregunta.querySelector('.faq-card-content-answer');
         flecha.addEventListener('click', () => {
             console.log("flechita");
             if (respuesta.style.display === 'none' || respuesta.style.display === '') {

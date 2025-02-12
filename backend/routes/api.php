@@ -14,6 +14,7 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,4 +99,13 @@ Route::get('/payments/{id}', [PaymentController::class, 'show']);
 Route::put('/payments/{id}', [PaymentController::class, 'update']);
 Route::delete('/payments/{id}', [PaymentController::class, 'destroy']);
 
+Route::get('/attendances', [AttendanceController::class, 'index']);
+Route::post('/attendances', [AttendanceController::class, 'store']);
+Route::get('/attendances/{id}', [AttendanceController::class, 'show']);
+Route::put('/attendances/{id}', [AttendanceController::class, 'update']);
+Route::delete('/attendances/{id}', [AttendanceController::class, 'destroy']);
+
 Route::post('/login', [AuthController::class, 'login']);
+
+
+
