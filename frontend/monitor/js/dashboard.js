@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         elemento.addEventListener('click', function () {
             let contacto = document.getElementById('contacto-alumno');
             if (window.getComputedStyle(contacto).display === "none") {
-                contacto.style.display = "block";
+                contacto.style.display = "flex";
             } else {
                 contacto.style.display = "none";
             }
