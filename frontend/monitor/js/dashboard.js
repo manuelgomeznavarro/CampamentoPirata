@@ -5,13 +5,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnCronograma = document.getElementById('btnCronograma');
     const btnInfoGrupos = document.getElementById('btnInfoGrupos');
     const logoMonitor = document.getElementById('logo-monitor');
-    const tablaAsistencia = document.getElementById('tablaAsistencia');
+    const tablaAsistenciaContenedor = document.getElementById('tablaAsistencia');
     const tablaCronograma = document.getElementById('tablaCronograma');
     const infoPerfil = document.getElementById('info-perfil');
     const infoGrupos = document.getElementById('info-grupos');
     const activityCard = document.getElementById('activity-card');
     const activityDescription = document.getElementsByClassName('activity-description');
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
+    const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
+
+    fetch('http://127.0.0.1:8000/api/children/groupByMonitor', {
+        method: 'POST', //Método para enviar los datos al servidor
+        headers: {
+            'Content-Type': 'application/json' //Envío de datos en formato JSON
+        },
+        body: JSON.stringify({monitor_id: localStorage.getItem('role_id')}) //Se convierte el objeto JS a una cadena JSON
+    })
+        .then(response => {
+            // if (!response.ok) {
+            //     throw new Error('Error al registrar el usuario');
+            // }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Información del alumno recibida con éxito", data);
+        })
+        .catch(error => {
+            console.error('Error al obtener información del alumno', error);
+        });
+
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('btnDashboard');
@@ -19,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
     defaultButton.classList.add('activo');
     let titulo = document.getElementById('dashboard-title');
     titulo.textContent = defaultButton.textContent;
+
+    
 
     logoMonitor.addEventListener('click', function () {
         document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('activo'));
@@ -29,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (dashBoardContentContainer.style.display === "none") {
             dashBoardContentContainer.style.display = "block";
             activityCard.style.display = "block";
-            tablaAsistencia.style.display = "none";
+            tablaAsistenciaContenedor.style.display = "none";
             tablaCronograma.style.display = "none";
             infoGrupos.style.display = "none";
         }
@@ -39,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (infoGrupos.style.display === "none") {
             infoGrupos.style.display = "block";
             activityCard.style.display = "none";
-            tablaAsistencia.style.display = "none";
+            tablaAsistenciaContenedor.style.display = "none";
             tablaCronograma.style.display = "none";
             dashBoardContentContainer.style.display = "none";
         }
@@ -49,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (tablaCronograma.style.display === "none") {
             tablaCronograma.style.display = "block";
             activityCard.style.display = "none";
-            tablaAsistencia.style.display = "none";
+            tablaAsistenciaContenedor.style.display = "none";
             dashBoardContentContainer.style.display = "none";
             infoGrupos.style.display = "none";
         }
@@ -59,15 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (dashBoardContentContainer.style.display === "none") {
             dashBoardContentContainer.style.display = "block";
             activityCard.style.display = "block";
-            tablaAsistencia.style.display = "none";
+            tablaAsistenciaContenedor.style.display = "none";
             tablaCronograma.style.display = "none";
             infoGrupos.style.display = "none";
         }
     })
 
     btnAsistencia.addEventListener('click', function () {
-        if (tablaAsistencia.style.display === "none") {
-            tablaAsistencia.style.display = "block";
+        if (tablaAsistenciaContenedor.style.display === "none") {
+            tablaAsistenciaContenedor.style.display = "block";
             activityCard.style.display = "none";
             dashBoardContentContainer.style.display = "none";
             tablaCronograma.style.display = "none";
