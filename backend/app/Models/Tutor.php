@@ -10,6 +10,7 @@ class Tutor extends Model
     use HasFactory;
     protected $table = 'tutors';
     protected $fillable = [
+        'id',
         'name',
         'lastname',
         'dni',
