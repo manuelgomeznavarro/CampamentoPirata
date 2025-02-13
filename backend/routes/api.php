@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\GroupByMonitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,5 +109,4 @@ Route::delete('/attendances/{id}', [AttendanceController::class, 'destroy']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
-
-
+Route::post('/children/groupByMonitor', [GroupByMonitorController::class, 'children_data']);

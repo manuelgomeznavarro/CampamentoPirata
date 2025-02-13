@@ -24,7 +24,7 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid credentials'
-            ]);
+            ], 401);
         }
 
         // If everything is OK, return success response
@@ -35,6 +35,6 @@ class AuthController extends Controller
                 'role' => $user->role,
                 'role_id' => $user->role_id
             ]
-        ]);
+        ], 200);
     }
 }
