@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
 
+
+
     fetch('http://127.0.0.1:8000/api/children/groupByMonitor', {
         method: 'POST', //Método para enviar los datos al servidor
         headers: {
@@ -34,6 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al obtener información del alumno', error);
         });
 
+        function agregarFilasTabla (){
+            for (let i = 0, i < , i++){
+                
+            }
+            let elementoTabla = document.createElement("tr");
+            elementoTabla.className = "table-column"; 
+            let elementoFila= document.createElement("td");
+            elementoFila.className = "table-row";
+            let elementoListaCheckbox = createElement("input");
+            elementoListaCheckbox.className = "asistencia";
+            elementoListaCheckbox.type = "checkbox";
+            elementoFila.appendChild(elementoListaCheckbox);
+            elementoTabla.appendChild(elementoFila);
+            tablaAsistencia.appendChild(elementoTabla);
+        }
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('btnDashboard');
