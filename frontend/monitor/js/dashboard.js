@@ -15,13 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
 
 
-
     fetch('http://127.0.0.1:8000/api/children/groupByMonitor', {
         method: 'POST', //Método para enviar los datos al servidor
         headers: {
             'Content-Type': 'application/json' //Envío de datos en formato JSON
         },
-        body: JSON.stringify({monitor_id: localStorage.getItem('role_id')}) //Se convierte el objeto JS a una cadena JSON
+        body: JSON.stringify({ monitor_id: localStorage.getItem('role_id') }) //Se convierte el objeto JS a una cadena JSON
     })
         .then(response => {
             // if (!response.ok) {
@@ -31,26 +30,31 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log("Información del alumno recibida con éxito", data);
+
+            for (let i = 0; i < data.children.length; i++) {
+                let elementoTabla = document.createElement("tr");
+                elementoTabla.className = "table-column";
+
+                let elementoCheckBox = document.createElement("td");
+                elementoCheckBox.className = "table-row";
+                
+                let elementoNombre = document.createElement("td");
+                elementoNombre.className = "table-name-row";
+                elementoNombre.textContent = data.children[i].name + " " + data.children[i].lastname;
+
+                let elementoListaCheckbox = document.createElement("input");
+                elementoListaCheckbox.className = "asistencia";
+                elementoListaCheckbox.type = "checkbox";
+                
+                elementoCheckBox.appendChild(elementoListaCheckbox);
+                elementoTabla.appendChild(elementoNombre);
+                elementoTabla.appendChild(elementoCheckBox);
+                tablaAsistencia.appendChild(elementoTabla);
+            }
         })
         .catch(error => {
             console.error('Error al obtener información del alumno', error);
         });
-
-        function agregarFilasTabla (){
-            for (let i = 0, i < , i++){
-                
-            }
-            let elementoTabla = document.createElement("tr");
-            elementoTabla.className = "table-column"; 
-            let elementoFila= document.createElement("td");
-            elementoFila.className = "table-row";
-            let elementoListaCheckbox = createElement("input");
-            elementoListaCheckbox.className = "asistencia";
-            elementoListaCheckbox.type = "checkbox";
-            elementoFila.appendChild(elementoListaCheckbox);
-            elementoTabla.appendChild(elementoFila);
-            tablaAsistencia.appendChild(elementoTabla);
-        }
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('btnDashboard');
@@ -59,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let titulo = document.getElementById('dashboard-title');
     titulo.textContent = defaultButton.textContent;
 
-    
+
 
     logoMonitor.addEventListener('click', function () {
         document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('activo'));
@@ -173,6 +177,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
+
 
 });
