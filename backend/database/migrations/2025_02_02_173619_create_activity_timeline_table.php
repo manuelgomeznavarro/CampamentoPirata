@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('activity_timeline', function (Blueprint $table) {
             $table->foreignId('activity_id')->constrained()->onDelete('cascade');
             $table->foreignId('timeline_id')->constrained()->onDelete('cascade');
+            $table->date('date');
             $table->primary(['activity_id', 'timeline_id']);
         });
     }

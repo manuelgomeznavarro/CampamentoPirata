@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
 
-
+    //Fetch para obtener la información de los alumnos
     fetch('http://127.0.0.1:8000/api/children/groupByMonitor', {
         method: 'POST', //Método para enviar los datos al servidor
         headers: {
@@ -56,14 +56,41 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al obtener información del alumno', error);
         });
 
+
+
+    //Fetch para crear el cronorama
+    function registrarAsistencia(incidencia) {
+        return fetch('http://127.0.0.1:8000/api/incidents', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(incidencia)
+        })
+            .then(response => {
+                console.log(response);
+                // if (!response.ok) {
+                //     throw new Error('Error al crear la incidencia');
+                // }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Asistencia registrada con éxito", data);
+            })
+            .catch(error => {
+                console.error('Error al crear la incidencia', error);
+            });
+
+    }
+
+    //Fetch para enviar la asistencia al cronograma
+
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('btnDashboard');
     //Agrego la clase 'activo' al botón Dashboard
     defaultButton.classList.add('activo');
     let titulo = document.getElementById('dashboard-title');
     titulo.textContent = defaultButton.textContent;
-
-
 
     logoMonitor.addEventListener('click', function () {
         document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('activo'));
