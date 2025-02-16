@@ -31,7 +31,7 @@ class MonitorController extends Controller
 
             DB::beginTransaction();
             
-            // Create the tutor
+            // Create the monitor
             $monitor = Monitor::create([
                 'name' => $request->name,
                 'lastname' => $request->lastname,

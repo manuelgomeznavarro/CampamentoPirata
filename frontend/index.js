@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return response.json();
             })
+            
             .then(data => {
                 console.log("Cuenta creada con éxito", data);
             })
