@@ -156,6 +156,79 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
+    const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const dates = ['12', '13', '14', '15', '16', '17', '18'];
+        const tbody = document.querySelector('.timeline-table tbody');
+        const form = document.querySelector('.activity-form');
+        const overlay = document.querySelector('.overlay');
+        let selectedCell = null;
+
+        // Initialize timeline
+        function initTimeline() {
+            times.forEach(time => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${time}</td>`;
+                
+                days.forEach((day, index) => {
+                    const cell = document.createElement('td');
+                    cell.dataset.date = `2045-05-${dates[index]}`;
+                    cell.dataset.time = time;
+                    cell.addEventListener('click', openForm);
+                    row.appendChild(cell);
+                });
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        function openForm(event) {
+            selectedCell = event.target;
+            form.classList.add('active');
+            overlay.classList.add('active');
+            
+            // Pre-fill date/time inputs
+            document.getElementById('activity-date').value = selectedCell.dataset.date;
+            document.getElementById('activity-time').value = selectedCell.dataset.time;
+            document.getElementById('activity-title').focus();
+        }
+
+        function closeForm() {
+            form.classList.remove('active');
+            overlay.classList.remove('active');
+            selectedCell = null;
+        }
+
+        function saveActivity() {
+            const title = document.getElementById('activity-title').value;
+            const notes = document.getElementById('activity-notes').value;
+            const time = document.getElementById('activity-time').value;
+
+            if (title) {
+                const activity = document.createElement('div');
+                activity.className = 'existing-activity';
+                activity.innerHTML = `
+                    <strong>${title}</strong>
+                    <div>${time}</div>
+                    ${notes ? `<small>${notes}</small>` : ''}
+                `;
+                
+                selectedCell.appendChild(activity);
+                closeForm();
+                
+                // Clear form inputs
+                document.getElementById('activity-title').value = '';
+                document.getElementById('activity-notes').value = '';
+            }
+        }
+
+        // Event listeners
+        overlay.addEventListener('click', closeForm);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeForm();
+        });
+
+        // Initialize the timeline
+        initTimeline();
 
 });
