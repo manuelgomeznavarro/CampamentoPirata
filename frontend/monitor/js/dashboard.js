@@ -204,79 +204,218 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        const dates = ['12', '13', '14', '15', '16', '17', '18'];
-        const tbody = document.querySelector('.timeline-table tbody');
-        const form = document.querySelector('.activity-form');
-        const overlay = document.querySelector('.overlay');
-        let selectedCell = null;
+    const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+    const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+    const activityTemplates = {
+        'team-building': { notes: 'Actividad para fortalecer el trabajo en equipo' },
+        'code-review': { notes: 'Revisión colaborativa de código' },
+        'workshop': { notes: 'Sesión práctica de aprendizaje' }
+    };
 
-        // Initialize timeline
-        function initTimeline() {
-            times.forEach(time => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${time}</td>`;
-                
-                days.forEach((day, index) => {
-                    const cell = document.createElement('td');
-                    cell.dataset.date = `2045-05-${dates[index]}`;
-                    cell.dataset.time = time;
-                    cell.addEventListener('click', openForm);
-                    row.appendChild(cell);
-                });
-                
-                tbody.appendChild(row);
-            });
+    function getWeekDates() {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+        
+        const weekDates = [];
+        for (let i = 0; i < 5; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + mondayOffset + i);
+            weekDates.push(date.toISOString().split('T')[0]);
         }
+        return weekDates;
+    }
 
-        function openForm(event) {
-            selectedCell = event.target;
-            form.classList.add('active');
-            overlay.classList.add('active');
+    const dates = getWeekDates();
+    const thead = document.querySelector('.timeline-table thead tr');
+    const tbody = document.querySelector('.timeline-table tbody');
+    const form = document.querySelector('.activity-form');
+    const overlay = document.querySelector('.overlay');
+    let selectedCell = null;
+    const select = document.getElementById('existing-activities');
+    const notes = document.getElementById('reuse-notes');
+    const saveActivityBtn = document.querySelector('.save-activity');
+    const closeActivityBtn = document.querySelector('.close-activity');
+
+
+
+    // Inicializar encabezados
+    dates.forEach((date, index) => {
+        const dateObj = new Date(date);
+        const th = document.createElement('th');
+        th.textContent = `${days[index]} ${dateObj.getDate()}`;
+        thead.appendChild(th);
+    });
+
+    // Inicializar tabla
+    function initTimeline() {
+        times.forEach(time => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${time}</td>`;
             
-            // Pre-fill date/time inputs
-            document.getElementById('activity-date').value = selectedCell.dataset.date;
-            document.getElementById('activity-time').value = selectedCell.dataset.time;
-            document.getElementById('activity-title').focus();
-        }
-
-        function closeForm() {
-            form.classList.remove('active');
-            overlay.classList.remove('active');
-            selectedCell = null;
-        }
-
-        function saveActivity() {
-            const title = document.getElementById('activity-title').value;
-            const notes = document.getElementById('activity-notes').value;
-            const time = document.getElementById('activity-time').value;
-
-            if (title) {
-                const activity = document.createElement('div');
-                activity.className = 'existing-activity';
-                activity.innerHTML = `
-                    <strong>${title}</strong>
-                    <div>${time}</div>
-                    ${notes ? `<small>${notes}</small>` : ''}
-                `;
-                
-                selectedCell.appendChild(activity);
-                closeForm();
-                
-                // Clear form inputs
-                document.getElementById('activity-title').value = '';
-                document.getElementById('activity-notes').value = '';
-            }
-        }
-
-        // Event listeners
-        overlay.addEventListener('click', closeForm);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeForm();
+            dates.forEach(date => {
+                const cell = document.createElement('td');
+                cell.dataset.date = date;
+                cell.dataset.time = time;
+                cell.addEventListener('click', openForm);
+                row.appendChild(cell);
+            });
+            
+            tbody.appendChild(row);
         });
+    }
 
-        // Initialize the timeline
-        initTimeline();
+    function openForm(event) {
+        selectedCell = event.target;
+        form.classList.add('active');
+        overlay.classList.add('active');
+        
+        // Pre-llenar fechas/horas
+        const dateValue = selectedCell.dataset.date;
+        const timeValue = selectedCell.dataset.time;
+        
+        document.getElementById('activity-date').value = dateValue;
+        document.getElementById('activity-time').value = timeValue;
+        document.getElementById('reuse-date').value = dateValue;
+        document.getElementById('reuse-time').value = timeValue;
+        
+        document.getElementById('activity-title').focus();
+    }
 
+    function closeForm() {
+        form.classList.remove('active');
+        overlay.classList.remove('active');
+        selectedCell = null;
+        resetForms();
+    }
+
+    function fillSelect() {
+
+        fetch('http://127.0.0.1:8000/api/activities')
+            .then(response => {
+                // if (!response.ok) {
+                //     throw new Error('Error al registrar el usuario');
+                // }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Información de las actividades recibida con éxito", data);
+
+                for (let i = 0; i < data.length; i++) {
+                    const option = document.createElement("option");
+                    option.value = data[i].id;
+                    option.textContent = data[i].name;
+                    option.setAttribute('description', data[i].description);
+
+                    select.appendChild(option);
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener información de las actividades', error);
+            });
+    }
+
+    fillSelect();
+
+    select.addEventListener('blur', (e) => {
+        console.log(notes);
+        
+        notes.value = (e.target.options[e.target.options.selectedIndex].getAttribute('description'));
+    });
+
+    function saveActivity() {
+        const isNewMode = document.querySelector('.mode-switch[data-mode="new"]').classList.contains('active');
+        let title, notes, time;
+
+        if(isNewMode) {
+            title = document.getElementById('activity-title').value;
+            notes = document.getElementById('activity-notes').value;
+            time = document.getElementById('activity-time').value;
+
+            fetch('http://127.0.0.1:8000/api/activities', {
+                method: 'POST', //Método para enviar los datos al servidor
+                headers: {
+                    'Content-Type': 'application/json' //Envío de datos en formato JSON
+                },
+                body: JSON.stringify({
+                    name: title,
+                    description: notes
+                }) //Se convierte el objeto JS a una cadena JSON
+            })
+                .then(response => {
+                    // if (!response.ok) {
+                    //     throw new Error('Error al registrar el usuario');
+                    // }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Actividad creada con éxito", data);
+                })
+                .catch(error => {
+                    console.error('Error al crear la actividad', error);
+                });
+        } else {
+            const selected = document.getElementById('existing-activities').value;
+            title = document.getElementById('existing-activities').options[document.getElementById('existing-activities').selectedIndex].text;
+            notes = document.getElementById('reuse-notes').value;
+            time = document.getElementById('reuse-time').value;
+
+
+        }
+
+        if(title) {
+            const activity = document.createElement('div');
+            activity.className = 'existing-activity';
+            activity.innerHTML = `
+                <strong>${title}</strong>
+                <div>${time}</div>
+                ${notes ? `<small>${notes}</small>` : ''}
+            `;
+            selectedCell.appendChild(activity);
+            closeForm();
+        }
+    }
+
+    saveActivityBtn.addEventListener('click', saveActivity);
+    closeActivityBtn.addEventListener('click', closeForm);
+
+    
+
+
+    function resetForms() {
+        document.getElementById('activity-title').value = '';
+        document.getElementById('activity-notes').value = '';
+        document.getElementById('existing-activities').selectedIndex = 0;
+        document.getElementById('reuse-notes').value = '';
+        document.querySelectorAll('.mode-switch').forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.mode-switch[data-mode="new"]').classList.add('active');
+        document.querySelectorAll('.form-content').forEach(form => {
+            form.classList.remove('active');
+            if(form.dataset.mode === 'new') form.classList.add('active');
+        });
+    }
+
+    // Event listeners
+    document.querySelectorAll('.mode-switch').forEach(button => {
+        button.addEventListener('click', function(e) {
+            document.querySelectorAll('.mode-switch').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            const mode = e.target.dataset.mode;
+            document.querySelectorAll('.form-content').forEach(form => {
+                form.classList.remove('active');
+                if(form.dataset.mode === mode) form.classList.add('active');
+            });
+        });
+    });
+
+    document.getElementById('existing-activities').addEventListener('change', function() {
+        const selected = this.value;
+        document.getElementById('reuse-notes').value = activityTemplates[selected]?.notes || '';
+    });
+
+    overlay.addEventListener('click', closeForm);
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && closeForm());
+
+    // Inicializar
+    initTimeline();
 });

@@ -2690,7 +2690,7 @@ input[type="radio"]:checked+.plan-card {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
-    width: 300px;
+    width: 350px;
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -2707,13 +2707,36 @@ input[type="radio"]:checked+.plan-card {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.activity-form h2 {
-    margin-top: 0;
-    font-size: 1.2em;
-    color: #333;
+.form-header {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 5px;
 }
 
-.activity-form input, 
+.mode-switch {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mode-switch.active {
+    background: #2196F3;
+    color: white;
+}
+
+.form-content {
+    display: none;
+}
+
+.form-content.active {
+    display: block;
+}
+
+.activity-form input,
+.activity-form select,
 .activity-form textarea {
     width: 100%;
     margin-bottom: 12px;

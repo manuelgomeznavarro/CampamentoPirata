@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GroupByMonitorController;
+use App\Http\Controllers\ActivityTimelineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,12 @@ Route::post('/attendances', [AttendanceController::class, 'store']);
 Route::get('/attendances/{id}', [AttendanceController::class, 'show']);
 Route::put('/attendances/{id}', [AttendanceController::class, 'update']);
 Route::delete('/attendances/{id}', [AttendanceController::class, 'destroy']);
+
+Route::get('/activity_timeline', [ActivityTimelineController::class, 'index']);
+Route::post('/activity_timeline', [ActivityTimelineController::class, 'store']);
+Route::get('/activity_timeline/{id}', [ActivityTimelineController::class, 'show']);
+Route::put('/activity_timeline/{id}', [ActivityTimelineController::class, 'update']);
+Route::delete('/activity_timeline/{id}', [ActivityTimelineController::class, 'destroy']);
 
 Route::post('/login', [AuthController::class, 'login']);
 

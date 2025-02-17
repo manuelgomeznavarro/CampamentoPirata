@@ -154,13 +154,11 @@ class DatabaseSeeder extends Seeder
         // 5. Create Timelines (Training Schedule)
         DB::table('timelines')->insert([
             [
-                'date' => '2025-07-01',
                 'admin_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'date' => '2025-07-02',
                 'admin_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
