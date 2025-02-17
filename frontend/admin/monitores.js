@@ -12,23 +12,23 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('logo-monitores-admin').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
     });
-    
+
     document.getElementById('dashboard-admin').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
     });
-    
+
     document.getElementById('gestionPago-admin').addEventListener('click', function () {
         window.location.href = '../admin/gestionpagos.html';
     });
-    
+
     document.getElementById('seccionMonitores-admin').addEventListener('click', function () {
         window.location.href = '../admin/monitores.html';
     });
-    
+
     document.getElementById('inscripcionesRegistros-admin').addEventListener('click', function () {
         window.location.href = '../admin/inscripcionesyregistros.html';
     });
-    
+
     document.getElementById('excursiones-admin').addEventListener('click', function () {
         window.location.href = '../admin/excursionesyactividades.html';
     });
@@ -41,15 +41,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.button-options').forEach(function (boton) {
         // Agrego un evento 'click' a cada botón
         boton.addEventListener('click', function () {
-            
+
             if (this.classList.contains('activo')) {
                 boton.classList.remove('activo');
             } else {
                 // Elimino la clase 'activo' de todos los botones
-            // Esto es para que solo un botón tenga la clase 'activo' a la vez
-            document.querySelectorAll('.button-options').forEach(b => b.classList.remove('activo'));
-            // Agrego la clase 'activo' al botón al que se le hizo click
-            this.classList.add('activo');
+                // Esto es para que solo un botón tenga la clase 'activo' a la vez
+                document.querySelectorAll('.button-options').forEach(b => b.classList.remove('activo'));
+                // Agrego la clase 'activo' al botón al que se le hizo click
+                this.classList.add('activo');
             }
         });
     });
@@ -99,6 +99,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     
+    //Fetch para obtener los datos de las tarifas de la BBDD
+    fetch('http://127.0.0.1:8000/api/monitors')
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellido: ${item.lastname}, DNI: ${item.dni}, Teléfono: ${item.phone}, Teléfono 2: ${item.phone2}, Admin2: ${item.admin_id}`);
+                console.log(index);
+                let elementoMonitor = document.createElement('div');
+                elementoMonitor.textContent = `${item.name} ${item.lastname}`;
+                elementoMonitor.className = "nombre-monitor";
+                listaMonitores.appendChild(elementoMonitor);
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
+
     //Fetch para agregar un monitor a la tabla monitores
     btnCrearMonitor.addEventListener('click', (e) => {
         e.preventDefault();
@@ -115,11 +139,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const dni = document.getElementById("dni-nuevo-monitor");
         const telf1 = document.getElementById("telf1-nuevo-monitor");
         const telf2 = document.getElementById("telf2-nuevo-monitor");
-        
+
         const monitorData = {
             name: nombreMonitor.value,
             lastname: apellidos.value,
-            dni: dni.value,            
+            dni: dni.value,
             phone: telf1.value,
             phone2: telf2.value,
             email: email.value,

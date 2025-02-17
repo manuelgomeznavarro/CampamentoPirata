@@ -154,13 +154,11 @@ class DatabaseSeeder extends Seeder
         // 5. Create Timelines (Training Schedule)
         DB::table('timelines')->insert([
             [
-                'date' => '2025-07-01',
                 'admin_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'date' => '2025-07-02',
                 'admin_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -264,14 +262,26 @@ class DatabaseSeeder extends Seeder
         // 12. Create Prices (Training Programs)
         DB::table('prices')->insert([
             [
-                'name' => 'Elite Training Program',
+                'name' => 'Tarifa Pulpo',
                 'price' => 299.99,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'All-Star Development Package',
+                'name' => 'Tarifa Delfin',
                 'price' => 499.99,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tarifa Tiburón',
+                'price' => 900.99,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tarifa Ballena',
+                'price' => 2000.99,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
