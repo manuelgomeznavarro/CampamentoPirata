@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Monitor;
 use App\Models\User;
+use App\Models\Timeline;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Type\Time;
 
 class MonitorController extends Controller
 {
@@ -47,6 +50,16 @@ class MonitorController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => 'monitor',
                 'role_id' => $monitor->id
+            ]);
+
+            $timeline = Timeline::create([
+                'admin_id' => $request->admin_id
+            ]);
+
+            $group = Group::create([
+                'administrator_id' => $request->admin_id,
+                'monitor_id' => $monitor->id,
+                'timeline_id' => $timeline->id
             ]);
 
             DB::commit();
