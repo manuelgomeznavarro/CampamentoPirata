@@ -3,24 +3,19 @@ Control de asistencia - Falta recoger la información de Asistencia SI/NO.
 Cronograma - Falta ver lo que hizo Gonzalo, no sabemos hasta donde llegó el viernes
 Información del grupo - Recoger en el "botón" de arriba el equipo al que pertenece
 el monitor/a, al clicar en el nombre de cada alumno, recoger la información
-del tutor de cada uno para mostrarla. En habilidades/comentarios, hacer que cuando
+del tutor de cada uno para mostrarla. 
+- En habilidades/comentarios, hacer que cuando
 se escriba algo, se envíe a la tabla correspondiente(que creo que aún no está creada)
 
 Administrador
 -Cuando pulsas en cualquiera de las opciones laterales, se muestre la primera por
 defecto
 - En pagos, meter una imagen con los gastos e ingresos
-- En actualizar tarifas, cuando el admin cambie alguna característica/ precio
-de alguna tarifa, se va a almacenar dicha información el su tabla tarifas, y se
-tiene que mostrar en el apartado Tarifas de la web
+- Se tiene que mostrar en el apartado Tarifas de la web los cambios realizados en tarifas por el admin
 - Descuentos - Falta meter una imagen que diga "En construcción"
--Crear monitor - Queda hacer la lógica para que, cuando el administrador cree
-un monitor, se almacene en su tabla correspondiente
 -Grupo - Se deben recoger los grupos que hay. El apartado crear grupo hay que pensarlo
 bien aún
--Lista de monitores: Recoger la lista de los monitores
--Revisar inscripciones - Aquí se debe recoger la información de cada inscripción realizada
-por un tutor
+-Lista de monitores: Queda edición monitor
 - Aquí se van a recoger TODAS las incidencias. Creo que aquí deberíamos
 recoger las incidencias que están marcadas como "Pendientes" para mostrarlas
 en la parte superior tal y como está actualmente. Pero quizás deberíamos agregar
