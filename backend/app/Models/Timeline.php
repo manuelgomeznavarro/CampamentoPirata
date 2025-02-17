@@ -10,7 +10,6 @@ class Timeline extends Model
     use HasFactory;
     protected $table = 'timelines';
     protected $fillable = [
-        'date',
         'admin_id',
     ];
 
@@ -18,10 +17,4 @@ class Timeline extends Model
     {
         return $this->belongsTo(Admin::class);
     }
-
-    public function activities()
-    {
-        return $this->belongsToMany(Activity::class);
-    }
 }
-
