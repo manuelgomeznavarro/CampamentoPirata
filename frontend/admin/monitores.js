@@ -121,12 +121,10 @@ document.addEventListener('DOMContentLoaded', function () {
             lastname: apellidos.value,
             dni: dni.value,            
             phone: telf1.value,
-            phone2: telf2.value
-        }
-
-        const userData = {
+            phone2: telf2.value,
             email: email.value,
-            password: password.value
+            password: password.value,
+            admin_id: localStorage.getItem('role_id')
         }
 
         // if (emailValidator && passwordValidator) {
@@ -139,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // }
         console.log(monitorData);
         crearMonitor(monitorData);
-        crearCuentaMonitor(userData)
+        // crearCuentaMonitor(userData)
     })
     function crearMonitor(monitorData) {
         return fetch('http://127.0.0.1:8000/api/monitors', {
@@ -163,25 +161,25 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    function crearCuentaMonitor(userData) {
-        return fetch('http://127.0.0.1:8000/api/users', {
-            method: 'POST', //Método para enviar los datos al servidor
-            headers: {
-                'Content-Type': 'application/json' //Envío de datos en formato JSON
-            },
-            body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al crear monitor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Monitor creado con éxito", data);
-            })
-            .catch(error => {
-                console.error('Error al crear monitor', error);
-            });
-    }
+    // function crearCuentaMonitor(userData) {
+    //     return fetch('http://127.0.0.1:8000/api/users', {
+    //         method: 'POST', //Método para enviar los datos al servidor
+    //         headers: {
+    //             'Content-Type': 'application/json' //Envío de datos en formato JSON
+    //         },
+    //         body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
+    //     })
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('Error al crear monitor');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log("Monitor creado con éxito", data);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error al crear monitor', error);
+    //         });
+    // }
 });
