@@ -140,14 +140,12 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Shooting Practice',
                 'description' => 'Advanced shooting drills and techniques',
-                'duration' => '90 minutes',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Defense Training',
                 'description' => 'Defensive positioning and strategies',
-                'duration' => '60 minutes',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -206,10 +204,12 @@ class DatabaseSeeder extends Seeder
             [
                 'activity_id' => 1,
                 'timeline_id' => 1,
+                'duration' => 60,
             ],
             [
                 'activity_id' => 2,
                 'timeline_id' => 2,
+                'duration' => 90,
             ]
         ]);
 
