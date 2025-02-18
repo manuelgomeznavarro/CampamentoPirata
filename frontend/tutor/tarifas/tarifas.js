@@ -12,7 +12,7 @@ fetch('http://127.0.0.1:8000/api/prices')
     data.forEach((item, index) => {
         console.log(`ID: ${item.id}, Nombre Tarifa: ${item.name}, Precio: ${item.price}`);
         console.log(index);
-        const tarifaCards = document.querySelectorAll('.tarifa-card');
+        const tarifaCards = document.querySelectorAll('.plan-card');
         if (index < tarifaCards.length) {
             const tarifaCard = tarifaCards[index];
             const titleElement = tarifaCard.querySelector('.plan-title span');
