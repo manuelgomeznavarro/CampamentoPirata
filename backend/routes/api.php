@@ -116,4 +116,10 @@ Route::delete('/activity_timeline/{id}', [ActivityTimelineController::class, 'de
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/children/groupByMonitor', [GroupByMonitorController::class, 'children_data']);
+Route::post('/children/group_by_monitor', [GroupByMonitorController::class, 'children_data']);
+
+Route::get('/activities_timeline_detailed/{id}', [ActivityTimelineController::class, 'show_details']);
+
+Route::post('/attendances/by_timeline_and_date', [AttendanceController::class, 'show_attendaces_by_timeline_and_date']);
+
+

@@ -30,6 +30,11 @@ class Child extends Model
         return $this->hasOne(Payment::class);
     }
 
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
     public function groups()
     {
         return $this->belongsTo(Group::class);

@@ -13,9 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const activityDescription = document.getElementsByClassName('activity-description');
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
+    const pasarListaBtn = document.querySelector("#pasar-lista");
+
 
     //Fetch para obtener la información de los alumnos
-    fetch('http://127.0.0.1:8000/api/children/groupByMonitor', {
+    fetch('http://127.0.0.1:8000/api/children/group_by_monitor', {
         method: 'POST', //Método para enviar los datos al servidor
         headers: {
             'Content-Type': 'application/json' //Envío de datos en formato JSON
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log("Información del alumno recibida con éxito", data);
+
+            // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
 
             for (let i = 0; i < data.children.length; i++) {
                 let elementoTabla = document.createElement("tr");
@@ -56,7 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al obtener información del alumno', error);
         });
 
-
+    pasarListaBtn.addEventListener(() => {
+        // TODO: enviar asistencia en base al tbody de la tabla
+    })
 
     //Fetch para crear el cronorama
     function registrarAsistencia(incidencia) {
@@ -206,11 +212,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
     const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-    const activityTemplates = {
-        'team-building': { notes: 'Actividad para fortalecer el trabajo en equipo' },
-        'code-review': { notes: 'Revisión colaborativa de código' },
-        'workshop': { notes: 'Sesión práctica de aprendizaje' }
-    };
+    // const activityTemplates = {};
+
+    // DOM Elements
+    const thead = document.querySelector('.timeline-table thead tr');
+    const tbody = document.querySelector('.timeline-table tbody');
+    const form = document.querySelector('.activity-form');
+    const overlay = document.querySelector('.overlay');
+    const select = document.getElementById('existing-activities');
+    const saveActivityBtn = document.querySelector('.save-activity');
+    const closeActivityBtn = document.querySelector('.close-activity');
+    let selectedCell = null;
 
     function getWeekDates() {
         const today = new Date();
@@ -227,19 +239,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const dates = getWeekDates();
-    const thead = document.querySelector('.timeline-table thead tr');
-    const tbody = document.querySelector('.timeline-table tbody');
-    const form = document.querySelector('.activity-form');
-    const overlay = document.querySelector('.overlay');
-    let selectedCell = null;
-    const select = document.getElementById('existing-activities');
-    const notes = document.getElementById('reuse-notes');
-    const saveActivityBtn = document.querySelector('.save-activity');
-    const closeActivityBtn = document.querySelector('.close-activity');
 
-
-
-    // Inicializar encabezados
+    // Initialize headers
     dates.forEach((date, index) => {
         const dateObj = new Date(date);
         const th = document.createElement('th');
@@ -247,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function () {
         thead.appendChild(th);
     });
 
-    // Inicializar tabla
     function initTimeline() {
         times.forEach(time => {
             const row = document.createElement('tr');
@@ -265,19 +265,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function findCell(date, time) {
+        return Array.from(document.querySelectorAll('td[data-date]')).find(cell => 
+            cell.dataset.date === date && 
+            cell.dataset.time === time
+        );
+    }
+
+    function lockCell(cell) {
+        cell.classList.add('occupied');
+        cell.style.pointerEvents = 'none';
+        cell.removeEventListener('click', openForm);
+    }
+
     function openForm(event) {
-        selectedCell = event.target;
+        const cell = event.target;
+        if (cell.classList.contains('occupied')) return;
+        
+        selectedCell = cell;
         form.classList.add('active');
         overlay.classList.add('active');
+
+        const currentDate = cell.dataset.date;
+        const currentTime = cell.dataset.time;
         
-        // Pre-llenar fechas/horas
-        const dateValue = selectedCell.dataset.date;
-        const timeValue = selectedCell.dataset.time;
+        document.querySelectorAll('input[type="date"]').forEach(input => 
+            input.value = currentDate
+        );
         
-        document.getElementById('activity-date').value = dateValue;
-        document.getElementById('activity-time').value = timeValue;
-        document.getElementById('reuse-date').value = dateValue;
-        document.getElementById('reuse-time').value = timeValue;
+        document.querySelectorAll('input[type="time"]').forEach(input => 
+            input.value = `${currentTime}:00`
+        );
         
         document.getElementById('activity-title').focus();
     }
@@ -289,159 +307,220 @@ document.addEventListener('DOMContentLoaded', function () {
         resetForms();
     }
 
-    function fillSelect() {
+    async function fillSelect() {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/activities');
+            const data = await response.json();
 
-        fetch('http://127.0.0.1:8000/api/activities')
-            .then(response => {
-                // if (!response.ok) {
-                //     throw new Error('Error al registrar el usuario');
-                // }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Información de las actividades recibida con éxito", data);
-
-                for (let i = 0; i < data.length; i++) {
-                    const option = document.createElement("option");
-                    option.value = data[i].id;
-                    option.textContent = data[i].name;
-                    option.setAttribute('description', data[i].description);
-
-                    select.appendChild(option);
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener información de las actividades', error);
+            data.forEach(activity => {
+                const option = document.createElement("option");
+                option.value = activity.id;
+                option.textContent = activity.name;
+                option.setAttribute('description', activity.description);
+                select.appendChild(option);
             });
+        } catch (error) {
+            console.error('Error loading activities:', error);
+        }
     }
 
-    fillSelect();
-
-    select.addEventListener('blur', (e) => {
-        console.log(notes);
+    function getAffectedCells(date, startTime, duration) {
+        const cells = [];
+        const startCell = findCell(date, startTime);
+        if (!startCell) return cells;
         
-        notes.value = (e.target.options[e.target.options.selectedIndex].getAttribute('description'));
-    });
-
-    function saveActivity() {
-        const isNewMode = document.querySelector('.mode-switch[data-mode="new"]').classList.contains('active');
-        let title, notes, time;
-
-        if(isNewMode) {
-            title = document.getElementById('activity-title').value;
-            notes = document.getElementById('activity-notes').value;
-            time = document.getElementById('activity-time').value;
-
-            fetch('http://127.0.0.1:8000/api/activities', {
-                method: 'POST', //Método para enviar los datos al servidor
-                headers: {
-                    'Content-Type': 'application/json' //Envío de datos en formato JSON
-                },
-                body: JSON.stringify({
-                    name: title,
-                    description: notes
-                }) //Se convierte el objeto JS a una cadena JSON
-            })
-                .then(response => {
-                    // if (!response.ok) {
-                    //     throw new Error('Error al registrar el usuario');
-                    // }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Actividad creada con éxito", data);
-
-                    const obj = {
-                        activity_id: data.id,
-                        timeline_id: localStorage.getItem('role_id'),
-                        date: document.getElementById('activity-date').value,
-                        hour: document.getElementById('activity-time').value,
-                        duration: document.getElementById('activity-duration').value
-                    };
-
-                    console.log(obj);
-                    
-
-                    fetch('http:/127.0.0.1:8000/api/activity_timeline', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json' //Envío de datos en formato JSON
-                        },
-                        body: JSON.stringify(obj)
-                    })
-                        .then(response => {
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log("Actividad creada con éxito en el cronograma " + localStorage.getItem('role_id'), data);
-                        })
-                        .catch(error => {
-                            console.log("Error al crear la actividad en el cronograma", error);
-                        })
-                })
-                .catch(error => {
-                    console.error('Error al crear la actividad', error);
-                });
-        } else {
-            const selected = document.getElementById('existing-activities').value;
-            title = document.getElementById('existing-activities').options[document.getElementById('existing-activities').selectedIndex].text;
-            notes = document.getElementById('reuse-notes').value;
-            time = document.getElementById('reuse-time').value;
-
-            const obj = {
-                activity_id: parseInt(selected),
-                timeline_id: localStorage.getItem('role_id'),
-                date: document.getElementById('reuse-date').value,
-                hour: document.getElementById('reuse-time').value,
-                duration: document.getElementById('reuse-duration').value
-            };
-
-            console.log(obj);
-            
-
-            fetch('http:/127.0.0.1:8000/api/activity_timeline', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json' //Envío de datos en formato JSON
-                },
-                body: JSON.stringify(obj)
-            })
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Actividad creada con éxito en el cronograma " + localStorage.getItem('role_id'), data);
-                })
-                .catch(error => {
-                    console.log("Error al crear la actividad en el cronograma", error);
-                })
-
+        cells.push(startCell);
+        const hoursNeeded = Math.ceil(duration / 60) - 1;
+        
+        if (hoursNeeded > 0) {
+            let currentCell = startCell;
+            for (let i = 0; i < hoursNeeded; i++) {
+                const nextRow = currentCell.parentElement.nextElementSibling;
+                if (nextRow) {
+                    const nextCell = nextRow.cells[currentCell.cellIndex];
+                    if (nextCell) {
+                        cells.push(nextCell);
+                        currentCell = nextCell;
+                    }
+                }
+            }
         }
+        
+        return cells;
+    }
 
-        if(title) {
-            const activity = document.createElement('div');
-            activity.className = 'existing-activity';
-            activity.innerHTML = `
-                <strong>${title}</strong>
-                <div>${time}</div>
-                ${notes ? `<small>${notes}</small>` : ''}
-            `;
-            selectedCell.appendChild(activity);
-            closeForm();
+    function createActivityElement(activity, totalHeight) {
+        const activityDiv = document.createElement('div');
+        activityDiv.className = 'existing-activity';
+        activityDiv.style.height = `${totalHeight}px`;
+        activityDiv.style.zIndex = '2';
+        
+        // Format start and end times
+        const startTime = activity.hour.slice(0, 5);
+        const endDate = new Date(`2000-01-01T${activity.hour}`);
+        endDate.setMinutes(endDate.getMinutes() + activity.duration);
+        const endTime = endDate.toTimeString().slice(0, 5);
+        
+        activityDiv.innerHTML = `
+            <div>
+                <strong>${activity.name}</strong>
+                <div>${startTime} - ${endTime}</div>
+            </div>
+            ${activity.description ? `<small>${activity.description}</small>` : ''}
+        `;
+        
+        return activityDiv;
+    }
+
+    async function fillTimeline() {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/activities_timeline_detailed/${localStorage.getItem('role_id')}`);
+            const data = await response.json();
+            
+            data.forEach(activity => {
+                const cells = getAffectedCells(
+                    activity.date,
+                    activity.hour.slice(0, 5),
+                    activity.duration,
+                    activity.name,
+                    activity.description,
+                );
+                
+                if (cells.length > 0) {
+                    const totalHeight = cells.length * 80; // 80px is the cell height
+                    const activityDiv = createActivityElement(activity, totalHeight);
+                    
+                    // Add activity div to first cell and lock all cells
+                    cells[0].appendChild(activityDiv);
+                    cells.forEach(cell => lockCell(cell));
+                }
+            });
+        } catch (error) {
+            console.error('Error loading timeline:', error);
         }
     }
 
-    saveActivityBtn.addEventListener('click', saveActivity);
-    closeActivityBtn.addEventListener('click', closeForm);
+    async function saveActivity() {
+        try {
+            const isNewMode = document.querySelector('.mode-switch[data-mode="new"]').classList.contains('active');
+            const roleId = localStorage.getItem('role_id');
+            let payload, duration;
 
-    
+            if (isNewMode) {
+                const title = document.getElementById('activity-title').value;
+                const notes = document.getElementById('activity-notes').value;
+                duration = parseInt(document.getElementById('activity-duration').value);
 
+                if (!duration || duration <= 0) {
+                    alert('Please enter a valid duration');
+                    return;
+                }
+
+                // Check affected cells
+                const cells = getAffectedCells(
+                    document.getElementById('activity-date').value,
+                    document.getElementById('activity-time').value.slice(0, 5),
+                    duration
+                );
+
+                if (cells.some(cell => cell.classList.contains('occupied'))) {
+                    alert('Cannot create activity: Some time slots are already occupied');
+                    return;
+                }
+
+                const activityResponse = await fetch('http://127.0.0.1:8000/api/activities', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ name: title, description: notes })
+                });
+                
+                const activityData = await activityResponse.json();
+                
+                payload = {
+                    activity_id: activityData.id,
+                    timeline_id: roleId,
+                    date: document.getElementById('activity-date').value,
+                    hour: document.getElementById('activity-time').value,
+                    duration: duration
+                };
+            } else {
+                const selected = document.getElementById('existing-activities').value;
+                duration = parseInt(document.getElementById('reuse-duration').value);
+
+                if (!duration || duration <= 0) {
+                    alert('Please enter a valid duration');
+                    return;
+                }
+
+                // Check affected cells
+                const cells = getAffectedCells(
+                    document.getElementById('reuse-date').value,
+                    document.getElementById('reuse-time').value.slice(0, 5),
+                    duration
+                );
+
+                if (cells.some(cell => cell.classList.contains('occupied'))) {
+                    alert('Cannot create activity: Some time slots are already occupied');
+                    return;
+                }
+
+                payload = {
+                    activity_id: parseInt(selected),
+                    timeline_id: roleId,
+                    date: document.getElementById('reuse-date').value,
+                    hour: document.getElementById('reuse-time').value,
+                    duration: duration
+                };
+            }
+
+            const timelineResponse = await fetch('http://127.0.0.1:8000/api/activity_timeline', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
+
+            const timelineData = await timelineResponse.json();
+
+            // console.log(timelineData);
+
+            const timelineActivityResponse = await fetch(`http://127.0.0.1:8000/api/activities/${timelineData.activity_id}`);
+
+            const timelineActivityData = await timelineActivityResponse.json();
+
+            // Get all affected cells and calculate total height
+            const cells = getAffectedCells(
+                payload.date,
+                payload.hour.slice(0, 5),
+                payload.duration
+            );
+            
+            const totalHeight = cells.length * 80; // 80px is the cell height
+            
+            // Create and append activity element
+            const activityDiv = createActivityElement({
+                name: timelineActivityData.name,
+                hour: timelineData.hour,
+                duration: payload.duration,
+                description: timelineActivityData.description
+            }, totalHeight);
+            
+            // Add activity to first cell and lock all affected cells
+            cells[0].appendChild(activityDiv);
+            cells.forEach(cell => lockCell(cell));
+            
+            closeForm();
+        } catch (error) {
+            console.error('Error saving activity:', error);
+        }
+    }
 
     function resetForms() {
         document.getElementById('activity-title').value = '';
         document.getElementById('activity-notes').value = '';
+        document.getElementById('activity-duration').value = '';
         document.getElementById('existing-activities').selectedIndex = 0;
         document.getElementById('reuse-notes').value = '';
+        document.getElementById('reuse-duration').value = '';
         document.querySelectorAll('.mode-switch').forEach(btn => btn.classList.remove('active'));
         document.querySelector('.mode-switch[data-mode="new"]').classList.add('active');
         document.querySelectorAll('.form-content').forEach(form => {
@@ -450,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Event listeners
+    // Event Listeners
     document.querySelectorAll('.mode-switch').forEach(button => {
         button.addEventListener('click', function(e) {
             document.querySelectorAll('.mode-switch').forEach(btn => btn.classList.remove('active'));
@@ -463,14 +542,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.getElementById('existing-activities').addEventListener('change', function() {
-        const selected = this.value;
-        document.getElementById('reuse-notes').value = activityTemplates[selected]?.notes || '';
+    select.addEventListener('change', function() {
+        const description = this.options[this.selectedIndex]?.getAttribute('description') || '';
+        document.getElementById('reuse-notes').value = description;
     });
 
     overlay.addEventListener('click', closeForm);
     document.addEventListener('keydown', (e) => e.key === 'Escape' && closeForm());
+    saveActivityBtn.addEventListener('click', saveActivity);
+    closeActivityBtn.addEventListener('click', closeForm);
 
-    // Inicializar
-    initTimeline();
+    // Initialize the application
+    async function initialize() {
+        initTimeline();
+        await fillSelect();
+        await fillTimeline();
+    }
+
+    initialize();
 });

@@ -17,4 +17,9 @@ class Timeline extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

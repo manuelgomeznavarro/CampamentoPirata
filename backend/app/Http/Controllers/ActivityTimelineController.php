@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\ActivityTimeline;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,22 @@ class ActivityTimelineController extends Controller
         return response()->json($activities, 201);
     }
 
-    public function show($idActivities)
+    public function show($timeline_id)
     {
-        $activities = ActivityTimeline::findOrFail($idActivities);
+        $activities = ActivityTimeline::where('timeline_id', $timeline_id)->get();
+        return response()->json($activities, 200);
+    }
+
+    public function show_details($timeline_id)
+    {
+        $activities = ActivityTimeline::where('timeline_id', $timeline_id)->get();
+
+        for ($i=0; $i < $activities->count(); $i++) { 
+            $activity = Activity::where('id', $activities[$i]->activity_id)->first();
+            $activities[$i]->name = $activity->name;
+            $activities[$i]->description = $activity->description;
+        }
+
         return response()->json($activities, 200);
     }
 

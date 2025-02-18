@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('child_id')->constrained('children')->onDelete('cascade');
+            $table->foreignId('timeline_id')->constrained('timelines')->onDelete('cascade');
+            $table->date('date');
             $table->boolean('attendance'); // true = presente, false = ausente
-            $table->timestamps();
+            $table->primary(['child_id', 'timeline_id', 'date']);
         });
     }
 

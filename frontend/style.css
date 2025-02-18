@@ -2777,14 +2777,41 @@ input[type="radio"]:checked+.plan-card {
 .existing-activity {
     background-color: #e3f2fd;
     border-radius: 4px;
-    padding: 4px;
-    margin-bottom: 2px;
     font-size: 0.9em;
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 4px;
+    border: 1px solid #90caf9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.existing-activity small {
+    font-size: 0.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .timeline-table td {
     cursor: pointer;
     transition: background-color 0.2s;
+    position: relative;
+    height: 80px; /* Fixed cell height */
+    padding: 2px; /* Reduced padding */
+}
+
+.timeline-table td.occupied {
+    background-color: #e8f5e9;
+    cursor: not-allowed;
+    pointer-events: none;
+    padding: 0; /* Remove padding for occupied cells */
 }
 
 .timeline-table td:hover {
