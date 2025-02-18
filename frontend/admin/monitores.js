@@ -87,19 +87,71 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    btnCrearGrupo.addEventListener('click', function () {
-        if (creacionGrupo.style.display === "none") {
-            creacionGrupo.style.display = "flex";
-            formCrearMonitores.style.display = "none";
-            grupos.style.display = "none";
-            listaMonitores.style.display = "none";
-        } else {
-            creacionGrupo.style.display = "none";
-        }
-    });
+    // btnCrearGrupo.addEventListener('click', function () {
+    //     if (creacionGrupo.style.display === "none") {
+    //         creacionGrupo.style.display = "flex";
+    //         formCrearMonitores.style.display = "none";
+    //         grupos.style.display = "none";
+    //         listaMonitores.style.display = "none";
+    //     } else {
+    //         creacionGrupo.style.display = "none";
+    //     }
+    // });
 
-    
-    //Fetch para obtener los datos de las tarifas de la BBDD
+    // const btnGrupo = document.querySelectorAll('.nombre-grupo');
+
+    // btnGrupo.forEach((btn, index) => {
+    //     btn.addEventListener('click', (e) => {
+    //         if (creacionGrupo.style.display === "none") {
+    //             creacionGrupo.style.display = "flex";
+    //             formCrearMonitores.style.display = "none";
+    //             grupos.style.display = "none";
+    //             listaMonitores.style.display = "none";
+    //         } else {
+    //             creacionGrupo.style.display = "none";
+    //         }
+    //     });
+    // });
+
+    //Fetch para obtener los datos de los grupos de la BBDD
+    fetch('http://127.0.0.1:8000/api/groups')
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre: ${item.name}`);
+                console.log(index);
+                let elementoGrupo = document.createElement('div');
+                elementoGrupo.textContent = `${item.name}`;
+                elementoGrupo.className = "nombre-grupo";
+                grupos.appendChild(elementoGrupo);
+                elementoGrupo.value = item.id;
+
+                // Agregar event listener al nuevo elemento
+                elementoGrupo.addEventListener('click', (e) => {
+                    if (creacionGrupo.style.display === "none") {
+                        creacionGrupo.style.display = "flex";
+                        formCrearMonitores.style.display = "none";
+                        grupos.style.display = "none";
+                        listaMonitores.style.display = "none";
+                        console.log(item.id);
+                        mostrarGrupo(item.id);
+                    } else {
+                        creacionGrupo.style.display = "none";
+                    }
+                });
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
+    //Fetch para obtener los datos de los monitores de la BBDD
     fetch('http://127.0.0.1:8000/api/monitors')
         // TODO: Si da tiempo modificar los datos del monit:
         .then(response => {
@@ -185,6 +237,42 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    //Fetch para obtener los datos de los grupos de la BBDD
+    function mostrarGrupo(idGrupo) {
+        return fetch(`http://127.0.0.1:8000/api/children/${idGrupo}`)
+            // TODO: Si da tiempo modificar los datos del monit:
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error `);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach((item, index) => {
+                    console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
+                    console.log(index);
+                    let elementoAlumno = document.createElement('div');
+                    elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+                    elementoAlumno.className = "nombre-alumno";
+                    grupos.appendChild(elementoAlumno);
+
+                    // Agregar event listener al nuevo elemento
+                    // elementoGrupo.addEventListener('click', (e) => {
+                    //     if (creacionGrupo.style.display === "none") {
+                    //         creacionGrupo.style.display = "flex";
+                    //         formCrearMonitores.style.display = "none";
+                    //         grupos.style.display = "none";
+                    //         listaMonitores.style.display = "none";
+                    //     } else {
+                    //         creacionGrupo.style.display = "none";
+                    //     }
+                    // });
+                })
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
+    }
     // function crearCuentaMonitor(userData) {
     //     return fetch('http://127.0.0.1:8000/api/users', {
     //         method: 'POST', //Método para enviar los datos al servidor

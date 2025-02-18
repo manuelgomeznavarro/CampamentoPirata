@@ -11,7 +11,6 @@ Administrador
 -Cuando pulsas en cualquiera de las opciones laterales, se muestre la primera por
 defecto
 - En pagos, meter una imagen con los gastos e ingresos
-- Se tiene que mostrar en el apartado Tarifas de la web los cambios realizados en tarifas por el admin
 - Descuentos - Falta meter una imagen que diga "En construcción"
 -Grupo - Se deben recoger los grupos que hay. El apartado crear grupo hay que pensarlo
 bien aún

@@ -2128,6 +2128,7 @@ td {
 .nombre-grupo {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
     max-width: 800px;
     max-height: 40px;
     padding: 9px 16px 12px 16px;
@@ -2970,6 +2971,29 @@ input[type="radio"]+.plan-card {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+#botones-crear-grupo {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en columna */
+    align-items: center; /* Centra horizontalmente */
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.button-crear-grupo {
+    align-self: center; /* Asegura que el botón se quede centrado */
+}
+
+.contenedor-listas {
+    display: flex;
+    justify-content: space-around; /* Distribuye los elementos a los lados */
+    width: 100%; /* Ocupa el ancho disponible */
+}
+
+.lista-grupo,
+.lista-alumnos-sin-grupo {
+    width: 45%; /* Ajusta el ancho de cada lista */
+    text-align: center; /* Centra el texto */
 }
 
 @media (max-width: 480px) {
