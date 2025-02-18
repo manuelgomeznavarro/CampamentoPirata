@@ -15,7 +15,7 @@ class ActivityTimeline extends Model
     public $incrementing = false;
     
     // Define the primary keys
-    protected $primaryKey = ['activity_id', 'timeline_id'];
+    protected $primaryKey = ['activity_id', 'timeline_id', 'date', 'hour'];
     
     // Since this is a pivot table, we might not need timestamps
     public $timestamps = false;
@@ -23,6 +23,8 @@ class ActivityTimeline extends Model
     protected $fillable = [
         'activity_id',
         'timeline_id',
+        'date',
+        'hour',
         'duration'
     ];
 

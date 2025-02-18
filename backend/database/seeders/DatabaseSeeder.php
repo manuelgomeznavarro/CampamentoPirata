@@ -202,11 +202,15 @@ class DatabaseSeeder extends Seeder
             [
                 'activity_id' => 1,
                 'timeline_id' => 1,
+                'date' => now(),
+                'hour' => now(),
                 'duration' => 60,
             ],
             [
                 'activity_id' => 2,
                 'timeline_id' => 2,
+                'date' => now(),
+                'hour' => now(),
                 'duration' => 90,
             ]
         ]);

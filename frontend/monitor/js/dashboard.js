@@ -350,6 +350,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     console.log("Actividad creada con éxito", data);
+
+                    const obj = {
+                        activity_id: data.id,
+                        timeline_id: localStorage.getItem('role_id'),
+                        date: document.getElementById('activity-date').value,
+                        hour: document.getElementById('activity-time').value,
+                        duration: document.getElementById('activity-duration').value
+                    };
+
+                    console.log(obj);
+                    
+
+                    fetch('http:/127.0.0.1:8000/api/activity_timeline', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                        },
+                        body: JSON.stringify(obj)
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Actividad creada con éxito en el cronograma " + localStorage.getItem('role_id'), data);
+                        })
+                        .catch(error => {
+                            console.log("Error al crear la actividad en el cronograma", error);
+                        })
                 })
                 .catch(error => {
                     console.error('Error al crear la actividad', error);
@@ -360,6 +388,33 @@ document.addEventListener('DOMContentLoaded', function () {
             notes = document.getElementById('reuse-notes').value;
             time = document.getElementById('reuse-time').value;
 
+            const obj = {
+                activity_id: parseInt(selected),
+                timeline_id: localStorage.getItem('role_id'),
+                date: document.getElementById('reuse-date').value,
+                hour: document.getElementById('reuse-time').value,
+                duration: document.getElementById('reuse-duration').value
+            };
+
+            console.log(obj);
+            
+
+            fetch('http:/127.0.0.1:8000/api/activity_timeline', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' //Envío de datos en formato JSON
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Actividad creada con éxito en el cronograma " + localStorage.getItem('role_id'), data);
+                })
+                .catch(error => {
+                    console.log("Error al crear la actividad en el cronograma", error);
+                })
 
         }
 
