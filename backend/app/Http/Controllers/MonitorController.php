@@ -13,13 +13,13 @@ use Ramsey\Uuid\Type\Time;
 
 class MonitorController extends Controller
 {
-    
+
     public function index()
     {
         $monitors = Monitor::all();
         return response()->json($monitors, 200);
     }
-    
+
     public function store(Request $request)
     {
         try {
@@ -33,7 +33,7 @@ class MonitorController extends Controller
             }
 
             DB::beginTransaction();
-            
+
             // Create the monitor
             $monitor = Monitor::create([
                 'name' => $request->name,
@@ -63,7 +63,7 @@ class MonitorController extends Controller
             ]);
 
             DB::commit();
-            
+
             // return response()->json([
             //     'message' => 'Monitor creado correctamente',
             //     'tutor' => $monitor
@@ -71,7 +71,6 @@ class MonitorController extends Controller
 
             $monitors = Monitor::all();
             return response()->json($monitors, 201);
-
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -79,30 +78,36 @@ class MonitorController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
-    
+
         // $monitors = Monitor::create($request->all());
         // return response()->json($monitors, 201);
     }
-    
-    
+
+
     public function show($IdMonitors)
     {
         $monitors = Monitor::findOrFail($IdMonitors);
         return response()->json($monitors, 200);
     }
-    
-    
+
+
     public function update(Request $request, $IdMonitors)
     {
         $monitors = Monitor::findOrFail($IdMonitors);
         $monitors->update($request->all());
         return response()->json($monitors, 200);
     }
-    
+
     public function destroy($IdMonitors)
     {
         $monitors = Monitor::findOrFail($IdMonitors);
         $monitors->delete();
         return response()->json(['message' => 'Monitor eliminado correctamente'], 200);
+    }
+
+    public function show_monitor_by_group($group_id)
+    {
+        $monitors = Monitor::where('group_id', $group_id)->get();
+        return response()->json($monitors, 200);
     }
 }

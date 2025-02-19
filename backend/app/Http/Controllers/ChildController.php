@@ -38,4 +38,16 @@ class ChildController extends Controller
         $children->delete();
         return response()->json(['message' => 'Niño eliminado correctamente'], 200);
     }
+
+    public function show_by_group($group_id)
+    {
+        $children = Child::where('group_id', $group_id)->get();
+        return response()->json($children, 200);
+    }
+
+    public function show_without_group()
+    {
+        $children = Child::whereNull('group_id')->orWhere('group_id', '')->get();
+        return response()->json($children, 200);
+    }
 }
