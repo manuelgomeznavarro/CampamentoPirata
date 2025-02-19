@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formCrearMonitores.style.display = "none";
             listaMonitores.style.display = "none";
             creacionGrupo.style.display = "none";
+            listaGrupo.innerText= "";
         } else {
             grupos.style.display = "none";
         }
@@ -140,7 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         grupos.style.display = "none";
                         listaMonitores.style.display = "none";
                         console.log(item.id);
+                        mostrarMonitor(item.id);
                         mostrarGrupo(item.id);
+                        
                     } else {
                         creacionGrupo.style.display = "none";
                     }
@@ -237,37 +240,59 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    const listaGrupo = document.getElementById("lista-grupo"); 
     //Fetch para obtener los datos de los grupos de la BBDD
-    function mostrarGrupo(idGrupo) {
-        return fetch(`http://127.0.0.1:8000/api/children/${idGrupo}`)
+    function mostrarGrupo(group_id) {
+        return fetch(`http://127.0.0.1:8000/api/children/by_group/${group_id}`)
             // TODO: Si da tiempo modificar los datos del monit:
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error `);
-                }
+                // if (!response.ok) {
+                //     throw new Error(`Error `);
+                // }
                 return response.json();
             })
             .then(data => {
+                console.log(data);
+                
                 data.forEach((item, index) => {
                     console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
                     console.log(index);
+
+                    // const elementos = [...listaGrupo.childNodes];
+                    // console.log(elementos);
+                    // for (let index = 2; index < elementos.length; index++) {
+                    //     elementos[index].remove();
+                        
+                    // }
                     let elementoAlumno = document.createElement('div');
                     elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
                     elementoAlumno.className = "nombre-alumno";
-                    grupos.appendChild(elementoAlumno);
-
-                    // Agregar event listener al nuevo elemento
-                    // elementoGrupo.addEventListener('click', (e) => {
-                    //     if (creacionGrupo.style.display === "none") {
-                    //         creacionGrupo.style.display = "flex";
-                    //         formCrearMonitores.style.display = "none";
-                    //         grupos.style.display = "none";
-                    //         listaMonitores.style.display = "none";
-                    //     } else {
-                    //         creacionGrupo.style.display = "none";
-                    //     }
-                    // });
+                    listaGrupo.appendChild(elementoAlumno);
+                    
                 })
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
+    }
+
+    //Fetch para obtener los datos del monitor del grupo de la BBDD
+    function mostrarMonitor(group_id) {
+        return fetch(`http://127.0.0.1:8000/api/monitors/${group_id}`)
+            // TODO: Si da tiempo modificar los datos del monit:
+            .then(response => {
+                // if (!response.ok) {
+                //     throw new Error(`Error `);
+                // }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                    console.log(`ID: ${data.id}, Nombre: ${data.name}, Apellidos: ${data.lastname}`);
+                    let elementoMonitor = document.createElement('div');
+                    elementoMonitor.textContent = `${data.name}, ${data.lastname}`;
+                    elementoMonitor.className = "nombre-monitor";
+                    listaGrupo.appendChild(elementoMonitor);
             })
             .catch(error => {
                 console.error('Error al obtener los datos:', error);
