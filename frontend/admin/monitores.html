@@ -104,7 +104,7 @@
                             <div class="contenedor-listas">
                                 <div class="lista-grupo" id="lista-grupo">
                                 </div>
-                                <div class="lista-alumnos-sin-grupo">
+                                <div class="lista-sin-grupo" id="lista-sin-grupo">
                                     <div class="elemento-persona-sin-grupo">Alumno nuevo 1</div>
                                     <div class="elemento-persona-sin-grupo">Alumno nuevo 2</div>
                                     <div class="elemento-persona-sin-grupo">Alumno nuevo 3</div>
@@ -114,11 +114,48 @@
                     </div>
                     
                     <div class="lista-monitores" id="lista-monitores" style="display: none;">
-                        <p class="menu-content-default-title">Lista de Monitores</p>
+                        <p class="menu-content-default-title" id="lista-monitor">Lista de Monitores</p>
                         <!-- <div class="nombre-monitor">Monitor 1</div>
                         <div class="nombre-monitor">Monitor 2</div>
                         <div class="nombre-monitor">Monitor 3</div>
                         <div class="nombre-monitor">Monitor 4</div> -->
+                    </div>
+                    <div class="form-crear-monitor" id="form-editar-monitor" style="display: none;">
+                        <form action="">
+                            <div>
+                                <label for="nombre-editar-monitor">Nombre*</label>
+                                <input type="text" name="nombre-editar-monitor" id="nombre-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="apellidos-editar-monitor">Apellidos*</label>
+                                <input type="text" name="apellidos-editar-monitor" id="apellidos-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="correo-editar-monitor">Correo electrónico*</label>
+                                <input type="text" name="correo-editar-monitor" id="correo-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="password-editar-monitor">Contraseña*</label>
+                                <input type="password" name="password-editar-monitor" id="password-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="dni-editar-monitor">DNI*</label>
+                                <input type="text" name="dni-editar-monitor" id="dni-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="telf1-editar-monitor">Teléfono 1*</label>
+                                <input type="text" name="telf1-editar-monitor" id="telf1-editar-monitor">
+                            </div>
+                            <div>
+                                <label for="telf2-editar-monitor">Teléfono 2</label>
+                                <input type="text" name="telf2-editar-monitor" id="telf2-editar-monitor">
+                            </div>
+                        </form>
+                        <div class="info-monitor-card">
+                            <p>Información Monitor</p>
+                            <img class="" src="https://placehold.co/200x200" alt="">
+                            <button id="editar-monitor">Guardar Cambios</button>
+                        </div>
                     </div>
                 </div>
             </div>

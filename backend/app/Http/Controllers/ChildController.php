@@ -45,9 +45,10 @@ class ChildController extends Controller
         return response()->json($children, 200);
     }
 
-    public function show_without_group()
+    public function childrenWithoutGroup()
     {
-        $children = Child::whereNull('group_id')->orWhere('group_id', '')->get();
-        return response()->json($children, 200);
+        $children = Child::whereNull('group_id')->get();
+        // $children = Child::whereNull('group_id')->orWhere('group_id', '')->get();
+        return response()->json($children);
     }
 }

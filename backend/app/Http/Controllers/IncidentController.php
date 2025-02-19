@@ -38,4 +38,13 @@ class IncidentController extends Controller
         $incidents->delete();
         return response()->json(['message' => 'Incidente eliminado correctamente'], 200);
     }
+
+    public function show_incidents_by_admin($admin_id)
+    {
+        $incidents = Incident::where('admin_id', $admin_id) 
+                            -> where('status', 'pending')
+                            ->get();
+                            //paginate(10)
+        return response()->json($incidents);
+    }
 }

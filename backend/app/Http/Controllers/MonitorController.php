@@ -57,6 +57,7 @@ class MonitorController extends Controller
             ]);
 
             $group = Group::create([
+                'name' => '',
                 'administrator_id' => $request->admin_id,
                 'monitor_id' => $monitor->id,
                 'timeline_id' => $timeline->id

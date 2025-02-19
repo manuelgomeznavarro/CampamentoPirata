@@ -14,7 +14,6 @@ defecto
 - Descuentos - Falta meter una imagen que diga "En construcción"
 -Grupo - Se deben recoger los grupos que hay. El apartado crear grupo hay que pensarlo
 bien aún
--Lista de monitores: Queda edición monitor
 - Aquí se van a recoger TODAS las incidencias. Creo que aquí deberíamos
 recoger las incidencias que están marcadas como "Pendientes" para mostrarlas
 en la parte superior tal y como está actualmente. Pero quizás deberíamos agregar
