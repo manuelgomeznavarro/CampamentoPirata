@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const revisarInscripciones = document.getElementById("revisar-inscripciones");
     const respuestaRevisionInscripciones = document.getElementById("respuesta-revision-inscripciones");
     const soporteContent = document.getElementById("soporte-content");
+    const divIncidenciasPendientes  = document.getElementById("incidencia-pendiente");
 
     document.getElementById('logo-inscripciones').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
@@ -98,4 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
+    //Fetch de incidencias
+    // const admin_id = localStorage.getItem('admin_id');
+    fetch(`http://127.0.0.1:8000/api/incidents/pending/${localStorage.getItem('role_id')}`)
+    .then(response => response.json())
+    .then(incidenciaData => {
+        //Creación de elementos HTML
+        console.log(incidenciaData);
+        incidenciaData.forEach(incidencia => {
+            const divIncidencia = document.createElement('div');
+            divIncidencia.classList.add('incidencia');
+
+            //Agrego título de la incidencia
+            divIncidencia.innerHTML = `<h3>${incidencia.subject}</h3><p>Motivo: ${incidencia.description}</p>`;
+
+            //Agrego el div de cada incidencia al div principal
+            divIncidenciasPendientes.appendChild(divIncidencia);
+        });
+    })
+    .catch(error => {
+        // Si ocurre un error con el fetch, mostrar un mensaje en la consola
+        console.error('Error al obtener las incidencias:', error);
+        });
 });
