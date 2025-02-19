@@ -105,7 +105,7 @@ Route::delete('/payments/{id}', [PaymentController::class, 'destroy']);
 Route::get('/attendances', [AttendanceController::class, 'index']);
 Route::post('/attendances', [AttendanceController::class, 'store']);
 Route::get('/attendances/{id}', [AttendanceController::class, 'show']);
-Route::put('/attendances/{id}', [AttendanceController::class, 'update']);
+Route::put('/attendances', [AttendanceController::class, 'update']);
 Route::delete('/attendances/{id}', [AttendanceController::class, 'destroy']);
 
 Route::get('/activity_timeline', [ActivityTimelineController::class, 'index']);

@@ -15,7 +15,7 @@ class Attendance extends Model
     public $incrementing = false;
     
     // Define the primary keys
-    protected $primaryKey = ['activity_id', 'timeline_id', 'date', 'hour'];
+    protected $primaryKey = ['activity_id', 'timeline_id', 'date'];
     
     public $timestamps = false;
     

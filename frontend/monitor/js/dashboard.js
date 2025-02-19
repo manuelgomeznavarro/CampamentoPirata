@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const activityDescription = document.getElementsByClassName('activity-description');
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
-    const pasarListaBtn = document.querySelector("#pasar-lista");
+    const pasarListaBtn = document.querySelector(".pasar-lista");
+    let wasDataStoredInDB = false;
 
 
     //Fetch para obtener la información de los alumnos
@@ -35,43 +36,104 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
 
-            for (let i = 0; i < data.children.length; i++) {
-                let elementoTabla = document.createElement("tr");
-                elementoTabla.className = "table-column";
+            // wasDataStoredInDB
 
-                let elementoCheckBox = document.createElement("td");
-                elementoCheckBox.className = "table-row";
-                
-                let elementoNombre = document.createElement("td");
-                elementoNombre.className = "table-name-row";
-                elementoNombre.textContent = data.children[i].name + " " + data.children[i].lastname;
+            fetch('http://127.0.0.1:8000/api/attendances/by_timeline_and_date', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ timeline_id: localStorage.getItem('role_id') })
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(attendanceData => {
+                    for (let i = 0; i < data.children.length; i++) {
+                        const child = attendanceData.attendaces.filter(row => data.children[i].id == row.child_id);
 
-                let elementoListaCheckbox = document.createElement("input");
-                elementoListaCheckbox.className = "asistencia";
-                elementoListaCheckbox.type = "checkbox";
-                
-                elementoCheckBox.appendChild(elementoListaCheckbox);
-                elementoTabla.appendChild(elementoNombre);
-                elementoTabla.appendChild(elementoCheckBox);
-                tablaAsistencia.appendChild(elementoTabla);
-            }
+                        console.log(attendanceData.attendaces.filter(row => data.children[i].id == row.child_id));
+                        
+
+                        
+                        let elementoTabla = document.createElement("tr");
+                        elementoTabla.className = "table-column";
+                        elementoTabla.setAttribute('id', data.children[i].id);
+                        
+                        let elementoCheckBox = document.createElement("td");
+                        elementoCheckBox.className = "table-row";
+                        
+                        let elementoNombre = document.createElement("td");
+                        elementoNombre.className = "table-name-row";
+                        elementoNombre.textContent = data.children[i].name + " " + data.children[i].lastname;
+                        
+                        let elementoListaCheckbox = document.createElement("input");
+                        elementoListaCheckbox.className = "asistencia";
+                        elementoListaCheckbox.type = "checkbox";
+                        
+                        if (child.length > 0) {
+                            wasDataStoredInDB = true;
+                            
+                            if (child[0].attendance) elementoListaCheckbox.checked = true;
+                        };
+
+                        elementoCheckBox.appendChild(elementoListaCheckbox);
+                        elementoTabla.appendChild(elementoNombre);
+                        elementoTabla.appendChild(elementoCheckBox);
+                        tablaAsistencia.appendChild(elementoTabla);
+                    }                        
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
+            
         })
         .catch(error => {
             console.error('Error al obtener información del alumno', error);
         });
 
-    pasarListaBtn.addEventListener(() => {
+    pasarListaBtn.addEventListener('click', () => {
+        // console.log();
+        console.log("ESTADO", wasDataStoredInDB);
+
         // TODO: enviar asistencia en base al tbody de la tabla
+
+        const rows = [...tablaAsistencia.querySelectorAll('tr')];
+
+        let method = wasDataStoredInDB ? 'PUT' : 'POST';
+
+        rows.map(row => {
+            const asistencia = {
+                timeline_id: localStorage.getItem('role_id'),
+                date:  new Date(Date.now()).toISOString().split('T')[0],
+                child_id: row.getAttribute('id')
+            }
+
+            // console.log([row.childNodes[1], row.childNodes[1].selected]);
+            
+
+            if (row.childNodes[1].childNodes[0].checked) {
+                asistencia.attendance = 1;
+            } else {
+                asistencia.attendance = 0;
+            }
+            
+            registrarAsistencia(method, asistencia);
+        })
     })
 
     //Fetch para crear el cronorama
-    function registrarAsistencia(incidencia) {
-        return fetch('http://127.0.0.1:8000/api/incidents', {
-            method: 'POST',
+    function registrarAsistencia(method, attendance) {
+        console.log([method, attendance]);
+        
+
+        return fetch(`http://127.0.0.1:8000/api/attendances`, {
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(incidencia)
+            body: JSON.stringify(attendance)
         })
             .then(response => {
                 console.log(response);
@@ -86,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.error('Error al crear la incidencia', error);
             });
-
     }
 
     //Fetch para enviar la asistencia al cronograma

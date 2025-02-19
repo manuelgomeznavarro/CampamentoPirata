@@ -45,11 +45,35 @@ class AttendanceController extends Controller
     }
 
 
-    public function update(Request $request, $idAttendance)
+    public function update(Request $request)
     {
-        $attendances = Attendance::findOrFail($idAttendance);
-        $attendances->update($request->all());
-        return response()->json($attendances, 200);
+        // Validate that all required fields are present
+        $request->validate([
+            'child_id' => 'required',
+            'timeline_id' => 'required',
+            'date' => 'required|date',
+            'attendance' => 'required'
+        ]);
+
+        // Find and update using where conditions
+        $affected = Attendance::where('child_id', $request->child_id)
+            ->where('timeline_id', $request->timeline_id)
+            ->where('date', $request->date)
+            ->update([
+                'attendance' => $request->attendance
+            ]);
+
+        if ($affected === 0) {
+            return response()->json(['message' => 'Record not found'], 404);
+        }
+
+        // Fetch the updated record to return
+        $attendance = Attendance::where('child_id', $request->child_id)
+            ->where('timeline_id', $request->timeline_id)
+            ->where('date', $request->date)
+            ->first();
+
+        return response()->json($attendance, 200);
     }
 
     public function destroy($idAttendance)
