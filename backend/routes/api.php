@@ -124,8 +124,11 @@ Route::post('/attendances/by_timeline_and_date', [AttendanceController::class, '
 
 Route::get('/get_current_activity/{id}', [ActivityTimelineController::class, 'get_current_activity']);
 
+Route::get('/children/without_group', [ChildController::class, 'childrenWithoutGroup']);
+
 Route::get('/children/by_group/{group_id}', [ChildController::class, 'show_by_group']);
 
 Route::get('monitors/monitor_by_group/{group_id}', [MonitorController::class, 'show_monitor_by_group']);
 
-Route::get('/children/without_group',[ChildController::class, 'show_without_group']);
+
+
