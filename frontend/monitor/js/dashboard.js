@@ -3,19 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAsistencia = document.getElementById('btnAsistencia');
     const btnDashboard = document.getElementById('btnDashboard');
     const btnCronograma = document.getElementById('btnCronograma');
-    const btnInfoGrupos = document.getElementBssyId('btnInfoGrupos');
+    const btnInfoGrupos = document.getElementById('btnInfoGrupos');
     const logoMonitor = document.getElementById('logo-monitor');
     const tablaAsistenciaContenedor = document.getElementById('tablaAsistencia');
     const tablaCronograma = document.getElementById('tablaCronograma');
     const infoPerfil = document.getElementById('info-perfil');
     const infoGrupos = document.getElementById('info-grupos');
     const activityCard = document.getElementById('activity-card');
-    const activityDescription = document.getElementsByClassName('activity-description');
     const dashBoardContentContainer = document.getElementById('dashboard-content-container');
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
     const pasarListaBtn = document.querySelector(".pasar-lista");
     let wasDataStoredInDB = false;
     const nombreMonitor = document.querySelector('.user-name');
+    const activityTitle = document.querySelector('.activity-title');
+    const activityTime = document.querySelector('.activity-time');
+    const activityDescription = document.querySelector('.activity-description');
+    const childrenProfilesContainer = document.querySelector('.contenedor-perfiles');
+
 
     fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`)
         .then(response => {
@@ -28,12 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(error);
         })
     
-    fetch(`http://127.0.0.1:8000/api//${localStorage.getItem('role_id')}`)
+    fetch(`http://127.0.0.1:8000/api/get_current_activity/${localStorage.getItem('role_id')}`)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            nombreMonitor.textContent = `${data.name} ${data.lastname}`;
+            if (data.activity_details && data.activity_timeline) {
+                activityTitle.innerText = data.activity_details.name;
+                activityTime.innerText = `${data.activity_details.start_time.slice(0, 5)} / ${data.activity_details.end_time.slice(0, 5)}`
+                activityDescription.innerText = data.activity_details.description;
+            }
         })
         .catch(error => {
             console.log(error);
@@ -56,6 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log("Información del alumno recibida con éxito", data);
+
+            data.children.forEach(child => {
+                child
+            })
 
             // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
 
