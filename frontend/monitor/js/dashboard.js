@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAsistencia = document.getElementById('btnAsistencia');
     const btnDashboard = document.getElementById('btnDashboard');
     const btnCronograma = document.getElementById('btnCronograma');
-    const btnInfoGrupos = document.getElementById('btnInfoGrupos');
+    const btnInfoGrupos = document.getElementBssyId('btnInfoGrupos');
     const logoMonitor = document.getElementById('logo-monitor');
     const tablaAsistenciaContenedor = document.getElementById('tablaAsistencia');
     const tablaCronograma = document.getElementById('tablaCronograma');
@@ -15,6 +15,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablaAsistencia = document.querySelector("#tablaAsistencia table tbody");
     const pasarListaBtn = document.querySelector(".pasar-lista");
     let wasDataStoredInDB = false;
+    const nombreMonitor = document.querySelector('.user-name');
+
+    fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            nombreMonitor.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    
+    fetch(`http://127.0.0.1:8000/api//${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            nombreMonitor.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
 
     //Fetch para obtener la información de los alumnos

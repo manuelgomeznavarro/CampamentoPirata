@@ -122,4 +122,4 @@ Route::get('/activities_timeline_detailed/{id}', [ActivityTimelineController::cl
 
 Route::post('/attendances/by_timeline_and_date', [AttendanceController::class, 'show_attendaces_by_timeline_and_date']);
 
-
+Route::get('/get_current_activity/{id}', [ActivityTimelineController::class, 'get_current_activity']);
