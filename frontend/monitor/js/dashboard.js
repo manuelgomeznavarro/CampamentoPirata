@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const childrenProfilesContainer = document.querySelector('.contenedor-perfiles');
     const tutorPhone = document.querySelector('.tutor-phone');
     const tutorEmail = document.querySelector('.tutor-email');
+    const nombreGrupo = document.querySelector('.nombre-grupos');
 
 
     fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`)
@@ -29,6 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             nombreMonitor.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    fetch(`http://127.0.0.1:8000/api/groups/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json(); 
+        })
+        .then(group => {
+            nombreGrupo.textContent = group.name;
         })
         .catch(error => {
             console.log(error);
