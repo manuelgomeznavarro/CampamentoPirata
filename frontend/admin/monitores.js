@@ -159,8 +159,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCrearMonitores.style.display = "none";
                         grupos.style.display = "none";
                         listaMonitores.style.display = "none";
-                        // const vacio = null;
-                        // mostrarSinGrupo(vacio);
+                        document.getElementById("nombre-editar-monitor").value = item.name;
+                        document.getElementById("apellidos-editar-monitor").value = item.lastname;
+                        document.getElementById("correo-editar-monitor").value = item.email;
+                        document.getElementById("password-editar-monitor").value = item.password;
+                        document.getElementById("dni-editar-monitor").value = item.dni;
+                        document.getElementById("telf1-editar-monitor").value = item.phone;
+                        document.getElementById("telf2-editar-monitor").value = item.phone2;
                     } else {
                         formEditarMonitores.style.display = "none";
                     }
