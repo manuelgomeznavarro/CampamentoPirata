@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const activityTime = document.querySelector('.activity-time');
     const activityDescription = document.querySelector('.activity-description');
     const childrenProfilesContainer = document.querySelector('.contenedor-perfiles');
+    const tutorPhone = document.querySelector('.tutor-phone');
+    const tutorEmail = document.querySelector('.tutor-email');
+    const nombreGrupo = document.querySelector('.nombre-grupos');
 
 
     fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`)
@@ -31,7 +34,18 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.log(error);
         })
-    
+
+    fetch(`http://127.0.0.1:8000/api/groups/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json(); 
+        })
+        .then(group => {
+            nombreGrupo.textContent = group.name;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
     fetch(`http://127.0.0.1:8000/api/get_current_activity/${localStorage.getItem('role_id')}`)
         .then(response => {
             return response.json();
@@ -66,7 +80,26 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Información del alumno recibida con éxito", data);
 
             data.children.forEach(child => {
-                child
+                console.log(child);
+                const div = document.createElement("div");
+                div.className = "info-perfil";
+                div.id = "info-perfil";
+                div.setAttribute('tutor_phone', child.tutor_phone);
+                div.setAttribute('tutor_email', child.tutor_email);
+                div.setAttribute('tutor_id', child.tutor_id);
+
+                const img = document.createElement("img");
+                img.src = "https://placehold.co/60x60";
+                img.alt = "fotoAlumno";
+
+                div.appendChild(img);
+
+                const p = document.createElement("p");
+                p.textContent = `${child.name} ${child.lastname}`;
+
+                div.appendChild(p);
+
+                childrenProfilesContainer.appendChild(div);
             })
 
             // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
@@ -123,6 +156,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
 
             
+        })
+        .then(() => {
+            addListenersToGroupInformation();
         })
         .catch(error => {
             console.error('Error al obtener información del alumno', error);
@@ -249,16 +285,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    document.querySelectorAll('.info-perfil').forEach(function (elemento) {
-        elemento.addEventListener('click', function () {
-            let contacto = document.getElementById('contacto-alumno');
-            if (window.getComputedStyle(contacto).display === "none") {
-                contacto.style.display = "flex";
-            } else {
-                contacto.style.display = "none";
-            }
+    function addListenersToGroupInformation() {
+        document.querySelectorAll('.info-perfil').forEach(function (elemento) {
+            elemento.addEventListener('click', (e) => {
+                console.log([elemento.getAttribute('tutor_id'), elemento.getAttribute('tutor_phone'), elemento.getAttribute('tutor_email')]);
+                
+                tutorPhone.innerText = elemento.getAttribute('tutor_phone');
+                tutorEmail.innerText = elemento.getAttribute('tutor_email');
+
+                let contacto = document.getElementById('contacto-alumno');
+                if (window.getComputedStyle(contacto).display === "none") {
+                    contacto.style.display = "flex";
+                } else {
+                    contacto.style.display = "none";
+                }
+            });
         });
-    });
+    }
 
     document.querySelectorAll('.editable').forEach(cell => {
         cell.addEventListener('click', () => {
