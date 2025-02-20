@@ -242,6 +242,18 @@ class DatabaseSeeder extends Seeder
                 'group_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Pedro',
+                'lastname' => 'Picapiedra',
+                'birthdate' => '2017-06-23',
+                't_shirt_size' => 'XL',
+                'alergy_intolerance' => 'None',
+                'aditional_info' => 'Horrible basketball IQ',
+                'acquaintance' => 'NBA Legacy',
+                'group_id' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 
@@ -320,6 +332,7 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Injury Report',
                 'date' => '2025-07-01',
                 'status' => 'Resolved',
+                'admin_response' => 'Player is fine',
                 'tutor_id' => 1,
                 'admin_id' => 1,
                 'created_at' => now(),
@@ -330,6 +343,7 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Schedule Change Request',
                 'date' => '2025-07-02',
                 'status' => 'Pending',
+                'admin_response' => null,
                 'tutor_id' => 2,
                 'admin_id' => 2,
                 'created_at' => now(),

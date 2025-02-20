@@ -76,7 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
             listaMonitores.style.display = "none";
             creacionGrupo.style.display = "none";
             formEditarMonitores.style.display = "none";
-            listaGrupo.innerText = "";
+            listaGrupo.innerText = "Miembros del grupo";
+            listaSinGrupo.innerText = "Alumnos sin grupo";
         } else {
             grupos.style.display = "none";
         }
@@ -123,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.log(item.id);
                         mostrarMonitor(item.id);
                         mostrarGrupo(item.id);
-                        mostrarNinosSinGrupo();
+                        // mostrarNinosSinGrupo();
                         // const vacio = null;
-                        // mostrarSinGrupo(vacio);
+                        mostrarSinGrupo();
                     } else {
                         creacionGrupo.style.display = "none";
                     }
@@ -241,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const listaGrupo = document.getElementById("lista-grupo");
+    const listaSinGrupo = document.getElementById("lista-sin-grupo");
     //Fetch para obtener los datos de los grupos de la BBDD
     function mostrarGrupo(group_id) {
         return fetch(`http://127.0.0.1:8000/api/children/by_group/${group_id}`)
@@ -276,8 +278,62 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    function mostrarSinGrupo() {
+        return fetch(`http://127.0.0.1:8000/api/children`)
+            // TODO: Si da tiempo modificar los datos del monit:
+            .then(response => {
+                // if (!response.ok) {
+                //     throw new Error(`Error `);
+                // }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+
+                data.forEach((item, index) => {
+                    if (item.group_id === null) {
+                        console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
+                        console.log(index);
+                        let elementoAlumno = document.createElement('div');
+                        elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+                        elementoAlumno.className = "nombre-alumno";
+                        listaSinGrupo.appendChild(elementoAlumno);
+                        elementoAlumno.addEventListener('click', (e) => {
+                            elementoAlumno.appendChild(listaGrupo);
+                            elementoAlumno.remove();
+                            console.log(elementoAlumno);
+                            console.log("Hola");
+                            const childData = {
+                                group_id: listaGrupo.value
+                            }
+                            console.log(childData);
+                            // asignarGrupo(item.id, childData);
+                        });
+                    }
+                    // console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
+                    // console.log(index);
+
+                    // const elementos = [...listaGrupo.childNodes];
+                    // console.log(elementos);
+                    // for (let index = 2; index < elementos.length; index++) {
+                    //     elementos[index].remove();
+
+                    // }
+                    // let elementoAlumno = document.createElement('div');
+                    // elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+                    // elementoAlumno.className = "nombre-alumno";
+                    // listaGrupo.appendChild(elementoAlumno);
+
+                })
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
+    }
+
+    //Fetch para obtener los datos de los grupos de la BBDD
     // function mostrarSinGrupo(group_id) {
-    //     return fetch(`http://127.0.0.1:8000/api/children/without_group/${group_id}`)
+    //     return fetch(`http://127.0.0.1:8000/api/children/by_group/${group_id}`)
     //         // TODO: Si da tiempo modificar los datos del monit:
     //         .then(response => {
     //             // if (!response.ok) {
@@ -289,8 +345,16 @@ document.addEventListener('DOMContentLoaded', function () {
     //             console.log(data);
 
     //             data.forEach((item, index) => {
-    //                 console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
-    //                 console.log(index);
+    //                 if (item.group_id === null) {
+    //                     console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
+    //                     console.log(index);
+    //                     let elementoAlumno = document.createElement('div');
+    //                     elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+    //                     elementoAlumno.className = "nombre-alumno";
+    //                     listaSinGrupo.appendChild(elementoAlumno);
+    //                 }
+    //                 // console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
+    //                 // console.log(index);
 
     //                 // const elementos = [...listaGrupo.childNodes];
     //                 // console.log(elementos);
@@ -298,10 +362,10 @@ document.addEventListener('DOMContentLoaded', function () {
     //                 //     elementos[index].remove();
 
     //                 // }
-    //                 let elementoAlumno = document.createElement('div');
-    //                 elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
-    //                 elementoAlumno.className = "nombre-alumno";
-    //                 listaGrupo.appendChild(elementoAlumno);
+    //                 // let elementoAlumno = document.createElement('div');
+    //                 // elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+    //                 // elementoAlumno.className = "nombre-alumno";
+    //                 // listaGrupo.appendChild(elementoAlumno);
 
     //             })
     //         })
@@ -310,23 +374,22 @@ document.addEventListener('DOMContentLoaded', function () {
     //         });
     // }
 
-    function mostrarNinosSinGrupo() {
-        fetch('http://127.0.0.1:8000/api/children/without_group')
-            .then(response => response.json())
-            .then(data => {
-                const listaSinGrupo = document.getElementById("lista-sin-grupo");
-                listaSinGrupo.innerHTML = ""; // Limpiar el div antes de agregar nuevos niños
+    // function mostrarNinosSinGrupo() {
+    //     fetch('http://127.0.0.1:8000/api/children/without_group')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const listaSinGrupo = document.getElementById("lista-sin-grupo");
+    //             listaSinGrupo.innerHTML = ""; // Limpiar el div antes de agregar nuevos niños
 
-                data.forEach(child => {
-                    let elemento = document.createElement("div");
-                    elemento.textContent = `${child.name} ${child.lastname}`;
-                    elemento.className = "elemento-persona-sin-grupo";
-                    listaSinGrupo.appendChild(elemento);
-                });
-            })
-            .catch(error => console.error('Error al obtener niños sin grupo:', error));
-    }
-
+    //             data.forEach(child => {
+    //                 let elemento = document.createElement("div");
+    //                 elemento.textContent = `${child.name} ${child.lastname}`;
+    //                 elemento.className = "elemento-persona-sin-grupo";
+    //                 listaSinGrupo.appendChild(elemento);
+    //             });
+    //         })
+    //         .catch(error => console.error('Error al obtener niños sin grupo:', error));
+    // }
 
     //Fetch para obtener los datos del monitor del grupo de la BBDD
     function mostrarMonitor(group_id) {
@@ -374,7 +437,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error al introducir datos', error);
             });
     }
-
 
     editarMonitorButton.addEventListener('click', function () {
         console.log("Hola");

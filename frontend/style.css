@@ -2996,6 +2996,21 @@ input[type="radio"]+.plan-card {
     text-align: center; /* Centra el texto */
 }
 
+.incidencia{
+    display: flex;
+    flex-direction: column;
+    border: var(--base-color1) solid 1px;
+    border-radius: 16px;
+    gap: 20px;
+    margin-top: 14px;
+    align-items: center;
+    cursor: pointer;
+}
+
+#btn-responder-incidencia {
+    margin: 40px auto;
+}
+
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
         grid-template-columns: repeat(1, 1fr);

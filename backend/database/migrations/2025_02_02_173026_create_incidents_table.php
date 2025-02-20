@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('date');
             $table->string('status');
+            $table->string('admin_response')->nullable();
             $table->foreignId('tutor_id')->constrained('tutors')->onDelete('cascade');
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->timestamps();

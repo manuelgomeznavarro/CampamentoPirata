@@ -4,22 +4,17 @@ Cronograma - Falta ver lo que hizo Gonzalo, no sabemos hasta donde llegó el vie
 Información del grupo - Recoger en el "botón" de arriba el equipo al que pertenece
 el monitor/a, al clicar en el nombre de cada alumno, recoger la información
 del tutor de cada uno para mostrarla. 
-- En habilidades/comentarios, hacer que cuando
-se escriba algo, se envíe a la tabla correspondiente(que creo que aún no está creada)
+- En habilidades/comentarios, hacer que cuando se escriba algo, se envíe a la tabla correspondiente(que creo que aún no está creada)
 
 Administrador
 -Cuando pulsas en cualquiera de las opciones laterales, se muestre la primera por
 defecto
 - En pagos, meter una imagen con los gastos e ingresos
 - Descuentos - Falta meter una imagen que diga "En construcción"
--Grupo - Se deben recoger los grupos que hay. El apartado crear grupo hay que pensarlo
-bien aún
-- Aquí se van a recoger TODAS las incidencias. Creo que aquí deberíamos
-recoger las incidencias que están marcadas como "Pendientes" para mostrarlas
-en la parte superior tal y como está actualmente. Pero quizás deberíamos agregar
-un botón que diga algo así como "Historial de incidencias" donde se vayan
-almacenando las incidencias según se marquen como "Resueltas" para mayor control
-del admin. 
+-Grupo - Queda arreglar que aparezcan los niños que NO tienen grupo aún
+
+
+- Queda que pueda volver para atrás al enviar la respuesta de la incidencia
 IMPORTANTE: Queda ver cómo resolvemos el tema de enviar la incidencia, ya que
 no hemos pensado hasta el momento cómo se va a enviar la respuesta del admin
 al tutor (por mail(?))

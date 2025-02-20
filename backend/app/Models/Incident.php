@@ -14,6 +14,7 @@ class Incident extends Model
         'description',
         'date',
         'status',
+        'admin_response',
         'tutor_id',
         'admin_id'
     ];
