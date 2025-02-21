@@ -467,3 +467,324 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+// Validación de los datos del formulario de inicio de sesión
+
+const form = document.querySelector('form');
+const botonCrearMonitor = document.querySelector('#crear-monitor');
+
+// form.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//     validateForm();
+//     if(validateForm()==true){
+//         window.location.href = "monitores.html";
+//     }
+// });
+
+botonCrearMonitor.addEventListener('click', function (event) {
+    event.preventDefault();
+    validateForm();
+    if(validateForm()==true){
+        window.location.href = "monitores.html";
+    }
+});
+const nextButton = document.querySelector('#nextButton');
+const errorName = document.querySelector('#errorName');
+const errorLastName = document.querySelector('#errorLastName');
+const errorEmail = document.querySelector('#errorEmail');
+const errorDni = document.querySelector('#errorDni');
+const errorPhone1 = document.querySelector('#errorPhone1');
+const errorPhone2 = document.querySelector('#errorPhone2');
+const errorPassword = document.querySelector('#errorPassword');
+
+
+
+document.getElementById("nombre-nuevo-monitor").addEventListener("blur", validateName);
+
+function validateName() {
+    const name = document.querySelector('#nombre-nuevo-monitor').value.trim();
+    if (name == "") {
+        errorName.style.color = "red";
+        errorName.innerHTML = "Por favor, introduzca un nombre.";
+        return false;
+    } else {
+        errorName.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("apellidos-nuevo-monitor").addEventListener("blur", validateLastName);
+
+function validateLastName() {
+    const lastName = document.querySelector('#apellidos-nuevo-monitor').value.trim();
+    if (lastName === "") {
+        errorLastName.style.color = "red";
+        errorLastName.innerHTML = "Por favor, introduzca un apellido.";
+        return false;
+    } else {
+        errorLastName.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("correo-nuevo-monitor").addEventListener("blur", validateEmail);
+
+function validateEmail() {
+    const email = document.getElementById("correo-nuevo-monitor").value.trim();
+    const emailRegex = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        errorEmail.style.color = "red";
+        errorEmail.innerHTML = "Introduzca un email correcto.";
+        return false;
+    } else {
+        errorEmail.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("telf1-nuevo-monitor").addEventListener("blur", validatePhone1);
+
+function validatePhone1() {
+    const phoneRegex = /^[0-9]{9}$/;
+    const phone1 = document.querySelector('#telf1-nuevo-monitor').value.trim();
+    if (!phoneRegex.test(phone1)) {
+        errorPhone1.style.color = "red";
+        errorPhone1.innerHTML = "Introduzca un teléfono válido.";
+        return false;
+    } else {
+        errorPhone1.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("telf2-nuevo-monitor").addEventListener("blur", validatePhone2);
+function validatePhone2(){
+    const phoneRegex = /^[0-9]{9}$/;
+    const phone2 = document.querySelector('#telf2-nuevo-monitor').value.trim();
+    if (phone2 ==="") {
+        errorPhone2.innerHTML = "";
+        return true;
+    }
+
+    if(!phoneRegex.test(phone2)){
+        errorPhone2.style.color = "red";
+        errorPhone2.innerHTML = "Introduzca un teléfono válido.";
+        return false;
+    }
+
+    else{
+        errorPhone2.innerHTML = "";
+        return true;
+    }
+
+}
+
+document.getElementById("dni-nuevo-monitor").addEventListener("blur", validateDni);
+
+function validateDni() {
+    const dni = document.querySelector('#dni-nuevo-monitor').value;
+    const dniRegex = /^[0-9]{8}[A-Za-z]$/;
+    if (!dniRegex.test(dni)) {
+        errorDni.style.color = "red";
+        errorDni.innerHTML = "Introduzca un DNI válido.";
+        return false;
+    } else {
+        errorDni.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("password-nuevo-monitor").addEventListener("blur", validateDni);
+
+function validatePassword() {
+    const password = document.querySelector('#password-nuevo-monitor').value;
+    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        errorPassword.style.color = "red";
+        errorPassword.innerHTML = "Introduzca un Password válido.";
+        return false;
+    } else {
+        errorPassword.innerHTML = "";
+        return true;
+    }
+}
+
+
+function validateForm() {
+
+    const isNameCorrect = validateName();
+    const isLastNameCorrect = validateLastName();
+    const isEmailCorrect = validateEmail();
+    const isPhoneCorrect1 = validatePhone1();
+    const isPhoneCorrect2 = validatePhone2();
+    const isDniCorrect = validateDni();
+    const isPasswordCorrect = validatePassword();
+
+
+    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+// Validación Editar Monitor
+
+const form2 = document.querySelector('form');
+const botonEditarMonitor = document.querySelector('#editar-monitor');
+
+// form.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//     validateForm();
+//     if(validateForm()==true){
+//         window.location.href = "monitores.html";
+//     }
+// });
+
+botonEditarMonitor.addEventListener('click', function (event) {
+    event.preventDefault();
+    validateFormEditar();
+    if(validateFormEditar()==true){
+        window.location.href = "monitores.html";
+    }
+});
+// const nextButton = document.querySelector('#nextButton');
+const errorNameEditar = document.querySelector('#errorNameEditar');
+const errorLastNameEditar = document.querySelector('#errorLastNameEditar');
+const errorEmailEditar = document.querySelector('#errorEmailEditar');
+const errorDniEditar = document.querySelector('#errorDniEditar');
+const errorPhone1Editar = document.querySelector('#errorPhone1Editar');
+const errorPhone2Editar = document.querySelector('#errorPhone2Editar');
+const errorPasswordEditar = document.querySelector('#errorPasswordEditar');
+
+
+
+document.getElementById("nombre-editar-monitor").addEventListener("blur", validateName);
+
+function validateNameEditar() {
+    const name = document.querySelector('#nombre-editar-monitor').value.trim();
+    if (name == "") {
+        errorNameEditar.style.color = "red";
+        errorNameEditar.innerHTML = "Por favor, introduzca un nombre.";
+        return false;
+    } else {
+        errorNameEditar.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("apellidos-editar-monitor").addEventListener("blur", validateLastName);
+
+function validateLastNameEditar() {
+    const lastName = document.querySelector('#apellidos-editar-monitor').value.trim();
+    if (lastName === "") {
+        errorLastNameEditar.style.color = "red";
+        errorLastNameEditar.innerHTML = "Por favor, introduzca un apellido.";
+        return false;
+    } else {
+        errorLastNameEditar.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmail);
+
+function validateEmailEditar() {
+    const email = document.getElementById("correo-editar-monitor").value.trim();
+    const emailRegex = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        errorEmailEditar.style.color = "red";
+        errorEmailEditar.innerHTML = "Introduzca un email correcto.";
+        return false;
+    } else {
+        errorEmailEditar.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("telf1-editar-monitor").addEventListener("blur", validatePhone1);
+
+function validatePhone1Editar() {
+    const phoneRegex = /^[0-9]{9}$/;
+    const phone1 = document.querySelector('#telf1-editar-monitor').value.trim();
+    if (!phoneRegex.test(phone1)) {
+        errorPhone1Editar.style.color = "red";
+        errorPhone1Editar.innerHTML = "Introduzca un teléfono válido.";
+        return false;
+    } else {
+        errorPhone1Editar.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("telf2-editar-monitor").addEventListener("blur", validatePhone2);
+function validatePhone2Editar(){
+    const phoneRegex = /^[0-9]{9}$/;
+    const phone2 = document.querySelector('#telf2-editar-monitor').value.trim();
+    if (phone2 ==="") {
+        errorPhone2Editar.innerHTML = "";
+        return true;
+    }
+
+    if(!phoneRegex.test(phone2)){
+        errorPhone2Editar.style.color = "red";
+        errorPhone2Editar.innerHTML = "Introduzca un teléfono válido.";
+        return false;
+    }
+
+    else{
+        errorPhone2Editar.innerHTML = "";
+        return true;
+    }
+
+}
+
+document.getElementById("dni-editar-monitor").addEventListener("blur", validateDni);
+
+function validateDniEditar() {
+    const dni = document.querySelector('#dni-editar-monitor').value;
+    const dniRegex = /^[0-9]{8}[A-Za-z]$/;
+    if (!dniRegex.test(dni)) {
+        errorDniEditar.style.color = "red";
+        errorDniEditar.innerHTML = "Introduzca un DNI válido.";
+        return false;
+    } else {
+        errorDniEditar.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("password-editar-monitor").addEventListener("blur", validateDni);
+
+function validatePasswordEditar() {
+    const password = document.querySelector('#password-editar-monitor').value;
+    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        errorPasswordEditar.style.color = "red";
+        errorPasswordEditar.innerHTML = "Introduzca un Password válido.";
+        return false;
+    } else {
+        errorPasswordEditar.innerHTML = "";
+        return true;
+    }
+}
+
+
+function validateFormEditar() {
+
+    const isNameCorrect = validateNameEditar();
+    const isLastNameCorrect = validateLastNameEditar();
+    const isEmailCorrect = validateEmailEditar();
+    const isPhoneCorrect1 = validatePhone1Editar();
+    const isPhoneCorrect2 = validatePhone2Editar();
+    const isDniCorrect = validateDniEditar();
+    const isPasswordCorrect = validatePasswordEditar();
+
+
+    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
+        return true;
+    } else {
+        return false;
+    }
+}
