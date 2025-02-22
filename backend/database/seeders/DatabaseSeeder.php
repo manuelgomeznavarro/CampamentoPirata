@@ -254,6 +254,18 @@ class DatabaseSeeder extends Seeder
                 'group_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Lalachús',
+                'lastname' => 'Pérez',
+                'birthdate' => '2017-06-23',
+                't_shirt_size' => 'XL',
+                'alergy_intolerance' => 'None',
+                'aditional_info' => 'Le gustan las campanadas',
+                'acquaintance' => 'NBA Legacy',
+                'group_id' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 

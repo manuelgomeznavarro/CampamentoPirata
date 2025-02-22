@@ -43,38 +43,46 @@
                                 <div>
                                     <label for="tutor-name">Nombre*</label>
                                     <input type="text" name="tutor-name" id="tutor-name">
+                                    <span id="error-tutor-name" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="tutor-lastname">Apellidos*</label>
                                     <input type="text" name="tutor-lastname" id="tutor-lastname">
+                                    <span id="error-tutor-lastname" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="tutor-email-inscription">Correo electrónico*</label>
                                     <input type="email" name="email" id="tutor-email-inscription">
+                                    <span id="error-tutor-email" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="tutor-dni">DNI*</label>
                                     <input type="text" name="tutor-dni" id="tutor-dni">
+                                    <span id="error-tutor-dni" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="tutor-tel1">Teléfono 1*</label>
                                     <input type="tel" name="tutor-tel1" id="tutor-tel1">
+                                    <span id="error-tutor-tel1" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="tutor-tel2">Teléfono 2</label>
                                     <input type="tel" name="tutor-tel2" id="tutor-tel2">
+                                    <span id="error-tutor-tel2" class="error-message"></span>
                                 </div>
                                 <div>
-                                    <label for="tutor-city">Ciudad*</label>
+                                    <label for="tutor-city">Ciudad</label>
                                     <input type="text" name="tutor-city" id="tutor-city">
+                                    <span id="error-tutor-city" class="error-message"></span>
                                 </div>
                                 <div>
-                                    <label for="tutor-postal-code">Código Postal*</label>
+                                    <label for="tutor-postal-code">Código Postal</label>
                                     <input type="number" name="tutor-postal-code" id="tutor-postal-code">
+                                    <span id="error-tutor-postal-code" class="error-message"></span>
                                 </div>
                             </div>
                         </div>
-                        <button class="siguiente">Siguiente</button>
+                        <button class="siguiente" id="siguiente-step1">Siguiente</button>
                     </div>
                 </div>
     
@@ -98,7 +106,14 @@
                                 </div>
                                 <div>
                                     <label for="child-t-shirt-size">Talla de camiseta*</label>
-                                    <input type="text" name="child-t-shirt-size" id="child-t-shirt-size">
+                                    <select name="child-t-shirt-size" id="child-t-shirt-size">
+                                        <option value="selectOption" disabled selected>Selecciona una opción</option>
+                                        <option value="XS">XS</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>

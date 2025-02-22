@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             respuestaRevisionInscripciones.style.display = "none";
             divIncidenciasPendientes.style.display = "block";
             mostrarIncidencias();
+            divIncidenciasPendientes.innerText = "";
         } else {
             divIncidenciasPendientes.style.display = "none";
         }
