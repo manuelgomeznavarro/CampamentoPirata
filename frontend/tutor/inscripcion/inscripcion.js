@@ -52,8 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
         steps.forEach((step, index) => {
             step.classList.toggle('active', index === currentStep);
         });
+
+        
     }
 
+    // Añadir este código en la sección de inicialización
+    document.querySelectorAll('input[name="plan"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            validarPricesCards();
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.volver')) {
+            e.preventDefault();
+            if (currentStep > 0) {
+                currentStep--;
+                updateStepPosition();
+            }
+        }
+    });
 
 
     const name = document.querySelector('#tutor-name').value.trim();
@@ -286,10 +304,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //VALIDAR STEP 2
 
-    const nameChild = document.querySelector('#child-name').value.trim();
-    const lastnameChild = document.querySelector('#child-lastname').value.trim();
-    const birthdate = document.querySelector('#child-boen-date').value.trim();
-    const tShirtSize = document.querySelector('#child-t-shirt-size').value.trim();
+    // const nameChild = document.querySelector('#child-name').value.trim();
+    // const lastnameChild = document.querySelector('#child-lastname').value.trim();
+    // const birthdate = document.querySelector('#child-boen-date').value.trim();
+    
+    const nameErrorChild = document.querySelector('#error-child-name');
+    const lastnameErrorChild = document.querySelector('#error-child-lastname');
+    const bornDateErrorChild = document.querySelector('#error-child-born-date');
+    const tShirtSizeErrorChild = document.querySelector('#error-child-t-shirt-size');
+    
+    const tShirtSize = document.querySelector('#child-t-shirt-size');
 
     function validarStep2() {
 
@@ -309,16 +333,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 isValid = false;
                 input.style.border = '2px solid red';
                 if (id === 'child-name') {
-                    nameError.textContent = 'El nombre es obligatorio';
+                    nameErrorChild.textContent = 'El nombre es obligatorio';
                 } else if (id === 'child-lastname') {
-                    lastnameError.textContent = 'El apellido es obligatorio';
+                    lastnameErrorChild.textContent = 'El apellido es obligatorio';
                 } else if (id === 'child-born-date') {
-                    emailError.textContent = 'El email es obligatorio';
-                } else if (id === 'child-dni') {
-                    dniError.textContent = 'La fecha de nacimiento es obligatoria';
-                } else if (id === 'child-t-shirt-size') {
-                    tel1Error.textContent = 'La talla de camiseta es obligatoria';
+                    bornDateErrorChild.textContent = 'La fecha de nacimiento es obligatoria';
                 }
+            } else if (input && id === 'child-t-shirt-size' && input.selectedIndex == 0) {
+                isValid = false;
+                tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
             } else if (input) {
                 input.style.border = '1px solid #ccc';
             }
@@ -358,10 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
     inputLastnameChild.addEventListener('blur', () => {
         if (lastnameRegexChild.test(inputLastnameChild.value)) {
             inputLastnameChild.classList.remove('error');
-            lastnameError.textContent = '';
+            lastnameErrorChild.textContent = '';
         } else {
             inputLastnameChild.classList.add('error');
-            lastnameError.textContent = 'El apellido no es válido';
+            lastnameErrorChild.textContent = 'El apellido no es válido';
         }
     });
 
@@ -371,71 +394,87 @@ document.addEventListener('DOMContentLoaded', () => {
     inputBirthdate.addEventListener('blur', () => {
         if (birthdateRegex.test(inputBirthdate.value)) {
             inputBirthdate.classList.remove('error');
-            birthdateError.textContent = '';
+            bornDateErrorChild.textContent = '';
         } else {
             inputBirthdate.classList.add('error');  
-            birthdateError.textContent = 'La fecha de nacimiento no es válida. Debe haber nacido entre 2017 y 2018';
+            bornDateErrorChild.textContent = 'La fecha de nacimiento no es válida. Debe haber nacido entre 2017 y 2018';
         }
     });
 
+    tShirtSize.addEventListener('blur', (e) => {
+        if (e.target.selectedIndex == 0) {
+            tShirtSize.classList.add('error');
+            tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
+        } else {
+            inputBirthdate.classList.remove('error');
+            tShirtSizeErrorChild.textContent = '';
+        }
+    });
 
-    // const form = document.querySelector('form');
-
-    // form.addEventListener('submit', (e) => {
-    //     e.preventDefault();
-
-    //     const formData = [...form.querySelectorAll('input')];
-
-    //     const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
-
-    //     for (let i = 0; i < formData.length; i++) {
-    //         const element = array[i];
-
-    //         if (i >= 15 && element.checked) {
-    //             summaryParagraphs[8].innerText = element.value;
-    //             break;
-    //         }
-    //     }
-
-    //     for (let i = 0; i < summaryParagraphs.length; i++) {
-    //         const element = array[i];
-
-    //         if (i == 8) {
-    //             continue;
-    //         }
-
-    //         element.innerText = formData[i];
-    //     }
-    // });
-
-
+    
+    function validarPricesCards() {        
+        const radioInputs = [...document.querySelectorAll('input[name="plan"]')];
+        let isValid = radioInputs.some(radio => radio.checked);
+    
+        const existingError = inscriptionsPricesContainer.querySelector('.plan-error');
+        
+        if (!isValid) {
+            if (!existingError) {
+                const errorPriceCards = document.createElement('span');
+                errorPriceCards.style.color = "red";
+                errorPriceCards.textContent = "¡Selecciona un plan!";
+                errorPriceCards.classList.add('plan-error');
+                inscriptionsPricesContainer.appendChild(errorPriceCards);
+            }
+        } else {
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+        
+        return isValid;
+    }
+    
+    const inscriptionsPricesContainer = document.querySelector('.incription-prices');
     const insertSummaryDataBtn = document.querySelector('#insert-summary-data-btn');
     const form = document.querySelector('form');
+
+    
 
     insertSummaryDataBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const formInputs = [...form.querySelectorAll('input')];
-        const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
+        if (validarPricesCards()) {
+            const formInputs = [...form.querySelectorAll('input')];
+            const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
+    
+            // Handle selected plan (Step 3 radio buttons)
+            const selectedPlan = document.querySelector('input[name="plan"]:checked');
+            if (selectedPlan) {
+                const planTitle = selectedPlan.closest('.price-card-label').querySelector('.plan-title').textContent;
+                summaryParagraphs[8].textContent = planTitle;
+            }
+    
+            // Populate other fields
+            for (let i = 0; i < summaryParagraphs.length; i++) {
+                if (i === 8) continue; // Skip plan summary handled above
+    
+                if (i < 8) {
+                    // Tutor data (formInputs 0-7)
+                    summaryParagraphs[i].textContent = formInputs[i].value;
+                } else {
+                    // Niño data (formInputs 8-14 correspond to summary i 9-15)
+                    const formIndex = i - 1; // Adjust index for niño inputs
+                    summaryParagraphs[i].textContent = formInputs[formIndex]?.value || '';
+                }
+            }
 
-        // Handle selected plan (Step 3 radio buttons)
-        const selectedPlan = document.querySelector('input[name="plan"]:checked');
-        if (selectedPlan) {
-            const planTitle = selectedPlan.closest('.price-card-label').querySelector('.plan-title').textContent;
-            summaryParagraphs[8].textContent = planTitle;
-        }
+            // console.log(steps);
+            
 
-        // Populate other fields
-        for (let i = 0; i < summaryParagraphs.length; i++) {
-            if (i === 8) continue; // Skip plan summary handled above
-
-            if (i < 8) {
-                // Tutor data (formInputs 0-7)
-                summaryParagraphs[i].textContent = formInputs[i].value;
-            } else {
-                // Niño data (formInputs 8-14 correspond to summary i 9-15)
-                const formIndex = i - 1; // Adjust index for niño inputs
-                summaryParagraphs[i].textContent = formInputs[formIndex]?.value || '';
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateStepPosition();
             }
         }
     });
@@ -513,8 +552,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        if (e.submitter.className === 'volver') {
+            return;
+        }
 
         const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
 

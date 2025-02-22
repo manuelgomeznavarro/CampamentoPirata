@@ -95,14 +95,17 @@
                                 <div>
                                     <label for="child-name">Nombre*</label>
                                     <input type="text" name="child-name" id="child-name">
+                                    <span id="error-child-name" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="child-lastname">Apellidos*</label>
                                     <input type="text" name="child-lastname" id="child-lastname">
+                                    <span id="error-child-lastname" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="child-born-date">Fecha de nacimiento*</label>
                                     <input type="date" name="child-born-date" id="child-born-date">
+                                    <span id="error-child-born-date" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="child-t-shirt-size">Talla de camiseta*</label>
@@ -114,6 +117,7 @@
                                         <option value="L">L</option>
                                         <option value="XL">XL</option>
                                     </select>
+                                    <span id="error-child-t-shirt-size" class="error-message"></span>
                                 </div>
                                 <div>
                                     <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>
@@ -131,7 +135,7 @@
                         </div>
                         <div class="navigation-buttons">
                             <button class="volver">Volver</button>
-                            <button class="siguiente">Siguiente</button>
+                            <button class="siguiente" id="siguiente-step2">Siguiente</button>
                         </div>
                     </div>
                 </div>

@@ -660,7 +660,7 @@ const errorPasswordEditar = document.querySelector('#errorPasswordEditar');
 
 
 
-document.getElementById("nombre-editar-monitor").addEventListener("blur", validateName);
+document.getElementById("nombre-editar-monitor").addEventListener("blur", validateNameEditar);
 
 function validateNameEditar() {
     const name = document.querySelector('#nombre-editar-monitor').value.trim();
@@ -674,7 +674,7 @@ function validateNameEditar() {
     }
 }
 
-document.getElementById("apellidos-editar-monitor").addEventListener("blur", validateLastName);
+document.getElementById("apellidos-editar-monitor").addEventListener("blur", validateLastNameEditar);
 
 function validateLastNameEditar() {
     const lastName = document.querySelector('#apellidos-editar-monitor').value.trim();
@@ -688,7 +688,7 @@ function validateLastNameEditar() {
     }
 }
 
-document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmail);
+document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmailEditar);
 
 function validateEmailEditar() {
     const email = document.getElementById("correo-editar-monitor").value.trim();
@@ -703,7 +703,7 @@ function validateEmailEditar() {
     }
 }
 
-document.getElementById("telf1-editar-monitor").addEventListener("blur", validatePhone1);
+document.getElementById("telf1-editar-monitor").addEventListener("blur", validatePhone1Editar);
 
 function validatePhone1Editar() {
     const phoneRegex = /^[0-9]{9}$/;
@@ -718,7 +718,7 @@ function validatePhone1Editar() {
     }
 }
 
-document.getElementById("telf2-editar-monitor").addEventListener("blur", validatePhone2);
+document.getElementById("telf2-editar-monitor").addEventListener("blur", validatePhone2Editar);
 function validatePhone2Editar(){
     const phoneRegex = /^[0-9]{9}$/;
     const phone2 = document.querySelector('#telf2-editar-monitor').value.trim();
@@ -740,7 +740,7 @@ function validatePhone2Editar(){
 
 }
 
-document.getElementById("dni-editar-monitor").addEventListener("blur", validateDni);
+document.getElementById("dni-editar-monitor").addEventListener("blur", validateDniEditar);
 
 function validateDniEditar() {
     const dni = document.querySelector('#dni-editar-monitor').value;
@@ -755,7 +755,7 @@ function validateDniEditar() {
     }
 }
 
-document.getElementById("password-editar-monitor").addEventListener("blur", validateDni);
+document.getElementById("password-editar-monitor").addEventListener("blur", validateDniEditar);
 
 function validatePasswordEditar() {
     const password = document.querySelector('#password-editar-monitor').value;
