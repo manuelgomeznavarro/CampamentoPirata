@@ -32,25 +32,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function obtenerDatosNino() {
         return fetch(`http://127.0.0.1:8000/api/inscriptions/`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener datos');
-            }
-            return response.json();
-        })
-        .then(data => {
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].tutor_id == localStorage.getItem('role_id')) {
-                    console.log("Datos obtenidos con éxito", data[i].child_id);
-                    return data[i].child_id;
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener datos');
                 }
-            }
-            console.log("Datos obtenidos con éxito", data);
-            // return data;
-        })
-        .catch(error => {
-            console.error('Error al introducir datos', error);
-        });
+                return response.json();
+            })
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].tutor_id == localStorage.getItem('role_id')) {
+                        console.log("Datos obtenidos con éxito", data[i].child_id);
+                        return data[i].child_id;
+                    }
+                }
+                console.log("Datos obtenidos con éxito", data);
+                // return data;
+            })
+            .catch(error => {
+                console.error('Error al introducir datos', error);
+            });
     }
 
     //FETCH Editar datos niño
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.error('Error al introducir datos', error);
             });
-        }
+    }
 
     //FETCH Editar datos tutor
     function introducirDatos(userData) {
@@ -123,5 +123,90 @@ document.addEventListener('DOMContentLoaded', function () {
         obtenerDatosNino();
         introducirDatosNino(childData);
     });
+
+    //Fetch para obtener los datos de los tutores de la BBDD
+    fetch('http://127.0.0.1:8000/api/tutors')
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellido: ${item.lastname}, DNI: ${item.dni}, Teléfono: ${item.phone}, Teléfono 2: ${item.phone2}, Admin2: ${item.admin_id}`);
+                console.log(index);
+                document.getElementById("editarNombreTutor").value = item.name;
+                document.getElementById("editarApellidosTutor").value = item.lastname;
+                document.getElementById("telfTutor1").value = item.phone;
+                document.getElementById("telfTutor2").value = item.phone2;
+                document.getElementById("location").value = item.city;
+                document.getElementById("profile-title").textContent = item.name + " " + item.lastname;
+                document.getElementById("profile-email").textContent = item.email;
+                document.getElementById("profile-phone1").textContent = item.phone;
+                document.getElementById("profile-phone2").textContent = item.phone2;
+                document.getElementById("profile-location").textContent = item.city;
+                
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
+        console.log("Role ID:", localStorage.getItem('role_id'));
+        //Fetch para obtener el email de la tabla usuarios
+        fetch(`http://127.0.0.1:8000/api/users`)
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellido: ${item.lastname}, DNI: ${item.dni}, Teléfono: ${item.phone}, Teléfono 2: ${item.phone2}, Admin2: ${item.admin_id}`);
+                console.log(index);
+                document.getElementById("profile-email").textContent = item.email;
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
+
+
+
+    //Fetch para obtener los datos de los tutores de la BBDD
+    fetch('http://127.0.0.1:8000/api/children')
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellido: ${item.lastname}, DNI: ${item.dni}, Teléfono: ${item.phone}, Teléfono 2: ${item.phone2}, Admin2: ${item.admin_id}`);
+                console.log(index);
+                document.getElementById("child-title").textContent = item.name + ' '  + item.lastname;
+                document.getElementById("editarFechaNacimiento").value = item.birthdate;
+                document.getElementById("info-fecha-nacimiento-child").textContent = item.birthdate;
+                document.getElementById("info-alergias-child").textContent = item.alergy_intolerance;
+                document.getElementById("editarAlergias").value = item.alergy_intolerance;
+                document.getElementById("info-otros-child").textContent = item.aditional_info;
+                // document.getElementById("editarOtros").value = item.aditional_info;
+                // document.getElementById("password-editar-monitor").value = item.password;
+                // document.getElementById("dni-editar-monitor").value = item.dni;
+                // document.getElementById("telf1-editar-monitor").value = item.phone;
+                // document.getElementById("telf2-editar-monitor").value = item.phone2;
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
 });
+
 

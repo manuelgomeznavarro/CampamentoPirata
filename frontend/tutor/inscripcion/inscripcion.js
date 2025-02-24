@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             step.classList.toggle('active', index === currentStep);
         });
 
-        
+
     }
 
     // Añadir este código en la sección de inicialización
@@ -132,55 +132,55 @@ document.addEventListener('DOMContentLoaded', () => {
     //Validar email
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const inputEmail = document.querySelector('#tutor-email-inscription');
-        if (inputEmail) {
-            inputEmail.addEventListener('blur', () => {
-                if (emailRegex.test(inputEmail.value)) {
-                    inputEmail.classList.remove('error');
-                    emailError.textContent = '';
-                } else {
-                    inputEmail.classList.add('error');
-                    emailError.textContent = 'El email no es válido';
-                }
-            });
+    if (inputEmail) {
+        inputEmail.addEventListener('blur', () => {
+            if (emailRegex.test(inputEmail.value)) {
+                inputEmail.classList.remove('error');
+                emailError.textContent = '';
+            } else {
+                inputEmail.classList.add('error');
+                emailError.textContent = 'El email no es válido';
+            }
+        });
+    }
+
+    //Validar telefono1
+    const phoneRegex = /^[0-9]{9}$/;
+    const inputTel1 = document.querySelector('#tutor-tel1');
+    inputTel1.addEventListener('blur', () => {
+        if (phoneRegex.test(inputTel1.value)) {
+            inputTel1.classList.remove('error');
+            tel1Error.textContent = '';
+        } else {
+            inputTel1.classList.add('error');
+            tel1Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
         }
+    });
 
-        //Validar telefono1
-        const phoneRegex = /^[0-9]{9}$/;
-        const inputTel1 = document.querySelector('#tutor-tel1');
-        inputTel1.addEventListener('blur', () => {
-            if (phoneRegex.test(inputTel1.value)) {
-                inputTel1.classList.remove('error');
-                tel1Error.textContent = '';
-            } else {
-                inputTel1.classList.add('error');
-                tel1Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
-            }
-        });
+    //Validar telefono2
+    const inputTel2 = document.querySelector('#tutor-tel2');
+    inputTel2.addEventListener('blur', () => {
+        if (inputTel2.value == "" || phoneRegex.test(inputTel2.value)) {
+            inputTel2.classList.remove('error');
+            tel2Error.textContent = '';
+        } else {
+            inputTel2.classList.add('error');
+            tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
+        }
+    });
 
-        //Validar telefono2
-        const inputTel2 = document.querySelector('#tutor-tel2');
-        inputTel2.addEventListener('blur', () => {
-            if (inputTel2.value == "" || phoneRegex.test(inputTel2.value)) {
-                inputTel2.classList.remove('error');
-                tel2Error.textContent = '';
-            } else {
-                inputTel2.classList.add('error');
-                tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
-            }
-        });
-
-        //Validar codigo postal
-        const postalCodeRegex = /^[0-9]{5}$/;
-        const inputPostalCode = document.querySelector('#tutor-postal-code');
-        inputPostalCode.addEventListener('blur', () => {
-            if (inputPostalCode.value == "" || postalCodeRegex.test(inputPostalCode.value)) {
-                inputPostalCode.classList.remove('error');
-                postalCodeError.textContent = '';
-            } else {
-                inputPostalCode.classList.add('error');
-                postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
-            }
-        });
+    //Validar codigo postal
+    const postalCodeRegex = /^[0-9]{5}$/;
+    const inputPostalCode = document.querySelector('#tutor-postal-code');
+    inputPostalCode.addEventListener('blur', () => {
+        if (inputPostalCode.value == "" || postalCodeRegex.test(inputPostalCode.value)) {
+            inputPostalCode.classList.remove('error');
+            postalCodeError.textContent = '';
+        } else {
+            inputPostalCode.classList.add('error');
+            postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
+        }
+    });
 
     //VALIDAR STEP 1
     function validarStep1() {
@@ -307,12 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // const nameChild = document.querySelector('#child-name').value.trim();
     // const lastnameChild = document.querySelector('#child-lastname').value.trim();
     // const birthdate = document.querySelector('#child-boen-date').value.trim();
-    
+
     const nameErrorChild = document.querySelector('#error-child-name');
     const lastnameErrorChild = document.querySelector('#error-child-lastname');
     const bornDateErrorChild = document.querySelector('#error-child-born-date');
     const tShirtSizeErrorChild = document.querySelector('#error-child-t-shirt-size');
-    
+
     const tShirtSize = document.querySelector('#child-t-shirt-size');
 
     function validarStep2() {
@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inputBirthdate.classList.remove('error');
             bornDateErrorChild.textContent = '';
         } else {
-            inputBirthdate.classList.add('error');  
+            inputBirthdate.classList.add('error');
             bornDateErrorChild.textContent = 'La fecha de nacimiento no es válida. Debe haber nacido entre 2017 y 2018';
         }
     });
@@ -411,13 +411,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
-    function validarPricesCards() {        
+
+    function validarPricesCards() {
         const radioInputs = [...document.querySelectorAll('input[name="plan"]')];
         let isValid = radioInputs.some(radio => radio.checked);
-    
+
         const existingError = inscriptionsPricesContainer.querySelector('.plan-error');
-        
+
         if (!isValid) {
             if (!existingError) {
                 const errorPriceCards = document.createElement('span');
@@ -431,15 +431,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 existingError.remove();
             }
         }
-        
+
         return isValid;
     }
-    
+
     const inscriptionsPricesContainer = document.querySelector('.incription-prices');
     const insertSummaryDataBtn = document.querySelector('#insert-summary-data-btn');
     const form = document.querySelector('form');
 
-    
+
 
     insertSummaryDataBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -447,18 +447,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (validarPricesCards()) {
             const formInputs = [...form.querySelectorAll('input')];
             const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
-    
+
             // Handle selected plan (Step 3 radio buttons)
             const selectedPlan = document.querySelector('input[name="plan"]:checked');
             if (selectedPlan) {
                 const planTitle = selectedPlan.closest('.price-card-label').querySelector('.plan-title').textContent;
                 summaryParagraphs[8].textContent = planTitle;
             }
-    
+
             // Populate other fields
             for (let i = 0; i < summaryParagraphs.length; i++) {
                 if (i === 8) continue; // Skip plan summary handled above
-    
+
                 if (i < 8) {
                     // Tutor data (formInputs 0-7)
                     summaryParagraphs[i].textContent = formInputs[i].value;
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // console.log(steps);
-            
+
 
             if (currentStep < steps.length - 1) {
                 currentStep++;
@@ -600,5 +600,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             )
     })
+
+    //Fetch para obtener los datos de las tarifas de la BBDD
+    fetch('http://127.0.0.1:8000/api/prices')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Nombre Tarifa: ${item.name}, Precio: ${item.price}`);
+                console.log(index);
+                const tarifaCards = document.querySelectorAll('.plan-card');
+                if (index < tarifaCards.length) {
+                    const tarifaCard = tarifaCards[index];
+                    const titleElement = tarifaCard.querySelector('.plan-title');
+                    const priceElement = tarifaCard.querySelector('.plan-price');
+                    // const buttonsave = tarifaCard.querySelector('button');
+                    titleElement.textContent = item.name;
+                    priceElement.textContent = item.price;
+                    // buttonsave.value = item.id;
+                }
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
 
 });

@@ -39,17 +39,17 @@
                         <div href="#" class="profile-card">
                             <div class="profile-header">
                                 <img class="" src="https://placehold.co/200x200" alt="">
-                                <p class="profile-title">Ana López Pérez</p>
+                                <p class="profile-title" id="profile-title"></p>
                             </div>
                         </div>
                         <div class="profile-card-info">
                             <p class="info-title">Información De Contacto</p>
                             <p class="profile-text">
-                                ana.lopez@email.com
+                                <span id="profile-email"></span>
+                                <span id="profile-phone1"></span>
+                                <span id="profile-phone2"></span>
+                                <span id="profile-location"></span>
                                 <br>
-                                +34 620 654 321
-                                <br>
-                                Alpedrete
                             </p>
                         </div>
                     </div>
@@ -60,15 +60,17 @@
                     <hr class="line">
                     <div href="#" class="children-card">
                         <div class="children-header">
-                            <p class="child-title">Marta López</p>
+                            <p class="child-title" id="child-title">Marta López</p>
                             <img class="" src="https://placehold.co/80x80" alt="">
                             <p class="children-text">
-                                Fecha nacimiento: 2018-08-17
-                                Grupo: Pingüino Emperador
-                                Alergias/intolerancias:
-                                Enfermedades:
-                                <br>
-                                Otros: Tiene miedo a los perros
+                                <label for="info-fecha-nacimiento-child">Fecha de Nacimiento:</label>
+                                <p id="info-fecha-nacimiento-child"></p>
+                                <label for="grupo-child">Grupo:</label>
+                                Pingüino Emperador
+                                <label for="info-alergias-child">Alergias/intolerancias:</label>
+                                <p id="info-alergias-child"></p>
+                                <label for="info-otros-child">Otros:</label>
+                                <p id="info-otros-child"></p>
                             </p>
                             <a href="progreso.html" class="weekly-button">Ver resumen semanal</a>
                         </div>
@@ -83,7 +85,7 @@
                                 <img class="" src="https://placehold.co/200x200" alt="">
                                 <input type="text" placeholder=" Nombre" id="editarNombreTutor" class=" editarPerfilTutor">
                                 <br>
-                                <input type="mail" placeholder=" email" id="editarEmailTutor" class=" editarPerfilTutor">
+                                <input type="text" placeholder=" Apellidos" id="editarApellidosTutor" class="editarPerfilTutor">
                                 <br>
                                 <!-- todo: Añadir +34 y validaciones al editar -->
                                 <input type="tel" placeholder=" 666 666 666" name="telfTutor1" id="telfTutor1" class="editarPerfilTutor">
@@ -101,19 +103,16 @@
                     <hr class="line">
                     <div href="#" class="children-card">
                         <div class="children-header">
-                            <p class="child-title">Marta López</p>
+                            <p class="child-title" id="child-title"></p>
                             <img class="" src="https://placehold.co/80x80" alt="">
                             <p class="children-text">
-                                Fecha nacimiento: 2018-08-17
                                 Grupo: Pingüino Emperador
-                                Alergias/intolerancias:
-                                Enfermedades:
-                                <br>
-                                Otros: Tiene miedo a los perros
                             </p>
+                            <label for="editarFechaNacimiento">Fecha de Nacimiento:</label>
                             <input type="date" name="editarFechaNacimiento" id="editarFechaNacimiento" class="editarPerfilAlumno">
-                            <br>
+                            <label for="editarAlergias">Alergias:</label>
                             <input type="text" name="editarAlergias" id="editarAlergias" class="editarPerfilAlumno" placeholder=" Alergias / Intolerancias">
+                            <label for="editarOtros">Otros:</label>
                             <input type="text" name="editarOtros" id="editarOtros" class="editarPerfilAlumno" placeholder=" Otros datos relevantes">
                             <a href="progreso.html" class="weekly-button">Ver resumen semanal</a>
                         </div>
