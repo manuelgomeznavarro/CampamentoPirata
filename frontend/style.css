@@ -336,7 +336,6 @@ main .prices .prices-content {
     display: flex;
     place-self: center;
     max-width: 1135px;
-    height: 420px;
     border-radius: 16px;
     background-color: var(--background-color3);
 }
@@ -753,7 +752,7 @@ main .fade-container .facilities div .facilities-pic img {
     margin-bottom: 66px;
 }
 
-.quienes-somos-main figure {
+figure:not(.wave figure):not(.map figure) {
     display: inline-block;
     /* O 'block' si prefieres */
     width: fit-content;
@@ -764,13 +763,20 @@ main .fade-container .facilities div .facilities-pic img {
     /* Opcional, para evitar espacios adicionales */
 }
 
-.quienes-somos-main figure img {
+figure img:not(.wave figure img):not(.map figure img) {
     display: block;
     /* Evita espacios adicionales por imágenes en línea */
     width: auto;
     /* O 100% si necesitas responsividad */
     height: auto;
     /* Mantiene la proporción */
+    
+}
+
+.user-info figure img {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
 }
 
 /* .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card figure {

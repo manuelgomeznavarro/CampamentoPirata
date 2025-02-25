@@ -23,6 +23,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const tutorEmail = document.querySelector('.tutor-email');
     const nombreGrupo = document.querySelector('.nombre-grupos');
 
+    const userAvatar = document.querySelector('.user-avatar img');
+
+    fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+        method: 'POST', //Método para enviar los datos al servidor
+        headers: {
+            'Content-Type': 'application/json' //Envío de datos en formato JSON
+        },
+        body: JSON.stringify({
+            role: localStorage.getItem('role'),
+            role_id: localStorage.getItem('role_id') 
+        }) //Se convierte el objeto JS a una cadena JSON
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            if (data.url) {
+                userAvatar.src = data.url;
+            }
+        })
 
     fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`)
         .then(response => {

@@ -479,13 +479,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function updateTutorInfo(tutorData, tutorId) {
+    function updateTutorInfo(formData, tutorId) {
         return fetch(`http://127.0.0.1:8000/api/tutors/${tutorId}`, {
             method: 'PUT', //Método para enviar los datos al servidor
+            body: formData,
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json' //Envío de datos en formato JSON
-            },
-            body: JSON.stringify(tutorData) //Se convierte el objeto JS a una cadena JSON
+            }
         })
             .then(response => {
                 // if (!response.success) {
@@ -573,6 +574,23 @@ document.addEventListener('DOMContentLoaded', () => {
             postal_code: summaryParagraphs[7].innerText,
         }
 
+        const fileInput = document.getElementById('image-input');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            alert('Please select an image');
+            return;
+        }
+        
+        // Create form data for both file and JSON data
+        const formData = new FormData();
+        
+        // Add the file
+        formData.append('image', file);
+        
+        // Convert JSON to string and append to FormData
+        formData.append('json_data', JSON.stringify(tutorInfo));
+
         const childInfo = {
             name: summaryParagraphs[9].innerText,
             lastname: summaryParagraphs[10].innerText,
@@ -585,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(childInfo);
 
-        updateTutorInfo(tutorInfo, localStorage.getItem('role_id'))
+        updateTutorInfo(formData, localStorage.getItem('role_id'))
             .then(createChild(childInfo)
                 .then(childId => {
                     console.log(childId);

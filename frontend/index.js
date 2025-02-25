@@ -14,7 +14,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
-                    tutorProfilePic.src = 'https://placehold.co/40x40';
+
+                    fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+                        method: 'POST', //Método para enviar los datos al servidor
+                        headers: {
+                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                        },
+                        body: JSON.stringify({
+                            role: localStorage.getItem('role'),
+                            role_id: localStorage.getItem('role_id') 
+                        }) //Se convierte el objeto JS a una cadena JSON
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.url) {
+                                tutorProfilePic.src = data.url;
+                            } else {
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            
+                        })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
                     
@@ -42,11 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkRole();
 
-    const inicio = document.getElementById("sign-in");
-    const registrar = document.getElementById("sign-up");
+    // const inicio = document.getElementById("sign-in");
+    // const registrar = document.getElementById("sign-up");
     const overlay_sign_up = document.getElementById("overlay-sign-up");
     const contenedor_sign_up = document.getElementById("sign-up-container");
-    const contenedor_sign_in = document.getElementById("sign-in-container");
+    // const contenedor_sign_in = document.getElementById("sign-in-container");
     const overlay_sign_in = document.getElementById("overlay-sign-in");
 
     //JS HOME
@@ -57,11 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay_sign_in.style.display = "none";
     }
 
-    registrar.addEventListener("click", () => {
-        closeForm();
-        overlay_sign_up.style.display = "flex";
-        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
-    });
+    // registrar.addEventListener("click", () => {
+    //     closeForm();
+    //     overlay_sign_up.style.display = "flex";
+    //     contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+    // });
 
     overlay_sign_up.addEventListener("click", (event) => {
         if (event.target === overlay_sign_up) {
@@ -70,11 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    inicio.addEventListener("click", () => {
-        closeForm();
-        overlay_sign_in.style.display = "flex";
-        contenedor_sign_in.style.display = "block";
-    })
+    // inicio.addEventListener("click", () => {
+    //     closeForm();
+    //     overlay_sign_in.style.display = "flex";
+    //     contenedor_sign_in.style.display = "block";
+    // })
 
     overlay_sign_in.addEventListener("click", (event) => {
         if (event.target === overlay_sign_in) {
