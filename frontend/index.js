@@ -241,15 +241,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // passwordInputSignIn.addEventListener("blur", () => {
-    //     const password = passwordInputSignIn.value;
-    //     if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
-    //         errorPasswordSignIn.style.color = "red";
-    //         errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
-    //     } else {
-    //         errorPasswordSignIn.innerHTML = "";
-    //     }
-    // });
+    passwordInputSignIn.addEventListener("blur", () => {
+        const password = passwordInputSignIn.value;
+        if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+            errorPasswordSignIn.style.color = "red";
+            errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+        } else {
+            errorPasswordSignIn.innerHTML = "";
+        }
+    });
 
     // SIGN IN
     function singIn(userData) {
@@ -290,12 +290,12 @@ document.addEventListener("DOMContentLoaded", function () {
         
         
         const email = emailInputSignIn.value;
-        // if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
-        //     errorEmailSignIn.style.color = "red";
-        //     errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
-        // } else {
-        //     errorEmailSignIn.innerHTML = "";
-        // }
+        if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
+            errorEmailSignIn.style.color = "red";
+            errorEmailSignIn.innerHTML = "Introduzca un email correcto.";
+        } else {
+            errorEmailSignIn.innerHTML = "";
+        }
         
         const password = passwordInputSignIn.value;
         // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
