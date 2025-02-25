@@ -133,5 +133,4 @@ Route::get('/monitors/monitor_by_group/{group_id}', [MonitorController::class, '
 
 Route::get('/incidents/pending/{admin_id}', [IncidentController::class, 'show_incidents_by_admin']);
 
-
-
+Route::get('/tutor/child_by_tutor/{tutor_id}', [TutorController::class, 'children_info']);

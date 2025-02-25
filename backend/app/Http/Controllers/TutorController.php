@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscription;
 use App\Models\Tutor;
 use App\Models\User;
+use App\Models\Child;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +17,7 @@ class TutorController extends Controller
         $tutors = Tutor::all();
         return response()->json($tutors, 200);
     }
-    
+
     public function store(Request $request)
     {
         try {
@@ -29,7 +31,7 @@ class TutorController extends Controller
             }
 
             DB::beginTransaction();
-            
+
             // Create the tutor
             $tutor = Tutor::create([
                 'name' => $request->name,
@@ -50,7 +52,7 @@ class TutorController extends Controller
             ]);
 
             DB::commit();
-            
+
             // return response()->json([
             //     'message' => 'Tutor creado correctamente',
             //     'tutor' => $tutor
@@ -58,7 +60,6 @@ class TutorController extends Controller
 
             $tutors = Tutor::all();
             return response()->json($tutors, 201);
-
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -67,26 +68,60 @@ class TutorController extends Controller
             ], 500);
         }
     }
-    
-    
+
+
     public function show($IdTutors)
     {
         $tutors = Tutor::findOrFail($IdTutors);
+        $user = User::where('role', 'tutor')->where('role_id', $IdTutors)->first();
+        $tutors->email = $user->email;
         return response()->json($tutors, 200);
     }
-    
-    
+
     public function update(Request $request, $IdTutors)
     {
         $tutors = Tutor::findOrFail($IdTutors);
         $tutors->update($request->all());
         return response()->json($tutors, 200);
     }
-    
+
     public function destroy($IdTutors)
     {
         $tutors = Tutor::findOrFail($IdTutors);
         $tutors->delete();
         return response()->json(['message' => 'Tutor eliminado correctamente'], 200);
+    }
+
+    // public function getChildrenFromTutor($IdTutors)
+    // {
+    //     $tutor = Tutor::findOrFail($IdTutors);
+    //     $childrenFromInscription = $tutor->inscriptions->map(function ($inscription) {
+    //         return $inscription->child_id;
+    //     });
+
+    //     return response()->json($childrenFromInscription, 200);
+    // }
+
+    public function children_info($tutor_id)
+    {
+        $inscriptions = Inscription::where('tutor_id', $tutor_id)->get();
+        if (!$inscriptions) {
+            return response()->json([
+                'success' => false,
+                'message' => 'inscription not found'
+            ], 401);
+        }
+
+        // Obtiene todos los niños asociados a las inscripciones
+        $children = $inscriptions->map(function ($inscription) {
+            return Child::find($inscription->child_id);
+        });
+
+        // $children = Child::where('id', $inscription->child_id)->get();
+
+        return response()->json([
+            'success' => true,
+            'children' => $children
+        ], 200);
     }
 }
