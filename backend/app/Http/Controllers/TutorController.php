@@ -70,12 +70,7 @@ class TutorController extends Controller
             ], 500);
         }
     }
-<<<<<<< HEAD
 
-
-=======
-    
->>>>>>> 6f6613cc58f35002b14555f5079f793a466df1f2
     public function show($IdTutors)
     {
         $tutors = Tutor::findOrFail($IdTutors);
@@ -83,11 +78,7 @@ class TutorController extends Controller
         $tutors->email = $user->email;
         return response()->json($tutors, 200);
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 6f6613cc58f35002b14555f5079f793a466df1f2
     public function update(Request $request, $IdTutors)
     {
         // Validate the request
