@@ -16,7 +16,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'role_id'
+        'role_id',
+        'url_pic'
     ];
 
     public function roleable()

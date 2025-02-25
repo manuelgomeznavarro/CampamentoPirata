@@ -18,6 +18,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GroupByMonitorController;
 use App\Http\Controllers\ActivityTimelineController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +133,8 @@ Route::get('/children/by_group/{group_id}', [ChildController::class, 'show_by_gr
 Route::get('/monitors/monitor_by_group/{group_id}', [MonitorController::class, 'show_monitor_by_group']);
 
 Route::get('/incidents/pending/{admin_id}', [IncidentController::class, 'show_incidents_by_admin']);
+
+Route::post('/get_user_pic', [UserController::class, 'get_user_pic']);
 
 
 

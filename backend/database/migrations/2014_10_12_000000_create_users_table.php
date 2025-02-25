@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['tutor', 'monitor', 'admin']);
             $table->unsignedBigInteger('role_id');
+            $table->text('url_pic')->nullable();
             $table->timestamps();
         });
     }
