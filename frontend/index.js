@@ -152,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     //JS SIGN UP
-
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
     const rememberInput = document.querySelector('#remember');
