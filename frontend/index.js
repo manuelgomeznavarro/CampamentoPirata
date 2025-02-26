@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
             switch (role) {
                 case 'tutor':
                     const headerBtnsContainer = document.querySelector('header .header-btns-container');
-
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         body: JSON.stringify({
                             role: localStorage.getItem('role'),
-                            role_id: localStorage.getItem('role_id') 
+                            role_id: localStorage.getItem('role_id')
                         }) //Se convierte el objeto JS a una cadena JSON
                     })
                         .then(response => {
@@ -37,11 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         })
                         .catch(error => {
                             console.log(error);
-                            
+
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
-                    
+
                     headerBtnsContainer.innerHTML = "";
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
@@ -66,8 +65,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkRole();
 
+    const btnReservation = document.querySelector('.btn-reservation');
+    if (btnReservation) {
+
+        btnReservation.addEventListener('click', function () {
+            if (localStorage.getItem('role') == 'tutor') {
+                window.location.href = './tutor/inscripcion/inscripcion.html';
+            } else {
+                overlay_sign_in.style.display = "flex";
+                contenedor_sign_in.style.display = "block";
+            }
+        });
+    };
+
+    const btnVerTarifas = document.querySelector('#btn-ver-tarifas');
+    if (btnVerTarifas) {
+        btnVerTarifas.addEventListener('click', function () {
+            window.location.href = './tutor/tarifas/tarifas.html';
+        });
+    }
+
+    const btnConoceAlEquipo = document.querySelector('#btn-conocenos');
+    if (btnConoceAlEquipo) {
+        btnConoceAlEquipo.addEventListener('click', function () {
+            window.location.href = './tutor/quienes_somos/quienes_somos.html';
+        });
+    }
+
     const inicio = document.getElementById("sign-in");
     const registrar = document.getElementById("sign-up");
+    const registrarFooter = document.getElementById("registrar-footer");
     const overlay_sign_up = document.getElementById("overlay-sign-up");
     const contenedor_sign_up = document.getElementById("sign-up-container");
     const contenedor_sign_in = document.getElementById("sign-in-container");
@@ -82,6 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     registrar.addEventListener("click", () => {
+        closeForm();
+        overlay_sign_up.style.display = "flex";
+        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+    });
+
+    registrarFooter.addEventListener("click", () => {
         closeForm();
         overlay_sign_up.style.display = "flex";
         contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
@@ -105,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             closeForm();
         }
     });
+
 
     //JS SIGN UP
     const emailInput = document.querySelector('#email-sign-up');
@@ -172,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const emailValidator = validatorSubmit(formElements[0], new RegExp(/^[\w._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/), "¡Introduzca un email correcto!");
         const passwordValidator = validatorSubmit(formElements[1], new RegExp(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/), "¡Introduzca una contraseña con mayusculas, simbolos, números de al menos 8 caracteres!");
-        
+
         const userData = {
             email: formElements[0].value,
             password: formElements[1].value
@@ -203,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return response.json();
             })
-            
+
             .then(data => {
                 console.log("Cuenta creada con éxito", data);
             })
@@ -240,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //         }
     //         response.json();
     //         console.log(response);
-            
+
 
     //         return response;
     //     })
@@ -274,44 +308,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+
     // SIGN IN
     function singIn(userData) {
         return fetch('http://127.0.0.1:8000/api/login', {
             method: 'POST', //Método para enviar los datos al servidor
             headers: {
-                    'Content-Type': 'application/json' //Envío de datos en formato JSON
-                },
-                body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
+                'Content-Type': 'application/json' //Envío de datos en formato JSON
+            },
+            body: JSON.stringify(userData) //Se convierte el objeto JS a una cadena JSON
+        })
+            .then(response => {
+                // if (!response.success) {
+                //     throw new Error('Error al registrar el usuario');
+                // }
+                return response.json();
             })
-                .then(response => {
-                    // if (!response.success) {
-                    //     throw new Error('Error al registrar el usuario');
-                    // }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Sesion iniciada con éxito", data);
-                    localStorage.setItem('role', data.user.role);
-                    localStorage.setItem('role_id', data.user.role_id);
+            .then(data => {
+                console.log("Sesion iniciada con éxito", data);
+                localStorage.setItem('role', data.user.role);
+                localStorage.setItem('role_id', data.user.role_id);
 
-                    formSignIn.reset();
+                formSignIn.reset();
 
-                    checkRole();
+                checkRole();
 
-                    closeForm();
-                })
-                .catch(error => {
-                    console.error('Error al iniciar sesión', error);
-                });
+                closeForm();
+            })
+            .catch(error => {
+                console.error('Error al iniciar sesión', error);
+            });
     }
 
     formSignIn.addEventListener("submit", (e) => {
         e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
         e.stopPropagation();  // Detiene la propagación del evento
         e.stopImmediatePropagation();  // Detiene todos los demás manejadores de eventos
-        
-        
-        
+
+
+
         const email = emailInputSignIn.value;
         if (!(/^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || email == null)) {
             errorEmailSignIn.style.color = "red";
@@ -319,54 +354,54 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             errorEmailSignIn.innerHTML = "";
         }
-        
+
         const password = passwordInputSignIn.value;
         // if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
-            //     errorPasswordSignIn.style.color = "red";
-            //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
-            // } else {
-                //     errorPasswordSignIn.innerHTML = "";
-                // }
-                
-                // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
-                    const userInfo = {
-                        email: email,
-                        password: password
-                    }
-                    // console.log(userInfo);
-                    
-                    console.log(userInfo);
+        //     errorPasswordSignIn.style.color = "red";
+        //     errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
+        // } else {
+        //     errorPasswordSignIn.innerHTML = "";
+        // }
 
-                    singIn(userInfo);
+        // if (errorEmailSignIn.innerHTML != "" || errorPasswordSignIn.innerHTML != "") {
+        const userInfo = {
+            email: email,
+            password: password
+        }
+        // console.log(userInfo);
+
+        console.log(userInfo);
+
+        singIn(userInfo);
 
 
-            //  fetch('http://127.0.0.1:8000/api/login', {
-            //     method: 'POST', //Método para enviar los datos al servidor
-            //     headers: {
-            //         'Content-Type': 'application/json' //Envío de datos en formato JSON
-            //     },
-            //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
-            // })
-            //     .then(response => {
-            //         console.log(response.json());
-            //         debugger;
-                    
-            //         // if (!response.ok) {
-            //         //     throw new Error('Error al registrar el usuario');
-            //         // }
-            //         console.log(response.json);
+        //  fetch('http://127.0.0.1:8000/api/login', {
+        //     method: 'POST', //Método para enviar los datos al servidor
+        //     headers: {
+        //         'Content-Type': 'application/json' //Envío de datos en formato JSON
+        //     },
+        //     body: JSON.stringify(userInfo) //Se convierte el objeto JS a una cadena JSON
+        // })
+        //     .then(response => {
+        //         console.log(response.json());
+        //         debugger;
 
-            //         return response.json();
-            //     })
-            //     .then(data => {
-            //         console.log("Sesion iniciada con éxito", data);
-            //         localStorage.setItem('role', data.role);
-            //         localStorage.setItem('role_id', data.role_id);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error al iniciar sesión', error);
-            //     });
-        
+        //         // if (!response.ok) {
+        //         //     throw new Error('Error al registrar el usuario');
+        //         // }
+        //         console.log(response.json);
+
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log("Sesion iniciada con éxito", data);
+        //         localStorage.setItem('role', data.role);
+        //         localStorage.setItem('role_id', data.role_id);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error al iniciar sesión', error);
+        //     });
+
     });
 
 })

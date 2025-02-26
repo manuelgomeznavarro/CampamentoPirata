@@ -26,22 +26,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 city: document.getElementById('location').value,
             };
 
-            const childData = {
-                birthdate: document.getElementById(`editarFechaNacimiento`).value,
-                alergy_intolerance: document.getElementById(`editarAlergias`).value,
-                aditional_info: document.getElementById(`editarOtros`).value
-            };
+            // const childData = {
+            //     birthdate: document.getElementById(`editarFechaNacimiento`).value,
+            //     alergy_intolerance: document.getElementById(`editarAlergias`).value,
+            //     aditional_info: document.getElementById(`editarOtros`).value
+            // };
     
             console.log(userData);
     
             try {
                 await introducirDatos(userData);
-                const childId = await obtenerDatosNino();
-                await introducirDatosNino(childData, childId);
-                // for (const childId of childrenIds) {
-                    
-                //     await introducirDatosNino(childData, childId);
-                // }
+                // const childId = await obtenerDatosNino();
+                // await introducirDatosNino(childData, childId);
+
+                
+
+                for (const childId of childrenIds) {
+                    const childData = {
+                        birthdate: document.getElementById(`editarFechaNacimiento-${childId}`).value,
+                        alergy_intolerance: document.getElementById(`editarAlergias-${childId}`).value,
+                        aditional_info: document.getElementById(`editarOtros-${childId}`).value
+                    };
+                    await introducirDatosNino(childData, childId);
+                }
                 // Recargar la página para actualizar los datos visibles
                 window.location.reload();
             } catch (error) {
@@ -52,6 +59,32 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     console.log("Role ID:", localStorage.getItem('role_id'));
+
+    //Fetch información tutor
+    fetch(`http://127.0.0.1:8000/api/tutors/${localStorage.getItem('role_id')}`)
+        // TODO: Si da tiempo modificar los datos del monit:
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+                document.getElementById("editarNombreTutor").value = data.name;
+                document.getElementById("editarApellidosTutor").value = data.lastname;
+                document.getElementById("telfTutor1").value = data.phone;
+                document.getElementById("telfTutor2").value = data.phone2;
+                document.getElementById("location").value = data.city;
+                document.getElementById("profile-title").textContent = data.name + " " + data.lastname;
+                document.getElementById("profile-email").textContent = data.email;
+                document.getElementById("profile-phone1").textContent = data.phone;
+                document.getElementById("profile-phone2").textContent = data.phone2;
+                document.getElementById("profile-location").textContent = data.city;
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
 
     // Fetch para obtener los datos de los tutores de la BBDD
     fetch(`http://127.0.0.1:8000/api/tutor/child_by_tutor/${localStorage.getItem('role_id')}`)
@@ -79,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 childrenCard.querySelector(".info-otros-child").textContent = item.aditional_info;
 
                 editChildrenCard.querySelector(".child-title").textContent = item.name + ' ' + item.lastname;
-                editChildrenCard.querySelector("#editarFechaNacimiento").value = item.birthdate;
-                editChildrenCard.querySelector("#editarAlergias").value = item.alergy_intolerance;
-                editChildrenCard.querySelector("#editarOtros").value = item.aditional_info;
+                editChildrenCard.querySelector(`#editarFechaNacimiento-${item.id}`).value = item.birthdate;
+                editChildrenCard.querySelector(`#editarAlergias-${item.id}`).value = item.alergy_intolerance;
+                editChildrenCard.querySelector(`#editarOtros-${item.id}`).value = item.aditional_info;
 
                 // guardarDatos();
 
@@ -208,14 +241,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crear y agregar el label y el input para la fecha de nacimiento
         const labelFechaNacimiento = document.createElement('label');
-        labelFechaNacimiento.htmlFor = 'editarFechaNacimiento';
+        labelFechaNacimiento.htmlFor = `editarFechaNacimiento-${item.id}`;
         labelFechaNacimiento.textContent = 'Fecha de Nacimiento:';
         childrenText.appendChild(labelFechaNacimiento);
 
         const inputFechaNacimiento = document.createElement('input');
         inputFechaNacimiento.type = 'date';
-        inputFechaNacimiento.name = 'editarFechaNacimiento';
-        inputFechaNacimiento.id = 'editarFechaNacimiento';
+        inputFechaNacimiento.name = `editarFechaNacimiento-${item.id}`;
+        inputFechaNacimiento.id = `editarFechaNacimiento-${item.id}`;
         inputFechaNacimiento.className = 'editarPerfilAlumno';
         childrenText.appendChild(inputFechaNacimiento);
 
@@ -230,28 +263,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crear y agregar el label y el input para las alergias
         const labelAlergias = document.createElement('label');
-        labelAlergias.htmlFor = 'editarAlergias';
+        labelAlergias.htmlFor = `editarAlergias-${item.id}`;
         labelAlergias.textContent = 'Alergias/intolerancias:';
         childrenText.appendChild(labelAlergias);
 
         const inputAlergias = document.createElement('input');
         inputAlergias.type = 'text';
-        inputAlergias.name = 'editarAlergias';
-        inputAlergias.id = 'editarAlergias';
+        inputAlergias.name = `editarAlergias-${item.id}`;
+        inputAlergias.id = `editarAlergias-${item.id}`;
         inputAlergias.className = 'editarPerfilAlumno';
         inputAlergias.placeholder = ' Alergias / Intolerancias';
         childrenText.appendChild(inputAlergias);
 
         // Crear y agregar el label y el input para otros datos
         const labelOtros = document.createElement('label');
-        labelOtros.htmlFor = 'editarOtros';
+        labelOtros.htmlFor = `editarOtros-${item.id}`;
         labelOtros.textContent = 'Otros:';
         childrenText.appendChild(labelOtros);
 
         const inputOtros = document.createElement('input');
         inputOtros.type = 'text';
-        inputOtros.name = 'editarOtros';
-        inputOtros.id = 'editarOtros';
+        inputOtros.name = `editarOtros-${item.id}`;
+        inputOtros.id = `editarOtros-${item.id}`;
         inputOtros.className = 'editarPerfilAlumno';
         inputOtros.placeholder = ' Otros datos relevantes';
         childrenText.appendChild(inputOtros);
