@@ -38,9 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 await introducirDatos(userData);
                 // const childId = await obtenerDatosNino();
                 // await introducirDatosNino(childData, childId);
-
                 
-
                 for (const childId of childrenIds) {
                     const childData = {
                         birthdate: document.getElementById(`editarFechaNacimiento-${childId}`).value,
