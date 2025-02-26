@@ -445,8 +445,11 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         if (validarPricesCards()) {
-            const formInputs = [...form.querySelectorAll('input')];
+            const formInputs = [...form.querySelectorAll('input, select')];
             const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
+
+            console.log([formInputs, summaryParagraphs]);
+            
 
             // Handle selected plan (Step 3 radio buttons)
             const selectedPlan = document.querySelector('input[name="plan"]:checked');
@@ -464,13 +467,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     summaryParagraphs[i].textContent = formInputs[i].value;
                 } else {
                     // Niño data (formInputs 8-14 correspond to summary i 9-15)
-                    const formIndex = i - 1; // Adjust index for niño inputs
+                    const formIndex = i; // Adjust index for niño inputs
                     summaryParagraphs[i].textContent = formInputs[formIndex]?.value || '';
                 }
             }
 
             // console.log(steps);
-
 
             if (currentStep < steps.length - 1) {
                 currentStep++;
@@ -483,18 +485,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return fetch(`http://127.0.0.1:8000/api/tutors/${tutorId}`, {
             method: 'PUT', //Método para enviar los datos al servidor
             body: formData,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json' //Envío de datos en formato JSON
-            }
         })
             .then(response => {
+                console.log(response);
+                
+
                 // if (!response.success) {
                 //     throw new Error('Error al registrar el usuario');
                 // }
                 return response.json();
             })
             .then(data => {
+                console.log(data);
+                
                 console.log("Información del tutor actualizada con éxito", data);
                 // localStorage.setItem('role', data.user.role);
                 // localStorage.setItem('role_id', data.user.role_id);

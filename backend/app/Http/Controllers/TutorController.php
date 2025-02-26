@@ -81,66 +81,83 @@ class TutorController extends Controller
 
     public function update(Request $request, $IdTutors)
     {
-        // Validate the request
-        $request->validate([
-            'image' => 'required|image|max:10240', // 10MB max
-            'json_data' => 'required|json'
-        ]);
-        
-        // Parse the JSON data
-        $jsonData = json_decode($request->json_data, true);
-        
-        // Find the user associated with the tutor
-        $user = User::where('role', 'tutor')
-                    ->where('role_id', $IdTutors)
-                    ->first();
-        
-        if (!$user) {
+        try {
+            // Validate the request
+            $request->validate([
+                'image' => 'required|image|max:10240', // 10MB max
+                'json_data' => 'required|json'
+            ]);
+            
+            // Parse the JSON data
+            $jsonData = json_decode($request->json_data, true);
+            
+            // Begin transaction for data integrity
+            DB::beginTransaction();
+            
+            // First, find the tutor
+            $tutor = Tutor::findOrFail($IdTutors);
+            
+            // Then find the associated user
+            $user = User::where('role', 'tutor')
+                        ->where('role_id', $IdTutors)
+                        ->first();
+            
+            if (!$user) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found for this tutor'
+                ], 404);
+            }
+            
+            // Process image upload
+            $file = $request->file('image');
+            $originalName = $file->getClientOriginalName();
+            $filename = Str::uuid() . '_' . $originalName;
+            $path = 'user_images/' . $user->id . '/' . $filename;
+            
+            // Upload to DigitalOcean Spaces
+            $uploaded = Storage::disk('s3')->put($path, file_get_contents($file), 'public');
+            
+            if (!$uploaded) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to upload image'
+                ], 500);
+            }
+            
+            // Generate the public URL
+            $bucket = env('DO_SPACES_BUCKET');
+            $region = env('DO_SPACES_REGION');
+            $url = "https://{$bucket}.{$region}.digitaloceanspaces.com/{$path}";
+            
+            // Update the user's url_pic
+            $user->url_pic = $url;
+            $user->save();
+            
+            // Update the tutor's data from JSON data
+            $tutor->update($jsonData);
+            
+            // If everything succeeded, commit the transaction
+            DB::commit();
+            
+            // Include the image URL in the response
+            $response = $tutor->toArray();
+            $response['url_pic'] = $url;
+            
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json([
                 'success' => false,
-                'message' => 'User not found for this tutor'
-            ], 404);
-        }
-        
-        // Get the user's ID for image path
-        $userId = $user->id;
-        
-        // Get the file
-        $file = $request->file('image');
-        $originalName = $file->getClientOriginalName();
-        
-        // Generate a unique filename
-        $filename = Str::uuid() . '_' . $originalName;
-        
-        // Define the path in your spaces bucket
-        $path = 'user_images/' . $userId . '/' . $filename;
-        
-        // Upload to DigitalOcean Spaces
-        $uploaded = Storage::disk('s3')->put($path, file_get_contents($file), 'public');
-        
-        if (!$uploaded) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to upload image'
+                'message' => 'Error updating tutor',
+                'error' => $e->getMessage(),
+                'error_line' => $e->getLine(),
+                'error_code' => $e->getCode(),
+                'error_code' => $e->getTrace(),
             ], 500);
         }
-        
-        // Generate the public URL
-        // $url = Storage::disk('s3');
-        // // $url->url($path);
-        // MANUALLY CONSTRUCT THE URL
-        $bucket = env('DO_SPACES_BUCKET');
-        $region = env('DO_SPACES_REGION');
-        $url = "https://{$bucket}.{$region}.digitaloceanspaces.com/{$path}";
-        
-        // Update the user's url_pic
-        $user->update(['url_pic' => $url]);
-        
-        // Update the tutor's data from JSON data
-        $tutor = Tutor::findOrFail($IdTutors);
-        $tutor->update($jsonData);
-        
-        return response()->json($tutor, 200);
     }
 
     public function destroy($IdTutors)

@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkRole();
 
-    // const inicio = document.getElementById("sign-in");
-    // const registrar = document.getElementById("sign-up");
+    const inicio = document.getElementById("sign-in");
+    const registrar = document.getElementById("sign-up");
     const overlay_sign_up = document.getElementById("overlay-sign-up");
     const contenedor_sign_up = document.getElementById("sign-up-container");
-    // const contenedor_sign_in = document.getElementById("sign-in-container");
+    const contenedor_sign_in = document.getElementById("sign-in-container");
     const overlay_sign_in = document.getElementById("overlay-sign-in");
 
     //JS HOME
@@ -81,11 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay_sign_in.style.display = "none";
     }
 
-    // registrar.addEventListener("click", () => {
-    //     closeForm();
-    //     overlay_sign_up.style.display = "flex";
-    //     contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
-    // });
+    registrar.addEventListener("click", () => {
+        closeForm();
+        overlay_sign_up.style.display = "flex";
+        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+    });
 
     overlay_sign_up.addEventListener("click", (event) => {
         if (event.target === overlay_sign_up) {
@@ -94,11 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // inicio.addEventListener("click", () => {
-    //     closeForm();
-    //     overlay_sign_in.style.display = "flex";
-    //     contenedor_sign_in.style.display = "block";
-    // })
+    inicio.addEventListener("click", () => {
+        closeForm();
+        overlay_sign_in.style.display = "flex";
+        contenedor_sign_in.style.display = "block";
+    })
 
     overlay_sign_in.addEventListener("click", (event) => {
         if (event.target === overlay_sign_in) {
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //JS SIGN UP
-
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
     const rememberInput = document.querySelector('#remember');
