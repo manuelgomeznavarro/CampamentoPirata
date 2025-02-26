@@ -76,14 +76,12 @@ header .header-btns-container>figure {
     /* Opcional, para evitar espacios adicionales */
 }
 
+
 header .header-btns-container>figure img {
-    border-radius: 50%;
+    border-radius: 50% !important;
     display: block;
-    /* Evita espacios adicionales por imágenes en línea */
-    width: auto;
-    /* O 100% si necesitas responsividad */
-    height: auto;
-    /* Mantiene la proporción */
+    width: 44px !important;
+    height: 44px !important;
 }
 
 header .header-btns-container .sign-in {

@@ -482,12 +482,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateTutorInfo(formData, tutorId) {
+        formData.append('_method', 'PUT');
         return fetch(`http://127.0.0.1:8000/api/tutors/${tutorId}`, {
-            method: 'PUT', //Método para enviar los datos al servidor
-            body: formData,
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
+            method: 'POST', //Método para enviar los datos al servidor
+            body: formData
         })
             .then(response => {
                 console.log(response);
@@ -579,6 +577,8 @@ document.addEventListener('DOMContentLoaded', () => {
             city: summaryParagraphs[6].innerText,
             postal_code: summaryParagraphs[7].innerText,
         }
+
+        console.log(tutorInfo);
 
         const fileInput = document.getElementById('image-input');
         const file = fileInput.files[0];
