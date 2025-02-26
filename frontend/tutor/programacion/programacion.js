@@ -1,19 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
 
-    const registrarFooter = document.getElementById("registrar-footer");
-    if (registrarFooter) {
 
-        registrarFooter.addEventListener('click', function () {
+    // Asignar evento click a cada plan-card
+    const reservaFooter = document.getElementById('registrar-footer')
+    reservaFooter.addEventListener('click', function (event) {
+            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
             if (localStorage.getItem('role') == 'tutor') {
                 window.location.href = '../inscripcion/inscripcion.html';
             } else {
-                overlay_sign_in.style.display = "flex";
-                contenedor_sign_in.style.display = "block";
+                window.location.href = '../../index.html?showLogin=true';
             }
         });
-    };
-    
+
+
     //Fetch para obtener los datos de las tarifas de la BBDD
     fetch('http://127.0.0.1:8000/api/activities')
         .then(response => {
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Agregar la tarjeta al contenedor de tarjetas
                 cardsContainer.appendChild(card);
             });
-            
+
         })
         .catch(error => {
             console.error('Error al obtener los datos:', error);

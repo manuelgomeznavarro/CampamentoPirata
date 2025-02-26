@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const formIncidencia = document.querySelector('form');
 
+    // Asignar evento click a cada plan-card
+    const reservaFooter = document.getElementById('registrar-footer')
+    reservaFooter.addEventListener('click', function (event) {
+            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+            if (localStorage.getItem('role') == 'tutor') {
+                window.location.href = '../inscripcion/inscripcion.html';
+            } else {
+                window.location.href = '../../index.html?showLogin=true';
+            }
+        });
+
     //Fetch para enviar la incidencia
     function enviarIncidencia(incidencia) {
         return fetch('http://127.0.0.1:8000/api/incidents', {
