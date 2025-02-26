@@ -311,14 +311,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     passwordInputSignIn.addEventListener("blur", () => {
         const password = passwordInputSignIn.value;
-        if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+        const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    
+        if (!regex.test(password)) {
             errorPasswordSignIn.style.color = "red";
             errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
         } else {
             errorPasswordSignIn.innerHTML = "";
         }
     });
-
+    
 
     // SIGN IN
     function singIn(userData) {
