@@ -485,6 +485,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return fetch(`http://127.0.0.1:8000/api/tutors/${tutorId}`, {
             method: 'PUT', //Método para enviar los datos al servidor
             body: formData,
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
         })
             .then(response => {
                 console.log(response);
@@ -605,6 +608,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         console.log(childInfo);
+
+        // console.log(formData.entries());
+        for (const pair of formData.entries()) {
+            console.log(pair[0], pair[1]);
+            console.log(pair);
+            
+        }
 
         updateTutorInfo(formData, localStorage.getItem('role_id'))
             .then(createChild(childInfo)

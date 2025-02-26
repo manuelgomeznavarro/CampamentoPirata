@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
+                document.title += ` ${data.name}`;
                 document.getElementById("editarNombreTutor").value = data.name;
                 document.getElementById("editarApellidosTutor").value = data.lastname;
                 document.getElementById("telfTutor1").value = data.phone;

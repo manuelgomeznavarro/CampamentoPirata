@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+
 
 class TutorController extends Controller
 {
@@ -81,6 +83,10 @@ class TutorController extends Controller
 
     public function update(Request $request, $IdTutors)
     {
+        Log::info('Received request data:', $request->all()); // Log input
+        Log::info('Files:', $request->file()); // Log uploaded files
+        // Log::info('----:', $request); // Log uploaded files
+
         try {
             // Validate the request
             $request->validate([
