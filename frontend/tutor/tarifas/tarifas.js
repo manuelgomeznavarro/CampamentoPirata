@@ -27,4 +27,13 @@ fetch('http://127.0.0.1:8000/api/prices')
 .catch(error => {
     console.error('Error al obtener los datos:', error);
 });
+
+// Asignar evento click a cada plan-card
+document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', function (event) {
+        // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+        window.location.href = '../../index.html?showLogin=true';
+    });
+});
+
 })
