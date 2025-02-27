@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnGuardarTarifas2 = document.getElementById('btnGuardarTarifas2');
     const btnGuardarTarifas3 = document.getElementById('btnGuardarTarifas3');
     const btnGuardarTarifas4 = document.getElementById('btnGuardarTarifas4');
-    
+
 
     //Fetch para obtener los datos de las tarifas de la BBDD
     fetch('http://127.0.0.1:8000/api/prices')
@@ -84,6 +84,91 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.error('Error al crear la tarifa', error);
             });
+    }
+
+
+    //Fetch para obtener los datos de las inscripciones de la BBDD
+    fetch('http://127.0.0.1:8000/api/inscriptions')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((item, index) => {
+                console.log(`ID: ${item.id}, Tutor_Id: ${item.tutor_id}, Child_Id: ${item.child_id}`);
+                console.log(index);
+                obtenerInfoTutores(item.tutor_id, item.id, item.child_id);
+                // crearInfoInscripciones(item.tutor_id);
+                // crearElementoInscripcion(item.id, tutorData, childData);
+            })
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+
+    // Fetch para obtener los datos de los tutores que han realizado pagos
+    function obtenerInfoTutores(tutor_id, inscription_id, child_id) {
+        fetch(`http://127.0.0.1:8000/api/tutors/${tutor_id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error `);
+            }
+            return response.json();
+        })
+        .then(tutorData => {
+            // Asumiendo que data es un objeto que contiene la información del tutor
+            console.log(`ID: ${tutorData.id}, Nombre: ${tutorData.name}, Apellidos: ${tutorData.lastname}, DNI: ${tutorData.dni}, Teléfono: ${tutorData.phone}, Teléfono 2: ${tutorData.phone2}`);
+            crearInfoInscripciones(tutor_id, inscription_id, tutorData, child_id);
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+    }
+
+    // Fetch para obtener los datos de los niños que han realizado pagos
+
+    function crearInfoInscripciones(tutor_id, inscription_id, tutorData, child_id) {
+
+        fetch(`http://127.0.0.1:8000/api/children/${child_id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error `);
+                }
+                return response.json();
+            })
+            .then(childData => {
+                // Asumiendo que childData es un objeto que contiene la información del niño
+                console.log(`ID: ${childData.id}, Nombre: ${childData.name}, Apellidos: ${childData.lastname}, DNI: ${childData.dni}, Teléfono: ${childData.phone}, Teléfono 2: ${childData.phone2}`);
+                crearElementoInscripcion(inscription_id, tutorData, childData);
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
+    }
+
+    // Crear elementos HTML para mostrar la información de las inscripciones
+    function crearElementoInscripcion(inscription_id, tutorData, childData) {
+        const listaInscripciones = document.getElementById('info-pagos');
+
+        const elementoInscripcion = document.createElement('div');
+        elementoInscripcion.className = "inscripcion-realizadas-info";
+
+        const inscripcionInfo = document.createElement('p');
+        inscripcionInfo.textContent = `Inscripción ID: ${inscription_id}`;
+
+        const tutorInfo = document.createElement('p');
+        tutorInfo.textContent = `Tutor: ${tutorData.name} ${tutorData.lastname}`;
+
+        const childInfo = document.createElement('p');
+        childInfo.textContent = `Niño: ${childData.name} ${childData.lastname}`;
+
+        elementoInscripcion.appendChild(inscripcionInfo);
+        elementoInscripcion.appendChild(tutorInfo);
+        elementoInscripcion.appendChild(childInfo);
+
+        listaInscripciones.appendChild(elementoInscripcion);
     }
 
     btnPagos.addEventListener('click', function () {

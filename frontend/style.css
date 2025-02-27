@@ -125,6 +125,14 @@ input {
     background: #FFF;
 }
 
+textarea{
+    width: 490px;
+    height: 150px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.62);
+    background: #FFF;
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -3076,6 +3084,16 @@ input[type="radio"]+.plan-card {
     cursor: pointer;
 }
 
+.incidenciaResuelta{
+    display: flex;
+    flex-direction: column;
+    border: var(--base-color1) solid 1px;
+    border-radius: 16px;
+    gap: 20px;
+    margin-top: 14px;
+    align-items: center;
+}
+
 #btn-responder-incidencia {
     margin: 40px auto;
 }
@@ -3176,7 +3194,6 @@ input[type="radio"]+.plan-card {
     width: 100%;
     overflow: hidden;
     position: relative;
-    white-space: nowrap;
 }
 
 .carousel-track {

@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         listaMonitores.style.display = "none";
                         document.getElementById("nombre-editar-monitor").value = item.name;
                         document.getElementById("apellidos-editar-monitor").value = item.lastname;
-                        document.getElementById("correo-editar-monitor").value = item.email;
+                        // document.getElementById("correo-editar-monitor").value = item.email;
                         document.getElementById("password-editar-monitor").value = item.password;
                         document.getElementById("dni-editar-monitor").value = item.dni;
                         document.getElementById("telf1-editar-monitor").value = item.phone;
@@ -691,20 +691,20 @@ function validateLastNameEditar() {
     }
 }
 
-document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmailEditar);
+// document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmailEditar);
 
-function validateEmailEditar() {
-    const email = document.getElementById("correo-editar-monitor").value.trim();
-    const emailRegex = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    if (!emailRegex.test(email)) {
-        errorEmailEditar.style.color = "red";
-        errorEmailEditar.innerHTML = "Introduzca un email correcto.";
-        return false;
-    } else {
-        errorEmailEditar.innerHTML = "";
-        return true;
-    }
-}
+// function validateEmailEditar() {
+//     const email = document.getElementById("correo-editar-monitor").value.trim();
+//     const emailRegex = /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+//     if (!emailRegex.test(email)) {
+//         errorEmailEditar.style.color = "red";
+//         errorEmailEditar.innerHTML = "Introduzca un email correcto.";
+//         return false;
+//     } else {
+//         errorEmailEditar.innerHTML = "";
+//         return true;
+//     }
+// }
 
 document.getElementById("telf1-editar-monitor").addEventListener("blur", validatePhone1Editar);
 
