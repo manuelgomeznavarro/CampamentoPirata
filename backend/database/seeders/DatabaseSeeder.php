@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // 1. Create Admins (NBA League Officials)
+        // 1. Create Admins
         DB::table('admins')->insert([
             [
-                'name' => 'Adam',
-                'lastname' => 'Silver',
+                'name' => 'Santiago ',
+                'lastname' => 'Aldama',
                 'dni' => '12345678A',
                 'phone' => '666111222',
                 'phone2' => '666333444',
@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Mark',
-                'lastname' => 'Tatum',
+                'name' => 'Anton',
+                'lastname' => 'Álvarez',
                 'dni' => '87654321B',
                 'phone' => '666555666',
                 'phone2' => null,
@@ -86,17 +86,19 @@ class DatabaseSeeder extends Seeder
         // 3. Create Users for Admins and Monitors
         DB::table('users')->insert([
             [
-                'email' => 'asilver@nba.com',
+                'email' => 'saldama@tesoroperdido.com',
                 'password' => Hash::make('Password1@'),
                 'role' => 'admin',
+                'url_pic' => "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/user_images/1/santiago_aldama.png",
                 'role_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'email' => 'mtatum@nba.com',
+                'email' => 'aalvarez@tesoroperdido.com',
                 'password' => Hash::make('Password1@'),
                 'role' => 'admin',
+                'url_pic' => "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/user_images/2/anton_alvarez.jpg",
                 'role_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -106,6 +108,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('Password1@'),
                 'role' => 'monitor',
                 'role_id' => 1,
+                'url_pic' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -114,6 +117,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('Password1@'),
                 'role' => 'monitor',
                 'role_id' => 2,
+                'url_pic' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -122,6 +126,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('Password1@'),
                 'role' => 'tutor',
                 'role_id' => 1,
+                'url_pic' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -130,6 +135,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('Password1@'),
                 'role' => 'tutor',
                 'role_id' => 2,
+                'url_pic' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
