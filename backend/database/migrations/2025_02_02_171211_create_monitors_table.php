@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('phone');
             $table->string('phone2')->nullable();
+            $table->text('description');
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->timestamps();
         });

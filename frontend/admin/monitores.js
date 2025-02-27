@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dni = document.getElementById("dni-nuevo-monitor");
     const telf1 = document.getElementById("telf1-nuevo-monitor");
     const telf2 = document.getElementById("telf2-nuevo-monitor");
+    const description = document.getElementById('description-nuevo-monitor');
 
     //Fetch para agregar un monitor a la tabla monitores
     btnCrearMonitor.addEventListener('click', (e) => {
@@ -204,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
             phone2: telf2.value,
             email: email.value,
             password: password.value,
+            description: description.innerText,
             admin_id: localStorage.getItem('role_id')
         }
 
@@ -420,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
-            },
+            }, 
             body: JSON.stringify(monitorData)
         })
             .then(response => {
@@ -456,6 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 dni: document.getElementById("dni-editar-monitor").value,
                 phone: document.getElementById("telf1-editar-monitor").value,
                 phone2: document.getElementById("telf2-editar-monitor").value,
+                description: document.getElementById("description-editar-monitor").innerText,
                 admin_id: localStorage.getItem('role_id')
             };
             console.log(monitorData);

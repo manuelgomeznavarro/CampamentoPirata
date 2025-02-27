@@ -15,6 +15,7 @@ class Monitor extends Model
         'dni',
         'phone',
         'phone2',
+        'description',
         'admin_id',
     ];
 

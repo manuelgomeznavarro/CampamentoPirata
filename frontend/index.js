@@ -460,3 +460,55 @@ if (urlParams.get('showLogin') === 'true') {
     overlay_sign_in.style.display = "flex";
     contenedor_sign_in.style.display = "block";
 }
+
+const monitorContainer = document.querySelector('.team');
+const monitorPic = monitorContainer.querySelector('img');
+const monitorName = monitorContainer.querySelector('h5');
+const monitorDescription = monitorContainer.querySelector('.team-info p');
+
+fetch(`http://127.0.0.1:8000/api/monitors`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+
+        console.log(data);
+        
+        const lastMonitorIndex = data.length - 1;
+
+        console.log(data[lastMonitorIndex]);
+        
+        monitorName.innerText = `${data[lastMonitorIndex].name} ${data[lastMonitorIndex].lastname}`;
+        monitorDescription.innerText = data[lastMonitorIndex].description;
+
+        fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+            method: 'POST', //Método para enviar los datos al servidor
+            headers: {
+                'Content-Type': 'application/json' //Envío de datos en formato JSON
+            },
+            body: JSON.stringify({
+                role: 'monitor',
+                role_id: data[lastMonitorIndex].id
+            }) //Se convierte el objeto JS a una cadena JSON
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(dataMonitor => {
+                if (dataMonitor.url) {
+                    monitorPic.src = dataMonitor.url;
+                } else {
+                    monitorPic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                }
+            })
+            .catch(error => {
+                console.log(error);
+
+            })
+
+
+    })
+    .catch(error => {
+        console.log(error);
+
+    })

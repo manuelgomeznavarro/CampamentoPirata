@@ -41,6 +41,7 @@ class MonitorController extends Controller
                 'dni' => $request->dni,
                 'phone' => $request->phone,
                 'phone2' => $request->phone2,
+                'description' => $request->description,
                 'admin_id' => $request->admin_id,
             ]);
 
