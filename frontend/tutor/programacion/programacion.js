@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    
+
+    const track = document.querySelector(".carousel-track");
+    // const images = track.innerHTML; // Guardamos el contenido original
+    track.innerHTML += track.innerHTML; 
+
     function checkRole() {
         const role = localStorage.getItem('role');
 
@@ -88,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             console.log(data);
-            const cardsContainer = document.querySelector('.cards-container');
+            const cardsContainer = document.querySelector('.carousel-track');
             data.forEach((item, index) => {
                 console.log(`ID: ${item.id}, Nombre Actividad: ${item.name}, Descripción: ${item.description}`);
                 console.log(index);

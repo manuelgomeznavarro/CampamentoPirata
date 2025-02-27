@@ -361,7 +361,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Tarifa Delfin',
+                'name' => 'Tarifa Delfín',
                 'price' => 499.99,
                 'created_at' => now(),
                 'updated_at' => now(),
