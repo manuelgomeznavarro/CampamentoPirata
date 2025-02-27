@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const name = document.querySelector('#tutor-name').value.trim();
     const lastname = document.querySelector('#tutor-lastname').value.trim();
-    const email = document.querySelector('#tutor-email-inscription').value.trim();
+    // const email = document.querySelector('#tutor-email-inscription').value.trim();
     const dni = document.querySelector('#tutor-dni').value.trim();
     const tel1 = document.querySelector('#tutor-tel1').value.trim();
     const tel2 = document.querySelector('#tutor-tel2').value.trim();
@@ -165,23 +165,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //Validar email
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    const inputEmail = document.querySelector('#tutor-email-inscription');
-    if (inputEmail) {
-        inputEmail.addEventListener('blur', () => {
-            if (emailRegex.test(inputEmail.value)) {
-                inputEmail.classList.remove('error');
-                emailError.textContent = '';
-                inputEmail.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
-                inputEmail.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)"; 
-            } else {
-                inputEmail.classList.add('error');
-                emailError.textContent = 'El email no es válido';
-                inputEmail.style.border = '2px solid rgb(226, 93, 93)';
-                inputEmail.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
-            }
-        });
-    }
+    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    // const inputEmail = document.querySelector('#tutor-email-inscription');
+    // if (inputEmail) {
+    //     inputEmail.addEventListener('blur', () => {
+    //         if (emailRegex.test(inputEmail.value)) {
+    //             inputEmail.classList.remove('error');
+    //             emailError.textContent = '';
+    //             inputEmail.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+    //             inputEmail.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)"; 
+    //         } else {
+    //             inputEmail.classList.add('error');
+    //             emailError.textContent = 'El email no es válido';
+    //             inputEmail.style.border = '2px solid rgb(226, 93, 93)';
+    //             inputEmail.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+    //         }
+    //     });
+    // }
 
     //Validar telefono1
     const phoneRegex = /^[0-9]{9}$/;
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const camposObligatorios = [
             'tutor-name',
             'tutor-lastname',
-            'tutor-email-inscription',
+            // 'tutor-email-inscription',
             'tutor-dni',
             'tutor-tel1'
         ];
@@ -269,8 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     nameError.textContent = 'El nombre es obligatorio';
                 } else if (id === 'tutor-lastname') {
                     lastnameError.textContent = 'El apellido es obligatorio';
-                } else if (id === 'tutor-email-inscription') {
-                    emailError.textContent = 'El email es obligatorio';
+                // } else if (id === 'tutor-email-inscription') {
+                //     emailError.textContent = 'El email es obligatorio';
                 } else if (id === 'tutor-dni') {
                     dniError.textContent = 'El DNI es obligatorio';
                 } else if (id === 'tutor-tel1') {
@@ -758,4 +758,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al obtener los datos:', error);
         });
 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('child-t-shirt-size');
+        
+            selectElement.addEventListener('click', function() {
+                this.classList.toggle('open');
+            });
+        });
 });

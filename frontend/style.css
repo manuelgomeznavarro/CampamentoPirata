@@ -138,9 +138,27 @@ select {
     border: 1px solid rgba(0, 0, 0, 0.62);
     background-color: #FFF;
     cursor: pointer;
+    transition: background-position 0.3s ease;
+    
 }
 
+/* Clase para rotar la flecha */
+select::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: url('assets/icons/flechaDesplegableFaqs.svg') no-repeat center center;
+    background-size: 15px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
 
+select.open::after {
+    transform: translateY(-50%) rotate(180deg);
+}
 
 .anchor-button {
     display: flex;
@@ -3039,18 +3057,6 @@ input[type="radio"]+.plan-card {
 }
 
 
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 .overlay-registro-correcto {
     display: none;
     position: fixed;
@@ -3137,6 +3143,35 @@ input[type="radio"]+.plan-card {
     color: var(--error-message);
     font-weight: 600;
 }
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll 90s linear infinite;
+}
+
+.carousel-track img {
+    height: 150px;
+    width: auto;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {
