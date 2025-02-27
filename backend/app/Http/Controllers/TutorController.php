@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+
 
 class TutorController extends Controller
 {
@@ -81,10 +83,14 @@ class TutorController extends Controller
 
     public function update(Request $request, $IdTutors)
     {
+        Log::info('Received request data:', $request->all()); // Log input
+        Log::info('Files:', $request->file()); // Log uploaded files
+        // Log::info('----:', $request); // Log uploaded files
+
         try {
             // Validate the request
             $request->validate([
-                'image' => 'required|image|max:10240', // 10MB max
+                'image' => 'required|image|max:5120', // 5MB max
                 'json_data' => 'required|json'
             ]);
             
@@ -130,7 +136,7 @@ class TutorController extends Controller
             // Generate the public URL
             $bucket = env('DO_SPACES_BUCKET');
             $region = env('DO_SPACES_REGION');
-            $url = "https://{$bucket}.{$region}.digitaloceanspaces.com/{$path}";
+            $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/{$path}";
             
             // Update the user's url_pic
             $user->url_pic = $url;

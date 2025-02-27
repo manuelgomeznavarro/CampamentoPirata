@@ -138,14 +138,38 @@ class DatabaseSeeder extends Seeder
         // 4. Create Activities (Basketball Training Sessions)
         DB::table('activities')->insert([
             [
-                'name' => 'Shooting Practice',
-                'description' => 'Advanced shooting drills and techniques',
+                'name' => 'Gincana',
+                'description' => 'Gincana de habilidades',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Defense Training',
-                'description' => 'Defensive positioning and strategies',
+                'name' => 'Meditación inmersiva',
+                'description' => 'Meditación en grupo',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Creación de barco pirata',
+                'description' => 'Taller inmersivo de creación de barcos piratas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Creación de pirata y grupos piratas',
+                'description' => 'Taller de iniciación de creación de piratas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Esgrima',
+                'description' => 'Taller de iniciación de creación de piratas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Guerra de agua',
+                'description' => 'Pelea acuática',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

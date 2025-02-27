@@ -482,9 +482,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateTutorInfo(formData, tutorId) {
+        formData.append('_method', 'PUT');
         return fetch(`http://127.0.0.1:8000/api/tutors/${tutorId}`, {
-            method: 'PUT', //Método para enviar los datos al servidor
-            body: formData,
+            method: 'POST', //Método para enviar los datos al servidor
+            body: formData
         })
             .then(response => {
                 console.log(response);
@@ -577,6 +578,8 @@ document.addEventListener('DOMContentLoaded', () => {
             postal_code: summaryParagraphs[7].innerText,
         }
 
+        console.log(tutorInfo);
+
         const fileInput = document.getElementById('image-input');
         const file = fileInput.files[0];
         
@@ -605,6 +608,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         console.log(childInfo);
+
+        // console.log(formData.entries());
+        for (const pair of formData.entries()) {
+            console.log(pair[0], pair[1]);
+            console.log(pair);
+            
+        }
 
         updateTutorInfo(formData, localStorage.getItem('role_id'))
             .then(createChild(childInfo)

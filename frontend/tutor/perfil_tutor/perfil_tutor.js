@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Asignar evento click a cada plan-card
+    const reservaFooter = document.getElementById('registrar-footer')
+    reservaFooter.addEventListener('click', function (event) {
+            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+            if (localStorage.getItem('role') == 'tutor') {
+                window.location.href = '../inscripcion/inscripcion.html';
+            } else {
+                window.location.href = '../../index.html?showLogin=true';
+            }
+        });
+
     // function guardarDatos() {
         saveButton.addEventListener('click', async function (event) {
             event.preventDefault();
@@ -38,9 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 await introducirDatos(userData);
                 // const childId = await obtenerDatosNino();
                 // await introducirDatosNino(childData, childId);
-
                 
-
                 for (const childId of childrenIds) {
                     const childData = {
                         birthdate: document.getElementById(`editarFechaNacimiento-${childId}`).value,
@@ -70,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
+                document.title += ` ${data.name}`;
                 document.getElementById("editarNombreTutor").value = data.name;
                 document.getElementById("editarApellidosTutor").value = data.lastname;
                 document.getElementById("telfTutor1").value = data.phone;

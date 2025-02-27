@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkRole();
 
+    
+
     const btnReservation = document.querySelector('.btn-reservation');
     if (btnReservation) {
 
@@ -99,6 +101,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const contenedor_sign_up = document.getElementById("sign-up-container");
     const contenedor_sign_in = document.getElementById("sign-in-container");
     const overlay_sign_in = document.getElementById("overlay-sign-in");
+    const btnRegistrar = document.querySelector(".register");
+
+    if (registrarFooter) {
+
+        registrarFooter.addEventListener('click', function () {
+            if (localStorage.getItem('role') == 'tutor') {
+                window.location.href = './tutor/inscripcion/inscripcion.html';
+            } else {
+                overlay_sign_in.style.display = "flex";
+                contenedor_sign_in.style.display = "block";
+            }
+        });
+    };
+
 
     //JS HOME
     function closeForm() {
@@ -115,6 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     registrarFooter.addEventListener("click", () => {
+        closeForm();
+        overlay_sign_up.style.display = "flex";
+        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+    });
+
+    btnRegistrar.addEventListener("click", () => {
         closeForm();
         overlay_sign_up.style.display = "flex";
         contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
@@ -138,6 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
             closeForm();
         }
     });
+
+
 
 
     //JS SIGN UP
@@ -300,14 +324,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     passwordInputSignIn.addEventListener("blur", () => {
         const password = passwordInputSignIn.value;
-        if (!(/^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(password)) || contra == null) {
+        const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    
+        if (!regex.test(password)) {
             errorPasswordSignIn.style.color = "red";
             errorPasswordSignIn.innerHTML = "Introduzca una contraseña correcta.";
         } else {
             errorPasswordSignIn.innerHTML = "";
         }
     });
-
+    
 
     // SIGN IN
     function singIn(userData) {
@@ -339,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error al iniciar sesión', error);
             });
     }
+    
 
     formSignIn.addEventListener("submit", (e) => {
         e.preventDefault();  // Previene el comportamiento por defecto del formulario (recarga de página)
@@ -405,3 +432,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 })
+
+const inicio = document.getElementById("sign-in");
+const registrar = document.getElementById("sign-up");
+const registrarFooter = document.getElementById("registrar-footer");
+const overlay_sign_up = document.getElementById("overlay-sign-up");
+const contenedor_sign_up = document.getElementById("sign-up-container");
+const contenedor_sign_in = document.getElementById("sign-in-container");
+const overlay_sign_in = document.getElementById("overlay-sign-in");
+const btnRegistrar = document.querySelector(".register");
+
+//JS HOME
+function closeForm() {
+    //Se cierra cualquier formulario que esté abierto
+    overlay_sign_up.style.display = "none";
+    contenedor_sign_up.style.display = "none";
+    overlay_sign_in.style.display = "none";
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+console.log(urlParams);
+
+if (urlParams.get('showLogin') === 'true') {
+    // Mostrar el pop-up de iniciar sesión
+    // document.getElementById('login-popup').style.display = 'block';
+    closeForm();
+    overlay_sign_in.style.display = "flex";
+    contenedor_sign_in.style.display = "block";
+}
