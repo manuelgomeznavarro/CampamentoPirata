@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     headerBtnsContainer.innerHTML = "";
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
+                    headerBtnsContainer.appendChild(btnSalir);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
                     break;
 
                 case 'monitor':
