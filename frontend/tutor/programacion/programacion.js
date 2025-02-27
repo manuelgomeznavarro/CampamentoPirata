@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    
+
 
     const track = document.querySelector(".carousel-track");
     // const images = track.innerHTML; // Guardamos el contenido original
-    track.innerHTML += track.innerHTML; 
+    track.innerHTML += track.innerHTML;
 
     function checkRole() {
         const role = localStorage.getItem('role');
@@ -18,8 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
                     reservationBtn.innerText = 'Reserva';
 
+                    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.reload();
+                    });
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
+
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('../../tutor/perfil_tutor/perfil_tutor.html');
+                    });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -51,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     headerBtnsContainer.innerHTML = "";
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
-
+                    headerBtnsContainer.appendChild(btnSalir);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
                     break;
 
                 case 'monitor':
@@ -75,16 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Asignar evento click a cada plan-card
     const reservaFooter = document.getElementById('registrar-footer')
     reservaFooter.addEventListener('click', function (event) {
-            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
-            if (localStorage.getItem('role') == 'tutor') {
-                window.location.href = '../inscripcion/inscripcion.html';
-            } else {
-                window.location.href = '../../index.html?showLogin=true';
-            }
-        });
+        // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+        if (localStorage.getItem('role') == 'tutor') {
+            window.location.href = '../inscripcion/inscripcion.html';
+        } else {
+            window.location.href = '../../index.html?showLogin=true';
+        }
+    });
 
 
     //Fetch para obtener los datos de las tarifas de la BBDD
+    // Fetch para obtener los datos de las tarifas de la BBDD
     fetch('http://127.0.0.1:8000/api/activities')
         .then(response => {
             if (!response.ok) {
@@ -133,6 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Agregar la tarjeta al contenedor de tarjetas
                 cardsContainer.appendChild(card);
             });
+
+            // Duplicar el contenido del carrusel para crear un efecto de desplazamiento infinito
+            cardsContainer.innerHTML += cardsContainer.innerHTML;
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+
 
         })
         .catch(error => {

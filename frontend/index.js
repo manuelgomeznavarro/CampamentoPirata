@@ -11,8 +11,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
                     reservationBtn.innerText = 'Reserva';
 
+                    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.reload();
+                    });
+
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
+
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('./tutor/perfil_tutor/perfil_tutor.html');
+                    }
+                    );
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -44,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     headerBtnsContainer.innerHTML = "";
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
-
+                    headerBtnsContainer.appendChild(btnSalir);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
                     break;
 
                 case 'monitor':
