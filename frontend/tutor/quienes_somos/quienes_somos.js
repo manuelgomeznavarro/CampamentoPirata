@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Asignar evento click a cada plan-card
     const reservaFooter = document.getElementById('registrar-footer')
     reservaFooter.addEventListener('click', function (event) {
-            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
-            if (localStorage.getItem('role') == 'tutor') {
-                window.location.href = '../inscripcion/inscripcion.html';
-            } else {
-                window.location.href = '../../index.html?showLogin=true';
-            }
-        });
+        // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+        if (localStorage.getItem('role') == 'tutor') {
+            window.location.href = '../inscripcion/inscripcion.html';
+        } else {
+            window.location.href = '../../index.html?showLogin=true';
+        }
+    });
 
     //Fetch para enviar la incidencia
     function enviarIncidencia(incidencia) {
@@ -52,7 +52,28 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         console.log("", incidencia);
         enviarIncidencia(incidencia);
-        formIncidencia.reset();
+        // formIncidencia.reset();
+
+
+        const finIncidencia = document.getElementById("finalizar-incidencia");
+        const overlayIncidencia = document.getElementById("overlay-incidencia-correcta");
+        const contenedorIncidenciaCorrecto = document.getElementById("incidencia-correcta-container");
+
+        console.log("fufa fin incidencia");
+        if (finIncidencia) {
+            overlayIncidencia.style.display = "flex";
+            contenedorIncidenciaCorrecto.style.display = "block";
+            finIncidencia.addEventListener('click', function () {
+                console.log("fufa?");
+                formIncidencia.reset();
+                // href = "../../index.html";
+                overlayIncidencia.style.display = "none";
+                contenedorIncidenciaCorrecto.style.display = "block";
+            });
+        }
+
+        // };
+
 
     });
 
@@ -71,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 respuesta.style.display = 'block';
             } else {
                 respuesta.style.display = 'none';
-            }        
+            }
         });
     });
 });

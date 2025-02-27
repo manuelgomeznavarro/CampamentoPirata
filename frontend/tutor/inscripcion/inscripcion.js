@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         steps.forEach((step, index) => {
             step.classList.toggle('active', index === currentStep);
         });
-
-
     }
 
     // Añadir este código en la sección de inicialización
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
 
     const name = document.querySelector('#tutor-name').value.trim();
     const lastname = document.querySelector('#tutor-lastname').value.trim();
@@ -97,9 +94,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nameRegex.test(inputName.value)) {
             inputName.classList.remove('error');
             nameError.textContent = '';
+            inputName.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputName.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputName.classList.add('error');
             nameError.textContent = 'El nombre no es válido';
+            // inputName.style.border = '2px solid red';
+            // inputName.style.border = "rgb(226, 93, 93)";  // Cambia el borde a rojo
+            inputName.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";  // Añade sombra roja
+            inputName.style.border =  "2px solid rgb(226, 93, 93)";
         }
     });
 
@@ -110,9 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lastnameRegex.test(inputLastname.value)) {
             inputLastname.classList.remove('error');
             lastnameError.textContent = '';
+            inputLastname.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputLastname.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";  // Añade sombra verde
         } else {
             inputLastname.classList.add('error');
             lastnameError.textContent = 'El apellido no es válido';
+            inputLastname.style.border = "2px solid rgb(226, 93, 93)";  // Cambia el borde a rojo
+            inputLastname.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";  // Añade sombra roja
         }
     });
 
@@ -123,9 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dniRegex.test(inputDni.value)) {
             inputDni.classList.remove('error');
             dniError.textContent = '';
+            inputDni.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputDni.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";  // Añade sombra verde
         } else {
             inputDni.classList.add('error');
             dniError.textContent = 'El DNI no es válido. Introduzca 8 dígitos y una letra';
+            inputDni.style.border = '2px solid rgb(226, 93, 93)';
+            inputDni.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -137,9 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (emailRegex.test(inputEmail.value)) {
                 inputEmail.classList.remove('error');
                 emailError.textContent = '';
+                inputEmail.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+                inputEmail.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)"; 
             } else {
                 inputEmail.classList.add('error');
                 emailError.textContent = 'El email no es válido';
+                inputEmail.style.border = '2px solid rgb(226, 93, 93)';
+                inputEmail.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
             }
         });
     }
@@ -151,21 +166,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (phoneRegex.test(inputTel1.value)) {
             inputTel1.classList.remove('error');
             tel1Error.textContent = '';
+            inputTel1.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputTel1.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)"; 
         } else {
             inputTel1.classList.add('error');
             tel1Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
+            inputTel1.style.border = '2px solid rgb(226, 93, 93)';
+            inputTel1.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
     //Validar telefono2
     const inputTel2 = document.querySelector('#tutor-tel2');
     inputTel2.addEventListener('blur', () => {
-        if (inputTel2.value == "" || phoneRegex.test(inputTel2.value)) {
+        if (phoneRegex.test(inputTel2.value)) {
             inputTel2.classList.remove('error');
             tel2Error.textContent = '';
+            inputTel2.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputTel2.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+        } else if (inputTel2.value == "") {
+            inputTel2.classList.remove('error');
+            tel2Error.textContent = '';
+            inputTel2.style.border = "1px solid rgba(0, 0, 0, 0.62)";
+            inputTel2.style.boxShadow = "none";
         } else {
             inputTel2.classList.add('error');
             tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
+            inputTel2.style.border = '2px solid rgb(226, 93, 93)';
+            inputTel2.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -173,12 +201,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const postalCodeRegex = /^[0-9]{5}$/;
     const inputPostalCode = document.querySelector('#tutor-postal-code');
     inputPostalCode.addEventListener('blur', () => {
-        if (inputPostalCode.value == "" || postalCodeRegex.test(inputPostalCode.value)) {
+        if (postalCodeRegex.test(inputPostalCode.value)) {
             inputPostalCode.classList.remove('error');
             postalCodeError.textContent = '';
-        } else {
+            inputPostalCode.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputPostalCode.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+            
+        } else if(inputPostalCode.value == ""){
+            inputPostalCode.classList.remove('error');
+            postalCodeError.textContent = '';
+            inputPostalCode.style.border = "1px solid rgba(0, 0, 0, 0.62)";
+            inputPostalCode.style.boxShadow = "none";
+        } 
+        else {
             inputPostalCode.classList.add('error');
             postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
+            inputName.style.border = '2px solid red';
+            inputPostalCode.style.border = '2px solid rgb(226, 93, 93)';
+            inputPostalCode.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -331,7 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = document.querySelector(`#${id}`);
             if (input && input.value.trim() === "") {
                 isValid = false;
-                input.style.border = '2px solid red';
                 if (id === 'child-name') {
                     nameErrorChild.textContent = 'El nombre es obligatorio';
                 } else if (id === 'child-lastname') {
@@ -369,9 +408,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nameRegexChild.test(inputNameChild.value)) {
             inputNameChild.classList.remove('error');
             nameErrorChild.textContent = '';
+            inputNameChild.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputNameChild.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputNameChild.classList.add('error');
             nameErrorChild.textContent = 'El nombre no es válido';
+            inputNameChild.style.border = '2px solid rgb(226, 93, 93)';
+            inputNameChild.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -382,9 +425,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lastnameRegexChild.test(inputLastnameChild.value)) {
             inputLastnameChild.classList.remove('error');
             lastnameErrorChild.textContent = '';
+            inputLastnameChild.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputLastnameChild.style.boxShadow = "0 0 10px rgba(93, 226, 102,0.5)";
         } else {
             inputLastnameChild.classList.add('error');
             lastnameErrorChild.textContent = 'El apellido no es válido';
+            inputLastnameChild.style.border = '2px solid rgb(226, 93, 93)';
+            inputLastnameChild.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -395,9 +442,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (birthdateRegex.test(inputBirthdate.value)) {
             inputBirthdate.classList.remove('error');
             bornDateErrorChild.textContent = '';
+            inputBirthdate.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputBirthdate.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputBirthdate.classList.add('error');
             bornDateErrorChild.textContent = 'La fecha de nacimiento no es válida. Debe haber nacido entre 2017 y 2018';
+            inputBirthdate.style.border = '2px solid rgb(226, 93, 93)';
+            inputBirthdate.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
@@ -405,9 +456,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.selectedIndex == 0) {
             tShirtSize.classList.add('error');
             tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
+            tShirtSize.style.border = '2px solid rgb(226, 93, 93)';
+            tShirtSize.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+
         } else {
             inputBirthdate.classList.remove('error');
             tShirtSizeErrorChild.textContent = '';
+            tShirtSize.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            tShirtSize.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         }
     });
 
@@ -449,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
 
             console.log([formInputs, summaryParagraphs]);
-            
+
 
             // Handle selected plan (Step 3 radio buttons)
             const selectedPlan = document.querySelector('input[name="plan"]:checked');
@@ -489,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(response => {
                 console.log(response);
-                
+
 
                 // if (!response.success) {
                 //     throw new Error('Error al registrar el usuario');
@@ -498,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 console.log(data);
-                
+
                 console.log("Información del tutor actualizada con éxito", data);
                 // localStorage.setItem('role', data.user.role);
                 // localStorage.setItem('role_id', data.user.role_id);
@@ -558,10 +614,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        console.log("se crea el niño");
         if (e.submitter.className === 'volver') {
             return;
         }
@@ -582,18 +638,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fileInput = document.getElementById('image-input');
         const file = fileInput.files[0];
-        
+
         if (!file) {
             alert('Please select an image');
             return;
         }
-        
+
         // Create form data for both file and JSON data
         const formData = new FormData();
-        
+
         // Add the file
         formData.append('image', file);
-        
+
         // Convert JSON to string and append to FormData
         formData.append('json_data', JSON.stringify(tutorInfo));
 
@@ -613,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const pair of formData.entries()) {
             console.log(pair[0], pair[1]);
             console.log(pair);
-            
+
         }
 
         updateTutorInfo(formData, localStorage.getItem('role_id'))
@@ -630,6 +686,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     createInscription(inscripcionInfo)
                 })
             )
+
+        const finInscripcion = document.getElementById("finalizar-inscripcion");
+        const overlayRegistro = document.getElementById("overlay-registro-correcto");
+        const contenedorRegistroCorrecto = document.getElementById("registro-correcto-container");
+
+        // if (finInscripcion) {
+
+        console.log("fufa fin inscripcion");
+        overlayRegistro.style.display = "flex";
+        contenedorRegistroCorrecto.style.display = "block";
+
+        // };
+
+        finInscripcion.addEventListener('click', function () {
+            console.log("fufa?");
+            href = "../../index.html";
+        });
     })
 
     //Fetch para obtener los datos de las tarifas de la BBDD

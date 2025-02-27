@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Crear una nueva tarjeta
                 const card = document.createElement('div');
                 card.classList.add('card');
-
+                card.style.animation = `slideIn 0.5s ease-out ${index * 0.2}s forwards`;
                 // Crear el elemento figure y la imagen
                 const figure = document.createElement('figure');
                 const img = document.createElement('img');
