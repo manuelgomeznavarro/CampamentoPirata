@@ -283,6 +283,7 @@ main section {
     width: 100%;
     height: 2325px;
     background: linear-gradient(180deg, #DCE8FA 0%, #BCD4F6 10%, #325798 63.68%, #111B34 100%);
+    margin-bottom: 100px;
 }
 
 main section h2 {
@@ -314,8 +315,8 @@ main .activities .cards-container {
 }
 
 main .activities .cards-container .card {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     width: 320px;
     height: 373px;
     padding-bottom: 28px;
@@ -324,12 +325,20 @@ main .activities .cards-container .card {
     gap: 16px;
     border-radius: 16px;
     background: var(--background-color3);
-    opacity: 0;
-    transform: translateX(-100%);
+}
+
+main .activities .cards-container .card figure {
+    width: 100%;
+    height: 126px; /* o el alto que desees */
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
 }
 
 main .activities .cards-container .card figure img {
-    border-radius: 16px 16px 0px 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 main .activities .cards-container .card div {
@@ -366,6 +375,7 @@ main .prices {
     display: flex;
     flex-direction: column;
     width: auto;
+    margin-bottom: 100px;
 }
 
 main .prices .prices-content {
@@ -435,19 +445,18 @@ main .team>div .team-info h5 {
 main .team>div .team-info P {
     font-size: 16px;
     font-weight: 600;
-    width: 90%;
+    width: 100%;
 }
 
 main .team>div button {
     padding: 12px;
-    width: 40%;
+    width: 80%;
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
 }
 
 footer {
-    margin-top: 60px;
     display: flex;
     flex-direction: column;
     width: 99vw;
@@ -463,13 +472,14 @@ footer .footer-content {
 footer .footer-content div {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
 footer .footer-content div h5 {
     color: var(--background-color3);
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 42px;
+    margin-bottom: 30px;
 }
 
 footer .footer-content div p {
@@ -477,7 +487,12 @@ footer .footer-content div p {
     font-size: 20px;
     font-weight: 500;
     width: 75%;
-    margin-bottom: 42px;
+    margin-bottom: 30px;
+}
+
+footer .footer-content div figure > img {
+    width: 52px !important;
+    height: 52px !important;
 }
 
 footer .footer-content div a {
@@ -486,7 +501,7 @@ footer .footer-content div a {
     font-family: Poppins;
     font-size: 20px;
     font-weight: 700;
-    text-decoration: none;
+    text-decoration: underline var(--burning-coral);
 }
 
 footer hr {
@@ -510,6 +525,17 @@ footer .footer-info div {
     display: flex;
     flex-direction: row;
     gap: 16px;
+}
+
+footer .footer-info div a {
+    display: inline-block;
+    width: fit-content;
+    height: auto;
+    margin: 0;
+}
+
+footer .footer-info div a img {
+    height: 32px !important;
 }
 
 main .fade-container {
@@ -554,6 +580,8 @@ main .programming-cards-container .cards-container .card {
     gap: 16px;
     border-radius: 16px;
     background: var(--background-color3);
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 main .programming-cards-container .cards-container .card figure img {

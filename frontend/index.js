@@ -476,29 +476,40 @@ fetch(`http://127.0.0.1:8000/api/monitors`)
         
         const lastMonitorIndex = data.length - 1;
 
-        console.log(data[lastMonitorIndex]);
+        console.log(data[lastMonitorIndex].id);
         
         monitorName.innerText = `${data[lastMonitorIndex].name} ${data[lastMonitorIndex].lastname}`;
         monitorDescription.innerText = data[lastMonitorIndex].description;
+
+        const info = {
+            role: 'monitor',
+            role_id: data[lastMonitorIndex].id
+        }
+
+        console.log(info);
+        
 
         fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
             method: 'POST', //Método para enviar los datos al servidor
             headers: {
                 'Content-Type': 'application/json' //Envío de datos en formato JSON
             },
-            body: JSON.stringify({
-                role: 'monitor',
-                role_id: data[lastMonitorIndex].id
-            }) //Se convierte el objeto JS a una cadena JSON
+            body: JSON.stringify(info) //Se convierte el objeto JS a una cadena JSON
         })
             .then(response => {
+                console.log(response);
+                
+
                 return response.json();
             })
             .then(dataMonitor => {
+                console.log(dataMonitor);
+                
+
                 if (dataMonitor.url) {
                     monitorPic.src = dataMonitor.url;
                 } else {
-                    monitorPic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    monitorPic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                 }
             })
             .catch(error => {
@@ -511,4 +522,44 @@ fetch(`http://127.0.0.1:8000/api/monitors`)
     .catch(error => {
         console.log(error);
 
+    })
+
+
+// const cardsActivities = [...document.querySelectorAll('.cards-container .card')];
+const cardsContainer = document.querySelector('.cards-container');
+
+fetch(`http://127.0.0.1:8000/api/activities`)
+    .then(response => {
+        return response.json();
+    })
+    .then(activities => {
+        for (let i = 0; i < 3; i++) {
+            const element = activities[i];
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const cardImageContainer = document.createElement('figure');
+            const cardImage = document.createElement('img');
+
+            cardImage.src = element.url_pic;
+
+            cardImageContainer.appendChild(cardImage);
+
+            card.appendChild(cardImageContainer);
+
+            const cardTextsContainer = document.createElement('div');
+            const cardTextsTitle = document.createElement('h6');
+            const cardTextsContent = document.createElement('p');
+
+            cardTextsTitle.innerText = element.name;
+            cardTextsContent.innerText = element.description;
+
+            cardTextsContainer.appendChild(cardTextsTitle);
+            cardTextsContainer.appendChild(cardTextsContent);
+
+            card.appendChild(cardTextsContainer);
+
+            cardsContainer.appendChild(card);
+        }
     })
