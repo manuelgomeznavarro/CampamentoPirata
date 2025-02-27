@@ -3148,28 +3148,13 @@ input[type="radio"]+.plan-card {
     width: 100%;
     overflow: hidden;
     position: relative;
-    white-space: nowrap;
 }
 
 .carousel-track {
     display: flex;
     gap: 20px;
     width: max-content;
-    animation: scroll 90s linear infinite;
-}
-
-.carousel-track img {
-    height: 150px;
-    width: auto;
-}
-
-@keyframes scroll {
-    from {
-        transform: translateX(-50%);
-    }
-    to {
-        transform: translateX(0);
-    }
+    position: relative;
 }
 
 
