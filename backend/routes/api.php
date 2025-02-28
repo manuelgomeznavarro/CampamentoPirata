@@ -138,4 +138,4 @@ Route::post('/get_user_pic', [UserController::class, 'get_user_pic']);
 
 Route::get('/tutor/child_by_tutor/{tutor_id}', [TutorController::class, 'children_info']);
 
-Route::get('/incidents/{tutor_id}', [IncidentController::class, 'show_incidents_by_tutor']);
+Route::get('/incidents/show_incidents_by_tutor/{tutor_id}', [IncidentController::class, 'show_incidents_by_tutor']);

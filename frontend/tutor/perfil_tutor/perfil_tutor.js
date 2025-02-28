@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (contenedorEditar.style.display === "none") {
             contenedorEditar.style.display = "flex";
             contenedorPerfil.style.display = "none";
+            contenedorReportes.style.display = "none";
         } else {
             contenedorEditar.style.display = "none";
         }
@@ -125,13 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     volverButton.addEventListener('click', function (event) {
-
+        if (contenedorPerfil.style.display === "none") {
+            contenedorPerfil.style.display = "flex";
+            contenedorEditar.style.display = "none";
+            contenedorReportes.style.display = "none";
+        } else {
+            contenedorPerfil.style.display = "none";
+        }
     })
+
+    const mostrarIncidencias = document.getElementById('mostrar-incidencias');
 
     function recibirIncidencias() {
         
         console.log("Está entrando");
-        return fetch(`http://127.0.0.1:8000/api/incidents/${localStorage.getItem('role_id')}`)
+        return fetch(`http://127.0.0.1:8000/api/incidents/show_incidents_by_tutor/${localStorage.getItem('role_id')}`)
             .then(response => { 
                 if (!response.ok) {
                     throw new Error('Error al obtener datos');
@@ -144,20 +153,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(`ID: ${item.id}, Asunto: ${item.subject}, Descripcion: ${item.description}, Estado: ${item.status}, Respuesta: ${item.admin_response}`);
                     console.log(index);
 
+                    mostrarIncidencias.innerHTML = "";
                     const incidencia = document.createElement("div");
                     const titulo = document.createElement("h2");
                     titulo.textContent = item.subject;
                     const description = document.createElement("p");
-                    description.textContent = item.description;
+                    description.textContent = "Descripción: " + item.description;
                     const estado = document.createElement("p");
-                    estado.textContent = item.status;
+                    estado.textContent = "Estado del reporte: " + item.status;
                     const respuesta = document.createElement("p");
-                    respuesta.textContent = item.admin_response;
+                    respuesta.textContent = "Respuesta del Administrador: " + item.admin_response;
                     incidencia.appendChild(titulo);
                     incidencia.appendChild(description);
                     incidencia.appendChild(estado);
                     incidencia.appendChild(respuesta);
-                    contenedorReportes.appendChild(incidencia);
+                    mostrarIncidencias.appendChild(incidencia);
 
                 })
                 // return data;
