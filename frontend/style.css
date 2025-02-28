@@ -2610,6 +2610,13 @@ td {
     cursor: pointer;
 }
 
+.inscription-prices-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
 .inscription-container {
     background-color: var(--brand-color);
 }
@@ -2728,11 +2735,23 @@ td {
     cursor: pointer;
 } */
 
+.incription-prices-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
 .inscription-container .plan-option {
     border: 1px solid #ccc;
     padding: 15px;
     margin: 10px 0;
     border-radius: 8px;
+}
+
+.cards-plans-error {
+    font-weight: 600;
+    font-size: 24px;
 }
 
 /* Add these CSS modifications */

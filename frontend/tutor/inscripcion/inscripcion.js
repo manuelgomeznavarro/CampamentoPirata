@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const radioInputs = [...document.querySelectorAll('input[name="plan"]')];
         let isValid = radioInputs.some(radio => radio.checked);
 
-        const existingError = inscriptionsPricesContainer.querySelector('.plan-error');
+        const existingError = inscriptionsPricesContainer.parentElement.querySelector('.plan-error');
 
         if (!isValid) {
             if (!existingError) {
@@ -665,7 +665,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorPriceCards.style.color = "red";
                 errorPriceCards.textContent = "¡Selecciona un plan!";
                 errorPriceCards.classList.add('plan-error');
-                inscriptionsPricesContainer.appendChild(errorPriceCards);
+                errorPriceCards.classList.add('cards-plans-error');                
+
+                inscriptionsPricesContainer.parentElement.appendChild(errorPriceCards);
             }
         } else {
             if (existingError) {
