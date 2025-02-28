@@ -84,34 +84,31 @@ document.addEventListener("DOMContentLoaded", () => {
     checkRole();
 
     
-
     const btnReservation = document.querySelector('.btn-reservation');
     if (btnReservation) {
-
         btnReservation.addEventListener('click', function () {
             if (localStorage.getItem('role') == 'tutor') {
                 window.location.href = './tutor/inscripcion/inscripcion.html';
             } else {
-                overlay_sign_in.style.display = "flex";
-                contenedor_sign_in.style.display = "block";
+                showForm(overlay_sign_in, contenedor_sign_in);
             }
         });
     };
-
+    
     const btnVerTarifas = document.querySelector('#btn-ver-tarifas');
     if (btnVerTarifas) {
         btnVerTarifas.addEventListener('click', function () {
             window.location.href = './tutor/tarifas/tarifas.html';
         });
     }
-
+    
     const btnConoceAlEquipo = document.querySelector('#btn-conocenos');
     if (btnConoceAlEquipo) {
         btnConoceAlEquipo.addEventListener('click', function () {
             window.location.href = './tutor/quienes_somos/quienes_somos.html';
         });
     }
-
+    
     const inicio = document.getElementById("sign-in");
     const registrar = document.getElementById("sign-up");
     const registrarFooter = document.getElementById("registrar-footer");
@@ -120,68 +117,109 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenedor_sign_in = document.getElementById("sign-in-container");
     const overlay_sign_in = document.getElementById("overlay-sign-in");
     const btnRegistrar = document.querySelector(".register");
-
+    
     if (registrarFooter) {
-
         registrarFooter.addEventListener('click', function () {
             if (localStorage.getItem('role') == 'tutor') {
                 window.location.href = './tutor/inscripcion/inscripcion.html';
             } else {
-                overlay_sign_in.style.display = "flex";
-                contenedor_sign_in.style.display = "block";
+                showForm(overlay_sign_in, contenedor_sign_in);
             }
         });
     };
-
-
-    //JS HOME
-    function closeForm() {
-        //Se cierra cualquier formulario que esté abierto
-        overlay_sign_up.style.display = "none";
-        contenedor_sign_up.style.display = "none";
-        overlay_sign_in.style.display = "none";
+    
+    // Función mejorada para mostrar con animación de fade in desde el centro
+    function showForm(overlay, container) {
+        // Primero mostramos los elementos con display flex/block pero con opacidad 0
+        overlay.style.display = "flex";
+        container.style.display = "block";
+        
+        // Forzamos un reflow para asegurarnos que los cambios de display se apliquen
+        void overlay.offsetWidth;
+        
+        // Añadimos las clases que activarán las transiciones
+        overlay.classList.add('active');
+        container.classList.add('active');
+        
+        // Eliminamos las clases de cierre si estuvieran presentes
+        overlay.classList.remove('closing');
+        container.classList.remove('closing');
     }
-
+    
+    // Función mejorada para cerrar con animación de fade out hacia el centro
+    function closeForm() {
+        const overlays = document.querySelectorAll('.overlay-sign-up, .overlay-sign-in');
+        const containers = document.querySelectorAll('.sign-up-container, .sign-in-container');
+        
+        // Añadimos las clases de cierre y quitamos las clases active
+        overlays.forEach(overlay => {
+            overlay.classList.remove('active');
+            overlay.classList.add('closing');
+        });
+        
+        containers.forEach(container => {
+            container.classList.remove('active');
+            container.classList.add('closing');
+        });
+        
+        // Esperamos a que terminen las transiciones antes de ocultar los elementos
+        setTimeout(() => {
+            overlays.forEach(overlay => {
+                overlay.style.display = "none";
+                overlay.classList.remove('closing');
+            });
+            
+            containers.forEach(container => {
+                container.style.display = "none";
+                container.classList.remove('closing');
+            });
+        }, 300); // Duración de la transición (debe coincidir con el CSS)
+    }
+    
+    // Event listeners para abrir los formularios
     registrar.addEventListener("click", () => {
         closeForm();
-        overlay_sign_up.style.display = "flex";
-        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+        setTimeout(() => {
+            showForm(overlay_sign_up, contenedor_sign_up);
+        }, 310); // Pequeño delay para asegurar que el cierre anterior completó
     });
-
-    registrarFooter.addEventListener("click", () => {
-        closeForm();
-        overlay_sign_up.style.display = "flex";
-        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
-    });
-
+    
+    if (registrarFooter) {
+        registrarFooter.addEventListener("click", () => {
+            closeForm();
+            setTimeout(() => {
+                showForm(overlay_sign_up, contenedor_sign_up);
+            }, 310);
+        });
+    }
+    
     btnRegistrar.addEventListener("click", () => {
         closeForm();
-        overlay_sign_up.style.display = "flex";
-        contenedor_sign_up.style.display = "block";  // Muestra el contenedor de registro
+        setTimeout(() => {
+            showForm(overlay_sign_up, contenedor_sign_up);
+        }, 310);
     });
-
-    overlay_sign_up.addEventListener("click", (event) => {
-        if (event.target === overlay_sign_up) {
-            overlay_sign_up.style.display = "none";  // Oculta la superposición
-            contenedor_sign_up.style.display = "none";  // Oculta el contenedor de registro
-        }
-    });
-
+    
     inicio.addEventListener("click", () => {
         closeForm();
-        overlay_sign_in.style.display = "flex";
-        contenedor_sign_in.style.display = "block";
-    })
-
+        setTimeout(() => {
+            showForm(overlay_sign_in, contenedor_sign_in);
+        }, 310);
+    });
+    
+    // Event listeners para cerrar al hacer clic en el overlay
+    overlay_sign_up.addEventListener("click", (event) => {
+        if (event.target === overlay_sign_up) {
+            closeForm();
+        }
+    });
+    
     overlay_sign_in.addEventListener("click", (event) => {
         if (event.target === overlay_sign_in) {
             closeForm();
         }
     });
-
-
-
-
+    
     //JS SIGN UP
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
@@ -460,13 +498,13 @@ const contenedor_sign_in = document.getElementById("sign-in-container");
 const overlay_sign_in = document.getElementById("overlay-sign-in");
 const btnRegistrar = document.querySelector(".register");
 
-//JS HOME
-function closeForm() {
-    //Se cierra cualquier formulario que esté abierto
-    overlay_sign_up.style.display = "none";
-    contenedor_sign_up.style.display = "none";
-    overlay_sign_in.style.display = "none";
-}
+// //JS HOME
+// function closeForm() {
+//     //Se cierra cualquier formulario que esté abierto
+//     overlay_sign_up.style.display = "none";
+//     contenedor_sign_up.style.display = "none";
+//     overlay_sign_in.style.display = "none";
+// }
 
 const urlParams = new URLSearchParams(window.location.search);
 console.log(urlParams);

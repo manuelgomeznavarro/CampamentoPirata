@@ -1120,6 +1120,13 @@ figure img:not(.wave figure img):not(.map figure img) {
     justify-content: center;
     align-items: center;
     z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay-sign-up.active,
+.overlay-sign-in.active {
+    opacity: 1;
 }
 
 .sign-up-container,
@@ -1127,7 +1134,6 @@ figure img:not(.wave figure img):not(.map figure img) {
     display: none;
     position: fixed;
     flex-wrap: wrap;
-    /* justify-content: center; */
     align-items: center;
     margin-left: 0%;
     height: auto;
@@ -1136,8 +1142,27 @@ figure img:not(.wave figure img):not(.map figure img) {
     padding: 34px;
     z-index: 12;
     border-radius: 16px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.sign-up-container.active,
+.sign-in-container.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.overlay-sign-up.closing,
+.overlay-sign-in.closing {
+    opacity: 0;
+}
+
+.sign-up-container.closing,
+.sign-in-container.closing {
+    opacity: 0;
+    transform: scale(0.8);
+}
 
 .sign-up-container>*,
 .sign-in-container>* {
