@@ -137,3 +137,5 @@ Route::get('/incidents/pending/{admin_id}', [IncidentController::class, 'show_in
 Route::post('/get_user_pic', [UserController::class, 'get_user_pic']);
 
 Route::get('/tutor/child_by_tutor/{tutor_id}', [TutorController::class, 'children_info']);
+
+Route::get('/incidents/{tutor_id}', [IncidentController::class, 'show_incidents_by_tutor']);

@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
                     btnSalir.appendChild(imgSalir);
 
+                    const logoFooter = document.getElementById('logo-header');
+
+                    logoFooter.addEventListener('click', function () {
+                        location.assign('../../index.html');
+                    }
+                    );
+
                     btnSalir.addEventListener('click', () => {
                         localStorage.removeItem('role');
                         localStorage.removeItem('role_id');

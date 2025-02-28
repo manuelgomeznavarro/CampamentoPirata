@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         location.assign('../../index.html');
                     });
 
+                    const logoFooter = document.getElementById('logo-header');
+
+                    logoFooter.addEventListener('click', function () {
+                        location.assign('../../index.html');
+                    }
+                    );
+
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
                         headers: {
@@ -79,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const editButton = document.getElementById('edit-button');
     const reportButton = document.getElementById('report-button');
+    const volverButton = document.getElementById('volver-button');
     const contenedorEditar = document.getElementById('profile-container-global-editar');
     const contenedorPerfil = document.getElementById('profile-container-global');
     const contenedorReportes = document.getElementById('profile-container-global-reportes');
@@ -90,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contenedorReportes.style.display = "flex";
             contenedorEditar.style.display = "none";
             contenedorPerfil.style.display = "none";
+            recibirIncidencias();
         } else {
             contenedorReportes.style.display = "none";
         }
@@ -107,55 +116,100 @@ document.addEventListener('DOMContentLoaded', () => {
     // Asignar evento click a cada plan-card
     const reservaFooter = document.getElementById('registrar-footer')
     reservaFooter.addEventListener('click', function (event) {
-            // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
-            if (localStorage.getItem('role') == 'tutor') {
-                window.location.href = '../inscripcion/inscripcion.html';
-            } else {
-                window.location.href = '../../index.html?showLogin=true';
-            }
-        });
+        // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+        if (localStorage.getItem('role') == 'tutor') {
+            window.location.href = '../inscripcion/inscripcion.html';
+        } else {
+            window.location.href = '../../index.html?showLogin=true';
+        }
+    });
+
+    volverButton.addEventListener('click', function (event) {
+
+    })
+
+    function recibirIncidencias() {
+        
+        console.log("Está entrando");
+        return fetch(`http://127.0.0.1:8000/api/incidents/${localStorage.getItem('role_id')}`)
+            .then(response => { 
+                if (!response.ok) {
+                    throw new Error('Error al obtener datos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Datos obtenidos con éxito", data);
+                data.forEach((item, index) => {
+                    console.log(`ID: ${item.id}, Asunto: ${item.subject}, Descripcion: ${item.description}, Estado: ${item.status}, Respuesta: ${item.admin_response}`);
+                    console.log(index);
+
+                    const incidencia = document.createElement("div");
+                    const titulo = document.createElement("h2");
+                    titulo.textContent = item.subject;
+                    const description = document.createElement("p");
+                    description.textContent = item.description;
+                    const estado = document.createElement("p");
+                    estado.textContent = item.status;
+                    const respuesta = document.createElement("p");
+                    respuesta.textContent = item.admin_response;
+                    incidencia.appendChild(titulo);
+                    incidencia.appendChild(description);
+                    incidencia.appendChild(estado);
+                    incidencia.appendChild(respuesta);
+                    contenedorReportes.appendChild(incidencia);
+
+                })
+                // return data;
+            })
+            .catch(error => {
+                console.error('Error al introducir datos', error);
+            });
+    };
+
+    
 
     // function guardarDatos() {
-        saveButton.addEventListener('click', async function (event) {
-            event.preventDefault();
-    
-            const userData = {
-                name: document.getElementById('editarNombreTutor').value,
-                // emailTutor: document.getElementById('editarEmailTutor').value,
-                phone: document.getElementById('telfTutor1').value,
-                phone2: document.getElementById('telfTutor2').value,
-                city: document.getElementById('location').value,
-            };
+    saveButton.addEventListener('click', async function (event) {
+        event.preventDefault();
 
-            // const childData = {
-            //     birthdate: document.getElementById(`editarFechaNacimiento`).value,
-            //     alergy_intolerance: document.getElementById(`editarAlergias`).value,
-            //     aditional_info: document.getElementById(`editarOtros`).value
-            // };
-    
-            console.log(userData);
-    
-            try {
-                await introducirDatos(userData);
-                // const childId = await obtenerDatosNino();
-                // await introducirDatosNino(childData, childId);
-                
-                for (const childId of childrenIds) {
-                    const childData = {
-                        birthdate: document.getElementById(`editarFechaNacimiento-${childId}`).value,
-                        alergy_intolerance: document.getElementById(`editarAlergias-${childId}`).value,
-                        aditional_info: document.getElementById(`editarOtros-${childId}`).value
-                    };
-                    await introducirDatosNino(childData, childId);
-                }
-                // Recargar la página para actualizar los datos visibles
-                window.location.reload();
-            } catch (error) {
-                console.error('Error al guardar los datos:', error);
+        const userData = {
+            name: document.getElementById('editarNombreTutor').value,
+            // emailTutor: document.getElementById('editarEmailTutor').value,
+            phone: document.getElementById('telfTutor1').value,
+            phone2: document.getElementById('telfTutor2').value,
+            city: document.getElementById('location').value,
+        };
+
+        // const childData = {
+        //     birthdate: document.getElementById(`editarFechaNacimiento`).value,
+        //     alergy_intolerance: document.getElementById(`editarAlergias`).value,
+        //     aditional_info: document.getElementById(`editarOtros`).value
+        // };
+
+        console.log(userData);
+
+        try {
+            await introducirDatos(userData);
+            // const childId = await obtenerDatosNino();
+            // await introducirDatosNino(childData, childId);
+
+            for (const childId of childrenIds) {
+                const childData = {
+                    birthdate: document.getElementById(`editarFechaNacimiento-${childId}`).value,
+                    alergy_intolerance: document.getElementById(`editarAlergias-${childId}`).value,
+                    aditional_info: document.getElementById(`editarOtros-${childId}`).value
+                };
+                await introducirDatosNino(childData, childId);
             }
-        });
+            // Recargar la página para actualizar los datos visibles
+            window.location.reload();
+        } catch (error) {
+            console.error('Error al guardar los datos:', error);
+        }
+    });
     // }
-    
+
 
     console.log("Role ID:", localStorage.getItem('role_id'));
 
@@ -169,17 +223,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-                document.title += ` ${data.name}`;
-                document.getElementById("editarNombreTutor").value = data.name;
-                document.getElementById("editarApellidosTutor").value = data.lastname;
-                document.getElementById("telfTutor1").value = data.phone;
-                document.getElementById("telfTutor2").value = data.phone2;
-                document.getElementById("location").value = data.city;
-                document.getElementById("profile-title").textContent = data.name + " " + data.lastname;
-                document.getElementById("profile-email").textContent = data.email;
-                document.getElementById("profile-phone1").textContent = data.phone;
-                document.getElementById("profile-phone2").textContent = data.phone2;
-                document.getElementById("profile-location").textContent = data.city;
+            document.title += ` ${data.name}`;
+            document.getElementById("editarNombreTutor").value = data.name;
+            document.getElementById("editarApellidosTutor").value = data.lastname;
+            document.getElementById("telfTutor1").value = data.phone;
+            document.getElementById("telfTutor2").value = data.phone2;
+            document.getElementById("location").value = data.city;
+            document.getElementById("profile-title").textContent = data.name + " " + data.lastname;
+            document.getElementById("profile-email").textContent = data.email;
+            document.getElementById("profile-phone1").textContent = data.phone;
+            document.getElementById("profile-phone2").textContent = data.phone2;
+            document.getElementById("profile-location").textContent = data.city;
         })
         .catch(error => {
             console.error('Error al obtener los datos:', error);
@@ -411,28 +465,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //FETCH Obtener datos niño
-    function obtenerDatosNino() {
-        return fetch(`http://127.0.0.1:8000/api/inscriptions/`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al obtener datos');
-                }
-                return response.json();
-            })
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].tutor_id == localStorage.getItem('role_id')) {
-                        console.log("Datos obtenidos con éxito", data[i].child_id);
-                        return data[i].child_id;
-                    }
-                }
-                console.log("Datos obtenidos con éxito", data);
-                // return data;
-            })
-            .catch(error => {
-                console.error('Error al introducir datos', error);
-            });
-    }
+    // function obtenerDatosNino() {
+    //     return fetch(`http://127.0.0.1:8000/api/inscriptions/`)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('Error al obtener datos');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             for (let i = 0; i < data.length; i++) {
+    //                 if (data[i].tutor_id == localStorage.getItem('role_id')) {
+    //                     console.log("Datos obtenidos con éxito", data[i].child_id);
+    //                     return data[i].child_id;
+    //                 }
+    //             }
+    //             console.log("Datos obtenidos con éxito", data);
+    //             // return data;
+    //         })
+    //         .catch(error => {
+    //             console.error('Error al introducir datos', error);
+    //         });
+    // }
 
     //FETCH Editar datos niño
     function introducirDatosNino(childData, childId) {

@@ -12,6 +12,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnGuardarTarifas3 = document.getElementById('btnGuardarTarifas3');
     const btnGuardarTarifas4 = document.getElementById('btnGuardarTarifas4');
 
+    const headerBtnsContainer = document.querySelector('.dashboard-profile');
+    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.assign('../index.html');
+                    });
+                    headerBtnsContainer.appendChild(btnSalir);
 
     //Fetch para obtener los datos de las tarifas de la BBDD
     fetch('http://127.0.0.1:8000/api/prices')

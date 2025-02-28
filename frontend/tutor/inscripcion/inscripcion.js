@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         location.assign('../../index.html');
                     });
 
+                    const logoFooter = document.getElementById('logo-header');
+
+                    logoFooter.addEventListener('click', function () {
+                        location.assign('../../index.html');
+                    }
+                    );
+
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
                         headers: {

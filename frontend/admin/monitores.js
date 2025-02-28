@@ -10,7 +10,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const creacionGrupo = document.getElementById("creacion-grupo");
     const btnCrearMonitor = document.getElementById("crear-monitor");
     const editarMonitorButton = document.getElementById("editar-monitor");
-    console.log(editarMonitorButton);
+
+    const headerBtnsContainer = document.querySelector('.dashboard-profile');
+    const btnSalir = document.createElement('button');
+    const imgSalir = document.createElement('img');
+    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+    btnSalir.appendChild(imgSalir);
+
+    btnSalir.addEventListener('click', () => {
+        localStorage.removeItem('role');
+        localStorage.removeItem('role_id');
+        location.assign('../index.html');
+    });
+    headerBtnsContainer.appendChild(btnSalir);
+
+    // const urlParams = new URLSearchParams(window.location.search);
+    // console.log(urlParams);
+
+    // if (urlParams.get('showGroup') === 'true') {
+    //     const eventoClick = new Event('click');
+    //     btnGrupos.dispatchEvent(eventoClick);
+    // }
 
     document.getElementById('logo-monitores-admin').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
@@ -124,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.log(item.id);
                         mostrarMonitor(item.id);
                         mostrarGrupo(item.id);
+                        localStorage.setItem('group_id', item.id);
                         // mostrarNinosSinGrupo();
                         // const vacio = null;
                         mostrarSinGrupo();
@@ -295,16 +316,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.forEach((item, index) => {
                     if (item.group_id === null) {
                         console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
-                        console.log(index);
                         let elementoAlumno = document.createElement('div');
-                        elementoAlumno.textContent = `${item.name}, ${item.lastname}`;
+                        elementoAlumno.textContent = `${item.name} ${item.lastname}`;
                         elementoAlumno.className = "nombre-alumno";
+                        elementoAlumno.setAttribute('id', item.id);
+
                         listaSinGrupo.appendChild(elementoAlumno);
-                        elementoAlumno.addEventListener('click', (e) => {
-                            elementoAlumno.appendChild(listaGrupo);
-                            elementoAlumno.remove();
-                            console.log(elementoAlumno);
-                            console.log("Hola");
+
+                        elementoAlumno.addEventListener('click', () => {
+                            listaSinGrupo.removeChild(elementoAlumno);
+                            listaGrupo.appendChild(elementoAlumno);
+                            console.log(`Movido a grupo: ${item.name}, ${item.lastname}`);
+
                             const childData = {
                                 group_id: listaGrupo.value
                             }
@@ -312,6 +335,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             // asignarGrupo(item.id, childData);
                         });
                     }
+
+
                     // console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellidos: ${item.lastname}`);
                     // console.log(index);
 
@@ -332,6 +357,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error al obtener los datos:', error);
             });
     }
+
+    const botonGuardarCambios = document.getElementById("button-crear-grupo");
+    botonGuardarCambios.addEventListener('click', function () {
+        const children = [...listaGrupo.querySelectorAll('.nombre-alumno')];
+        console.log(children);
+
+        const dataChild = {
+            group_id: localStorage.getItem('group_id')
+        }
+        children.forEach(child => {
+            console.log([child, child.getAttribute('id')]);
+            if (child.getAttribute('id') === null) return;
+            //Fetch para asignar un grupo a un niño
+            fetch(`http://127.0.0.1:8000/api/children/${child.getAttribute('id')}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataChild)
+            })
+                .then(response => {
+                    console.log(response);
+                    if (!response.ok) {
+                        throw new Error('Error al introducir datos');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Datos introducidos con éxito", data);
+                })
+                .catch(error => {
+                    console.error('Error al introducir datos', error);
+                });
+        });
+        location.assign('monitores.html?showGroup=true');
+    });
+
 
     //Fetch para obtener los datos de los grupos de la BBDD
     // function mostrarSinGrupo(group_id) {
@@ -422,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify(monitorData)
         })
             .then(response => {
@@ -487,7 +549,7 @@ const botonCrearMonitor = document.querySelector('#crear-monitor');
 botonCrearMonitor.addEventListener('click', function (event) {
     event.preventDefault();
     validateForm();
-    if(validateForm()==true){
+    if (validateForm() == true) {
         window.location.href = "monitores.html";
     }
 });
@@ -561,21 +623,21 @@ function validatePhone1() {
 }
 
 document.getElementById("telf2-nuevo-monitor").addEventListener("blur", validatePhone2);
-function validatePhone2(){
+function validatePhone2() {
     const phoneRegex = /^[0-9]{9}$/;
     const phone2 = document.querySelector('#telf2-nuevo-monitor').value.trim();
-    if (phone2 ==="") {
+    if (phone2 === "") {
         errorPhone2.innerHTML = "";
         return true;
     }
 
-    if(!phoneRegex.test(phone2)){
+    if (!phoneRegex.test(phone2)) {
         errorPhone2.style.color = "red";
         errorPhone2.innerHTML = "Introduzca un teléfono válido.";
         return false;
     }
 
-    else{
+    else {
         errorPhone2.innerHTML = "";
         return true;
     }
@@ -648,7 +710,7 @@ const botonEditarMonitor = document.querySelector('#editar-monitor');
 botonEditarMonitor.addEventListener('click', function (event) {
     event.preventDefault();
     validateFormEditar();
-    if(validateFormEditar()==true){
+    if (validateFormEditar() == true) {
         window.location.href = "monitores.html";
     }
 });
@@ -691,6 +753,19 @@ function validateLastNameEditar() {
     }
 }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+
+    if (urlParams.get('showGroup') === 'true') {
+        grupos.style.display = "block";
+        formCrearMonitores.style.display = "none";
+        listaMonitores.style.display = "none";
+        creacionGrupo.style.display = "none";
+        formEditarMonitores.style.display = "none";
+        listaGrupo.innerText = "Miembros del grupo";
+        listaSinGrupo.innerText = "Alumnos sin grupo";
+    }
+
 // document.getElementById("correo-editar-monitor").addEventListener("blur", validateEmailEditar);
 
 // function validateEmailEditar() {
@@ -722,21 +797,21 @@ function validatePhone1Editar() {
 }
 
 document.getElementById("telf2-editar-monitor").addEventListener("blur", validatePhone2Editar);
-function validatePhone2Editar(){
+function validatePhone2Editar() {
     const phoneRegex = /^[0-9]{9}$/;
     const phone2 = document.querySelector('#telf2-editar-monitor').value.trim();
-    if (phone2 ==="") {
+    if (phone2 === "") {
         errorPhone2Editar.innerHTML = "";
         return true;
     }
 
-    if(!phoneRegex.test(phone2)){
+    if (!phoneRegex.test(phone2)) {
         errorPhone2Editar.style.color = "red";
         errorPhone2Editar.innerHTML = "Introduzca un teléfono válido.";
         return false;
     }
 
-    else{
+    else {
         errorPhone2Editar.innerHTML = "";
         return true;
     }

@@ -22,8 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const tutorPhone = document.querySelector('.tutor-phone');
     const tutorEmail = document.querySelector('.tutor-email');
     const nombreGrupo = document.querySelector('.nombre-grupos');
-
     const userAvatar = document.querySelector('.user-avatar img');
+
+    const headerBtnsContainer = document.querySelector('.dashboard-profile');
+    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.assign('../../index.html');
+                    });
+                    headerBtnsContainer.appendChild(btnSalir);
 
     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
         method: 'POST', //Método para enviar los datos al servidor

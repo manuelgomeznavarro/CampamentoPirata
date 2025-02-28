@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const divIncidenciasPendientes = document.getElementById("incidencia-pendiente");
     const divIncidenciasResuelta = document.getElementById("incidencia-resuelta");
     
+    const headerBtnsContainer = document.querySelector('.dashboard-profile');
+    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.assign('../index.html');
+                    });
+                    headerBtnsContainer.appendChild(btnSalir);
 
     document.getElementById('logo-inscripciones').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
