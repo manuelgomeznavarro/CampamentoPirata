@@ -99,9 +99,14 @@ header .header-btns-container .sign-in {
     font-weight: 700;
 }
 
-header .header-btns-container button img {
-    margin: 4px 0 0px 7px;
+header .header-btns-container button {
+    height: 44px;
     width: 44px;
+}
+
+header .header-btns-container button img {
+    margin: 1px 0 0px 4px;
+    width: 30px;
 }
 
 button {

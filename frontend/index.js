@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
-                    reservationBtn.innerText = 'Reserva';
+                    reservationBtn.innerText = 'Inscripción';
 
                     const btnSalir = document.createElement('button');
                     const imgSalir = document.createElement('img');
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
@@ -184,12 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // Event listeners para abrir los formularios
-    registrar.addEventListener("click", () => {
-        closeForm();
-        setTimeout(() => {
-            showForm(overlay_sign_up, contenedor_sign_up);
-        }, 310); // Pequeño delay para asegurar que el cierre anterior completó
-    });
+    if (registrar) {
+        registrar.addEventListener("click", () => {
+            closeForm();
+            setTimeout(() => {
+                showForm(overlay_sign_up, contenedor_sign_up);
+            }, 310); // Pequeño delay para asegurar que el cierre anterior completó
+        });
+    }
     
     if (registrarFooter) {
         registrarFooter.addEventListener("click", () => {
@@ -207,12 +209,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 310);
     });
     
-    inicio.addEventListener("click", () => {
-        closeForm();
-        setTimeout(() => {
-            showForm(overlay_sign_in, contenedor_sign_in);
-        }, 310);
-    });
+    if (inicio) {
+        inicio.addEventListener("click", () => {
+            closeForm();
+            setTimeout(() => {
+                showForm(overlay_sign_in, contenedor_sign_in);
+            }, 310);
+        });
+    }
     
     // Event listeners para cerrar al hacer clic en el overlay
     overlay_sign_up.addEventListener("click", (event) => {
@@ -226,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
             closeForm();
         }
     });
-    
+
     //JS SIGN UP
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
