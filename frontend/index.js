@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
 
+                    const logoFooter = document.getElementById('logo-header');
+
+                    logoFooter.addEventListener('click', function () {
+                        location.assign('./index.html');
+                    }
+                    );
+
                     // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
                     tutorProfilePicContainer.addEventListener('click', () => {
                         location.assign('./tutor/perfil_tutor/perfil_tutor.html');

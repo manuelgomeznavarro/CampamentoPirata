@@ -78,10 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
     checkRole();
 
     const editButton = document.getElementById('edit-button');
+    const reportButton = document.getElementById('report-button');
     const contenedorEditar = document.getElementById('profile-container-global-editar');
     const contenedorPerfil = document.getElementById('profile-container-global');
+    const contenedorReportes = document.getElementById('profile-container-global-reportes');
     const saveButton = document.getElementById('save-button');
     let childrenIds = [];
+
+    reportButton.addEventListener('click', function () {
+        if (contenedorReportes.style.display === "none") {
+            contenedorReportes.style.display = "flex";
+            contenedorEditar.style.display = "none";
+            contenedorPerfil.style.display = "none";
+        } else {
+            contenedorReportes.style.display = "none";
+        }
+    })
 
     editButton.addEventListener('click', function () {
         if (contenedorEditar.style.display === "none") {
