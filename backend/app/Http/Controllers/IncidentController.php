@@ -47,4 +47,12 @@ class IncidentController extends Controller
                             //paginate(10)
         return response()->json($incidents);
     }
+
+    public function show_incidents_by_tutor($tutor_id)
+    {
+        $incidents = Incident::where('tutor_id', $tutor_id) 
+                            ->get();
+                            //paginate(10)
+        return response()->json($incidents);
+    }
 }
