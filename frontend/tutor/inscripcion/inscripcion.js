@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const btnSalir = document.createElement('button');
                     const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
 
                     btnSalir.addEventListener('click', () => {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkRole();
 
+    const select = document.querySelector("select");
+
+    select.addEventListener("click", function () {
+        this.classList.toggle("open");
+    });
 
     const stepsWrapper = document.querySelector('.steps-wrapper');
     const steps = Array.from(document.querySelectorAll('.step'));
@@ -175,25 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //Validar email
-    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    // const inputEmail = document.querySelector('#tutor-email-inscription');
-    // if (inputEmail) {
-    //     inputEmail.addEventListener('blur', () => {
-    //         if (emailRegex.test(inputEmail.value)) {
-    //             inputEmail.classList.remove('error');
-    //             emailError.textContent = '';
-    //             inputEmail.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
-    //             inputEmail.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)"; 
-    //         } else {
-    //             inputEmail.classList.add('error');
-    //             emailError.textContent = 'El email no es válido';
-    //             inputEmail.style.border = '2px solid rgb(226, 93, 93)';
-    //             inputEmail.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
-    //         }
-    //     });
-    // }
-
     //Validar telefono1
     const phoneRegex = /^[0-9]{9}$/;
     const inputTel1 = document.querySelector('#tutor-tel1');
@@ -251,122 +237,155 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             inputPostalCode.classList.add('error');
             postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
-            inputName.style.border = '2px solid red';
             inputPostalCode.style.border = '2px solid rgb(226, 93, 93)';
             inputPostalCode.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         }
     });
 
-    //VALIDAR STEP 1
-    function validarStep1() {
+    // Validar imagen del tutor
+    const tutorImageInput = document.querySelector('#tutor-image-input');
+    const tutorImageError = document.querySelector('#error-tutor-image-code');
 
+    tutorImageInput.addEventListener('blur', () => {
+        validateImage(tutorImageInput, tutorImageError, false);
+    });
+    
+    tutorImageInput.addEventListener('change', () => {
+        validateImage(tutorImageInput, tutorImageError, false);
+    });
+
+    // Universal image validation function
+    function validateImage(inputElement, errorElement, isRequired = true) {
+        const file = inputElement.files[0];
+        
+        // Check if file is required but missing
+        if (isRequired && (!file || file.length === 0)) {
+            errorElement.textContent = 'La imagen de perfil es obligatoria';
+            inputElement.style.border = '2px solid rgb(226, 93, 93)';
+            inputElement.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+            return false;
+        } 
+        
+        // If file exists, validate it
+        if (file) {
+            // Consistent file types for both validations
+            const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+            if (!validTypes.includes(file.type)) {
+                errorElement.textContent = 'Formato de imagen no válido. Utilice JPEG, PNG, GIF o WEBP.';
+                inputElement.value = ""; // Clear the input
+                inputElement.style.border = '2px solid rgb(226, 93, 93)';
+                inputElement.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                return false;
+            } 
+            
+            // Add consistent file size validation (5MB)
+            if (file.size > 5 * 1024 * 1024) { // 5MB max
+                errorElement.textContent = 'La imagen es demasiado grande. Máximo 5MB';
+                inputElement.style.border = '2px solid rgb(226, 93, 93)';
+                inputElement.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                return false;
+            }
+            
+            // Valid image
+            errorElement.textContent = '';
+            inputElement.style.border = "2px solid rgb(93, 226, 102)";
+            inputElement.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+            return true;
+        }
+        
+        // No file but not required
+        return true;
+    }
+
+    // Corrige la función validarStep1
+    function validarStep1() {
         const camposObligatorios = [
             'tutor-name',
             'tutor-lastname',
-            // 'tutor-email-inscription',
             'tutor-dni',
             'tutor-tel1'
         ];
 
         let isValid = true;
 
-        //Validar que los campos obligatorios no estén vacíos
+        // Validar que los campos obligatorios no estén vacíos
         camposObligatorios.forEach(id => {
             const input = document.querySelector(`#${id}`);
+            const errorElement = document.querySelector(`#error-${id}`);
+            
             if (input && input.value.trim() === "") {
                 isValid = false;
-                input.style.border = '2px solid red';
+                input.style.border = '2px solid rgb(226, 93, 93)';
+                input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                
                 if (id === 'tutor-name') {
                     nameError.textContent = 'El nombre es obligatorio';
                 } else if (id === 'tutor-lastname') {
                     lastnameError.textContent = 'El apellido es obligatorio';
-                // } else if (id === 'tutor-email-inscription') {
-                //     emailError.textContent = 'El email es obligatorio';
                 } else if (id === 'tutor-dni') {
                     dniError.textContent = 'El DNI es obligatorio';
                 } else if (id === 'tutor-tel1') {
                     tel1Error.textContent = 'El teléfono es obligatorio';
                 }
-            } else if (input) {
-                input.style.border = '1px solid #ccc';
             }
         });
 
-        const inputTel1 = document.querySelector('#tutor-tel1');
-        inputTel1.addEventListener('input', () => {
-            if (phoneRegex.test(inputTel1.value)) {
-                inputTel1.classList.remove('error');
-                tel1Error.textContent = '';
-            } else {
-                inputTel1.classList.add('error');
-                tel1Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
-            }
-        });
-
-
-        //validar telf2, al ser opcional, tiene que tener 9 digitos en caso de que lo escriba, pero no es obligatorio, es decir, puede estar vacío
-        if (tel2 !== "") {
-            if (!phoneRegex.test(tel2)) {
-                isValid = false;
-                document.querySelector('#tutor-tel2').classList.add('error');
-                tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
-            } else {
-                document.querySelector('#tutor-tel2').classList.remove('error');
-            }
-        } else {
-            document.querySelector('#tutor-tel2').classList.remove('error');
+        // Validar DNI (incluso si ya está relleno)
+        const dniInput = document.querySelector('#tutor-dni');
+        const dniRegex = /^[0-9]{8}[A-Za-z]$/;
+        
+        if (dniInput && dniInput.value.trim() !== "" && !dniRegex.test(dniInput.value)) {
+            isValid = false;
+            dniInput.style.border = '2px solid rgb(226, 93, 93)';
+            dniInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+            dniError.textContent = 'El DNI no es válido. Introduzca 8 dígitos y una letra';
         }
 
-        const inputTel2 = document.querySelector('#tutor-tel2');
-        inputTel2.addEventListener('input', () => {
-            if (phoneRegex.test(inputTel2.value)) {
-                inputTel2.classList.remove('error');
-                tel2Error.textContent = '';
-            } else {
-                inputTel2.classList.add('error');
-                tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
-            }
-        });
-
-        const inputDni = document.querySelector('#tutor-dni');
-        inputDni.addEventListener('input', () => {
-            if (dniRegex.test(inputDni.value)) {
-                inputDni.classList.remove('error');
-                dniError.textContent = '';
-            } else {
-                inputDni.classList.add('error');
-                dniError.textContent = 'El DNI no es válido. Introduzca 8 dígitos y una letra';
-            }
-        });
-
-        if (postalCode !== "") {
-            const postalCodeRegex = /^[0-9]{5}$/;
-            if (!postalCodeRegex.test(postalCode)) {
-                isValid = false;
-                document.querySelector('#tutor-postal-code').classList.add('error');
-                postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
-            } else {
-                document.querySelector('#tutor-postal-code').classList.remove('error');
-            }
-        } else {
-            document.querySelector('#tutor-postal-code').classList.remove('error');
+        // Validar teléfono principal (incluso si ya está relleno)
+        const tel1Input = document.querySelector('#tutor-tel1');
+        const phoneRegex = /^[0-9]{9}$/;
+        
+        if (tel1Input && tel1Input.value.trim() !== "" && !phoneRegex.test(tel1Input.value)) {
+            isValid = false;
+            tel1Input.style.border = '2px solid rgb(226, 93, 93)';
+            tel1Input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+            tel1Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
         }
 
-        const inputPostalCode = document.querySelector('#tutor-postal-code');
-        inputPostalCode.addEventListener('input', () => {
-            if (postalCodeRegex.test(inputPostalCode.value)) {
-                inputPostalCode.classList.remove('error');
-                postalCodeError.textContent = '';
-            } else {
-                inputPostalCode.classList.add('error');
+        // Validar teléfono 2 (solo si hay algo escrito)
+        const tel2Input = document.querySelector('#tutor-tel2');
+        
+        if (tel2Input && tel2Input.value.trim() !== "") {
+            if (!phoneRegex.test(tel2Input.value)) {
+                isValid = false;
+                tel2Input.style.border = '2px solid rgb(226, 93, 93)';
+                tel2Input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                tel2Error.textContent = 'El teléfono no es válido. Introduzca 9 dígitos';
+            }
+        }
+
+        // Validar código postal (solo si hay algo escrito)
+        const postalCodeInput = document.querySelector('#tutor-postal-code');
+        const postalCodeRegex = /^[0-9]{5}$/;
+        
+        if (postalCodeInput && postalCodeInput.value.trim() !== "") {
+            if (!postalCodeRegex.test(postalCodeInput.value)) {
+                isValid = false;
+                postalCodeInput.style.border = '2px solid rgb(226, 93, 93)';
+                postalCodeInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
                 postalCodeError.textContent = 'El código postal no es válido. Introduzca 5 dígitos';
             }
-        });
+        }
+
+        // Validar la imagen del tutor
+        if (!validateImage(tutorImageInput, tutorImageError, false)) {
+            isValid = false;
+        }
 
         return isValid;
-
     }
 
+    // Actualiza el listener para el botón "Siguiente"
     siguienteStep1.addEventListener('click', (e) => {
         e.preventDefault();
         if (validarStep1()) {
@@ -378,51 +397,125 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //VALIDAR STEP 2
-
-    // const nameChild = document.querySelector('#child-name').value.trim();
-    // const lastnameChild = document.querySelector('#child-lastname').value.trim();
-    // const birthdate = document.querySelector('#child-boen-date').value.trim();
-
     const nameErrorChild = document.querySelector('#error-child-name');
     const lastnameErrorChild = document.querySelector('#error-child-lastname');
     const bornDateErrorChild = document.querySelector('#error-child-born-date');
     const tShirtSizeErrorChild = document.querySelector('#error-child-t-shirt-size');
+    const childImageError = document.querySelector('#error-child-image-code');
 
     const tShirtSize = document.querySelector('#child-t-shirt-size');
+    const childImageInput = document.querySelector('#child-image-input');
+
+    // Expresiones regulares para validaciones
+    const nameRegexChild = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    const lastnameRegexChild = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    const birthdateRegex = /^((2017|2018)-\d{2}-\d{2})$/;
 
     function validarStep2() {
-
         const camposObligatorios = [
             'child-name',
             'child-lastname',
             'child-born-date',
-            'child-t-shirt-size'
+            'child-t-shirt-size',
+            'child-image-input'
         ];
 
         let isValid = true;
 
-        //Validar que los campos obligatorios no estén vacíos
+        // Validar que los campos obligatorios no estén vacíos
         camposObligatorios.forEach(id => {
             const input = document.querySelector(`#${id}`);
-            if (input && input.value.trim() === "") {
-                isValid = false;
-                if (id === 'child-name') {
+            
+            if (input && id === 'child-name') {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
                     nameErrorChild.textContent = 'El nombre es obligatorio';
-                } else if (id === 'child-lastname') {
-                    lastnameErrorChild.textContent = 'El apellido es obligatorio';
-                } else if (id === 'child-born-date') {
-                    bornDateErrorChild.textContent = 'La fecha de nacimiento es obligatoria';
+                } else if (!nameRegexChild.test(input.value)) {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    nameErrorChild.textContent = 'El nombre no es válido';
+                } else {
+                    input.style.border = "2px solid rgb(93, 226, 102)";
+                    input.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+                    nameErrorChild.textContent = '';
                 }
-            } else if (input && id === 'child-t-shirt-size' && input.selectedIndex == 0) {
-                isValid = false;
-                tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
-            } else if (input) {
-                input.style.border = '1px solid #ccc';
+            } else if (input && id === 'child-lastname') {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    lastnameErrorChild.textContent = 'El apellido es obligatorio';
+                } else if (!lastnameRegexChild.test(input.value)) {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    lastnameErrorChild.textContent = 'El apellido no es válido';
+                } else {
+                    input.style.border = "2px solid rgb(93, 226, 102)";
+                    input.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+                    lastnameErrorChild.textContent = '';
+                }
+            } else if (input && id === 'child-born-date') {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    bornDateErrorChild.textContent = 'La fecha de nacimiento es obligatoria';
+                } else if (!birthdateRegex.test(input.value)) {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    bornDateErrorChild.textContent = 'La fecha de nacimiento no es válida. Debe haber nacido entre 2017 y 2018';
+                } else {
+                    input.style.border = "2px solid rgb(93, 226, 102)";
+                    input.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+                    bornDateErrorChild.textContent = '';
+                }
+            } else if (input && id === 'child-t-shirt-size') {
+                if (input.selectedIndex === 0) {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
+                } else {
+                    input.style.border = "2px solid rgb(93, 226, 102)";
+                    input.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+                    tShirtSizeErrorChild.textContent = '';
+                }
+            } else if (input && id === 'child-image-input') {
+                if (input.files.length === 0) {
+                    isValid = false;
+                    input.style.border = '2px solid rgb(226, 93, 93)';
+                    input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                    childImageError.textContent = 'La imagen de perfil es obligatoria';
+                } else {
+                    // Validar tipo de archivo
+                    const file = input.files[0];
+                    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+                    
+                    if (!validTypes.includes(file.type)) {
+                        isValid = false;
+                        input.style.border = '2px solid rgb(226, 93, 93)';
+                        input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                        childImageError.textContent = 'Formato de imagen no válido. Utiliza JPG, PNG o GIF';
+                    } else if (file.size > 5 * 1024 * 1024) { // 5MB max
+                        isValid = false;
+                        input.style.border = '2px solid rgb(226, 93, 93)';
+                        input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+                        childImageError.textContent = 'La imagen es demasiado grande. Máximo 5MB';
+                    } else {
+                        input.style.border = "2px solid rgb(93, 226, 102)";
+                        input.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+                        childImageError.textContent = '';
+                    }
+                }
             }
         });
 
         return isValid;
-
     }
 
     const siguienteStep2 = document.querySelector('#siguiente-step2');
@@ -436,14 +529,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //validar nombre
-    const nameRegexChild = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    // Validar nombre en tiempo real (blur)
     const inputNameChild = document.querySelector('#child-name');
     inputNameChild.addEventListener('blur', () => {
-        if (nameRegexChild.test(inputNameChild.value)) {
+        if (inputNameChild.value.trim() === "") {
+            inputNameChild.classList.add('error');
+            nameErrorChild.textContent = 'El nombre es obligatorio';
+            inputNameChild.style.border = '2px solid rgb(226, 93, 93)';
+            inputNameChild.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+        } else if (nameRegexChild.test(inputNameChild.value)) {
             inputNameChild.classList.remove('error');
             nameErrorChild.textContent = '';
-            inputNameChild.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputNameChild.style.border = "2px solid rgb(93, 226, 102)";
             inputNameChild.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputNameChild.classList.add('error');
@@ -453,15 +550,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //validar apellido
-    const lastnameRegexChild = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    // Validar apellido en tiempo real (blur)
     const inputLastnameChild = document.querySelector('#child-lastname');
     inputLastnameChild.addEventListener('blur', () => {
-        if (lastnameRegexChild.test(inputLastnameChild.value)) {
+        if (inputLastnameChild.value.trim() === "") {
+            inputLastnameChild.classList.add('error');
+            lastnameErrorChild.textContent = 'El apellido es obligatorio';
+            inputLastnameChild.style.border = '2px solid rgb(226, 93, 93)';
+            inputLastnameChild.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+        } else if (lastnameRegexChild.test(inputLastnameChild.value)) {
             inputLastnameChild.classList.remove('error');
             lastnameErrorChild.textContent = '';
-            inputLastnameChild.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
-            inputLastnameChild.style.boxShadow = "0 0 10px rgba(93, 226, 102,0.5)";
+            inputLastnameChild.style.border = "2px solid rgb(93, 226, 102)";
+            inputLastnameChild.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputLastnameChild.classList.add('error');
             lastnameErrorChild.textContent = 'El apellido no es válido';
@@ -470,14 +571,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //validar fecha de nacimiento del niño, que debe haber nacido entre 2017 y 2018
-    const birthdateRegex = /^((2017|2018)-\d{2}-\d{2})$/;
+    // Validar fecha de nacimiento del niño en tiempo real (blur)
     const inputBirthdate = document.querySelector('#child-born-date');
     inputBirthdate.addEventListener('blur', () => {
-        if (birthdateRegex.test(inputBirthdate.value)) {
+        if (inputBirthdate.value.trim() === "") {
+            inputBirthdate.classList.add('error');
+            bornDateErrorChild.textContent = 'La fecha de nacimiento es obligatoria';
+            inputBirthdate.style.border = '2px solid rgb(226, 93, 93)';
+            inputBirthdate.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+        } else if (birthdateRegex.test(inputBirthdate.value)) {
             inputBirthdate.classList.remove('error');
             bornDateErrorChild.textContent = '';
-            inputBirthdate.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            inputBirthdate.style.border = "2px solid rgb(93, 226, 102)";
             inputBirthdate.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         } else {
             inputBirthdate.classList.add('error');
@@ -487,21 +592,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    tShirtSize.addEventListener('blur', (e) => {
-        if (e.target.selectedIndex == 0) {
+    // Validar talla de camiseta en tiempo real (blur)
+    tShirtSize.addEventListener('blur', () => {
+        if (tShirtSize.selectedIndex === 0) {
             tShirtSize.classList.add('error');
             tShirtSizeErrorChild.textContent = 'La talla de camiseta es obligatoria';
             tShirtSize.style.border = '2px solid rgb(226, 93, 93)';
             tShirtSize.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
-
         } else {
-            inputBirthdate.classList.remove('error');
+            tShirtSize.classList.remove('error');
             tShirtSizeErrorChild.textContent = '';
-            tShirtSize.style.border = "2px solid rgb(93, 226, 102)";  // Cambia el borde a verde
+            tShirtSize.style.border = "2px solid rgb(93, 226, 102)";
             tShirtSize.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
         }
     });
 
+    // Validar imagen del niño en tiempo real (change)
+    childImageInput.addEventListener('change', () => {
+        if (childImageInput.files.length === 0) {
+            childImageInput.classList.add('error');
+            childImageError.textContent = 'La imagen de perfil es obligatoria';
+            childImageInput.style.border = '2px solid rgb(226, 93, 93)';
+            childImageInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+        } else {
+            const file = childImageInput.files[0];
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+            
+            if (!validTypes.includes(file.type)) {
+                childImageInput.classList.add('error');
+                childImageError.textContent = 'Formato de imagen no válido. Utiliza JPG, PNG o GIF';
+                childImageInput.style.border = '2px solid rgb(226, 93, 93)';
+                childImageInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+            } else if (file.size > 5 * 1024 * 1024) { // 5MB max
+                childImageInput.classList.add('error');
+                childImageError.textContent = 'La imagen es demasiado grande. Máximo 5MB';
+                childImageInput.style.border = '2px solid rgb(226, 93, 93)';
+                childImageInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
+            } else {
+                childImageInput.classList.remove('error');
+                childImageError.textContent = '';
+                childImageInput.style.border = "2px solid rgb(93, 226, 102)";
+                childImageInput.style.boxShadow = "0 0 8px rgba(93, 226, 102, 0.5)";
+            }
+        }
+    });
+
+
+    childImageInput.addEventListener('blur', () => {
+        validateImage(childImageInput, childImageError, true);
+    });
+    
+    childImageInput.addEventListener('change', () => {
+        validateImage(childImageInput, childImageError, true);
+    });
 
     function validarPricesCards() {
         const radioInputs = [...document.querySelectorAll('input[name="plan"]')];
@@ -672,12 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(tutorInfo);
 
         const fileInput = document.getElementById('image-input');
-        const file = fileInput.files[0];
-
-        if (!file) {
-            alert('Please select an image');
-            return;
-        }
+        const file = fileInput.files[0] ?? null;
 
         // Create form data for both file and JSON data
         const formData = new FormData();

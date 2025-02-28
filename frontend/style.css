@@ -133,6 +133,15 @@ input {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.62);
     background: #FFF;
+    font-size: 18px; /* Tamaño del texto dentro del input */
+    color: #000; /* Color del texto dentro del input */
+    font-weight: 400; /* Peso del texto dentro del input */
+    padding: 10px; /* Espaciado interno para que el texto no quede pegado */
+}
+
+input:focus {
+    color: #333; /* Un color más oscuro para mejorar la visibilidad */
+    font-weight: 500; /* Hacerlo un poco más marcado al escribir */
 }
 
 textarea{
@@ -147,36 +156,49 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #FFF url('assets/icons/flechaDesplegableFaqs.svg') no-repeat right 5px center;
-    background-size: 15px; /* Ajusta el tamaño de la imagen */
-    padding-right: 30px; /* Espacio para la flecha personalizada */
-    width: 490px;
+    background: #FFF url('./assets/icons/flechaDesplegableFaqs.svg') no-repeat right 15px center;
+    background-size: 15px;
+    padding-right: 40px; /* Espacio para la flecha */
+    width: 100%;
     height: 50px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.62);
     background-color: #FFF;
     cursor: pointer;
-    transition: background-position 0.3s ease;
-    
+    font-size: 18px; /* Ajuste al tamaño de los inputs */
+    color: #000; /* Mismo color de los inputs */
+    font-weight: 400;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-image 0.1s ease;
 }
 
-/* Clase para rotar la flecha */
-select::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 15px;
-    height: 15px;
-    background: url('assets/icons/flechaDesplegableFaqs.svg') no-repeat center center;
-    background-size: 15px;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
+/* Efecto al hacer focus */
+select:focus {
+    border-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    outline: none;
 }
 
-select.open::after {
-    transform: translateY(-50%) rotate(180deg);
+/* Clase para cuando el select está abierto */
+select.open {
+    background-image: url('./assets/icons/flechaDesplegableFaqs-abierta.svg'); /* Imagen rotada */
 }
+
+/* Estilos para los options */
+select option {
+    font-size: 18px;
+    color: #000;
+    font-weight: 400;
+    background: #FFF;
+    padding: 10px;
+}
+
+/* Efecto al seleccionar una opción */
+select option:checked {
+    background: rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
+
 
 .anchor-button {
     display: flex;
@@ -1222,10 +1244,6 @@ figure img:not(.wave figure img):not(.map figure img) {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.62);
     background: #FFF;
-    font-size: 18px; /* Tamaño del texto dentro del input */
-    color: #000; /* Color del texto dentro del input */
-    font-weight: 400; /* Peso del texto dentro del input */
-    padding: 10px; /* Espaciado interno para que el texto no quede pegado */
 }
 
 .sign-up-container form div label+input:focus,
