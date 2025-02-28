@@ -99,6 +99,11 @@ header .header-btns-container .sign-in {
     font-weight: 700;
 }
 
+header .header-btns-container button img {
+    margin: 4px 0 0px 7px;
+    width: 44px;
+}
+
 button {
     display: flex;
     padding: 8px 10px;
@@ -1212,6 +1217,16 @@ figure img:not(.wave figure img):not(.map figure img) {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.62);
     background: #FFF;
+    font-size: 18px; /* Tamaño del texto dentro del input */
+    color: #000; /* Color del texto dentro del input */
+    font-weight: 400; /* Peso del texto dentro del input */
+    padding: 10px; /* Espaciado interno para que el texto no quede pegado */
+}
+
+.sign-up-container form div label+input:focus,
+.sign-in-container form div label+input:focus {
+    color: #333; /* Un color más oscuro para mejorar la visibilidad */
+    font-weight: 500; /* Hacerlo un poco más marcado al escribir */
 }
 
 .sign-up-container form div input,
