@@ -90,7 +90,7 @@ class TutorController extends Controller
         try {
             // Validate the request
             $request->validate([
-                'image' => 'required|image|max:5120', // 5MB max
+                'image' => 'image|max:5120', // 5MB max
                 'json_data' => 'required|json'
             ]);
             
@@ -118,29 +118,32 @@ class TutorController extends Controller
             
             // Process image upload
             $file = $request->file('image');
-            $originalName = $file->getClientOriginalName();
-            $filename = Str::uuid() . '_' . $originalName;
-            $path = 'user_images/' . $user->id . '/' . $filename;
-            
-            // Upload to DigitalOcean Spaces
-            $uploaded = Storage::disk('s3')->put($path, file_get_contents($file), 'public');
-            
-            if (!$uploaded) {
-                DB::rollBack();
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Failed to upload image'
-                ], 500);
+
+            if ($file) {
+                $originalName = $file->getClientOriginalName();
+                $filename = Str::uuid() . '_' . $originalName;
+                $path = 'user_images/' . $user->id . '/' . $filename;
+                
+                // Upload to DigitalOcean Spaces
+                $uploaded = Storage::disk('s3')->put($path, file_get_contents($file), 'public');
+                
+                if (!$uploaded) {
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to upload image'
+                    ], 500);
+                }
+                
+                // Generate the public URL
+                $bucket = env('DO_SPACES_BUCKET');
+                $region = env('DO_SPACES_REGION');
+                $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/{$path}";
+                
+                // Update the user's url_pic
+                $user->url_pic = $url;
+                $user->save();
             }
-            
-            // Generate the public URL
-            $bucket = env('DO_SPACES_BUCKET');
-            $region = env('DO_SPACES_REGION');
-            $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/{$path}";
-            
-            // Update the user's url_pic
-            $user->url_pic = $url;
-            $user->save();
             
             // Update the tutor's data from JSON data
             $tutor->update($jsonData);

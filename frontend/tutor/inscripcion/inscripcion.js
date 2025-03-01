@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const logoFooter = document.getElementById('logo-header');
 
-                    logoFooter.addEventListener('click', function () {
-                        location.assign('../../index.html');
-                    }
+                    logoFooter.addEventListener('click', () => {
+                            location.assign('../../index.html');
+                        }
                     );
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
@@ -652,77 +652,77 @@ document.addEventListener('DOMContentLoaded', () => {
     childImageInput.addEventListener('change', () => {
         validateImage(childImageInput, childImageError, true);
     });
+    
+    const btnsNavigationPriceCards = document.querySelector('#navigation-buttons-price-cards');
+    const inscriptionsPricesContainer = document.querySelector('.incription-prices');
+
 
     function validarPricesCards() {
         const radioInputs = [...document.querySelectorAll('input[name="plan"]')];
         let isValid = radioInputs.some(radio => radio.checked);
-
-        const existingError = inscriptionsPricesContainer.parentElement.querySelector('.plan-error');
-
+    
+        const existingError = inscriptionsPricesContainer.parentElement.parentElement.querySelector('.plan-error');
+    
         if (!isValid) {
             if (!existingError) {
                 const errorPriceCards = document.createElement('span');
                 errorPriceCards.style.color = "red";
                 errorPriceCards.textContent = "¡Selecciona un plan!";
                 errorPriceCards.classList.add('plan-error');
-                errorPriceCards.classList.add('cards-plans-error');                
-
-                inscriptionsPricesContainer.parentElement.appendChild(errorPriceCards);
+                errorPriceCards.classList.add('cards-plans-error');
+    
+                // Insertar el mensaje de error antes del contenedor de precios
+                inscriptionsPricesContainer.parentElement.parentElement.insertBefore(errorPriceCards, btnsNavigationPriceCards);
             }
         } else {
             if (existingError) {
                 existingError.remove();
             }
         }
-
+    
         return isValid;
     }
 
-    const inscriptionsPricesContainer = document.querySelector('.incription-prices');
     const insertSummaryDataBtn = document.querySelector('#insert-summary-data-btn');
     const form = document.querySelector('form');
 
-
-
     insertSummaryDataBtn.addEventListener('click', (e) => {
         e.preventDefault();
-
+    
         if (validarPricesCards()) {
             const formInputs = [...form.querySelectorAll('input, select')];
             const summaryParagraphs = [...document.querySelectorAll('.inscription-summary-cards-container p')];
-
-            console.log([formInputs, summaryParagraphs]);
-
-
+    
             // Handle selected plan (Step 3 radio buttons)
             const selectedPlan = document.querySelector('input[name="plan"]:checked');
             if (selectedPlan) {
                 const planTitle = selectedPlan.closest('.price-card-label').querySelector('.plan-title').textContent;
                 summaryParagraphs[8].textContent = planTitle;
             }
-
+    
             // Populate other fields
             for (let i = 0; i < summaryParagraphs.length; i++) {
                 if (i === 8) continue; // Skip plan summary handled above
-
-                if (i < 8) {
-                    // Tutor data (formInputs 0-7)
-                    summaryParagraphs[i].textContent = formInputs[i].value;
+    
+                const formIndex = i < 8 ? i : i - 1; // Ajusta índice para niño inputs
+    
+                if (formIndex === 7 || formIndex === 12) {
+                    // Si el input es de tipo file, obtener el nombre del archivo
+                    const fileInput = formInputs[formIndex];
+                    summaryParagraphs[i].textContent = fileInput.files[0] ? fileInput.files[0].name : '';
                 } else {
-                    // Niño data (formInputs 8-14 correspond to summary i 9-15)
-                    const formIndex = i; // Adjust index for niño inputs
+                    // Para otros inputs, asignar el valor normalmente
                     summaryParagraphs[i].textContent = formInputs[formIndex]?.value || '';
                 }
             }
-
-            // console.log(steps);
-
+    
             if (currentStep < steps.length - 1) {
                 currentStep++;
                 updateStepPosition();
             }
         }
     });
+    
 
     function updateTutorInfo(formData, tutorId) {
         formData.append('_method', 'PUT');
@@ -751,21 +751,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    function createChild(childData) {
+    function createChild(formData) {
         return fetch(`http://127.0.0.1:8000/api/children`, {
             method: 'POST', //Método para enviar los datos al servidor
-            headers: {
-                'Content-Type': 'application/json' //Envío de datos en formato JSON
-            },
-            body: JSON.stringify(childData) //Se convierte el objeto JS a una cadena JSON
+            body: formData //Se convierte el objeto JS a una cadena JSON
         })
             .then(response => {
+                console.log(response);
+                
                 // if (!response.success) {
                 //     throw new Error('Error al registrar el usuario');
                 // }
                 return response.json();
             })
             .then(data => {
+                console.log(data);
+                
+
                 console.log("Niño creado con éxito", data);
                 // localStorage.setItem('role', data.user.role);
                 // localStorage.setItem('role_id', data.user.role_id);
@@ -804,7 +806,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        console.log("se crea el niño");
         if (e.submitter.className === 'volver') {
             return;
         }
@@ -814,16 +815,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const tutorInfo = {
             name: summaryParagraphs[0].innerText,
             lastname: summaryParagraphs[1].innerText,
-            dni: summaryParagraphs[3].innerText,
-            phone: summaryParagraphs[4].innerText,
-            phone2: summaryParagraphs[5].innerText,
-            city: summaryParagraphs[6].innerText,
-            postal_code: summaryParagraphs[7].innerText,
+            dni: summaryParagraphs[2].innerText,
+            phone: summaryParagraphs[3].innerText,
+            phone2: summaryParagraphs[4].innerText,
+            city: summaryParagraphs[5].innerText,
+            postal_code: summaryParagraphs[6].innerText,
         }
 
         console.log(tutorInfo);
 
-        const fileInput = document.getElementById('image-input');
+        const fileInput = document.getElementById('tutor-image-input');
         const file = fileInput.files[0] ?? null;
 
         // Create form data for both file and JSON data
@@ -840,22 +841,26 @@ document.addEventListener('DOMContentLoaded', () => {
             lastname: summaryParagraphs[10].innerText,
             birthdate: summaryParagraphs[11].innerText,
             t_shirt_size: summaryParagraphs[12].innerText,
-            alergy_intolerance: summaryParagraphs[13].innerText,
-            aditional_info: summaryParagraphs[14].innerText,
-            acquaintance: summaryParagraphs[15].innerText
+            alergy_intolerance: summaryParagraphs[14].innerText,
+            aditional_info: summaryParagraphs[15].innerText,
+            acquaintance: summaryParagraphs[16].innerText
         }
 
         console.log(childInfo);
 
-        // console.log(formData.entries());
-        for (const pair of formData.entries()) {
-            console.log(pair[0], pair[1]);
-            console.log(pair);
+        const childFormData = new FormData();
 
-        }
+        const childFileInput = document.getElementById('child-image-input');
+        const childFile = childFileInput.files[0] ?? null;
+
+        // Add the file
+        childFormData.append('image', childFile);
+
+        // Convert JSON to string and append to FormData
+        childFormData.append('json_data', JSON.stringify(childInfo));
 
         updateTutorInfo(formData, localStorage.getItem('role_id'))
-            .then(createChild(childInfo)
+            .then(createChild(childFormData)
                 .then(childId => {
                     console.log(childId);
 
@@ -875,14 +880,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // if (finInscripcion) {
 
-        console.log("fufa fin inscripcion");
         overlayRegistro.style.display = "flex";
         contenedorRegistroCorrecto.style.display = "block";
 
         // };
 
         finInscripcion.addEventListener('click', function () {
-            console.log("fufa?");
             href = "../../index.html";
         });
     })
@@ -896,10 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             data.forEach((item, index) => {
-                console.log(`ID: ${item.id}, Nombre Tarifa: ${item.name}, Precio: ${item.price}`);
-                console.log(index);
                 const tarifaCards = document.querySelectorAll('.plan-card');
                 if (index < tarifaCards.length) {
                     const tarifaCard = tarifaCards[index];
