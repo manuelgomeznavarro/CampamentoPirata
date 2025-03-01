@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('alergy_intolerance')->nullable();
             $table->text('aditional_info')->nullable();
             $table->string('acquaintance')->nullable();
+            $table->text('url_pic')->nullable();
             $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('set null');
             $table->timestamps();
         });

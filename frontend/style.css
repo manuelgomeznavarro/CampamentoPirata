@@ -2610,12 +2610,12 @@ td {
     cursor: pointer;
 }
 
-.inscription-prices-container {
+/* .inscription-prices-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-}
+} */
 
 .inscription-container {
     background-color: var(--brand-color);
@@ -2656,7 +2656,7 @@ td {
 .inscription-container .form-section {
     display: flex;
     flex-direction: column;
-    gap: 84px;
+    gap: 42px;
     max-width: 1350px;
     place-self: center;
     width: 100%;
