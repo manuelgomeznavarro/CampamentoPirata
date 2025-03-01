@@ -99,7 +99,7 @@ header .header-btns-container .sign-in {
     font-weight: 700;
 }
 
-header .header-btns-container button {
+header .header-btns-container .exit-button {
     height: 44px;
     width: 44px;
 }
@@ -603,15 +603,15 @@ main .programming-cards-container {
 
 main .programming-cards-container .cards-container {
     display: flex;
-    gap: 75px;
+    gap: 64px;
     place-self: center;
-    /* max-width: 120%; */
-    width: 120%;
+    width: 75%;
+    flex-wrap: wrap;
 }
 
 main .programming-cards-container .cards-container .card {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     width: 408px;
     height: auto;
     padding-bottom: 28px;
@@ -620,20 +620,28 @@ main .programming-cards-container .cards-container .card {
     gap: 16px;
     border-radius: 16px;
     background: var(--background-color3);
-    opacity: 0;
-    transform: translateX(-100%);
+}
+
+main .programming-cards-container .cards-container .card figure {
+    width: 100%;
+    height: 126px; /* o el alto que desees */
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
 }
 
 main .programming-cards-container .cards-container .card figure img {
-    border-radius: 16px 16px 0px 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 main .programming-cards-container .cards-container .card div {
     display: flex;
     place-self: center;
     flex-direction: column;
-    margin: 0 37.5px;
-    /* width: 70%; */
+    margin: 16px 37.5px 0;
+    width: 80%;
 }
 
 main .programming-cards-container .cards-container .card div h6 {
@@ -3393,7 +3401,6 @@ main .registro-correcto-container {
         transform: translateX(0);
     }
 }
-
 
 @media (max-width: 480px) {
     main .fade-container .prices .price-cards {

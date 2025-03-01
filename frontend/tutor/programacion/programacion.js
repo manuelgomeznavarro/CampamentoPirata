@@ -1,11 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-
-
-    const track = document.querySelector(".carousel-track");
-    // const images = track.innerHTML; // Guardamos el contenido original
-    track.innerHTML += track.innerHTML;
-
     function checkRole() {
         const role = localStorage.getItem('role');
 
@@ -91,10 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 default:
                     break;
             }
+        } else {
+            const inicio = document.getElementById("sign-in");
+            const registrar = document.getElementById("sign-up");
+
+            inicio.addEventListener('click', () => window.location.href = '../../index.html?showLogin=true');
+            registrar.addEventListener('click', () => window.location.href = '../../index.html?showSignUp=true');
         }
     }
 
     checkRole();
+
 
     // Asignar evento click a cada plan-card
     const reservaFooter = document.getElementById('registrar-footer')
@@ -119,18 +119,18 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             console.log(data);
-            const cardsContainer = document.querySelector('.carousel-track');
+            const cardsContainer = document.querySelector('.cards-container');
             data.forEach((item, index) => {
                 console.log(`ID: ${item.id}, Nombre Actividad: ${item.name}, Descripción: ${item.description}`);
                 console.log(index);
                 // Crear una nueva tarjeta
                 const card = document.createElement('div');
                 card.classList.add('card');
-                card.style.animation = `slideIn 0.5s ease-out ${index * 0.2}s forwards`;
+
                 // Crear el elemento figure y la imagen
                 const figure = document.createElement('figure');
                 const img = document.createElement('img');
-                img.src = "https://placehold.co/408x126";
+                img.src = item.url_pic;
                 img.alt = "";
 
                 // Agregar la imagen al figure
@@ -158,14 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Agregar la tarjeta al contenedor de tarjetas
                 cardsContainer.appendChild(card);
             });
-
-            // Duplicar el contenido del carrusel para crear un efecto de desplazamiento infinito
-            cardsContainer.innerHTML += cardsContainer.innerHTML;
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-
-
+            
         })
         .catch(error => {
             console.error('Error al obtener los datos:', error);

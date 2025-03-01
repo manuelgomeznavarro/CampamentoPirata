@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
                     reservationBtn.innerText = 'Inscripción';
+                    
 
                     const btnSalir = document.createElement('button');
+                    btnSalir.className = "exit-button";
                     const imgSalir = document.createElement('img');
                     imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
@@ -24,13 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
-
-                    const logoFooter = document.getElementById('logo-header');
-
-                    logoFooter.addEventListener('click', function () {
-                        location.assign('./index.html');
-                    }
-                    );
 
                     // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
                     tutorProfilePicContainer.addEventListener('click', () => {
@@ -197,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         registrarFooter.addEventListener("click", () => {
             closeForm();
             setTimeout(() => {
-                showForm(overlay_sign_up, contenedor_sign_up);
+                showForm(overlay_sign_in, contenedor_sign_in);
             }, 310);
         });
     }
@@ -510,22 +505,45 @@ const overlay_sign_in = document.getElementById("overlay-sign-in");
 const btnRegistrar = document.querySelector(".register");
 
 // //JS HOME
-// function closeForm() {
-//     //Se cierra cualquier formulario que esté abierto
-//     overlay_sign_up.style.display = "none";
-//     contenedor_sign_up.style.display = "none";
-//     overlay_sign_in.style.display = "none";
-// }
+function closeForm() {
+    //Se cierra cualquier formulario que esté abierto
+    overlay_sign_up.style.display = "none";
+    contenedor_sign_up.style.display = "none";
+    overlay_sign_in.style.display = "none";
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 console.log(urlParams);
 
+function showForm(overlay, container) {
+    // Primero mostramos los elementos con display flex/block pero con opacidad 0
+    overlay.style.display = "flex";
+    container.style.display = "block";
+    
+    // Forzamos un reflow para asegurarnos que los cambios de display se apliquen
+    void overlay.offsetWidth;
+    
+    // Añadimos las clases que activarán las transiciones
+    overlay.classList.add('active');
+    container.classList.add('active');
+    
+    // Eliminamos las clases de cierre si estuvieran presentes
+    overlay.classList.remove('closing');
+    container.classList.remove('closing');
+}
+
 if (urlParams.get('showLogin') === 'true') {
-    // Mostrar el pop-up de iniciar sesión
-    // document.getElementById('login-popup').style.display = 'block';
     closeForm();
-    overlay_sign_in.style.display = "flex";
-    contenedor_sign_in.style.display = "block";
+    setTimeout(() => {
+        showForm(overlay_sign_in, contenedor_sign_in);
+    }, 310);
+}
+
+if (urlParams.get('showSignUp') === 'true') {
+    closeForm();
+    setTimeout(() => {
+        showForm(overlay_sign_up, contenedor_sign_up);
+    }, 310);
 }
 
 const monitorContainer = document.querySelector('.team');

@@ -229,21 +229,21 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Creación de pirata y grupos piratas',
                 'description' => 'Taller de iniciación de creación de piratas',
-                'url_pic' => null,
+                'url_pic' => 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/activities/foto_taller_piratas.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Esgrima',
-                'description' => 'Taller de iniciación de creación de piratas',
-                'url_pic' => null,
+                'description' => 'Instrucción práctica sobre esgrima infantil',
+                'url_pic' => 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/activities/foto_esgrima.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Guerra de agua',
                 'description' => 'Pelea acuática',
-                'url_pic' => null,
+                'url_pic' => 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/activities/foto_juegos_agua.webp',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
