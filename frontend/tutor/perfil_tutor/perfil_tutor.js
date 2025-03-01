@@ -367,6 +367,10 @@ document.addEventListener('DOMContentLoaded', () => {
         weeklyButton.textContent = 'Ver resumen semanal';
         childrenHeader.appendChild(weeklyButton);
 
+        weeklyButton.addEventListener('click', function () {
+            guardarDatosProgreso(item);
+        });
+        
         // Agregar el encabezado al contenedor principal de la tarjeta
         childrenCard.appendChild(childrenHeader);
 
@@ -376,6 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Devolver la tarjeta creada
         return childrenCard;
+    }
+
+    //Función para guardar los datos en sessionStorage y redirigir a la página de progreso
+    function guardarDatosProgreso(item) {
+        localStorage.setItem('child_id', item.id);
     }
 
     function crearTarjetaAlumnoEditarConDatos(item) {
@@ -462,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
         weeklyButton.className = 'weekly-button';
         weeklyButton.textContent = 'Ver resumen semanal';
         childrenHeader.appendChild(weeklyButton);
+
 
         // Agregar el encabezado al contenedor principal de la tarjeta
         editChildrenCard.appendChild(childrenHeader);

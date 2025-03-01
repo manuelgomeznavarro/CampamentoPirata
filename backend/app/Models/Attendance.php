@@ -24,6 +24,7 @@ class Attendance extends Model
         'timeline_id',
         'date',
         'attendance',
+        'comments'
     ];
 
     public function child()

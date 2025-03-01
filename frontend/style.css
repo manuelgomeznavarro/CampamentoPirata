@@ -3294,6 +3294,37 @@ input[type="radio"]+.plan-card {
     width: auto;
 }
 
+.progress-bar-container {
+    display: flex;
+    place-self: center;
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0;
+    background-color: #76c7c0; /* Color inicial */
+    border-radius: 25px;
+    transition: width 0.5s, background-color 0.5s;
+}
+
+/* Colores para diferentes niveles de progreso */
+.progress-bar.low {
+    background-color: #ff4d4d; /* Rojo para bajo progreso */
+}
+
+.progress-bar.medium {
+    background-color: #ffcc00; /* Amarillo para progreso medio */
+}
+
+.progress-bar.high {
+    background-color: #009431; /* Verde para alto progreso */
+}
+
 @keyframes scroll {
     from {
         transform: translateX(-50%);

@@ -33,32 +33,22 @@
     </header>
     <main>
         <div class="fade-container">
-            <div class="con">
+            <div class="contenedor-progreso" id="contenedor-progreso">
                 <h2>EXPERIENCIA PIRATA</h2>
-                <hr class="exp">
-                <h2>INFORME SEMANAL DE MARTA</h2>
-                <h3 class="activities-title">ACTIVIDADES</h3>
-                <h3 class="habilities-title">HABILIDADES</h3>
-                <div class="text-activities">
-                    <p>
-                        Búsqueda del tesoro perdido: Resolver acertijos para encontrar un tesoro perdido.
-                        Construcción de un barco pirata: Crear barcos con materiales reciclados.
-                        Exploración de la Isla Desierta: Recolección de elementos naturales para construir un refugio.
-                    </p>
+                <!-- <hr class="exp"> -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
                 </div>
-                <div class="text-habilities">
-                    <p>
-                        Búsqueda del tesoro perdido: Resolver acertijos para encontrar un tesoro perdido.
-                        Construcción de un barco pirata: Crear barcos con materiales reciclados.
-                        Exploración de la Isla Desierta: Recolección de elementos naturales para construir un refugio.
-                    </p>
+                <h2 id="informe-semanal-nombre"></h2>
+                <div class="text-activities" id="info-card-nino">
                 </div>
                 <h3 class="comentaries-title">Comentarios</h3>
                 <div class="comentaries-box">
-                    <p class="comentaries-text">Marta ha demostrado mucha creatividad al diseñar 
+                    <p class="comentaries-text" id="comentaries-text">
+                    <!-- Marta ha demostrado mucha creatividad al diseñar 
                     su mapa del tesoro, ¡le ha quedado increíble!
                     Marta ha mejorado mucho su autonomía, ya es 
-                    capaz de preparar todo su material sin ayuda.
+                    capaz de preparar todo su material sin ayuda. -->
                     </p>
                 </div>
             </div>
@@ -122,6 +112,7 @@
             </div>
         </div>
     </footer>
+    <script src="progreso.js"></script>
 </body>
 
 </html>

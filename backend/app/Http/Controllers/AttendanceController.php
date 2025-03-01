@@ -82,4 +82,55 @@ class AttendanceController extends Controller
         $attendances->delete();
         return response()->json(['message' => 'Asistencia eliminada correctamente'], 200);
     }
+
+    public function show_comments_by_child(Request $request) {
+        $comments = Attendance::where('child_id', $request->child_id)->get();
+        return response()->json($comments, 200);
+    }
+
+
+    public function updateComments(Request $request)
+    {
+        // Validate that all required fields are present
+        $request->validate([
+            'child_id' => 'required',
+            'timeline_id' => 'required',
+            'comments' => 'required'
+        ]);
+
+        // Find and update using where conditions
+        $attendances = Attendance::where('child_id', $request->child_id)
+            ->where('timeline_id', $request->timeline_id)
+            ->where('attendance', 1)->get();
+            
+        $affected = Attendance::where('child_id', $request->child_id)
+            ->where('timeline_id', $request->timeline_id)
+            ->where('date', $attendances->last()->date)
+            ->update([
+                'comments' => $request->comments
+            ]);
+
+        return response()->json($affected, 200);
+    }
+
+    public function getComments($child_id)
+    {
+        
+        // Find and update using where conditions
+        $attendance = Attendance::where('child_id', $child_id)
+            ->where('attendance', 1)->get()->last();
+
+        return response()->json($attendance, 200);
+    }
+
+    public function getBar($child_id)
+    {
+        
+        // Find and update using where conditions
+        $attendance = Attendance::where('child_id', $child_id)
+            ->where('attendance', 1)->get();
+
+        return response()->json($attendance, 200);
+    }
+
 }
