@@ -132,6 +132,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 div.appendChild(p);
 
                 childrenProfilesContainer.appendChild(div);
+
+                const btnEnviarComentarios = document.getElementById('enviar-comentarios');
+                btnEnviarComentarios.addEventListener('click', () => {
+                    const comentarioData = {
+                        child_id: child.id,
+                        timeline_id: localStorage.getItem('role_id'),
+                        comments: document.getElementById('comentarios').value
+                    }
+                    console.log(comentarioData);
+                    comentarioProgreso(comentarioData);
+                });
             })
 
             // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
@@ -195,6 +206,30 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Error al obtener información del alumno', error);
         });
+
+    //FETCH Editar datos comentarios
+        function comentarioProgreso(comentarioData) {
+        return fetch(`http://127.0.0.1:8000/api/attendances/comments`, {
+            method: 'PUT', //Método para enviar los datos al servidor
+            headers: {
+                'Content-Type': 'application/json' //Envío de datos en formato JSON
+            },
+            body: JSON.stringify(comentarioData) //Se convierte el objeto JS a una cadena JSON
+        })
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Error al introducir datos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Datos introducidos con éxito", data);
+            })
+            .catch(error => {
+                console.error('Error al introducir datos', error);
+            });
+    }
 
     pasarListaBtn.addEventListener('click', () => {
         // console.log();
@@ -324,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 tutorPhone.innerText = elemento.getAttribute('tutor_phone');
                 tutorEmail.innerText = elemento.getAttribute('tutor_email');
-
+                
                 let contacto = document.getElementById('contacto-alumno');
                 if (window.getComputedStyle(contacto).display === "none") {
                     contacto.style.display = "flex";

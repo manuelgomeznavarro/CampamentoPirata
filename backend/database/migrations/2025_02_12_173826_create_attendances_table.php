@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('timeline_id')->constrained('timelines')->onDelete('cascade');
             $table->date('date');
             $table->boolean('attendance'); // true = presente, false = ausente
+            $table->text('comments')->nullable();
             $table->primary(['child_id', 'timeline_id', 'date']);
         });
     }
