@@ -1,5 +1,91 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    function checkRole() {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            switch (role) {
+                case 'tutor':
+                    const headerBtnsContainer = document.querySelector('header .header-btns-container');
+                    const reservationBtn = document.createElement('a');
+                    reservationBtn.classList.add('anchor-button');
+                    reservationBtn.href = '../inscripcion/inscripcion.html';
+                    reservationBtn.innerText = 'Reserva';
+
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
+
+                    const btnSalir = document.createElement('button');
+                    const imgSalir = document.createElement('img');
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    btnSalir.appendChild(imgSalir);
+
+                    btnSalir.addEventListener('click', () => {
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('role_id');
+                        location.assign('../../index.html');
+                    });
+
+                    const logoFooter = document.getElementById('logo-header');
+
+                    logoFooter.addEventListener('click', function () {
+                        location.assign('../../index.html');
+                    }
+                    );
+
+                    fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+                        method: 'POST', //Método para enviar los datos al servidor
+                        headers: {
+                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                        },
+                        body: JSON.stringify({
+                            role: localStorage.getItem('role'),
+                            role_id: localStorage.getItem('role_id')
+                        }) //Se convierte el objeto JS a una cadena JSON
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.url) {
+                                tutorProfilePic.src = data.url;
+                            } else {
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+
+                        })
+
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
+
+                    headerBtnsContainer.innerHTML = "";
+                    headerBtnsContainer.appendChild(reservationBtn);
+                    headerBtnsContainer.appendChild(tutorProfilePicContainer);
+                    headerBtnsContainer.appendChild(btnSalir);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
+                    break;
+
+                case 'monitor':
+                    location.assign('./monitor/html/dashboard.html');
+
+                    break;
+
+                case 'admin':
+                    location.assign('./admin/dashboard.html');
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    checkRole();
+
+
     //Fetch información niño
     fetch(`http://127.0.0.1:8000/api/children/${localStorage.getItem('child_id')}`)
         // TODO: Si da tiempo modificar los datos del monit:
