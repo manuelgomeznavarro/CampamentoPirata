@@ -859,7 +859,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Convert JSON to string and append to FormData
         childFormData.append('json_data', JSON.stringify(childInfo));
 
-        updateTutorInfo(formData, localStorage.getItem('role_id'))
+        try {
+            updateTutorInfo(formData, localStorage.getItem('role_id'))
             .then(createChild(childFormData)
                 .then(childId => {
                     console.log(childId);
@@ -874,20 +875,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             )
 
-        const finInscripcion = document.getElementById("finalizar-inscripcion");
-        const overlayRegistro = document.getElementById("overlay-registro-correcto");
-        const contenedorRegistroCorrecto = document.getElementById("registro-correcto-container");
+            // const finInscripcion = document.getElementById("finalizar-inscripcion");
+            const overlayRegistro = document.getElementById("overlay-registro-correcto");
+            const contenedorRegistroCorrecto = document.getElementById("registro-correcto-container");
+    
+            overlayRegistro.style.display = "flex";
+            contenedorRegistroCorrecto.style.display = "flex";
+        } catch (error) {
+            console.log(error);
+        }
 
-        // if (finInscripcion) {
-
-        overlayRegistro.style.display = "flex";
-        contenedorRegistroCorrecto.style.display = "block";
-
-        // };
-
-        finInscripcion.addEventListener('click', function () {
-            href = "../../index.html";
-        });
     })
 
     //Fetch para obtener los datos de las tarifas de la BBDD

@@ -78,6 +78,7 @@ class TutorController extends Controller
         $tutors = Tutor::findOrFail($IdTutors);
         $user = User::where('role', 'tutor')->where('role_id', $IdTutors)->first();
         $tutors->email = $user->email;
+        $tutors->url_pic = $user->url_pic;
         return response()->json($tutors, 200);
     }
 
@@ -138,7 +139,7 @@ class TutorController extends Controller
                 // Generate the public URL
                 $bucket = env('DO_SPACES_BUCKET');
                 $region = env('DO_SPACES_REGION');
-                $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/{$path}";
+                $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/{$path}";
                 
                 // Update the user's url_pic
                 $user->url_pic = $url;

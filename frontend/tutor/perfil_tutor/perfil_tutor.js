@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const btnSalir = document.createElement('button');
                     const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
 
                     btnSalir.addEventListener('click', () => {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
@@ -233,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+            console.log(data);
+            
             document.title += ` ${data.name}`;
             document.getElementById("editarNombreTutor").value = data.name;
             document.getElementById("editarApellidosTutor").value = data.lastname;
@@ -240,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("telfTutor2").value = data.phone2;
             document.getElementById("location").value = data.city;
             document.getElementById("profile-title").textContent = data.name + " " + data.lastname;
+            document.querySelector(".profile-header img").src = data.url_pic;
             document.getElementById("profile-email").textContent = data.email;
             document.getElementById("profile-phone1").textContent = data.phone;
             document.getElementById("profile-phone2").textContent = data.phone2;
@@ -307,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Crear y agregar la imagen del niño
         const childImage = document.createElement('img');
-        childImage.src = 'https://placehold.co/80x80';
+        childImage.src = item.url_pic;
         childImage.alt = '';
         childrenHeader.appendChild(childImage);
 
@@ -357,22 +360,22 @@ document.addEventListener('DOMContentLoaded', () => {
         infoOtros.className = 'info-otros-child';
         childrenText.appendChild(infoOtros);
 
+        // Agregar el encabezado al contenedor principal de la tarjeta
+        childrenCard.appendChild(childrenHeader);
+
         // Agregar el texto del grupo al encabezado
-        childrenHeader.appendChild(childrenText);
+        childrenCard.appendChild(childrenText);
 
         // Crear y agregar el botón de resumen semanal
         const weeklyButton = document.createElement('a');
         weeklyButton.href = 'progreso.html';
         weeklyButton.className = 'weekly-button';
         weeklyButton.textContent = 'Ver resumen semanal';
-        childrenHeader.appendChild(weeklyButton);
-
-        // Agregar el encabezado al contenedor principal de la tarjeta
-        childrenCard.appendChild(childrenHeader);
+        childrenCard.appendChild(weeklyButton);
 
         // Agregar la tarjeta al contenedor global de perfiles
-        const profileContainerGlobal = document.getElementById('profile-container-global');
-        profileContainerGlobal.appendChild(childrenCard);
+        const childrenContainerCards = document.querySelector('.children-container-cards');
+        childrenContainerCards.appendChild(childrenCard);
 
         // Devolver la tarjeta creada
         return childrenCard;
