@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         location.assign('../../index.html');
                     });
 
-                    const logoFooter = document.getElementById('logo-header');
+                    const logoHeader = document.getElementById('logo-header');
 
-                    logoFooter.addEventListener('click', () => {
+                    logoHeader.addEventListener('click', () => {
                             location.assign('../../index.html');
                         }
                     );
@@ -501,7 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Validar tipo de archivo
                     const file = input.files[0];
-                    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+                const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+
                     
                     if (!validTypes.includes(file.type)) {
                         isValid = false;
@@ -623,8 +624,8 @@ document.addEventListener('DOMContentLoaded', () => {
             childImageInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
         } else {
             const file = childImageInput.files[0];
-            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
-            
+            const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+
             if (!validTypes.includes(file.type)) {
                 childImageInput.classList.add('error');
                 childImageError.textContent = 'Formato de imagen no válido. Utiliza JPG, PNG o GIF';
