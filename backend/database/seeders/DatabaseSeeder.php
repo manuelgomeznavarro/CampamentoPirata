@@ -317,7 +317,22 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'admin_id' => 2,
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
