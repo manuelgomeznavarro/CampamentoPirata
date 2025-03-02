@@ -120,9 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '../admin/inscripcionesyregistros.html';
     });
 
-    document.getElementById('excursiones-admin').addEventListener('click', function () {
-        window.location.href = '../admin/excursionesyactividades.html';
-    });
+    // document.getElementById('excursiones-admin').addEventListener('click', function () {
+    //     window.location.href = '../admin/excursionesyactividades.html';
+    // });
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('dashboard-admin');

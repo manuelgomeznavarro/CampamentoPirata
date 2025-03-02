@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const div = document.createElement("div");
                 div.className = "info-perfil";
                 div.id = "info-perfil";
+                div.setAttribute('child_id', child.id);
                 div.setAttribute('tutor_phone', child.tutor_phone);
                 div.setAttribute('tutor_email', child.tutor_email);
                 div.setAttribute('tutor_id', child.tutor_id);
@@ -133,17 +134,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 childrenProfilesContainer.appendChild(div);
 
-                const btnEnviarComentarios = document.getElementById('enviar-comentarios');
-                btnEnviarComentarios.addEventListener('click', () => {
+                div.addEventListener('click', () => {
+                    document.querySelectorAll('.info-perfil').forEach(profile => profile.classList.remove('selected'));
+                    div.classList.add('selected');
+                });
+
+                // const btnEnviarComentarios = document.getElementById('enviar-comentarios');
+                // btnEnviarComentarios.addEventListener('click', () => {
+                //     const comentarioData = {
+                //         child_id: child.id,
+                //         timeline_id: localStorage.getItem('role_id'),
+                //         comments: document.getElementById('comentarios').value
+                //     }
+                //     console.log(comentarioData);
+                //     comentarioProgreso(comentarioData);
+                // });
+            })
+
+            // Agregar el evento click al botón "Enviar Comentarios" fuera del bucle
+            const btnEnviarComentarios = document.getElementById('enviar-comentarios');
+            btnEnviarComentarios.addEventListener('click', () => {
+                const selectedChild = document.querySelector('.info-perfil.selected');
+                if (selectedChild) {
                     const comentarioData = {
-                        child_id: child.id,
+                        child_id: selectedChild.getAttribute('child_id'),
                         timeline_id: localStorage.getItem('role_id'),
                         comments: document.getElementById('comentarios').value
                     }
                     console.log(comentarioData);
                     comentarioProgreso(comentarioData);
-                });
-            })
+                } else {
+                    console.log("No se ha seleccionado ningún niño.");
+                }
+            });
 
             // TODO: hacer un fecth a /attendances/by_timeline_and_date y con ese data hacer el for de abajo
 

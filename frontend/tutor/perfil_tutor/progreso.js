@@ -10,28 +10,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = '../inscripcion/inscripcion.html';
-                    reservationBtn.innerText = 'Reserva';
-
-                    const tutorProfilePicContainer = document.createElement('figure');
-                    const tutorProfilePic = document.createElement('img');
+                    reservationBtn.innerText = 'Inscripción';
 
                     const btnSalir = document.createElement('button');
+                    btnSalir.className = "exit-button";
                     const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
 
                     btnSalir.addEventListener('click', () => {
                         localStorage.removeItem('role');
                         localStorage.removeItem('role_id');
-                        location.assign('../../index.html');
+                        location.reload();
                     });
 
-                    const logoFooter = document.getElementById('logo-header');
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
 
-                    logoFooter.addEventListener('click', function () {
-                        location.assign('../../index.html');
-                    }
-                    );
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('../perfil_tutor/perfil_tutor.html');
+                    });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -50,12 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
                             console.log(error);
-
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
@@ -68,18 +66,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../../monitor/html/dashboard.html');
 
                     break;
 
                 case 'admin':
-                    location.assign('./admin/dashboard.html');
+                    location.assign('../../admin/dashboard.html');
 
                     break;
 
                 default:
                     break;
             }
+        } else {
+            const inicio = document.getElementById("sign-in");
+            const registrar = document.getElementById("sign-up");
+
+            inicio.addEventListener('click', () => window.location.href = '../../index.html?showLogin=true');
+            registrar.addEventListener('click', () => window.location.href = '../../index.html?showSignUp=true');
         }
     }
 
@@ -247,5 +251,17 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
         console.error('Error al obtener los datos:', error);
+    });
+
+
+    // Asignar evento click a cada plan-card
+    const reservaFooter = document.getElementById('registrar-footer')
+    reservaFooter.addEventListener('click', function (event) {
+        // Redirigir a la página principal con un parámetro para abrir el pop-up de iniciar sesión
+        if (localStorage.getItem('role') == 'tutor') {
+            window.location.href = '../inscripcion/inscripcion.html';
+        } else {
+            window.location.href = '../../index.html?showLogin=true';
+        }
     });
 });
