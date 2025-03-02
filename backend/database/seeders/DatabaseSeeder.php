@@ -386,6 +386,20 @@ class DatabaseSeeder extends Seeder
                 'child_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'inscription_date' => '2025-06-03',
+                'tutor_id' => 1,
+                'child_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'inscription_date' => '2025-06-04',
+                'tutor_id' => 2,
+                'child_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 
