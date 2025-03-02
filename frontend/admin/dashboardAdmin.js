@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerBtnsContainer = document.querySelector('.dashboard-profile');
     const btnSalir = document.createElement('button');
     const imgSalir = document.createElement('img');
+    const activityTitle = document.querySelector('.activity-title');
+    const activityTime = document.querySelector('.activity-time');
+    const activityDescription = document.querySelector('.activity-description');
+    const activityCard = document.getElementById('activity-card');
+
     imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
     btnSalir.appendChild(imgSalir);
 
@@ -74,6 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             nombreAdmin.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    fetch(`http://127.0.0.1:8000/api/get_current_activity/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            if (data.activity_details && data.activity_timeline) {
+                activityTitle.innerText = data.activity_details.name;
+                activityTime.innerText = `${data.activity_details.start_time.slice(0, 5)} / ${data.activity_details.end_time.slice(0, 5)}`
+                activityDescription.innerText = data.activity_details.description;
+            }
         })
         .catch(error => {
             console.log(error);

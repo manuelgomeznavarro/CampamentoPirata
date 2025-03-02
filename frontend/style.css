@@ -2120,10 +2120,12 @@ figure img:not(.wave figure img):not(.map figure img) {
     display: flex;
     flex-direction: column;
     background: #D9E9F5;
+    /* align-items: center; */
     box-shadow: 6px 6px 54px rgba(0, 0, 0, 0.05);
     border-radius: 14px;
     padding: 38px 46px;
     gap: 24px;
+    /* height: 100%; */
 }
 
 .activity-details {

@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const soporteContent = document.getElementById("soporte-content");
     const divIncidenciasPendientes = document.getElementById("incidencia-pendiente");
     const divIncidenciasResuelta = document.getElementById("incidencia-resuelta");
+    const btnInscripcionesResueltas = document.getElementById("btn-inscripciones-resueltas");
+
     
     const headerBtnsContainer = document.querySelector('.dashboard-profile');
     const btnSalir = document.createElement('button');
@@ -83,16 +85,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    btnRevisar.addEventListener('click', function () {
-        if (revisarInscripciones.style.display === "none") {
-            revisarInscripciones.style.display = "block";
-            soporteContent.style.display = "none";
-            respuestaRevisionInscripciones.style.display = "none";
-            divIncidenciasPendientes.style.display = "none";
-        } else {
-            revisarInscripciones.style.display = "none";
-        }
-    });
+    // btnRevisar.addEventListener('click', function () {
+    //     if (revisarInscripciones.style.display === "none") {
+    //         revisarInscripciones.style.display = "block";
+    //         soporteContent.style.display = "none";
+    //         respuestaRevisionInscripciones.style.display = "none";
+    //         divIncidenciasPendientes.style.display = "none";
+    //     } else {
+    //         revisarInscripciones.style.display = "none";
+    //     }
+    // });
 
     btnRevisarInscripcion.addEventListener('click', function () {
         if (respuestaRevisionInscripciones.style.display === "none") {
@@ -105,55 +107,91 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    btnSoporte.addEventListener('click', function () {
-        if (divIncidenciasPendientes.style.display === "none") {
-            soporteContent.style.display = "none";
-            revisarInscripciones.style.display = "none";
-            respuestaRevisionInscripciones.style.display = "none";
-            divIncidenciasPendientes.style.display = "block";
-            mostrarIncidencias();
-            divIncidenciasPendientes.innerText = "Incidencias Pendientes";
-            // Crear el botón "Inscripciones Resueltas"
-            const btnInscripcionesResueltas = document.createElement('button');
-            btnInscripcionesResueltas.className = 'button-crear-grupo';
-            btnInscripcionesResueltas.id = 'btn-inscripciones-resueltas';
-            btnInscripcionesResueltas.textContent = 'Inscripciones Resueltas';
+    // mostrarIncidencias();
 
-            // Agregar el botón al contenedor correspondiente
-            divIncidenciasPendientes.appendChild(btnInscripcionesResueltas);
+    // document.getElementById('inscripcionesRegistros-admin').addEventListener('click', function () {
+    //     if (divIncidenciasPendientes.style.display === "none") {
+    //         // soporteContent.style.display = "none";
+    //         // revisarInscripciones.style.display = "none";
+    //         // respuestaRevisionInscripciones.style.display = "none";
+    //         // divIncidenciasPendientes.style.display = "block";
+    //         // // mostrarIncidencias();
+    //         // divIncidenciasPendientes.innerText = "Incidencias Pendientes";
+    //         // // Crear el botón "Inscripciones Resueltas"
+    //         // const btnInscripcionesResueltas = document.createElement('button');
+    //         // btnInscripcionesResueltas.className = 'button-crear-grupo';
+    //         // btnInscripcionesResueltas.id = 'btn-inscripciones-resueltas';
+    //         // btnInscripcionesResueltas.textContent = 'Inscripciones Resueltas';
 
-            // Agregar el evento click al botón después de crearlo
-            btnInscripcionesResueltas.addEventListener('click', function () {
-                if (divIncidenciasResuelta.style.display === "none") {
-                    divIncidenciasResuelta.style.display = "block";
-                    divIncidenciasPendientes.style.display = "none";
-                    mostrarIncidenciasResueltas();
-                    const btnVolverIncidencias = document.createElement('button');
-                    btnVolverIncidencias.id = 'btn-volver-incidencias';
-                    btnVolverIncidencias.className = 'button-crear-grupo';
-                    btnVolverIncidencias.textContent = 'Volver a Incidencias';
-                    divIncidenciasResuelta.appendChild(btnVolverIncidencias);
+    //         // Agregar el botón al contenedor correspondiente
+    //         // divIncidenciasPendientes.appendChild(btnInscripcionesResueltas);
 
-                    btnVolverIncidencias.addEventListener('click', function () {
-                        if (divIncidenciasPendientes.style.display === "none") {
-                            divIncidenciasPendientes.style.display = "block";
-                            divIncidenciasResuelta.style.display = "none";
-                            divIncidenciasResuelta.innerText = "Inscripciones Resueltas";
-                        } else {
-                            divIncidenciasPendientes.style.display = "none";
-                        }
-                    });
-                } else {
-                    divIncidenciasResuelta.style.display = "none";
-                }
-                // divIncidenciasResuelta.innerText = "";
+    //         // Agregar el evento click al botón después de crearlo
+    //         const btnInscripcionesResueltas = document.getElementById('btn-inscripciones-resueltas');
+    //         btnInscripcionesResueltas.addEventListener('click', function () {
+    //             if (divIncidenciasResuelta.style.display === "none") {
+    //                 divIncidenciasResuelta.style.display = "block";
+    //                 divIncidenciasPendientes.style.display = "none";
+    //                 mostrarIncidenciasResueltas();
+    //                 const btnVolverIncidencias = document.createElement('button');
+    //                 btnVolverIncidencias.id = 'btn-volver-incidencias';
+    //                 btnVolverIncidencias.className = 'button-crear-grupo';
+    //                 btnVolverIncidencias.textContent = 'Volver a Incidencias';
+    //                 divIncidenciasPendientes.appendChild(btnVolverIncidencias);
+
+    //                 btnVolverIncidencias.addEventListener('click', function () {
+    //                     if (divIncidenciasPendientes.style.display === "none") {
+    //                         divIncidenciasPendientes.style.display = "block";
+    //                         divIncidenciasResuelta.style.display = "none";
+    //                         divIncidenciasResuelta.innerText = "Inscripciones Resueltas";
+    //                     } else {
+    //                         divIncidenciasPendientes.style.display = "none";
+    //                     }
+    //                 });
+    //             } else {
+    //                 divIncidenciasResuelta.style.display = "none";
+    //             }
+    //             // divIncidenciasResuelta.innerText = "";
                 
-            });
+    //         });
+    //     } else {
+    //         divIncidenciasPendientes.style.display = "none";
+    //     }
+    // });
+
+    mostrarIncidencias();
+
+    btnInscripcionesResueltas.addEventListener('click', function () {
+        if (divIncidenciasResuelta.style.display === "none") {
+            divIncidenciasResuelta.style.display = "block";
+            divIncidenciasPendientes.style.display = "none";
+            limpiarIncidenciasResueltas();
+            mostrarIncidenciasResueltas();
+        } else {
+            divIncidenciasResuelta.style.display = "none";
+        }
+    });
+
+    const btnVolverIncidencias = document.createElement('button');
+    btnVolverIncidencias.id = 'btn-volver-incidencias';
+    btnVolverIncidencias.className = 'button-crear-grupo';
+    btnVolverIncidencias.textContent = 'Volver a Incidencias';
+    divIncidenciasResuelta.appendChild(btnVolverIncidencias);
+
+    btnVolverIncidencias.addEventListener('click', function () {
+        if (divIncidenciasPendientes.style.display === "none") {
+            divIncidenciasPendientes.style.display = "block";
+            divIncidenciasResuelta.style.display = "none";
+            // divIncidenciasResuelta.innerText = "Inscripciones Resueltas";
         } else {
             divIncidenciasPendientes.style.display = "none";
         }
     });
 
+    function limpiarIncidenciasResueltas() {
+        const elementos = divIncidenciasResuelta.querySelectorAll('.incidenciaResuelta');
+        elementos.forEach(elemento => elemento.remove());
+    }
 
     //Fetch de incidencias
     // const admin_id = localStorage.getItem('admin_id');

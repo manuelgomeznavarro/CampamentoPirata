@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             data.forEach((item, index) => {
                 console.log(`ID: ${item.id}, Nombre: ${item.name}, Apellido: ${item.lastname}, DNI: ${item.dni}, Teléfono: ${item.phone}, Teléfono 2: ${item.phone2}, Admin2: ${item.admin_id}`);
-                console.log(index);
+                console.log(item);
                 let elementoMonitor = document.createElement('div');
                 elementoMonitor.textContent = `${item.name} ${item.lastname}`;
                 elementoMonitor.className = "nombre-monitor";
@@ -188,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById("dni-editar-monitor").value = item.dni;
                         document.getElementById("telf1-editar-monitor").value = item.phone;
                         document.getElementById("telf2-editar-monitor").value = item.phone2;
+                        document.getElementById("description-editar-monitor").value = item.description;
+                        document.getElementById("editar-nombre-grupo").value = item.group;
                     } else {
                         formEditarMonitores.style.display = "none";
                     }
@@ -206,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const telf1 = document.getElementById("telf1-nuevo-monitor");
     const telf2 = document.getElementById("telf2-nuevo-monitor");
     const description = document.getElementById('description-nuevo-monitor');
+    const nuevoNombreGrupo = document.getElementById('nuevo-nombre-grupo');
 
     //Fetch para agregar un monitor a la tabla monitores
     btnCrearMonitor.addEventListener('click', (e) => {
@@ -226,7 +229,8 @@ document.addEventListener('DOMContentLoaded', function () {
             phone2: telf2.value,
             email: email.value,
             password: password.value,
-            description: description.innerText,
+            description: description.value,
+            name_group: nuevoNombreGrupo.value,
             admin_id: localStorage.getItem('role_id')
         }
 
@@ -515,12 +519,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const monitorData = {
                 name: document.getElementById("nombre-editar-monitor").value,
                 lastname: document.getElementById("apellidos-editar-monitor").value,
-                email: document.getElementById("correo-editar-monitor").value,
                 password: document.getElementById("password-editar-monitor").value,
                 dni: document.getElementById("dni-editar-monitor").value,
                 phone: document.getElementById("telf1-editar-monitor").value,
                 phone2: document.getElementById("telf2-editar-monitor").value,
-                description: document.getElementById("description-editar-monitor").innerText,
+                description: document.getElementById("description-editar-monitor").value,
+                name_group: document.getElementById("editar-nombre-grupo").value,
                 admin_id: localStorage.getItem('role_id')
             };
             console.log(monitorData);

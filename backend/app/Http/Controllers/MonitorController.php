@@ -17,6 +17,12 @@ class MonitorController extends Controller
     public function index()
     {
         $monitors = Monitor::all();
+        foreach ($monitors as $monitor) {
+            $group = Group::where('monitor_id', $monitor->id)->first();
+            if ($group) {
+                $monitor->group = $group->name;
+            }
+        }
         return response()->json($monitors, 200);
     }
 
@@ -58,7 +64,7 @@ class MonitorController extends Controller
             ]);
 
             $group = Group::create([
-                'name' => '',
+                'name' => $request->name_group,
                 'administrator_id' => $request->admin_id,
                 'monitor_id' => $monitor->id,
                 'timeline_id' => $timeline->id
@@ -89,6 +95,8 @@ class MonitorController extends Controller
     public function show($IdMonitors)
     {
         $monitors = Monitor::findOrFail($IdMonitors);
+        $group = Group::where('monitor_id', $IdMonitors)->first();
+        $monitors->group = $group->name;
         return response()->json($monitors, 200);
     }
 
@@ -96,6 +104,10 @@ class MonitorController extends Controller
     public function update(Request $request, $IdMonitors)
     {
         $monitors = Monitor::findOrFail($IdMonitors);
+        $group = Group::where('monitor_id', $IdMonitors)->first();
+        $group->update([
+            'name' => $request->name_group
+        ]);
         $monitors->update($request->all());
         return response()->json($monitors, 200);
     }
