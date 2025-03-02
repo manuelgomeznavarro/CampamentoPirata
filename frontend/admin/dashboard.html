@@ -41,28 +41,27 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item" id="dashboard-admin">Dashboard</div>
+                    <div class="menu-item" id="dashboard-admin">Panel de Control</div>
                     <div class="menu-item" id="gestionPago-admin">Gestión de Pagos</div>
                     <div class="menu-item" id="seccionMonitores-admin">Monitores</div>
-                    <div class="menu-item" id="inscripcionesRegistros-admin">Inscripciones y registros</div>
-                    <div class="menu-item" id="excursiones-admin">Excursiones y actividades</div>
+                    <div class="menu-item" id="inscripcionesRegistros-admin">Soporte</div>
+                    <div class="menu-item" id="excursiones-admin">Excursiones</div>
                 </div>
             </div>
             <div class="dashboard-container">
                 <!-- Dashboard Title -->
-                <h3 class="dashboard-title">Dashboard</h3>
+                <h3 class="dashboard-title">Panel de Control</h3>
                 <!-- Activity Card -->
-                <div class="activity-card">
-                    <div class="card-header">Próxima actividad</div>
-                    <div class="card-content">
+                <div class="activity-card" id="activity-card">
+
+                    <div class="card-header" id="card-header">Próxima actividad</div>
+                    <div class="card-content" id="card-content">
                         <div class="activity-details">
-                            <div class="activity-title">Actividad 1</div>
-                            <div class="activity-time">10:30 / 13:30</div>
+                            <div class="activity-title">No hay ninguna actividad en curso en este momento</div>
+                            <div class="activity-time">--:-- / --:--</div>
                         </div>
 
-                        <div class="activity-description">
-                            En este apartado encontrarás una descripción detallada de la actividad, incluyendo sus objetivos, dinámica, materiales necesarios y beneficios para los participantes.
-                        </div>
+                        <p class="activity-description"></p>
                     </div>
                 </div>
 

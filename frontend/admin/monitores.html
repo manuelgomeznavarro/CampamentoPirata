@@ -39,11 +39,11 @@
             <div class="sidebar">
 
                 <div class="menu">
-                    <div class="menu-item" id="dashboard-admin">Dashboard</div>
+                    <div class="menu-item" id="dashboard-admin">Panel de Control</div>
                     <div class="menu-item" id="gestionPago-admin">Gestión de Pagos</div>
                     <div class="menu-item" id="seccionMonitores-admin">Monitores</div>
-                    <div class="menu-item" id="inscripcionesRegistros-admin">Inscripciones y registros</div>
-                    <div class="menu-item" id="excursiones-admin">Excursiones y actividades</div>
+                    <div class="menu-item" id="inscripcionesRegistros-admin">Soporte</div>
+                    <div class="menu-item" id="excursiones-admin">Excursiones</div>
                 </div>
             </div>
             <div class="dashboard-menu">
@@ -87,8 +87,12 @@
                                 <input type="text" name="telf2-nuevo-monitor" id="telf2-nuevo-monitor"><span id="errorPhone2"></span>
                             </div>
                             <div>
-                                <label for="description-nuevo-monitor">Descripción</label>
+                                <label for="description-nuevo-monitor">Descripción*</label>
                                 <textarea name="description-nuevo-monitor" id="description-nuevo-monitor"></textarea><span id="errorDescription"></span>
+                            </div>
+                            <div>
+                                <label for="nuevo-nombre-grupo">Nombre del grupo*</label>
+                                <input name="nuevo-nombre-grupo" id="nuevo-nombre-grupo"></iid="errorDescriptionEditar"></span>
                             </div>
                         </form>
                         <div class="info-monitor-card">
@@ -154,8 +158,12 @@
                                 <input type="text" name="telf2-editar-monitor" id="telf2-editar-monitor"><span id="errorPhone2Editar"></span>
                             </div>
                             <div>
-                                <label for="description-editar-monitor">Descripción</label>
+                                <label for="description-editar-monitor">Descripción*</label>
                                 <textarea name="description-editar-monitor" id="description-editar-monitor"></textarea><span id="errorDescriptionEditar"></span>
+                            </div>
+                            <div>
+                                <label for="editar-nombre-grupo">Nombre del grupo*</label>
+                                <input name="editar-nombre-grupo" id="editar-nombre-grupo"></input><span id="errorDescriptionEditar"></span>
                             </div>
                         </form>
                         <div class="info-monitor-card">
