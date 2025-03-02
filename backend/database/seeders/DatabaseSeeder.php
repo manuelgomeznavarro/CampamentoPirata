@@ -625,25 +625,25 @@ class DatabaseSeeder extends Seeder
         // 12. Create Prices (Training Programs)
         DB::table('prices')->insert([
             [
-                'name' => 'Tarifa Pulpo',
+                'name' => 'Grumete Novato',
                 'price' => 24,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Tarifa Delfín',
+                'name' => 'Corsario Madrugador',
                 'price' => 39,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Tarifa Tiburón',
+                'name' => 'Bucanero Semanal',
                 'price' => 185,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Tarifa Ballena',
+                'name' => 'Capitán del Barco',
                 'price' => 700,
                 'created_at' => now(),
                 'updated_at' => now(),
