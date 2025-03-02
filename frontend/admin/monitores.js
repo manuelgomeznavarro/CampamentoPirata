@@ -246,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
         crearMonitor(monitorData);
         // crearCuentaMonitor(userData)
     })
+    
     function crearMonitor(monitorData) {
         return fetch('http://127.0.0.1:8000/api/monitors', {
             method: 'POST', //Método para enviar los datos al servidor
@@ -537,6 +538,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+const btnEliminarMonitor = document.getElementById("eliminar-monitor");
+
+btnEliminarMonitor.addEventListener('click', function () {
+    //Fetch para eliminar un monitor de la tabla monitores
+    console.log(localStorage.getItem('role_id'));
+    console.log('se borra el monitor');
+    fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`, {
+        method: 'DELETE'
+
+    })
+});
+
 // Validación de los datos del formulario de inicio de sesión
 
 const form = document.querySelector('form');
@@ -687,10 +700,10 @@ function validateForm() {
     const isPhoneCorrect1 = validatePhone1();
     const isPhoneCorrect2 = validatePhone2();
     const isDniCorrect = validateDni();
-    const isPasswordCorrect = validatePassword();
+    // const isPasswordCorrect = validatePassword();
 
 
-    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
+    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect) {
         return true;
     } else {
         return false;
