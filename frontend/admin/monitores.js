@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById("telf2-editar-monitor").value = item.phone2;
                         document.getElementById("description-editar-monitor").value = item.description;
                         document.getElementById("editar-nombre-grupo").value = item.group;
+                        localStorage.setItem('monitor_id', item.id);
                     } else {
                         formEditarMonitores.style.display = "none";
                     }
@@ -498,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Editar datos monitor
     function introducirDatos(monitorData) {
-        return fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`, {
+        return fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('monitor_id')}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -557,10 +558,24 @@ btnEliminarMonitor.addEventListener('click', function () {
     //Fetch para eliminar un monitor de la tabla monitores
     console.log(localStorage.getItem('role_id'));
     console.log('se borra el monitor');
-    fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('role_id')}`, {
+    fetch(`http://127.0.0.1:8000/api/monitors/${localStorage.getItem('monitor_id')}`, {
         method: 'DELETE'
 
     })
+        .then(response => {
+            console.log(response);
+            if (!response.ok) {
+                throw new Error('Error al eliminar monitor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Monitor eliminado con éxito", data);
+            window.location.href = "monitores.html";
+        })
+        .catch(error => {
+            console.error('Error al eliminar monitor', error);
+        });
 });
 
 // Validación de los datos del formulario de inicio de sesión
@@ -884,14 +899,14 @@ function validateFormEditar() {
 
     const isNameCorrect = validateNameEditar();
     const isLastNameCorrect = validateLastNameEditar();
-    const isEmailCorrect = validateEmailEditar();
+    // const isEmailCorrect = validateEmailEditar();
     const isPhoneCorrect1 = validatePhone1Editar();
     const isPhoneCorrect2 = validatePhone2Editar();
     const isDniCorrect = validateDniEditar();
     const isPasswordCorrect = validatePasswordEditar();
 
 
-    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
+    if (isNameCorrect && isLastNameCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
         return true;
     } else {
         return false;
