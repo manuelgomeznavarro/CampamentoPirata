@@ -14,16 +14,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const headerBtnsContainer = document.querySelector('.dashboard-profile');
     const btnSalir = document.createElement('button');
-                    const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
-                    btnSalir.appendChild(imgSalir);
+    const imgSalir = document.createElement('img');
+    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+    btnSalir.appendChild(imgSalir);
 
-                    btnSalir.addEventListener('click', () => {
-                        localStorage.removeItem('role');
-                        localStorage.removeItem('role_id');
-                        location.assign('../index.html');
-                    });
-                    headerBtnsContainer.appendChild(btnSalir);
+    btnSalir.addEventListener('click', () => {
+        localStorage.removeItem('role');
+        localStorage.removeItem('role_id');
+        location.assign('../index.html');
+    });
+    headerBtnsContainer.appendChild(btnSalir);
+
+    function checkRole() {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            switch (role) {
+                case 'tutor':
+                    location.assign('../index.html');
+
+                    break;
+
+                case 'monitor':
+                    location.assign('./monitor/html/dashboard.html');
+
+                    break;
+
+                case 'admin':
+                    // location.assign('./admin/dashboard.html');
+                    const profilePic = document.querySelector('.user-avatar img');
+
+                    fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+                        method: 'POST', //Método para enviar los datos al servidor
+                        headers: {
+                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                        },
+                        body: JSON.stringify({
+                            role: localStorage.getItem('role'),
+                            role_id: localStorage.getItem('role_id')
+                        }) //Se convierte el objeto JS a una cadena JSON
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.url) {
+                                profilePic.src = data.url;
+                            } else {
+                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png";
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    checkRole();
+
+    const nombreAdmin = document.querySelector('.user-name');
+
+    fetch(`http://127.0.0.1:8000/api/admins/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            nombreAdmin.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    
 
     //Fetch para obtener los datos de las tarifas de la BBDD
     fetch('http://127.0.0.1:8000/api/prices')
@@ -123,20 +191,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch para obtener los datos de los tutores que han realizado pagos
     function obtenerInfoTutores(tutor_id, inscription_id, child_id) {
         fetch(`http://127.0.0.1:8000/api/tutors/${tutor_id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error `);
-            }
-            return response.json();
-        })
-        .then(tutorData => {
-            // Asumiendo que data es un objeto que contiene la información del tutor
-            console.log(`ID: ${tutorData.id}, Nombre: ${tutorData.name}, Apellidos: ${tutorData.lastname}, DNI: ${tutorData.dni}, Teléfono: ${tutorData.phone}, Teléfono 2: ${tutorData.phone2}`);
-            crearInfoInscripciones(tutor_id, inscription_id, tutorData, child_id);
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error `);
+                }
+                return response.json();
+            })
+            .then(tutorData => {
+                // Asumiendo que data es un objeto que contiene la información del tutor
+                console.log(`ID: ${tutorData.id}, Nombre: ${tutorData.name}, Apellidos: ${tutorData.lastname}, DNI: ${tutorData.dni}, Teléfono: ${tutorData.phone}, Teléfono 2: ${tutorData.phone2}`);
+                crearInfoInscripciones(tutor_id, inscription_id, tutorData, child_id);
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
     }
 
     // Fetch para obtener los datos de los niños que han realizado pagos
@@ -203,20 +271,20 @@ document.addEventListener('DOMContentLoaded', function () {
             infoTarifas.style.display = "none";
         }
     });
-    btnDescuentos.addEventListener('click', function () {
-        if (infoDescuentos.style.display === "none") {
-            infoDescuentos.style.display = "block";
-            infoTarifas.style.display = "none";
-            menuContent.style.display = "block";
-            infoPagos.style.display = "none";
-        } else {
-            infoDescuentos.style.display = "none";
-        }
-    });
+    // btnDescuentos.addEventListener('click', function () {
+    //     if (infoDescuentos.style.display === "none") {
+    //         infoDescuentos.style.display = "block";
+    //         infoTarifas.style.display = "none";
+    //         menuContent.style.display = "block";
+    //         infoPagos.style.display = "none";
+    //     } else {
+    //         infoDescuentos.style.display = "none";
+    //     }
+    // });
 
-    document.getElementById('logo-gestionPagos').addEventListener('click', function () {
-        window.location.href = '../admin/dashboard.html';
-    });
+    // document.getElementById('logo-gestionPagos').addEventListener('click', function () {
+    //     window.location.href = '../admin/dashboard.html';
+    // });
 
     document.getElementById('dashboard-admin').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
@@ -234,9 +302,9 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../admin/inscripcionesyregistros.html';
     });
 
-    document.getElementById('excursiones-admin').addEventListener('click', function () {
-        window.location.href = '../admin/excursionesyactividades.html';
-    });
+    // document.getElementById('excursiones-admin').addEventListener('click', function () {
+    //     window.location.href = '../admin/excursionesyactividades.html';
+    // });
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('gestionPago-admin');

@@ -32,9 +32,75 @@ document.addEventListener('DOMContentLoaded', function () {
     //     btnGrupos.dispatchEvent(eventoClick);
     // }
 
-    document.getElementById('logo-monitores-admin').addEventListener('click', function () {
-        window.location.href = '../admin/dashboard.html';
-    });
+    function checkRole() {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            switch (role) {
+                case 'tutor':
+                    location.assign('../index.html');
+
+                    break;
+
+                case 'monitor':
+                    location.assign('./monitor/html/dashboard.html');
+
+                    break;
+
+                case 'admin':
+                    // location.assign('./admin/dashboard.html');
+                    const profilePic = document.querySelector('.user-avatar img');
+
+                    fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
+                        method: 'POST', //Método para enviar los datos al servidor
+                        headers: {
+                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                        },
+                        body: JSON.stringify({
+                            role: localStorage.getItem('role'),
+                            role_id: localStorage.getItem('role_id')
+                        }) //Se convierte el objeto JS a una cadena JSON
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.url) {
+                                profilePic.src = data.url;
+                            } else {
+                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png";
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    checkRole();
+
+    const nombreAdmin = document.querySelector('.user-name');
+
+    fetch(`http://127.0.0.1:8000/api/admins/${localStorage.getItem('role_id')}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            nombreAdmin.textContent = `${data.name} ${data.lastname}`;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    // document.getElementById('logo-monitores-admin').addEventListener('click', function () {
+    //     window.location.href = '../admin/dashboard.html';
+    // });
 
     document.getElementById('dashboard-admin').addEventListener('click', function () {
         window.location.href = '../admin/dashboard.html';
@@ -52,9 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../admin/inscripcionesyregistros.html';
     });
 
-    document.getElementById('excursiones-admin').addEventListener('click', function () {
-        window.location.href = '../admin/excursionesyactividades.html';
-    });
+    // document.getElementById('excursiones-admin').addEventListener('click', function () {
+    //     window.location.href = '../admin/excursionesyactividades.html';
+    // });
 
     //Código para que al cargar la página, se seleccione el botón Dashboard
     let defaultButton = document.getElementById('seccionMonitores-admin');
