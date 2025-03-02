@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    function checkRole() {
+function checkRole() {
         const role = localStorage.getItem('role');
 
         if (role) {
@@ -8,34 +8,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     const headerBtnsContainer = document.querySelector('header .header-btns-container');
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
-                    reservationBtn.href = './tutor/inscripcion/inscripcion.html';
-                    reservationBtn.innerText = 'Reserva';
-
-                    const tutorProfilePicContainer = document.createElement('figure');
-                    const tutorProfilePic = document.createElement('img');
-
-                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
-                    tutorProfilePicContainer.addEventListener('click', () => {
-                        location.assign('../../tutor/perfil_tutor/perfil_tutor.html');
-                    });
+                    reservationBtn.href = '../inscripcion/inscripcion.html';
+                    reservationBtn.innerText = 'Inscripción';
 
                     const btnSalir = document.createElement('button');
+                    btnSalir.className = "exit-button";
                     const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
-
-                    const logoFooter = document.getElementById('logo-header');
-
-                    logoFooter.addEventListener('click', function () {
-                        location.assign('../../index.html');
-                    }
-                    );
 
                     btnSalir.addEventListener('click', () => {
                         localStorage.removeItem('role');
                         localStorage.removeItem('role_id');
                         location.reload();
                     });
+
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
+
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('../perfil_tutor/perfil_tutor.html');
+                    });
+
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
                         headers: {
@@ -53,12 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
                             console.log(error);
-
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
@@ -71,12 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../../monitor/html/dashboard.html');
 
                     break;
 
                 case 'admin':
-                    location.assign('./admin/dashboard.html');
+                    location.assign('../../admin/dashboard.html');
 
                     break;
 
@@ -110,7 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tarifaCards = document.querySelectorAll('.plan-card');
                 if (index < tarifaCards.length) {
                     const tarifaCard = tarifaCards[index];
-                    const titleElement = tarifaCard.querySelector('.plan-title span');
+                    console.log(tarifaCard);
+                    
+                    const titleElement = tarifaCard.querySelector('.plan-header h2');
                     const priceElement = tarifaCard.querySelector('.plan-price span');
                     // const buttonsave = tarifaCard.querySelector('button');
                     titleElement.textContent = item.name;

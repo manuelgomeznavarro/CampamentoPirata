@@ -819,8 +819,7 @@ opacity: 1;
 
 /* Contenedor principal */
 .prices {
-    width: 100%;
-    max-width: 1440px;
+    max-width: 94%;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -837,7 +836,7 @@ opacity: 1;
 
 .price-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2rem;
     justify-content: center;
     padding: 1rem;
@@ -921,12 +920,6 @@ opacity: 1;
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.feature-icon {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
 }
 
 .feature-text {
@@ -2966,6 +2959,7 @@ td {
 /* Add a glowing border effect */
 .plan-card::after {
     content: '';
+    cursor: pointer;
     position: absolute;
     top: -2px;
     left: -2px;
