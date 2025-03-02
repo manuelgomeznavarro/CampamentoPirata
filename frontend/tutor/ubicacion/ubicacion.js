@@ -103,4 +103,43 @@ reservaFooter.addEventListener('click', function (event) {
         } else {
             window.location.href = '../../index.html?showLogin=true';
         }
-    });
+});
+
+// Array with image URLs
+const facilityImages = [
+    "https://a.espncdn.com/photo/2024/1010/nba_rank-10-1_16x9.jpg",
+    "https://basketworld.com/blog/wp-content/uploads/2024/10/comiezo-de-la-nba-temporada-24-25.jpg",
+    "https://estaticos-cdn.prensaiberica.es/clip/c9dea18c-7318-4f65-b891-3e59fd104ea0_alta-libre-aspect-ratio_default_0.jpg",
+    "https://spain.id.nba.com/storage/photos/shares/Lebron-Maximo-anotador.jpg",
+];
+
+// Current image index
+let currentImageIndex = 0;
+
+// Get DOM elements
+const leftArrow = document.querySelector('.facilities div figure:first-child img');
+const rightArrow = document.querySelector('.facilities div figure:last-child img');
+const facilityImage = document.querySelector('.facilities-pic img');
+
+// Function to update the image
+function updateImage() {
+facilityImage.src = facilityImages[currentImageIndex];
+}
+
+// Add click event to left arrow
+leftArrow.addEventListener('click', () => {
+// Decrease index and handle wrapping around to the end
+currentImageIndex = (currentImageIndex - 1 + facilityImages.length) % facilityImages.length;
+updateImage();
+});
+
+// Add click event to right arrow
+rightArrow.addEventListener('click', () => {
+// Increase index and handle wrapping around to the beginning
+currentImageIndex = (currentImageIndex + 1) % facilityImages.length;
+updateImage();
+});
+
+// Add cursor pointer to arrows for better UX
+leftArrow.style.cursor = 'pointer';
+rightArrow.style.cursor = 'pointer';

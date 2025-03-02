@@ -469,6 +469,9 @@ main .team>div {
 
 main .team>div figure img {
     border-radius: 50%;
+    width: 150px !important;
+    height: 150px !important;
+    object-fit: cover;
 }
 
 main .team>div .team-info {
@@ -656,6 +659,14 @@ main .camp-pic {
     place-self: center;
 }
 
+main .camp-pic figure {
+    display: block !important;
+}
+
+main .camp-pic figure img {
+    width: 100vw !important;
+}
+
 main .fade-container .about-place {
     display: flex;
     flex-direction: column;
@@ -680,6 +691,8 @@ main .fade-container .about-place .about-place-content p {
 
 main .fade-container .about-place .about-place-content figure video {
     border-radius: 16px;
+    width: 630px !important;
+    height: 360px !important;
 }
 
 main .fade-container .schedule {
