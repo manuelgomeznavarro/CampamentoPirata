@@ -1,26 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const incidentsForm = document.querySelector('.incident-form-container');
+
     function checkRole() {
         const role = localStorage.getItem('role');
 
         if (role) {
             switch (role) {
                 case 'tutor':
+                    incidentsForm.style.display = "flex";
+
                     const headerBtnsContainer = document.querySelector('header .header-btns-container');
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
-                    reservationBtn.href = './tutor/inscripcion/inscripcion.html';
-                    reservationBtn.innerText = 'Reserva';
+                    reservationBtn.href = '../inscripcion/inscripcion.html';
+                    reservationBtn.innerText = 'Inscripción';
 
-                    const tutorProfilePicContainer = document.createElement('figure');
-                    const tutorProfilePic = document.createElement('img');
-
-                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
-                    tutorProfilePicContainer.addEventListener('click', () => {
-                        location.assign('../../tutor/perfil_tutor/perfil_tutor.html');
-                    });
                     const btnSalir = document.createElement('button');
+                    btnSalir.className = "exit-button";
                     const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
 
                     btnSalir.addEventListener('click', () => {
@@ -29,12 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         location.reload();
                     });
 
-                    const logoFooter = document.getElementById('logo-header');
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
 
-                    logoFooter.addEventListener('click', function () {
-                        location.assign('../../index.html');
-                    }
-                    );
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('../perfil_tutor/perfil_tutor.html');
+                    });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -53,12 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (data.url) {
                                 tutorProfilePic.src = data.url;
                             } else {
-                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                                tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png';
                             }
                         })
                         .catch(error => {
                             console.log(error);
-
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
@@ -71,12 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../../monitor/html/dashboard.html');
 
                     break;
 
                 case 'admin':
-                    location.assign('./admin/dashboard.html');
+                    location.assign('../../admin/dashboard.html');
 
                     break;
 
@@ -179,15 +177,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     preguntas.forEach(pregunta => {
 
-        const flecha = pregunta.querySelector('img');
+        // const flecha = pregunta.querySelector('img');
         const respuesta = pregunta.querySelector('.faq-card-content-answer');
-        flecha.addEventListener('click', () => {
-            console.log("flechita");
-            if (respuesta.style.display === 'none' || respuesta.style.display === '') {
-                respuesta.style.display = 'block';
-            } else {
-                respuesta.style.display = 'none';
-            }
+        pregunta.addEventListener('click', () => {
+            pregunta.classList.toggle('open');
+
+            // if (respuesta.style.display === 'none' || respuesta.style.display === '') {
+            //     respuesta.style.display = 'block';
+            // } else {
+            //     respuesta.style.display = 'none';
+            // }
         });
     });
 
@@ -227,43 +226,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Iconos sociales
                 const socialContainer = document.createElement('div');
+                socialContainer.className = "social-media-container";
 
-                const socialIconLinkedin = document.createElement('figure');
+                const socialIconLinkedin = document.createElement('a');
+                socialIconLinkedin.href = "#";
                 const iconImgLinkedin = document.createElement('img');
-                iconImgLinkedin.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
+                iconImgLinkedin.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/linkedin_icon.png';
                 iconImgLinkedin.alt = '';
                 socialIconLinkedin.appendChild(iconImgLinkedin);
                 socialContainer.appendChild(socialIconLinkedin);
 
-                const socialIcon = document.createElement('figure');
-                const iconImg = document.createElement('img');
-                iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
-                iconImg.alt = '';
-                socialIcon.appendChild(iconImg);
-                socialContainer.appendChild(socialIcon);
+                const socialIconInstagram = document.createElement('a');
+                socialIconInstagram.href = "#";
+                const iconImgInstagram = document.createElement('img');
+                iconImgInstagram.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/instagram_icon.png';
+                iconImgInstagram.alt = '';
+                socialIconInstagram.appendChild(iconImgInstagram);
+                socialContainer.appendChild(socialIconInstagram);
 
-                const socialIcon = document.createElement('figure');
-                const iconImg = document.createElement('img');
-                iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
-                iconImg.alt = '';
-                socialIcon.appendChild(iconImg);
-                socialContainer.appendChild(socialIcon);
-                
-                // Crear 3 iconos (puedes personalizar la cantidad)
-                for(let i = 0; i < 3; i++) {
-                    const socialIcon = document.createElement('figure');
-                    const iconImg = document.createElement('img');
-                    iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
-                    iconImg.alt = '';
-                    socialIcon.appendChild(iconImg);
-                    socialContainer.appendChild(socialIcon);
-                }
-                
+                const socialIconFacebook = document.createElement('a');
+                socialIconFacebook.href = "#";
+                const iconImgFacebook = document.createElement('img');
+                iconImgFacebook.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/facebook_icon.png';
+                iconImgFacebook.alt = '';
+                socialIconFacebook.appendChild(iconImgFacebook);
+                socialContainer.appendChild(socialIconFacebook);
+
                 // Ensamblar estructura
                 content.append(info, separator, socialContainer);
                 card.append(mainFigure, content);
-                
-                return card;
+
+                monitorsCardsContainer.appendChild(card);
             })
         })
         .catch(error => {

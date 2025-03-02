@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-function checkRole() {
+    function checkRole() {
         const role = localStorage.getItem('role');
 
         if (role) {
