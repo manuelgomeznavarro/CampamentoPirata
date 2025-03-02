@@ -84,6 +84,7 @@ header .header-btns-container>figure img {
     display: block;
     width: 44px !important;
     height: 44px !important;
+    object-fit: cover;
 }
 
 header .header-btns-container .sign-in {
@@ -549,7 +550,11 @@ footer .footer-content div a {
 }
 
 footer hr {
-    border: 1px solid var(--brand-color);
+    /* border: 1px solid var(--brand-color); */
+    border: none;
+    background-color: var(--brand-color);
+    width: 100%;
+    height: 1px;
 }
 
 footer .footer-info {
@@ -1025,8 +1030,12 @@ figure img:not(.wave figure img):not(.map figure img) {
 }
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card hr {
-    color: #000;
+    /* color: #000; */
+    /* border: 1px solid #2e2e2e; */
+    width: 1px;
     height: 290px;
+    border: none;
+    background-color: #000;
 }
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card p {
@@ -1113,8 +1122,12 @@ figure img:not(.wave figure img):not(.map figure img) {
 }
 
 .quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content hr {
+    /* height: 1px;
+    border: 1px solid var(--base-color1); */
+    width: 100%;
     height: 1px;
-    border-color: var(--base-color1);
+    border: none;
+    background-color: var(--base-color1);
 }
 
 .quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container .our-monitors-card .monitor-content div {
@@ -1200,7 +1213,9 @@ figure img:not(.wave figure img):not(.map figure img) {
 }
 
 .quienes-somos-main .fade-container .contact-container .ways-to-contact-container hr {
-    border-color: var(--clear-sky-light2);
+    /* border: none; */
+    background-color: var(--clear-sky-light2);
+    border: 1px solid var(--clear-sky-light2);
 }
 
 .quienes-somos-main .fade-container .contact-container .incident-form-container {
@@ -1657,6 +1672,7 @@ figure img:not(.wave figure img):not(.map figure img) {
 .profile-header img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
 
 .profile {
@@ -1805,6 +1821,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     border-radius: 50%;
     width: 80px;
     height: 80px;
+    object-fit: cover;
 }
 
 .children-container-cards {

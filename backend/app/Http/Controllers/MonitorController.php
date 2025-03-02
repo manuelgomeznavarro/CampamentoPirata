@@ -23,6 +23,14 @@ class MonitorController extends Controller
                 $monitor->group = $group->name;
             }
         }
+
+        foreach ($monitors as $monitor) {
+            $user = User::where('role', 'monitor')
+                ->where('role_id', $monitor->id)
+                ->first();
+
+            $monitor->url_pic = $user->url_pic;
+        }
         return response()->json($monitors, 200);
     }
 

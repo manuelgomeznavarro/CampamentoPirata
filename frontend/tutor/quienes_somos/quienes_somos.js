@@ -190,4 +190,83 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    const monitorsCardsContainer = document.querySelector('.our-monitors-cards-container');
+
+    fetch('http://127.0.0.1:8000/api/monitors')
+        .then(response => {
+            return response.json();
+        })
+        .then(monitors => {
+            monitors.forEach(monitor => {
+                const card = document.createElement('div');
+                card.className = 'our-monitors-card';
+                
+                const mainFigure = document.createElement('figure');
+                const mainImg = document.createElement('img');
+                mainImg.src = monitor.url_pic;
+                mainImg.alt = '';
+                mainFigure.appendChild(mainImg);
+                
+                const content = document.createElement('div');
+                content.className = 'monitor-content';
+                
+                const info = document.createElement('div');
+                info.className = 'monitor-info';
+                
+                const title = document.createElement('h5');
+                title.textContent = `${monitor.name} ${monitor.lastname}`;
+                
+                const description = document.createElement('p');
+                description.textContent = monitor.description;
+                
+                info.append(title, description);
+                
+                // Separador
+                const separator = document.createElement('hr');
+                
+                // Iconos sociales
+                const socialContainer = document.createElement('div');
+
+                const socialIconLinkedin = document.createElement('figure');
+                const iconImgLinkedin = document.createElement('img');
+                iconImgLinkedin.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
+                iconImgLinkedin.alt = '';
+                socialIconLinkedin.appendChild(iconImgLinkedin);
+                socialContainer.appendChild(socialIconLinkedin);
+
+                const socialIcon = document.createElement('figure');
+                const iconImg = document.createElement('img');
+                iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
+                iconImg.alt = '';
+                socialIcon.appendChild(iconImg);
+                socialContainer.appendChild(socialIcon);
+
+                const socialIcon = document.createElement('figure');
+                const iconImg = document.createElement('img');
+                iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
+                iconImg.alt = '';
+                socialIcon.appendChild(iconImg);
+                socialContainer.appendChild(socialIcon);
+                
+                // Crear 3 iconos (puedes personalizar la cantidad)
+                for(let i = 0; i < 3; i++) {
+                    const socialIcon = document.createElement('figure');
+                    const iconImg = document.createElement('img');
+                    iconImg.src = monitor.socialIcons?.[i] || 'https://placehold.co/32x32';
+                    iconImg.alt = '';
+                    socialIcon.appendChild(iconImg);
+                    socialContainer.appendChild(socialIcon);
+                }
+                
+                // Ensamblar estructura
+                content.append(info, separator, socialContainer);
+                card.append(mainFigure, content);
+                
+                return card;
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
 });
