@@ -3070,6 +3070,79 @@ input[type="radio"]:checked+.plan-card {
     box-shadow: none;
 }
 
+/* Steps progress bar */
+.steps-progress {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto 40px;
+    padding: 0 20px;
+}
+
+.progress-line {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: #ddd;
+    z-index: 0;
+    transform: translateY(-50%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+    color: #666;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.step-item.completed .step-number {
+    background: var(--base-color1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(47, 84, 190, 0.3);
+}
+
+.step-item.active .step-number {
+    background: var(--base-color1);
+    border-color: white;
+    transform: scale(1.2);
+    box-shadow: 0 6px 16px rgba(47, 84, 190, 0.4);
+    animation: pulse 1.5s infinite;
+}
+
+.step-item.active {
+    color: var(--base-color1);
+    font-weight: 600;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(47, 84, 190, 0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(47, 84, 190, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(47, 84, 190, 0); }
+}
+
 .timeline-table {
     width: 100%;
     border-collapse: collapse;

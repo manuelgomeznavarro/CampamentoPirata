@@ -13,15 +13,15 @@
 </head>
 <body>
     <header>
-        <figure>
-            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="" id="logo-header"> 
-        </figure>
+        <a href="../../index.html" id="logo-header">
+            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="" >
+        </a>
         <nav>
             <ul>
-                <li><a href="./tutor/programacion/programacion.html">Programación</a></li>
-                <li><a href="./tutor/ubicacion/ubicacion.html">Ubicación</a></li>
-                <li><a href="./tutor/tarifas/tarifas.html">Precios</a></li>
-                <li><a href="./tutor/quienes_somos/quienes_somos.html">Quienes somos</a></li>
+                <li><a href="../programacion/programacion.html">Programación</a></li>
+                <li><a href="../ubicacion/ubicacion.html">Ubicación</a></li>
+                <li><a href="../tarifas/tarifas.html">Precios</a></li>
+                <li><a href="../quienes_somos/quienes_somos.html">Quienes somos</a></li>
             </ul>
         </nav>
         <div class="header-btns-container">
@@ -31,7 +31,21 @@
     </header>
 
     <main class="inscription-container">
+        <!-- <div class="steps-progress">
+            <div class="step-item active"><span>1</span>Tutor</div>
+            <div class="step-item"><span>2</span>Alumno</div>
+            <div class="step-item"><span>3</span>Horarios</div>
+            <div class="step-item"><span>4</span>Resumen</div>
+        </div> -->
         <form class="form-container">
+            <!-- Add inside .form-container, right after the opening tag -->
+            <div class="steps-progress">
+                <div class="step-item completed"><div class="step-number">1</div>Tutor</div>
+                <div class="step-item"><div class="step-number">2</div>Alumno</div>
+                <div class="step-item"><div class="step-number">3</div>Horarios</div>
+                <div class="step-item"><div class="step-number">4</div>Resumen</div>
+                <div class="progress-line"></div>
+            </div>
             <div class="steps-wrapper">
                 <!-- Step 1: Tutor -->
                 <div class="step active" data-step="1">
@@ -39,7 +53,6 @@
                     <div class="form-section">
                         <div class="form-data-container">
                             <div>
-                                <h3>DATOS DEL TUTOR</h3>
                                 <div>
                                     <label for="tutor-name">Nombre*</label>
                                     <input type="text" name="tutor-name" id="tutor-name">
@@ -97,7 +110,6 @@
                     <div class="form-section">
                         <div class="form-data-container">
                             <div>
-                                <h3>DATOS DEL ALUMNO</h3>
                                 <div>
                                     <label for="child-name">Nombre*</label>
                                     <input type="text" name="child-name" id="child-name">
@@ -424,7 +436,7 @@
         <div class="footer-content">
             <div>
                 <figure>
-                    <img src="https://placehold.co/52x52" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/inscription-icon3.png" alt="">
                 </figure>
                 <h5>Realiza la Inscripción</h5>
                 <p>No tardes más en unirte a nuestra tripulación</p>
@@ -432,48 +444,45 @@
             </div>
             <div>
                 <figure>
-                    <img src="https://placehold.co/52x52" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/prices-icon3.png" alt="">
                 </figure>
                 <h5>Elige la mejor opción</h5>
                 <p>Escoge la tarifa que mejor se ajuste a lo que necesitas</p>
-                <a id="tarifa-footer" class="elemento-footer" href="./tutor/tarifas/tarifas.html">Más información -></a>
+                <a id="tarifa-footer" class="elemento-footer" href="../tarifas/tarifas.html">Más información -></a>
             </div>
             <div>
                 <figure>
-                    <img src="https://placehold.co/52x52" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/playing-icon3.png" alt="">
                 </figure>
                 <h5>Aprende jugando</h5>
                 <p>Descubre la gran variedad de actividades que tenemos</p>
-                <a id="actividades-footer" class="elemento-footer" href="./tutor/programacion/programacion.html"s>Más información -></a>
+                <a id="actividades-footer" class="elemento-footer" href="./programacion.html"s>Más información -></a>
             </div>
             <div>
                 <figure>
-                    <img src="https://placehold.co/52x52" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/about-us-icon3.png" alt="">
                 </figure>
                 <h5>Sobre nosotros</h5>
                 <p>Aprende acerca de nosotros, y como trabajamos</p>
-                <a id="conocenos-footer" class="elemento-footer" href="./tutor/quienes_somos/quienes_somos.html">Más información -></a>
+                <a id="conocenos-footer" class="elemento-footer" href="../quienes_somos/quienes_somos.html">Más información -></a>
             </div>
         </div>
         <hr>
         <div class="footer-info">
-            <figure>
+            <a href="../../index.html">
                 <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="">
-            </figure>
+            </a>
             <p>By Daniel Simón, Manuel Gómez and Gonzalo Pozo</p>
             <div>
-                <figure>
-                    <img src="https://placehold.co/32x32" alt="">
-                </figure>
-                <figure>
-                    <img src="https://placehold.co/32x32" alt="">
-                </figure>
-                <figure>
-                    <img src="https://placehold.co/32x32" alt="">
-                </figure>
-                <figure>
-                    <img src="https://placehold.co/32x32" alt="">
-                </figure>
+                <a href="https://www.instagram.com/tesoroperdidocamp/" target="_blank">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/instagram-icon.png" alt="">
+                </a>
+                <a href="https://www.tiktok.com/@tesoroperdidocamp" target="_blank">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/tiktok-icon.png" alt="">
+                </a>
+                <a href="https://www.facebook.com/people/Tesoro-Perdido-Camp/61572895049236/" target="_blank">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/facebook-icon2.png" alt="">
+                </a>
             </div>
         </div>
     </footer>

@@ -8,13 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const headerBtnsContainer = document.querySelector('header .header-btns-container');
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
-                    reservationBtn.href = './tutor/inscripcion/inscripcion.html';
-                    reservationBtn.innerText = 'Reserva';
-
-                    const tutorProfilePicContainer = document.createElement('figure');
-                    const tutorProfilePic = document.createElement('img');
+                    reservationBtn.href = '../inscripcion/inscripcion.html';
+                    reservationBtn.innerText = 'Inscripción';
 
                     const btnSalir = document.createElement('button');
+                    btnSalir.className = "exit-button";
                     const imgSalir = document.createElement('img');
                     imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
                     btnSalir.appendChild(imgSalir);
@@ -22,15 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     btnSalir.addEventListener('click', () => {
                         localStorage.removeItem('role');
                         localStorage.removeItem('role_id');
-                        location.assign('../../index.html');
+                        location.reload();
                     });
 
-                    const logoHeader = document.getElementById('logo-header');
+                    const tutorProfilePicContainer = document.createElement('figure');
+                    const tutorProfilePic = document.createElement('img');
 
-                    logoHeader.addEventListener('click', () => {
-                            location.assign('../../index.html');
-                        }
-                    );
+                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
+                    tutorProfilePicContainer.addEventListener('click', () => {
+                        location.assign('../perfil_tutor/perfil_tutor.html');
+                    });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         })
                         .catch(error => {
                             console.log(error);
-
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
@@ -63,15 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
                     headerBtnsContainer.appendChild(btnSalir);
+                    tutorProfilePicContainer.appendChild(tutorProfilePic);
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../../monitor/html/dashboard.html');
 
                     break;
 
                 case 'admin':
-                    location.assign('./admin/dashboard.html');
+                    location.assign('../../admin/dashboard.html');
 
                     break;
 
@@ -79,7 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         } else {
-            location.assign('../../error/404.html')
+            const inicio = document.getElementById("sign-in");
+            const registrar = document.getElementById("sign-up");
+
+            inicio.addEventListener('click', () => window.location.href = '../../index.html?showLogin=true');
+            registrar.addEventListener('click', () => window.location.href = '../../index.html?showSignUp=true');
         }
     }
 
@@ -101,6 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
         steps.forEach((step, index) => {
             step.classList.toggle('active', index === currentStep);
         });
+
+         // Update progress line and steps
+        const progressLine = document.querySelector('.progress-line');
+        const stepItems = document.querySelectorAll('.step-item');
+        
+        // Calculate progress
+        const progressWidth = (currentStep / (stepItems.length - 1)) * 100;
+        progressLine.style.width = `${progressWidth}%`;
+
+        stepItems.forEach((step, index) => {
+            step.classList.toggle('completed', index <= currentStep);
+            step.classList.toggle('active', index === currentStep);
+        });
+
     }
 
     // Añadir este código en la sección de inicialización
