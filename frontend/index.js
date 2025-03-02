@@ -127,108 +127,108 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
     
-    // Función mejorada para mostrar con animación de fade in desde el centro
+    // Function to show a form with animation
     function showForm(overlay, container) {
-        // Primero mostramos los elementos con display flex/block pero con opacidad 0
+        // First show elements with flex/block but with opacity 0
         overlay.style.display = "flex";
         container.style.display = "block";
         
-        // Forzamos un reflow para asegurarnos que los cambios de display se apliquen
+        // Force a reflow to ensure display changes are applied
         void overlay.offsetWidth;
         
-        // Añadimos las clases que activarán las transiciones
+        // Add classes that will trigger transitions
         overlay.classList.add('active');
         container.classList.add('active');
         
-        // Eliminamos las clases de cierre si estuvieran presentes
+        // Remove closing classes if present
         overlay.classList.remove('closing');
         container.classList.remove('closing');
     }
-    
-    // Función mejorada para cerrar con animación de fade out hacia el centro
+
+    // Improved function to close forms with fade out animation
     function closeForm() {
-        const overlays = document.querySelectorAll('.overlay-sign-up, .overlay-sign-in');
-        const containers = document.querySelectorAll('.sign-up-container, .sign-in-container');
-        
-        // Añadimos las clases de cierre y quitamos las clases active
-        overlays.forEach(overlay => {
-            overlay.classList.remove('active');
-            overlay.classList.add('closing');
-        });
-        
-        containers.forEach(container => {
-            container.classList.remove('active');
-            container.classList.add('closing');
-        });
-        
-        // Esperamos a que terminen las transiciones antes de ocultar los elementos
-        setTimeout(() => {
+        return new Promise(resolve => {
+            const overlays = document.querySelectorAll('.overlay-sign-up, .overlay-sign-in');
+            const containers = document.querySelectorAll('.sign-up-container, .sign-in-container');
+            
+            // Add closing classes and remove active classes
             overlays.forEach(overlay => {
-                overlay.style.display = "none";
-                overlay.classList.remove('closing');
+                overlay.classList.remove('active');
+                overlay.classList.add('closing');
             });
             
             containers.forEach(container => {
-                container.style.display = "none";
-                container.classList.remove('closing');
+                container.classList.remove('active');
+                container.classList.add('closing');
             });
-        }, 300); // Duración de la transición (debe coincidir con el CSS)
+            
+            // Wait for transitions to complete before hiding elements
+            setTimeout(() => {
+                overlays.forEach(overlay => {
+                    overlay.style.display = "none";
+                    overlay.classList.remove('closing');
+                });
+                
+                containers.forEach(container => {
+                    container.style.display = "none";
+                    container.classList.remove('closing');
+                });
+                resolve(); // Resolve the promise when closing is complete
+            }, 300); // Duration of transition (should match CSS)
+        });
     }
-    
-    // Event listeners para abrir los formularios
+
+    // Event listeners to open forms
     if (registrar) {
-        registrar.addEventListener("click", () => {
-            closeForm();
-            setTimeout(() => {
-                showForm(overlay_sign_up, contenedor_sign_up);
-            }, 310); // Pequeño delay para asegurar que el cierre anterior completó
-        });
-    }
-    
-    if (registrarFooter) {
-        registrarFooter.addEventListener("click", () => {
-            closeForm();
-            setTimeout(() => {
-                showForm(overlay_sign_in, contenedor_sign_in);
-            }, 310);
-        });
-    }
-    
-    btnRegistrar.addEventListener("click", () => {
-        closeForm();
-        setTimeout(() => {
+        registrar.addEventListener("click", async () => {
+            await closeForm(); // Wait for form to close completely
             showForm(overlay_sign_up, contenedor_sign_up);
-        }, 310);
-    });
-    
-    if (inicio) {
-        inicio.addEventListener("click", () => {
-            closeForm();
-            setTimeout(() => {
-                showForm(overlay_sign_in, contenedor_sign_in);
-            }, 310);
         });
     }
-    
-    // Event listeners para cerrar al hacer clic en el overlay
+
+    if (registrarFooter) {
+        registrarFooter.addEventListener("click", async () => {
+            await closeForm();
+            showForm(overlay_sign_in, contenedor_sign_in);
+        });
+    }
+
+    btnRegistrar.addEventListener("click", async () => {
+        await closeForm();
+        showForm(overlay_sign_up, contenedor_sign_up);
+    });
+
+    if (inicio) {
+        inicio.addEventListener("click", async () => {
+            await closeForm();
+            showForm(overlay_sign_in, contenedor_sign_in);
+        });
+    }
+
+    // Event listeners to close when clicking on overlay
     overlay_sign_up.addEventListener("click", (event) => {
         if (event.target === overlay_sign_up) {
             closeForm();
         }
     });
-    
+
     overlay_sign_in.addEventListener("click", (event) => {
         if (event.target === overlay_sign_in) {
             closeForm();
         }
     });
 
-    document.getElementById('volver-iniciar-sesion').addEventListener('click', () => {
-        closeForm();
-        setTimeout(() => {
-            showForm(overlay_sign_in, contenedor_sign_in);
-        }, 310);
+    document.querySelector('.volver-registrarse').addEventListener('click', async () => {
+        await closeForm();
+        showForm(overlay_sign_up, contenedor_sign_up);
     });
+
+    document.querySelector('.volver-iniciar-sesion').addEventListener('click', async () => {
+        await closeForm();
+        showForm(overlay_sign_in, contenedor_sign_in);
+    });
+
+    
 
     //JS SIGN UP
     const emailInput = document.querySelector('#email-sign-up');

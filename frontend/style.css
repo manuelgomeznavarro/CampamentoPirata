@@ -844,9 +844,21 @@ main .fade-container .facilities div .facilities-pic img {
     flex-direction: column;
 }
 
-.quienes-somos-main .fade-container .who-we-are-container {
-    display: flex;
-    flex-direction: column;
+.volver-iniciar-sesion {
+    margin-bottom: 24px;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container figure {
+    width: 256%;
+    height: 380px;
+    overflow: hidden;
+}
+
+.quienes-somos-main .fade-container .who-we-are-container figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container {
