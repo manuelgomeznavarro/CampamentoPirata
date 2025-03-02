@@ -211,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const nuevoNombreGrupo = document.getElementById('nuevo-nombre-grupo');
 
     //Fetch para agregar un monitor a la tabla monitores
+    console.log(btnCrearGrupo);
+    
     btnCrearMonitor.addEventListener('click', (e) => {
         e.preventDefault();
         // TODO: HAY QUE AÑADOR LAS VALIDACIONES SIGUIENTES:
@@ -234,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
             admin_id: localStorage.getItem('role_id')
         }
 
+
         // if (emailValidator && passwordValidator) {
         //     console.log("Registro exitoso");
         //     crearCuenta(userData)
@@ -243,7 +246,12 @@ document.addEventListener('DOMContentLoaded', function () {
         //     console.log("Registro fallido");
         // }
         console.log(monitorData);
-        crearMonitor(monitorData);
+
+        const isFormValid = validateForm();
+        if (isFormValid) {
+            crearMonitor(monitorData);
+        }
+
         // crearCuentaMonitor(userData)
     })
     
@@ -256,15 +264,20 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify(monitorData) //Se convierte el objeto JS a una cadena JSON
         })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al crear monitor');
-                }
+                console.log(response);
+                // if (!response.ok) {
+                //     throw new Error('Error al crear monitor');
+                // }
+                
                 return response.json();
             })
             .then(data => {
+                console.log(data);
                 console.log("Monitor creado con éxito", data);
+                window.location.href = "monitores.html";
             })
             .catch(error => {
+                console.log(error);
                 console.error('Error al crear monitor', error);
             });
     }
@@ -563,13 +576,14 @@ const botonCrearMonitor = document.querySelector('#crear-monitor');
 //     }
 // });
 
-botonCrearMonitor.addEventListener('click', function (event) {
-    event.preventDefault();
-    validateForm();
-    if (validateForm() == true) {
-        window.location.href = "monitores.html";
-    }
-});
+// botonCrearMonitor.addEventListener('click', function (event) {
+//     event.preventDefault();
+//     validateForm();
+//     if (validateForm() == true) {
+//         window.location.href = "monitores.html";
+//     }
+// });
+
 const nextButton = document.querySelector('#nextButton');
 const errorName = document.querySelector('#errorName');
 const errorLastName = document.querySelector('#errorLastName');
