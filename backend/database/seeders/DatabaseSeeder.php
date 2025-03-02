@@ -317,7 +317,22 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'admin_id' => 2,
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'admin_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -326,7 +341,7 @@ class DatabaseSeeder extends Seeder
         // 6. Create Groups (Training Teams)
         DB::table('groups')->insert([
             [
-                'name' => 'Warriors Youth Academy',
+                'name' => 'Pequeños Cartógrafos de Historias',
                 'administrator_id' => 1,
                 'monitor_id' => 1,
                 'timeline_id' => 1,
@@ -334,10 +349,34 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Heat Junior Squad',
-                'administrator_id' => 2,
+                'name' => 'Dragones del Junco Dorado',
+                'administrator_id' => 1,
                 'monitor_id' => 2,
                 'timeline_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tripulación de los Jóvenes Corsarios',
+                'administrator_id' => 1,
+                'monitor_id' => 3,
+                'timeline_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Galeón del Baile Rebelde',
+                'administrator_id' => 1,
+                'monitor_id' => 4,
+                'timeline_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bandera de los Pintores Audaces',
+                'administrator_id' => 1,
+                'monitor_id' => 5,
+                'timeline_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -587,25 +626,25 @@ class DatabaseSeeder extends Seeder
         DB::table('prices')->insert([
             [
                 'name' => 'Tarifa Pulpo',
-                'price' => 299.99,
+                'price' => 24,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Tarifa Delfín',
-                'price' => 499.99,
+                'price' => 39,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Tarifa Tiburón',
-                'price' => 900.99,
+                'price' => 185,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Tarifa Ballena',
-                'price' => 2000.99,
+                'price' => 700,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
