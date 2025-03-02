@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 default:
                     break;
             }
+        } else {
+            location.assign('../../error/404.html')
         }
     }
 
@@ -508,7 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         isValid = false;
                         input.style.border = '2px solid rgb(226, 93, 93)';
                         input.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
-                        childImageError.textContent = 'Formato de imagen no válido. Utiliza JPG, PNG o GIF';
+                        childImageError.textContent = 'Formato de imagen no válido. Utilice JPEG, PNG, GIF o WEBP.';
+
                     } else if (file.size > 5 * 1024 * 1024) { // 5MB max
                         isValid = false;
                         input.style.border = '2px solid rgb(226, 93, 93)';
@@ -628,7 +631,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!validTypes.includes(file.type)) {
                 childImageInput.classList.add('error');
-                childImageError.textContent = 'Formato de imagen no válido. Utiliza JPG, PNG o GIF';
+                childImageError.textContent = 'Formato de imagen no válido. Utilice JPEG, PNG, GIF o WEBP.';
+
                 childImageInput.style.border = '2px solid rgb(226, 93, 93)';
                 childImageInput.style.boxShadow = "0 0 10px rgba(223, 93, 93, 0.5)";
             } else if (file.size > 5 * 1024 * 1024) { // 5MB max

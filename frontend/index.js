@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = './tutor/inscripcion/inscripcion.html';
                     reservationBtn.innerText = 'Inscripción';
-                    
 
                     const btnSalir = document.createElement('button');
                     btnSalir.className = "exit-button";
@@ -30,8 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
                     tutorProfilePicContainer.addEventListener('click', () => {
                         location.assign('./tutor/perfil_tutor/perfil_tutor.html');
-                    }
-                    );
+                    });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
                         method: 'POST', //Método para enviar los datos al servidor
@@ -55,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         })
                         .catch(error => {
                             console.log(error);
-
                         })
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);

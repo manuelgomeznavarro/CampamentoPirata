@@ -75,6 +75,7 @@ header .header-btns-container>figure {
     /* Ajuste automático de altura */
     margin: 0;
     /* Opcional, para evitar espacios adicionales */
+    cursor: pointer;
 }
 
 
@@ -568,10 +569,11 @@ footer .footer-info div {
 }
 
 footer .footer-info div a {
-    display: inline-block;
     width: fit-content;
     height: auto;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 footer .footer-info div a img {
