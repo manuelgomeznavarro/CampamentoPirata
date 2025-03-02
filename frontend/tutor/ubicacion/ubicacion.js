@@ -81,11 +81,17 @@ function checkRole() {
 
             default:
                 break;
+            }
+        } else {
+            const inicio = document.getElementById("sign-in");
+            const registrar = document.getElementById("sign-up");
+
+            inicio.addEventListener('click', () => window.location.href = '../../index.html?showLogin=true');
+            registrar.addEventListener('click', () => window.location.href = '../../index.html?showSignUp=true');
         }
     }
-}
 
-checkRole();
+    checkRole();
 
 
 // Asignar evento click a cada plan-card

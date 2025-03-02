@@ -223,6 +223,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    document.getElementById('volver-iniciar-sesion').addEventListener('click', () => {
+        closeForm();
+        setTimeout(() => {
+            showForm(overlay_sign_in, contenedor_sign_in);
+        }, 310);
+    });
+
     //JS SIGN UP
     const emailInput = document.querySelector('#email-sign-up');
     const passwordInput = document.querySelector('#password-sign-up');
