@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const activityTime = document.querySelector('.activity-time');
     const activityDescription = document.querySelector('.activity-description');
     const activityCard = document.getElementById('activity-card');
-
-    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+    btnSalir.className = "exit-button";
+    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
     btnSalir.appendChild(imgSalir);
 
     btnSalir.addEventListener('click', () => {

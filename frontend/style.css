@@ -2702,6 +2702,20 @@ figure img:not(.wave figure img):not(.map figure img) {
     position: relative;
 }
 
+#incidencia-pendiente{
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#incidencia-resuelta {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .children-text p {
     margin: 0 0 6px 0;
 }
@@ -2782,6 +2796,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     width: 100%;
     max-width: 75vw;
     place-self: center;
+    flex-wrap: wrap;
 }
 
 .contenedor-comentarios {
@@ -3252,8 +3267,24 @@ td {
     gap: 20px;
 }
 
+/* .contenedor-menu-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+} */
+
+.grupos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    /* width: 50%; */
+}
+
 .menu-content {
     width: 70%;
+    height: auto;
     flex-shrink: 0;
     margin-top: 70px;
     background: var(--Cielo-sereno-claro-3, #D9E9F5);
@@ -3261,6 +3292,10 @@ td {
 
 .form-crear-monitor{
     height: auto;
+}
+
+.creacion-grupo{
+    
 }
 
 .menu-content-default {
@@ -3892,8 +3927,7 @@ td {
     font-size: 24px;
 }
 
-/* Add these CSS modifications */
-/* Add these new transitions and animations */
+/* CSS TARIFAS */
 .price-card-label {
     display: block;
     cursor: pointer;
@@ -3901,7 +3935,6 @@ td {
 }
 
 .plan-card {
-    /* ... existing styles ... */
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
         border-color 0.3s ease,
         box-shadow 0.5s ease;
@@ -4379,9 +4412,11 @@ input[type="radio"]+.plan-card {
     border: var(--base-color1) solid 1px;
     border-radius: 16px;
     gap: 20px;
+    margin-bottom: 20px;
     margin-top: 14px;
     align-items: center;
     cursor: pointer;
+    width: 80%;
 }
 
 .incidenciaResuelta{
@@ -4392,6 +4427,8 @@ input[type="radio"]+.plan-card {
     gap: 20px;
     margin-top: 14px;
     align-items: center;
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 #btn-responder-incidencia {
@@ -4954,5 +4991,424 @@ h2 {
     .about-place-content p {
         max-width: 85%;
         font-size: 15px;
+    }
+
+/* RESPONSIVE TARIFAS */
+
+/* BASE PRICING SECTION STYLES */
+.prices {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.prices h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* PLAN CARD STYLES */
+.plan-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+        border-color 0.3s ease,
+        box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    min-height: 420px;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* PLAN HEADER */
+.plan-header {
+    margin-bottom: 1rem;
+}
+
+.plan-title {
+    font-size: 1.5rem;
+    color: #2F54BE;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.plan-type {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* PLAN PRICE */
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+/* PLAN DESCRIPTION */
+.plan-description {
+    margin-bottom: 1.5rem;
+}
+
+.description-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.description-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* PLAN FEATURES */
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* GLOW EFFECT FOR SELECTED PLAN */
+.plan-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.plan-card.selected {
+    border-color: #2F54BE;
+    background: #EBF0FF;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
+}
+
+.plan-card.selected::after {
+    opacity: 1;
+    border-color: #2F54BE;
+    animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(47, 84, 190, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(47, 84, 190, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(47, 84, 190, 0);
+    }
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .prices h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .price-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .plan-card {
+        padding: 1.25rem;
+        min-height: 380px;
+    }
+    
+    .plan-title {
+        font-size: 1.35rem;
+    }
+    
+    .plan-price {
+        font-size: 2rem;
+    }
+    
+    .description-title {
+        font-size: 1.1rem;
+    }
+    
+    .description-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Medium tablet screens */
+@media (min-width: 481px) and (max-width: 768px) {
+    .price-cards {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+    .price-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Specific breakpoint for 1100px */
+@media (max-width: 1100px) {
+    .price-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .plan-card {
+        min-height: 400px;
+    }
+}
+
+/* Large desktop screens */
+@media (min-width: 1101px) {
+    .prices {
+        padding: 4rem 2rem;
+    }
+    
+    .price-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* JavaScript class toggle compatibility */
+.price-card-label {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+input[type="radio"]:checked + .plan-card {
+    border-color: #2F54BE;
+    background: #EBF0FF;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
+}
+
+input[type="radio"]:checked + .plan-card::after {
+    opacity: 1;
+    border-color: #2F54BE;
+    animation: glow-pulse 2s infinite;
+}
+
+.price-card-label:not(:has(input:checked)) .plan-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+}
+
+/* Laptop (1536px) */
+@media screen and (max-width: 1536px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .edit-button {
+        margin-left: auto;
+    }
+
+    .children-container {
+        width: 75%;
+    }
+    
+    .profile {
+        margin-left: 2%;
+    }
+}
+
+/* Tablet (992px) */
+@media screen and (max-width: 992px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .profile {
+        max-width: 100%;
+        margin: 0;
+        padding: 1rem;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-container {
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .profile-card,
+    .profile-card-info {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .children-container {
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+        min-height: auto;
+    }
+    
+    .children-title {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .edit-button {
+        margin: 0 auto 20px auto;
+    }
+    
+    .children-container-cards,
+    .edit-children-container-cards {
+        justify-content: center;
+    }
+    
+    .mostrar-incidencias {
+        left: 0;
+        width: 100%;
+        padding: 0 15px;
+    }
+}
+
+/* Mobile (480px) */
+@media screen and (max-width: 480px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .profile {
+        padding: 0.5rem;
+    }
+    
+    .profile-card,
+    .profile-card-info {
+        padding: 20px 10px;
+    }
+    
+    .profile-header img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .profile-title {
+        font-size: 20px;
+    }
+    
+    .children-card {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .children-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .child-title {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .edit-button {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 15px;
+    }
+    
+    .children-title {
+        font-size: 24px;
+    }
+    
+    .mostrar-incidencias {
+        padding: 0 10px;
+    }
+    
+    .mostrar-incidencias div {
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+    
+    /* Adjust form inputs for smaller screens */
+    .editarPerfilTutor,
+    .editarPerfilAlumno {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Additional fixes for very small screens */
+@media screen and (max-width: 360px) {
+    .profile-header img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .children-card {
+        height: 360px; /* Increase height slightly for smaller screens */
     }
 }
