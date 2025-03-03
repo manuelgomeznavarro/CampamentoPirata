@@ -1862,7 +1862,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     object-fit: cover;
 }
 
-.children-container-cards {
+.children-container-cards, .edit-children-container-cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
