@@ -1053,11 +1053,15 @@ main .fade-container .about-place .about-place-content {
 }
 
 main .fade-container .about-place .about-place-content p {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
     line-height: 44px;
     color: var(--base-color1);
     width: 48%;
+}
+
+.instalaciones-title{
+    color: var(--clear-sky-light2) !important;
 }
 
 main .fade-container .about-place .about-place-content figure video {
@@ -2252,13 +2256,24 @@ figure img:not(.wave figure img):not(.map figure img) {
 }
 
 .children-title {
-    top: 105px;
+    top: 80px;
+    left: 28px;
     position: relative;
     font-family: 'Poppins', sans-serif;
     color: var(--base-color1);
     font-size: 28px;
     font-weight: 700;
     margin: 0 0 20px 0;
+}
+
+.profile-container-global-reportes{
+    width: 100%;
+    justify-content: center;
+}
+
+.mostrar-incidencias{
+    left:28px;
+    position: relative;
 }
 
 .children-text p {
@@ -2453,6 +2468,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     width: 15%;
     font-size: 16px;
     padding: 12px;
+    margin: 10px; 
 }
 
 .dashboard-container>div {
@@ -2959,6 +2975,26 @@ td {
     background: var(--Cielo-sereno-oscuro-1, #5A7A94);
 }
 
+.contenedor-botones-actividad{
+    text-align: right;
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.save-activity{
+    background: #4CAF50;
+    color: white;
+    width: 100% !important;
+}
+
+.close-activity{
+    background: #f44336;
+    color: white;
+    width: 100% !important;
+}
+
 /* 
 display: flex;
     width: 194px;
@@ -2978,7 +3014,7 @@ display: flex;
     background-color: var(--dark-blue);
     border-radius: 15px;
     height: 50px;
-    width: 250px;
+    width: auto;
     color: white;
     place-self: center;
     font-size: 18px;
@@ -3015,7 +3051,7 @@ display: flex;
 .contacto-alumno {
     display: flex;
     width: 20vw;
-    height: 30vh;
+    height: 40vh;
     flex-direction: column;
     border: 3px solid var(--dark-blue);
     background: var(--clear-sky-light2);
@@ -3036,6 +3072,18 @@ display: flex;
 .img-contacto {
     max-width: 30%;
     max-height: 50%;
+}
+
+.enviar-comentarios{
+    width: 40% !important;
+    font-size: 16px;
+    padding: 12px;
+    margin: 10px;
+}
+
+#comentarios{
+    width:10vw;
+    height: 10vh;
 }
 
 #button-revisar-inscripcion {
