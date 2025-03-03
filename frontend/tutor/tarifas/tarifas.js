@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to check if mobile view is active
     function isMobileView() {
-        return window.innerWidth <= 767;
+        return window.innerWidth <= 992;
     }
 
     // Function to update DOM for responsive layout
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const tutorProfilePic = document.createElement('img');
 
                     tutorProfilePicContainer.addEventListener('click', () => {
-                        location.assign('./tutor/perfil_tutor/perfil_tutor.html');
+                        location.assign('../perfil_tutor/perfil_tutor.html');
                     });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
