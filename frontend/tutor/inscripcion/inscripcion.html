@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/favicon.png" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon"
+        href="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/favicon.png"
+        type="image/x-icon">
 </head>
+
 <body>
     <header>
         <a href="../../index.html" id="logo-header">
-            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="">
+            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg"
+                alt="">
         </a>
         <button id="hamburger-menu">
             <span></span>
@@ -46,16 +52,25 @@
         <form class="form-container">
             <!-- Add inside .form-container, right after the opening tag -->
             <div class="steps-progress">
-                <div class="step-item completed"><div class="step-number">1</div>Tutor</div>
-                <div class="step-item"><div class="step-number">2</div>Alumno</div>
-                <div class="step-item"><div class="step-number">3</div>Horarios</div>
-                <div class="step-item"><div class="step-number">4</div>Resumen</div>
+                <div class="step-item completed">
+                    <div class="step-number">1</div>Tutor
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>Alumno
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>Horarios
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>Resumen
+                </div>
                 <div class="progress-line"></div>
             </div>
             <div class="steps-wrapper">
                 <!-- Step 1: Tutor -->
                 <div class="step active" data-step="1">
                     <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <h1>DATOS TUTOR</h1>
                     <div class="form-section">
                         <div class="form-data-container">
                             <div>
@@ -109,10 +124,11 @@
                         <button class="siguiente" id="siguiente-step1">Siguiente</button>
                     </div>
                 </div>
-    
+
                 <!-- Step 2: Alumno -->
                 <div class="step" data-step="2">
                     <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
+                    <h1>DATOS ALUMNO</h1>
                     <div class="form-section">
                         <div class="form-data-container">
                             <div>
@@ -148,7 +164,8 @@
                                     <span id="error-child-image-code" class="error-message"></span>
                                 </div>
                                 <div>
-                                    <label for="child-alergy-intolerance">Alergias, intolerancias o medicación necesaria</label>
+                                    <label for="child-alergy-intolerance">Alergias, intolerancias o medicación
+                                        necesaria</label>
                                     <input type="text" name="child-alergy-intolerance" id="child-alergy-intolerance">
                                 </div>
                                 <div>
@@ -156,7 +173,8 @@
                                     <input type="text" name="child-more-info" id="child-more-info">
                                 </div>
                                 <div>
-                                    <label for="child-comes-with-someone">¿Participa en el campamento con algún conocido?</label>
+                                    <label for="child-comes-with-someone">¿Participa en el campamento con algún
+                                        conocido?</label>
                                     <input type="text" name="child-comes-with-someone" id="child-comes-with-someone">
                                 </div>
                             </div>
@@ -167,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <!-- Step 3: Horarios -->
                 <div class="step" data-step="3">
                     <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
@@ -178,22 +196,33 @@
                                     <input type="radio" name="plan" value="A" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
-                                            <h2 class="plan-title">Bahía Coral</h2>
+                                            <h2 class="plan-title"></h2>
                                             <p class="plan-type">Precio por día</p>
                                         </div>
-                                        <div class="plan-price">39€</div>
+                                        <div class="plan-price"></div>
                                         <div class="plan-description">
-                                            <h3 class="description-title">(24€ SIN COMIDA) Incluído en este plan</h3>
-                                            <p class="description-text">Texto descriptivo del plan</p>
+                                            <h3 class="description-title">Aventura Esencial</h3>
+                                            <p class="description-text">Ideal para iniciación en la
+                                                tripulación<br><b>Horario estándar: 10:00 a 15:00</b></p>
                                         </div>
                                         <ul class="plan-features">
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica 1</span>
+                                                <img class="feature-icon"
+                                                    src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png"
+                                                    alt="Ícono">
+                                                <span class="feature-text">Actividades básicas de piratería</span>
                                             </li>
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica 2</span>
+                                                <img class="feature-icon"
+                                                    src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png"
+                                                    alt="Ícono">
+                                                <span class="feature-text">Seguro de actividades</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon"
+                                                    src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png"
+                                                    alt="Ícono">
+                                                <span class="feature-text">Gorro pirata de regalo</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -202,22 +231,26 @@
                                     <input type="radio" name="plan" value="B" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
-                                            <h2 class="plan-title">Costa Tropical</h2>
-                                            <p class="plan-type">Precio por semana</p>
+                                            <h2 class="plan-title"></h2>
+                                            <p class="plan-type">Precio por día</p>
                                         </div>
-                                        <div class="plan-price">185€</div>
+                                        <div class="plan-price"></div>
                                         <div class="plan-description">
-                                            <h3 class="description-title">Incluído en este plan</h3>
-                                            <p class="description-text">Texto descriptivo del plan</p>
+                                            <h3 class="description-title">Todo lo del Grumete Novato +</h3>
+                                            <p class="description-text">Servicio completo con<br><b>Horario madrugador: 08:00 a 15:00</b></p>
                                         </div>
                                         <ul class="plan-features">
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica premium 1</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Comida temática a media mañana</span>
                                             </li>
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica premium 2</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Taller exclusivo de mapas del tesoro</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Kit de exploración (brújula y lupa)</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -226,22 +259,26 @@
                                     <input type="radio" name="plan" value="C" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
-                                            <h2 class="plan-title">Balsa Botín</h2>
-                                            <p class="plan-type">Precio por mes</p>
+                                            <h2 class="plan-title"></h2>
+                                            <p class="plan-type">Precio por semana</p>
                                         </div>
-                                        <div class="plan-price">700€</div>
+                                        <div class="plan-price"></div>
                                         <div class="plan-description">
-                                            <h3 class="description-title">Incluído en este plan</h3>
-                                            <p class="description-text">Texto descriptivo del plan</p>
+                                            <h3 class="description-title">Todo lo del Corsario Madrugador +</h3>
+                                            <p class="description-text">Experiencia completa de 5 días<br><b>Horario flexible incluido</b></p>
                                         </div>
                                         <ul class="plan-features">
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica empresa 1</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Día especial del cofre del tesoro</span>
                                             </li>
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica empresa 2</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Foto profesional con disfraz completo</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Diploma de marinero certificado</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -250,37 +287,41 @@
                                     <input type="radio" name="plan" value="D" class="visually-hidden">
                                     <div class="plan-card">
                                         <div class="plan-header">
-                                            <h2 class="plan-title">Costa Tropical</h2>
-                                            <p class="plan-type">Precio por semana</p>
+                                            <h2 class="plan-title"></h2>
+                                            <p class="plan-type">Precio por mes</p>
                                         </div>
-                                        <div class="plan-price">185€</div>
+                                        <div class="plan-price"></div>
                                         <div class="plan-description">
-                                            <h3 class="description-title">Incluído en este plan</h3>
-                                            <p class="description-text">Texto descriptivo del plan</p>
+                                            <h3 class="description-title">Todo lo del Bucanero Semanal +</h3>
+                                            <p class="description-text">Experiencia pirata premium<br><b>Prioridad horaria garantizada</b></p>
                                         </div>
                                         <ul class="plan-features">
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica premium 1</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Desayuno temático pirata</span>
                                             </li>
                                             <li class="feature-item">
-                                                <img class="feature-icon" src="https://placehold.co/32x32" alt="Ícono">
-                                                <span class="feature-text">Característica premium 2</span>
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Disfraz completo personalizado</span>
+                                            </li>
+                                            <li class="feature-item">
+                                                <img class="feature-icon" src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/check_icon2.png" alt="Ícono">
+                                                <span class="feature-text">Libro fotográfico de aventuras</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="navigation-buttons" id="navigation-buttons-price-cards">
                             <button class="volver">Volver</button>
                             <button id="insert-summary-data-btn" class="siguiente">Siguiente</button>
                         </div>
                     </div>
-                    
+
                 </div>
-    
+
                 <!-- Step 4: Pago -->
                 <!-- <div class="step" data-step="4">
                     <h1>PLAZAS LIMITADAS: ¡CONFIRMA TU AVENTURA HOY!</h1>
@@ -442,7 +483,8 @@
         <div class="footer-content">
             <div>
                 <figure>
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/inscription-icon3.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/inscription-icon3.png"
+                        alt="">
                 </figure>
                 <h5>Realiza la Inscripción</h5>
                 <p>No tardes más en unirte a nuestra tripulación</p>
@@ -450,7 +492,8 @@
             </div>
             <div>
                 <figure>
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/prices-icon3.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/prices-icon3.png"
+                        alt="">
                 </figure>
                 <h5>Elige la mejor opción</h5>
                 <p>Escoge la tarifa que mejor se ajuste a lo que necesitas</p>
@@ -458,36 +501,43 @@
             </div>
             <div>
                 <figure>
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/playing-icon3.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/playing-icon3.png"
+                        alt="">
                 </figure>
                 <h5>Aprende jugando</h5>
                 <p>Descubre la gran variedad de actividades que tenemos</p>
-                <a id="actividades-footer" class="elemento-footer" href="./programacion.html"s>Más información -></a>
+                <a id="actividades-footer" class="elemento-footer" href="./programacion.html" s>Más información -></a>
             </div>
             <div>
                 <figure>
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/about-us-icon3.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/about-us-icon3.png"
+                        alt="">
                 </figure>
                 <h5>Sobre nosotros</h5>
                 <p>Aprende acerca de nosotros, y como trabajamos</p>
-                <a id="conocenos-footer" class="elemento-footer" href="../quienes_somos/quienes_somos.html">Más información -></a>
+                <a id="conocenos-footer" class="elemento-footer" href="../quienes_somos/quienes_somos.html">Más
+                    información -></a>
             </div>
         </div>
         <hr>
         <div class="footer-info">
             <a href="../../index.html">
-                <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="">
+                <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg"
+                    alt="">
             </a>
             <p>By Daniel Simón, Manuel Gómez and Gonzalo Pozo</p>
             <div>
                 <a href="https://www.instagram.com/tesoroperdidocamp/" target="_blank">
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/instagram-icon.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/instagram-icon.png"
+                        alt="">
                 </a>
                 <a href="https://www.tiktok.com/@tesoroperdidocamp" target="_blank">
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/tiktok-icon.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/tiktok-icon.png"
+                        alt="">
                 </a>
                 <a href="https://www.facebook.com/people/Tesoro-Perdido-Camp/61572895049236/" target="_blank">
-                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/facebook-icon2.png" alt="">
+                    <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/facebook-icon2.png"
+                        alt="">
                 </a>
             </div>
         </div>
@@ -495,4 +545,5 @@
 
     <script src="./inscripcion.js"></script>
 </body>
+
 </html>

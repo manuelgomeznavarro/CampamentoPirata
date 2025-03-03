@@ -2367,7 +2367,22 @@ figure img:not(.wave figure img):not(.map figure img) {
     font-weight: 700;
     margin-bottom: 24px;
 } */
-
+#finalizar-inscripcion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 9999px;
+    border: none;
+    background-color: var(--burning-coral);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--base-color1);
+    cursor: pointer;
+    z-index: 200;
+    font-family: 'Poppins', sans-serif;
+}
 
 .login-container {
     /* justify-content: center; */
