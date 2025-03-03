@@ -1702,6 +1702,7 @@ opacity: 1;
     margin: 1rem 0 0;
     padding: 0;
     list-style: none;
+    margin:12px;
 }
 
 .feature-item {
@@ -2851,7 +2852,7 @@ figure img:not(.wave figure img):not(.map figure img) {
 /* Sidebar */
 .sidebar {
     width: 14vw;
-    height: 92vh;
+    height: 100vh;
     background: #111B34;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -3241,10 +3242,17 @@ td {
 
 .menu-content {
     width: 70%;
-    height: 829px;
     flex-shrink: 0;
     margin-top: 70px;
     background: var(--Cielo-sereno-claro-3, #D9E9F5);
+}
+
+.form-crear-monitor{
+    height: auto;
+}
+
+.creacion-grupo{
+    
 }
 
 .menu-content-default {
@@ -3295,6 +3303,25 @@ td {
     line-height: normal;
 }
 
+.inscripcion-realizadas-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.inscripcion-realizadas-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.inscripcion-realizadas-info p:first-child {
+    font-weight: bold;
+}
+
 .menu-content-one {
     display: block;
     margin: auto;
@@ -3339,7 +3366,7 @@ td {
     align-items: center;
     gap: 12px;
     border-radius: 12px;
-    background: var(--Cielo-sereno-claro-3, #D9E9F5);
+    background: var(--clear-sky-light3);
     box-shadow: 0px 0px 4px 0px rgba(70, 70, 70, 0.25);
 }
 
@@ -3572,29 +3599,23 @@ display: flex;
 }
 
 .cards-tarifas {
-    /* width: 360px;
-    height: 470px; */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-top: 10%;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 20px; /* Espaciado entre tarjetas */
+    justify-content: center;
+    max-width: 900px; /* Ajusta según necesidad */
+    margin: auto;
 }
 
 .tarifa-card {
-    background: var(--clear-sky-light2);
-    border: 1px solid #bbb;
-    border-radius: 16px;
-    padding: 30px 16px;
-    text-decoration: none;
-    color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    /* transition: all 250ms ease-in-out; */
-    height: 470px;
-    width: 360px;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--clear-sky-light2);
 }
 
 #botones-crear-grupo {
