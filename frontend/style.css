@@ -2700,6 +2700,18 @@ figure img:not(.wave figure img):not(.map figure img) {
 .mostrar-incidencias{
     left:28px;
     position: relative;
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.mostrar-incidencias div {
+    border: 1px solid var(--background-color3);
+    border-radius: 16px;
+    padding: 24px;
+    background-color: var(--background-color3);
 }
 
 #incidencia-pendiente{

@@ -219,27 +219,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
+                mostrarIncidencias.innerHTML = "";
+
                 console.log("Datos obtenidos con éxito", data);
                 data.forEach((item, index) => {
                     console.log(`ID: ${item.id}, Asunto: ${item.subject}, Descripcion: ${item.description}, Estado: ${item.status}, Respuesta: ${item.admin_response}`);
                     console.log(index);
 
-                    mostrarIncidencias.innerHTML = "";
                     const incidencia = document.createElement("div");
-                    const titulo = document.createElement("h2");
+                    const titulo = document.createElement("h3");
                     titulo.textContent = item.subject;
                     const description = document.createElement("p");
-                    description.textContent = "Descripción: " + item.description;
+                    description.innerHTML = "<b>Descripción</b>: " + item.description;
                     const estado = document.createElement("p");
-                    estado.textContent = "Estado del reporte: " + item.status;
+                    estado.innerHTML = "<b>Estado del reporte</b>: " + item.status;
                     const respuesta = document.createElement("p");
-                    respuesta.textContent = "Respuesta del Administrador: " + item.admin_response;
+                    respuesta.innerHTML = "<b>Respuesta del Administrador</b>: " + (item.admin_response ?? 'Sin respuesta');
                     incidencia.appendChild(titulo);
                     incidencia.appendChild(description);
                     incidencia.appendChild(estado);
                     incidencia.appendChild(respuesta);
                     mostrarIncidencias.appendChild(incidencia);
-
                 })
                 // return data;
             })
