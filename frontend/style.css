@@ -1080,6 +1080,10 @@ main .programming-cards-container .cards-container .card div h6 {
     main section .team .instalaciones-title {
         color: var(--base-color1) !important;
     }
+
+    .instalaciones-title2 {
+        color: var(--clear-sky-light2) !important;
+    }
     
     main section h2 {
       font-size: 42px;
@@ -1473,8 +1477,12 @@ main .fade-container .about-place .about-place-content p {
     width: 48%;
 }
 
-.instalaciones-title{
+.instalaciones-title {
     color: var(--clear-sky-light2) !important;
+}
+
+.instalaciones-title2 {
+    color: var(--base-color1);
 }
 
 main .fade-container .about-place .about-place-content figure video {
