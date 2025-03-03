@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const headerBtnsContainer = document.querySelector('.dashboard-profile');
     const btnSalir = document.createElement('button');
     const imgSalir = document.createElement('img');
-    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon.png';
+    btnSalir.className = "exit-button";
+    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
     btnSalir.appendChild(imgSalir);
 
     btnSalir.addEventListener('click', () => {

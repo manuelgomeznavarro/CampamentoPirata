@@ -2484,6 +2484,20 @@ figure img:not(.wave figure img):not(.map figure img) {
     position: relative;
 }
 
+#incidencia-pendiente{
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#incidencia-resuelta {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .children-text p {
     margin: 0 0 6px 0;
 }
@@ -3034,8 +3048,24 @@ td {
     gap: 20px;
 }
 
+/* .contenedor-menu-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+} */
+
+.grupos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    /* width: 50%; */
+}
+
 .menu-content {
     width: 70%;
+    height: auto;
     flex-shrink: 0;
     margin-top: 70px;
     background: var(--Cielo-sereno-claro-3, #D9E9F5);
@@ -3045,9 +3075,9 @@ td {
     height: auto;
 }
 
-.creacion-grupo{
+/* .creacion-grupo{
     
-}
+} */
 
 .menu-content-default {
     display: flex;
@@ -4165,9 +4195,11 @@ input[type="radio"]+.plan-card {
     border: var(--base-color1) solid 1px;
     border-radius: 16px;
     gap: 20px;
+    margin-bottom: 20px;
     margin-top: 14px;
     align-items: center;
     cursor: pointer;
+    width: 80%;
 }
 
 .incidenciaResuelta{
@@ -4178,6 +4210,8 @@ input[type="radio"]+.plan-card {
     gap: 20px;
     margin-top: 14px;
     align-items: center;
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 #btn-responder-incidencia {
