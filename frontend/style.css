@@ -1568,23 +1568,17 @@ opacity: 1;
 
 figure:not(.wave figure):not(.map figure) {
     display: inline-block;
-    /* O 'block' si prefieres */
     width: fit-content;
     /* Se ajusta al tamaño de la imagen */
     height: auto;
     /* Ajuste automático de altura */
     margin: 0;
-    /* Opcional, para evitar espacios adicionales */
 }
 
 figure img:not(.wave figure img):not(.map figure img) {
     display: block;
-    /* Evita espacios adicionales por imágenes en línea */
     width: auto;
-    /* O 100% si necesitas responsividad */
     height: auto;
-    /* Mantiene la proporción */
-    
 }
 
 .user-info figure img {
@@ -3045,10 +3039,6 @@ td {
     height: auto;
 }
 
-.creacion-grupo{
-    
-}
-
 .menu-content-default {
     display: flex;
     /* width: 511px;
@@ -4350,4 +4340,273 @@ main .registro-correcto-container {
     main .fade-container .prices .price-cards {
         grid-template-columns: repeat(2, 1fr);
     }
+
+/* RESPONSIVE UBICACION TABLET */
+/* Estilos base para el contenido principal */
+main {
+    width: 100%;
+}
+
+.camp-pic {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.camp-pic figure {
+    width: 100%;
+    margin: 0;
+}
+
+.camp-pic img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.fade-container {
+    padding: 40px 5%;
+}
+
+h2 {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FF9900;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Sección Acerca del lugar */
+.about-place-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.about-place-content p {
+    flex: 1;
+    line-height: 1.6;
+}
+
+.about-place-content figure {
+    flex: 1;
+    max-width: 50%;
+}
+
+.about-place-content video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección Cómo llegar */
+.schedule {
+    margin: 60px 0;
+}
+
+.schedule iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección Instalaciones */
+.facilities {
+    margin: 60px 0;
+}
+
+.facilities > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.facilities-pic {
+    width: 100%;
+    max-width: 840px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.facilities-pic img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilos de las flechas */
+.facilities div figure:first-child img,
+.facilities div figure:last-child img {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.facilities div figure:first-child img:hover,
+.facilities div figure:last-child img:hover {
+    transform: scale(1.1);
+}
+
+/* Animaciones para el slider */
+.initial-fade {
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s forwards;
+}
+
+.image-clone {
+    z-index: 2;
+}
+
+.slide-fade-left {
+    animation: slideFadeLeft 0.8s forwards;
+}
+
+.slide-fade-right {
+    animation: slideFadeRight 0.8s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideFadeLeft {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-50px); }
+}
+
+@keyframes slideFadeRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(50px); }
+}
+
+/* Media query para pantallas grandes (portátiles y mayores) */
+@media screen and (min-width: 1536px) {
+    .fade-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 5%;
+    }
+    
+    .about-place-content {
+        gap: 50px;
+    }
+    
+    .about-place-content p {
+        font-size: 18px;
+    }
+    
+    .schedule iframe {
+        height: 600px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .facilities-pic {
+        max-width: 1000px;
+        height: 500px;
+    }
+    
+    .facilities-pic img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Media query para tablets */
+@media screen and (max-width: 992px) {
+    .fade-container {
+        padding: 30px 5%;
+    }
+    
+    .about-place-content {
+        flex-direction: column;
+    }
+    
+    .about-place-content p {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .about-place-content figure {
+        max-width: 100%;
+    }
+    
+    .schedule iframe {
+        height: 400px;
+    }
+    
+    .facilities > div {
+        gap: 15px;
+    }
+    
+    .facilities-pic {
+        max-width: 600px;
+        height: auto;
+    }
+}
+
+/* Media query para móviles */
+@media screen and (max-width: 480px) {
+    .fade-container {
+        padding: 20px 5%;
+    }
+    
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .about-place-content {
+        gap: 15px;
+    }
+    
+    .about-place-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .about-place-content video {
+        border-radius: 8px;
+    }
+    
+    .schedule {
+        margin: 40px 0;
+    }
+    
+    .schedule iframe {
+        height: 250px;
+        border-radius: 8px;
+    }
+    
+    .facilities {
+        margin: 40px 0;
+    }
+    
+    .facilities > div {
+        gap: 10px;
+    }
+    
+    .facilities div figure:first-child img,
+    .facilities div figure:last-child img {
+        width: 25px;
+        height: auto;
+    }
+    
+    .facilities-pic {
+        max-width: 300px;
+        height: auto;
+        border-radius: 8px;
+    }
+}
 }
