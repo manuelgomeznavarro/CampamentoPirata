@@ -247,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("location").value = data.city;
             document.getElementById("profile-title").textContent = data.name + " " + data.lastname;
             document.querySelector(".profile-header img").src = data.url_pic;
+            document.querySelector("#edit-header img").src = data.url_pic;
             document.getElementById("profile-email").textContent = data.email;
             document.getElementById("profile-phone1").textContent = data.phone;
             if (!data.phone2) {
@@ -406,98 +407,79 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear el contenedor principal de la tarjeta
         const editChildrenCard = document.createElement('div');
         editChildrenCard.className = 'children-card';
-
+    
         // Crear el contenedor del encabezado de la tarjeta
         const childrenHeader = document.createElement('div');
         childrenHeader.className = 'children-header';
-
+    
         // Crear y agregar el título del niño
         const childTitle = document.createElement('p');
         childTitle.className = 'child-title';
         childTitle.id = 'child-title';
         childrenHeader.appendChild(childTitle);
-
+    
         // Crear y agregar la imagen del niño
         const childImage = document.createElement('img');
-        childImage.src = 'https://placehold.co/80x80';
+        childImage.src = item.url_pic || 'https://placehold.co/80x80';
         childImage.alt = '';
         childrenHeader.appendChild(childImage);
-
-        // Crear y agregar el texto del grupo
-        const childrenText = document.createElement('p');
+    
+        // Agregar el encabezado al contenedor principal de la tarjeta
+        editChildrenCard.appendChild(childrenHeader);
+    
+        // Crear el contenedor del contenido de la tarjeta
+        const childrenText = document.createElement('div');
         childrenText.className = 'children-text';
-
-        // Crear y agregar el label y el input para la fecha de nacimiento
-        const labelFechaNacimiento = document.createElement('label');
-        labelFechaNacimiento.htmlFor = `editarFechaNacimiento-${item.id}`;
-        labelFechaNacimiento.textContent = 'Fecha de Nacimiento:';
-        childrenText.appendChild(labelFechaNacimiento);
-
-        const inputFechaNacimiento = document.createElement('input');
-        inputFechaNacimiento.type = 'date';
-        inputFechaNacimiento.name = `editarFechaNacimiento-${item.id}`;
-        inputFechaNacimiento.id = `editarFechaNacimiento-${item.id}`;
-        inputFechaNacimiento.className = 'editarPerfilAlumno';
-        childrenText.appendChild(inputFechaNacimiento);
-
-        // Crear y agregar el label y el texto para el grupo
+    
+        // Función auxiliar para crear un label y un input
+        function crearCampo(labelText, inputType, inputId, placeholder = '') {
+            const label = document.createElement('label');
+            label.htmlFor = inputId;
+            label.textContent = labelText;
+            
+            const input = document.createElement('input');
+            input.type = inputType;
+            input.name = inputId;
+            input.id = inputId;
+            input.className = 'editarPerfilAlumno';
+            input.placeholder = placeholder;
+            
+            childrenText.appendChild(label);
+            childrenText.appendChild(input);
+        }
+    
+        // Agregar los campos editables
+        crearCampo('Fecha de Nacimiento:', 'date', `editarFechaNacimiento-${item.id}`);
+        crearCampo('Alergias/intolerancias:', 'text', `editarAlergias-${item.id}`, 'Alergias / Intolerancias');
+        crearCampo('Otros:', 'text', `editarOtros-${item.id}`, 'Otros datos relevantes');
+    
+        // Agregar el grupo como texto plano
         const labelGrupo = document.createElement('label');
-        labelGrupo.htmlFor = 'grupo-child';
         labelGrupo.textContent = 'Grupo:';
         childrenText.appendChild(labelGrupo);
-
-        const grupoText = document.createTextNode('Pingüino Emperador');
+        
+        const grupoText = document.createElement('p');
+        grupoText.textContent = 'Pingüino Emperador';
         childrenText.appendChild(grupoText);
-
-        // Crear y agregar el label y el input para las alergias
-        const labelAlergias = document.createElement('label');
-        labelAlergias.htmlFor = `editarAlergias-${item.id}`;
-        labelAlergias.textContent = 'Alergias/intolerancias:';
-        childrenText.appendChild(labelAlergias);
-
-        const inputAlergias = document.createElement('input');
-        inputAlergias.type = 'text';
-        inputAlergias.name = `editarAlergias-${item.id}`;
-        inputAlergias.id = `editarAlergias-${item.id}`;
-        inputAlergias.className = 'editarPerfilAlumno';
-        inputAlergias.placeholder = ' Alergias / Intolerancias';
-        childrenText.appendChild(inputAlergias);
-
-        // Crear y agregar el label y el input para otros datos
-        const labelOtros = document.createElement('label');
-        labelOtros.htmlFor = `editarOtros-${item.id}`;
-        labelOtros.textContent = 'Otros:';
-        childrenText.appendChild(labelOtros);
-
-        const inputOtros = document.createElement('input');
-        inputOtros.type = 'text';
-        inputOtros.name = `editarOtros-${item.id}`;
-        inputOtros.id = `editarOtros-${item.id}`;
-        inputOtros.className = 'editarPerfilAlumno';
-        inputOtros.placeholder = ' Otros datos relevantes';
-        childrenText.appendChild(inputOtros);
-
-        // Agregar el texto del grupo al encabezado
-        childrenHeader.appendChild(childrenText);
-
+    
+        // Agregar el contenido al contenedor principal de la tarjeta
+        editChildrenCard.appendChild(childrenText);
+    
         // Crear y agregar el botón de resumen semanal
         const weeklyButton = document.createElement('a');
         weeklyButton.href = 'progreso.html';
         weeklyButton.className = 'weekly-button';
         weeklyButton.textContent = 'Ver resumen semanal';
-        childrenHeader.appendChild(weeklyButton);
-
-
-        // Agregar el encabezado al contenedor principal de la tarjeta
-        editChildrenCard.appendChild(childrenHeader);
-
+        editChildrenCard.appendChild(weeklyButton);
+    
         // Agregar la tarjeta al contenedor global de perfiles
-        const profileContainerGlobalEditar = document.getElementById('profile-container-global-editar');
+        const profileContainerGlobalEditar = document.querySelector('.edit-children-container-cards');
         profileContainerGlobalEditar.appendChild(editChildrenCard);
-
+    
         // Devolver la tarjeta creada
         return editChildrenCard;
     }
+    
 
     //FETCH Obtener datos niño
     // function obtenerDatosNino() {

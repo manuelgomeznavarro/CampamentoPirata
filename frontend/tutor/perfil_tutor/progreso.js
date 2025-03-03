@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crear y agregar la imagen del niño
         const childImage = document.createElement('img');
-        childImage.src = 'https://placehold.co/80x80';
+        childImage.src = item.url_pic;
         childImage.alt = '';
         childrenHeader.appendChild(childImage);
 
@@ -181,11 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
         infoOtros.className = 'info-otros-child';
         childrenText.appendChild(infoOtros);
 
-        // Agregar el texto del grupo al encabezado
-        childrenHeader.appendChild(childrenText);
 
         // Agregar el encabezado al contenedor principal de la tarjeta
         childrenCard.appendChild(childrenHeader);
+        childrenCard.appendChild(childrenText);
 
         // Agregar la tarjeta al contenedor global de perfiles
         const profileContainerGlobal = document.getElementById('info-card-nino');
