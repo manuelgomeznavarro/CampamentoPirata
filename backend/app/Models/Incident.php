@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incident extends Model
 {
+
+    //Representación de la tabla en la base de datos en una clase de PHP
     use HasFactory;
     protected $table = 'incidents';
     protected $fillable = [

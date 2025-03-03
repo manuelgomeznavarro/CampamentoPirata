@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 div.setAttribute('tutor_id', child.tutor_id);
 
                 const img = document.createElement("img");
-                img.src = "https://placehold.co/60x60";
+                img.src = child.url_pic;
                 img.alt = "fotoAlumno";
 
                 div.appendChild(img);
@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+    const times = ['08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
     const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
     // const activityTemplates = {};
 

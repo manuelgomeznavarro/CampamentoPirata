@@ -3541,6 +3541,9 @@ display: flex;
 
 .contenedor-perfiles div img {
     border-radius: 50%;
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover;
 }
 
 .contacto-alumno {

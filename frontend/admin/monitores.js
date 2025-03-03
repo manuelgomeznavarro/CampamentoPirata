@@ -445,7 +445,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const botonGuardarCambios = document.getElementById("button-crear-grupo");
-    botonGuardarCambios.addEventListener('click', function () {
+    botonGuardarCambios.addEventListener('click', function (e) {
+        e.preventDefault();
         const children = [...listaGrupo.querySelectorAll('.nombre-alumno')];
         console.log(children);
 
@@ -472,12 +473,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     console.log("Datos introducidos con éxito", data);
+                    location.assign('monitores.html?showGroup=true');
                 })
                 .catch(error => {
                     console.error('Error al introducir datos', error);
                 });
         });
-        location.assign('monitores.html?showGroup=true');
     });
 
 

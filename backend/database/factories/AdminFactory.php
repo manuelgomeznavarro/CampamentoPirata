@@ -9,6 +9,7 @@ class AdminFactory extends Factory
 {
     protected $model = Admin::class;
 
+    //Clases de PHP para generar datos aleatorios para los Test
     public function definition()
     {
         return [

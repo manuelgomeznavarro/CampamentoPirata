@@ -409,7 +409,14 @@ class DatabaseSeeder extends Seeder
                 'date' => '2025-02-18',
                 'hour' => '11:00:00',
                 'duration' => 90,
-            ]
+            ],
+            [
+                'activity_id' => 3,
+                'timeline_id' => 2,
+                'date' => '2025-03-04',
+                'hour' => '08:00:00',
+                'duration' => 360,
+            ],
         ]);
 
         
@@ -545,6 +552,32 @@ class DatabaseSeeder extends Seeder
                 'group_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Josemi',
+                'lastname' => 'Cuesta',
+                'birthdate' => '2018-05-01',
+                't_shirt_size' => '10-11',
+                'alergy_intolerance' => null,
+                'aditional_info' => 'Un grande',
+                'acquaintance' => null,
+                'url_pic' => 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/children_images/11/eduardo-garcia-josemi.webp',
+                'group_id' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Benito',
+                'lastname' => 'Martínez',
+                'birthdate' => '2018-06-01',
+                't_shirt_size' => '6-7',
+                'alergy_intolerance' => null,
+                'aditional_info' => 'Un chin de alto',
+                'acquaintance' => null,
+                'url_pic' => 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/children_images/12/bad_bunny.jpg',
+                'group_id' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 
@@ -619,6 +652,20 @@ class DatabaseSeeder extends Seeder
                 'child_id' => 10,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'inscription_date' => '2025-06-01',
+                'tutor_id' => 1,
+                'child_id' => 11,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'inscription_date' => '2025-06-01',
+                'tutor_id' => 1,
+                'child_id' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 
@@ -675,19 +722,19 @@ class DatabaseSeeder extends Seeder
         // 14. Create Incidents
         DB::table('incidents')->insert([
             [
-                'subject' => 'Minor Ankle Sprain',
-                'description' => 'Injury Report',
+                'subject' => 'Por la raza',
+                'description' => 'Sa matao mi hijo',
                 'date' => '2025-07-01',
                 'status' => 'Resolved',
-                'admin_response' => 'Player is fine',
+                'admin_response' => 'Vamos a abrirle un expediente al monitor. Lo sentimos mucho.',
                 'tutor_id' => 1,
                 'admin_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'subject' => 'Training Schedule Adjustment',
-                'description' => 'Schedule Change Request',
+                'subject' => 'Mi hijo no quiere ir',
+                'description' => 'Ha sido niño burbuja muchos años y tiene miedo a la gente.',
                 'date' => '2025-07-02',
                 'status' => 'Pending',
                 'admin_response' => null,
@@ -696,6 +743,115 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
+        ]);
+
+        // 14. Create Incidents
+        DB::table('attendances')->insert([
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-01',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-02',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-30',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-29',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-28',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-27',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-26',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-10',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-11',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-12',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-13',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-14',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-15',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-16',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
+            [
+                'child_id' => 1,
+                'timeline_id' => 1,
+                'date' => '2025-01-17',
+                'attendance' => 1,
+                'comments' => 'Este niño es un fenómeno'
+            ],
         ]);
     }
 }
