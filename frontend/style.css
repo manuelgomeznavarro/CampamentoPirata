@@ -2786,6 +2786,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     width: 100%;
     max-width: 75vw;
     place-self: center;
+    flex-wrap: wrap;
 }
 
 .contenedor-comentarios {
@@ -5112,4 +5113,170 @@ input[type="radio"]:checked + .plan-card::after {
     transform: translateY(-5px) scale(1.01);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
+}
+
+/* Laptop (1536px) */
+@media screen and (max-width: 1536px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .edit-button {
+        margin-left: auto;
+    }
+
+    .children-container {
+        width: 75%;
+    }
+    
+    .profile {
+        margin-left: 2%;
+    }
+}
+
+/* Tablet (992px) */
+@media screen and (max-width: 992px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .profile {
+        max-width: 100%;
+        margin: 0;
+        padding: 1rem;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-container {
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .profile-card,
+    .profile-card-info {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .children-container {
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+        min-height: auto;
+    }
+    
+    .children-title {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .edit-button {
+        margin: 0 auto 20px auto;
+    }
+    
+    .children-container-cards,
+    .edit-children-container-cards {
+        justify-content: center;
+    }
+    
+    .mostrar-incidencias {
+        left: 0;
+        width: 100%;
+        padding: 0 15px;
+    }
+}
+
+/* Mobile (480px) */
+@media screen and (max-width: 480px) {
+    .profile-container-global,
+    .profile-container-global-reportes,
+    .profile-container-global-editar {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .profile {
+        padding: 0.5rem;
+    }
+    
+    .profile-card,
+    .profile-card-info {
+        padding: 20px 10px;
+    }
+    
+    .profile-header img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .profile-title {
+        font-size: 20px;
+    }
+    
+    .children-card {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .children-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .child-title {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .edit-button {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 15px;
+    }
+    
+    .children-title {
+        font-size: 24px;
+    }
+    
+    .mostrar-incidencias {
+        padding: 0 10px;
+    }
+    
+    .mostrar-incidencias div {
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+    
+    /* Adjust form inputs for smaller screens */
+    .editarPerfilTutor,
+    .editarPerfilAlumno {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Additional fixes for very small screens */
+@media screen and (max-width: 360px) {
+    .profile-header img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .children-card {
+        height: 360px; /* Increase height slightly for smaller screens */
+    }
 }
