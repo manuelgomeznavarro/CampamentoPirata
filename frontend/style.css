@@ -375,7 +375,7 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #FFF url('./assets/icons/flechaDesplegableFaqs.svg') no-repeat right 15px center;
+    background: #FFF url('https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/flechaDesplegableFaqs.svg') no-repeat right 15px center;
     background-size: 15px;
     padding-right: 40px; /* Espacio para la flecha */
     width: 100%;
@@ -400,7 +400,7 @@ select:focus {
 
 /* Clase para cuando el select está abierto */
 select.open {
-    background-image: url('./assets/icons/flechaDesplegableFaqs-abierta.svg'); /* Imagen rotada */
+    background-image: url('https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/flechaDesplegableFaqs-abierta.svg'); /* Imagen rotada */
 }
 
 /* Estilos para los options */

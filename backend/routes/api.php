@@ -129,7 +129,6 @@ Route::get('/children/without_group', [ChildController::class, 'childrenWithoutG
 
 Route::get('/children/by_group/{group_id}', [ChildController::class, 'show_by_group']);
 
-//!ESTE HAY QUE BORRARLO
 Route::get('/monitors/monitor_by_group/{group_id}', [MonitorController::class, 'show_monitor_by_group']);
 
 Route::get('/incidents/pending/{admin_id}', [IncidentController::class, 'show_incidents_by_admin']);
