@@ -3882,8 +3882,7 @@ td {
     font-size: 24px;
 }
 
-/* Add these CSS modifications */
-/* Add these new transitions and animations */
+/* CSS TARIFAS */
 .price-card-label {
     display: block;
     cursor: pointer;
@@ -3891,7 +3890,6 @@ td {
 }
 
 .plan-card {
-    /* ... existing styles ... */
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
         border-color 0.3s ease,
         box-shadow 0.5s ease;
@@ -4822,5 +4820,258 @@ h2 {
         height: auto;
         border-radius: 8px;
     }
+}
+
+/* RESPONSIVE TARIFAS */
+
+/* BASE PRICING SECTION STYLES */
+.prices {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.prices h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* PLAN CARD STYLES */
+.plan-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+        border-color 0.3s ease,
+        box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    min-height: 420px;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* PLAN HEADER */
+.plan-header {
+    margin-bottom: 1rem;
+}
+
+.plan-title {
+    font-size: 1.5rem;
+    color: #2F54BE;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.plan-type {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* PLAN PRICE */
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+/* PLAN DESCRIPTION */
+.plan-description {
+    margin-bottom: 1.5rem;
+}
+
+.description-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.description-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* PLAN FEATURES */
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* GLOW EFFECT FOR SELECTED PLAN */
+.plan-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.plan-card.selected {
+    border-color: #2F54BE;
+    background: #EBF0FF;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
+}
+
+.plan-card.selected::after {
+    opacity: 1;
+    border-color: #2F54BE;
+    animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(47, 84, 190, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(47, 84, 190, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(47, 84, 190, 0);
+    }
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .prices h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .price-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .plan-card {
+        padding: 1.25rem;
+        min-height: 380px;
+    }
+    
+    .plan-title {
+        font-size: 1.35rem;
+    }
+    
+    .plan-price {
+        font-size: 2rem;
+    }
+    
+    .description-title {
+        font-size: 1.1rem;
+    }
+    
+    .description-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Medium tablet screens */
+@media (min-width: 481px) and (max-width: 768px) {
+    .price-cards {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+    .price-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Specific breakpoint for 1100px */
+@media (max-width: 1100px) {
+    .price-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .plan-card {
+        min-height: 400px;
+    }
+}
+
+/* Large desktop screens */
+@media (min-width: 1101px) {
+    .prices {
+        padding: 4rem 2rem;
+    }
+    
+    .price-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* JavaScript class toggle compatibility */
+.price-card-label {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+input[type="radio"]:checked + .plan-card {
+    border-color: #2F54BE;
+    background: #EBF0FF;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(47, 84, 190, 0.2);
+}
+
+input[type="radio"]:checked + .plan-card::after {
+    opacity: 1;
+    border-color: #2F54BE;
+    animation: glow-pulse 2s infinite;
+}
+
+.price-card-label:not(:has(input:checked)) .plan-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 }
