@@ -588,6 +588,132 @@ footer .footer-info div a img {
     height: 32px !important;
 }
 
+/* Existing CSS remains as is */
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    footer {
+      padding: 40px 50px 30px;
+    }
+  
+    footer .footer-content div p {
+      width: 90%;
+      font-size: 18px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    footer {
+      padding: 30px 30px 20px;
+    }
+  
+    footer .footer-content {
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+  
+    footer .footer-content div {
+      width: 45%;
+    }
+  
+    footer .footer-content div h5 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  
+    footer .footer-content div p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+  
+    footer .footer-content div a {
+      font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    footer {
+      padding: 20px 15px 15px;
+      width: 100vw;
+    }
+  
+    footer .footer-content {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    footer .footer-content div {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      padding: 15px 0;
+    }
+  
+    footer .footer-content div p {
+      width: 100%;
+    }
+  
+    footer .footer-info {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    footer .footer-info p {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+  
+    footer .footer-info div {
+      margin-top: 10px;
+    }
+  }
+  
+  /* Navigation menu styling for mobile view - matching the image */
+  @media screen and (max-width: 576px) {
+    /* This would be for the mobile navigation that appears in your image */
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      background-color: #101a35; /* Dark blue color from image */
+      width: 100%;
+      padding: 0;
+    }
+  
+    .mobile-nav a {
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-weight: 600;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      gap: 25px;
+    }
+  
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+    }
+  
+    .logo-container img {
+      max-width: 180px;
+    }
+  
+    .logo-container p {
+      color: white;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  }
+
 /* Base styles from your existing CSS */
 main .fade-container {
     height: auto;
@@ -665,6 +791,24 @@ main .programming-cards-container .cards-container .card div h6 {
 
 /* Large desktop and down */
 @media screen and (max-width: 1440px) {
+    main .fade-container .about-place .about-place-content {
+        width: 90vw;
+    }
+    
+    main .fade-container .facilities div {
+        width: 90%;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 700px !important;
+        height: 350px !important;
+    }
+    
+    main .fade-container .about-place .about-place-content figure video {
+        width: 550px !important;
+        height: 320px !important;
+    }
+
     main .programming-cards-container .cards-container {
         width: 85%;
     }
@@ -678,6 +822,21 @@ main .programming-cards-container .cards-container .card div h6 {
         margin: 50px 0 46px;
     }
     
+    main .fade-container .about-place .about-place-content p {
+        font-size: 28px;
+        line-height: 38px;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 600px !important;
+        height: 300px !important;
+    }
+    
+    main .fade-container .about-place .about-place-content figure video {
+        width: 480px !important;
+        height: 280px !important;
+    }
+
     main .programming-cards-container .cards-container {
         width: 90%;
         gap: 40px;
@@ -690,6 +849,43 @@ main .programming-cards-container .cards-container .card div h6 {
 
 /* Tablet and down */
 @media screen and (max-width: 992px) {
+    .fade-container div h2, .payment-main .payment-container h2 {
+        font-size: 42px;
+        line-height: 40px;
+        margin: 40px 20px;
+    }
+    
+    main .fade-container .about-place .about-place-content {
+        flex-direction: column;
+        width: 90vw;
+    }
+    
+    main .fade-container .about-place .about-place-content p {
+        width: 100%;
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    main .fade-container .about-place .about-place-content figure video {
+        width: 90% !important;
+        height: auto !important;
+        max-width: 600px;
+        max-height: 350px;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 500px !important;
+        height: 260px !important;
+    }
+    
+    main .fade-container .about-place .about-place-content figure {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
     .fade-container div h2, .payment-main .payment-container h2 {
         font-size: 42px;
         line-height: 40px;
@@ -714,6 +910,26 @@ main .programming-cards-container .cards-container .card div h6 {
         margin: 30px 15px;
     }
     
+    main .fade-container .about-place .about-place-content p {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    
+    main .fade-container .facilities div {
+        width: 95%;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 400px !important;
+        height: 220px !important;
+    }
+    
+    main .fade-container .facilities div figure:first-child img,
+    main .fade-container .facilities div figure:last-child img {
+        width: 30px;
+        height: auto;
+    }
+
     main .programming-cards-container .cards-container {
         width: 90%;
         gap: 25px;
@@ -733,6 +949,25 @@ main .programming-cards-container .cards-container .card div h6 {
         margin: 25px 10px;
     }
     
+    main .fade-container .about-place .about-place-content p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    
+    main .fade-container .facilities div {
+        width: 98%;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 280px !important;
+        height: 180px !important;
+    }
+    
+    main .fade-container .facilities div figure:first-child img,
+    main .fade-container .facilities div figure:last-child img {
+        width: 25px;
+    }
+
     main .programming-cards-container .cards-container {
         width: 95%;
         gap: 20px;
@@ -756,6 +991,21 @@ main .programming-cards-container .cards-container .card div h6 {
         margin: 20px 8px;
     }
     
+    main .fade-container .about-place .about-place-content p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    
+    main .fade-container .facilities div .facilities-pic img {
+        width: 230px !important;
+        height: 150px !important;
+    }
+    
+    main .fade-container .facilities div figure:first-child img,
+    main .fade-container .facilities div figure:last-child img {
+        width: 20px;
+    }
+
     main .programming-cards-container .cards-container {
         width: 95%;
         gap: 16px;
