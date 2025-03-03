@@ -1,12 +1,83 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Get elements
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const nav = document.querySelector('header nav');
+    const overlay = document.getElementById('overlay');
+    const headerBtnsContainer = document.querySelector('.header-btns-container');
+
+    // Function to check if mobile view is active
+    function isMobileView() {
+        return window.innerWidth <= 767;
+    }
+
+    // Function to update DOM for responsive layout
+    function updateResponsiveLayout() {
+        if (isMobileView()) {
+            // Move buttons container into nav for mobile
+            if (headerBtnsContainer.parentElement !== nav) {
+                nav.appendChild(headerBtnsContainer);
+            }
+        } else {
+            // Move buttons container back to header for desktop
+            const header = document.querySelector('header');
+            if (headerBtnsContainer.parentElement !== header) {
+                header.appendChild(headerBtnsContainer);
+            }
+            
+            // Reset mobile menu state
+            hamburgerMenu.classList.remove('open');
+            nav.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Initial setup
+    updateResponsiveLayout();
+
+    // Toggle mobile menu
+    hamburgerMenu.addEventListener('click', function() {
+        hamburgerMenu.classList.toggle('open');
+        nav.classList.toggle('open');
+        overlay.classList.toggle('active');
+        
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = hamburgerMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close menu when clicking overlay
+    overlay.addEventListener('click', function() {
+        hamburgerMenu.classList.remove('open');
+        nav.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Close menu when clicking a nav link
+    const navLinks = document.querySelectorAll('header nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (isMobileView()) {
+                hamburgerMenu.classList.remove('open');
+                nav.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', updateResponsiveLayout);
+
+    // Original checkRole function
     function checkRole() {
         const role = localStorage.getItem('role');
 
         if (role) {
             switch (role) {
                 case 'tutor':
-                    const headerBtnsContainer = document.querySelector('header .header-btns-container');
+                    const headerBtnsContainer = document.querySelector('.header-btns-container');
                     const reservationBtn = document.createElement('a');
                     reservationBtn.classList.add('anchor-button');
                     reservationBtn.href = '../inscripcion/inscripcion.html';
@@ -27,20 +98,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     const tutorProfilePicContainer = document.createElement('figure');
                     const tutorProfilePic = document.createElement('img');
 
-                    // tutorProfilePic.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png';
                     tutorProfilePicContainer.addEventListener('click', () => {
-                        location.assign('../perfil_tutor/perfil_tutor.html');
+                        location.assign('./tutor/perfil_tutor/perfil_tutor.html');
                     });
 
                     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
-                        method: 'POST', //Método para enviar los datos al servidor
+                        method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json' //Envío de datos en formato JSON
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             role: localStorage.getItem('role'),
                             role_id: localStorage.getItem('role_id')
-                        }) //Se convierte el objeto JS a una cadena JSON
+                        })
                     })
                         .then(response => {
                             return response.json();
@@ -54,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                         .catch(error => {
                             console.log(error);
-                        })
+                        });
 
                     tutorProfilePicContainer.appendChild(tutorProfilePic);
 
@@ -62,17 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     headerBtnsContainer.appendChild(reservationBtn);
                     headerBtnsContainer.appendChild(tutorProfilePicContainer);
                     headerBtnsContainer.appendChild(btnSalir);
-                    tutorProfilePicContainer.appendChild(tutorProfilePic);
                     break;
 
                 case 'monitor':
                     location.assign('../../monitor/html/dashboard.html');
-
                     break;
 
                 case 'admin':
                     location.assign('../../admin/dashboard.html');
-
                     break;
 
                 default:
@@ -81,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             const inicio = document.getElementById("sign-in");
             const registrar = document.getElementById("sign-up");
-
+        
             inicio.addEventListener('click', () => window.location.href = '../../index.html?showLogin=true');
             registrar.addEventListener('click', () => window.location.href = '../../index.html?showSignUp=true');
         }
