@@ -193,7 +193,7 @@ button {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 300;
 }
 
 #overlay.active {
@@ -212,7 +212,7 @@ button {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     header {
         width: 90vw;
         margin: 15px auto;
@@ -234,7 +234,7 @@ button {
 }
 
 /* Mobile Styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 992px) {
     header {
         position: relative;
         width: 95vw;
@@ -243,6 +243,7 @@ button {
     /* Show hamburger menu */
     #hamburger-menu {
         display: block;
+        z-index: 501;
     }
     
     /* Hide desktop nav */
@@ -263,6 +264,7 @@ button {
     
     header nav.open {
         right: 0;
+        z-index: 500;
     }
     
     header nav ul {
@@ -558,9 +560,13 @@ main .activities {
 
 main .activities .cards-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 75px;
     place-self: center;
     max-width: 1135px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 main .activities .cards-container .card {
@@ -994,6 +1000,210 @@ main .programming-cards-container .cards-container .card div h6 {
     font-weight: 700;
 }
 
+/* Responsive CSS */
+
+/* Tablet Breakpoint */
+@media screen and (max-width: 1536px) {
+    main .map figure {
+        width: 75%;
+        margin: 0 auto;
+      }
+
+      #mar img {
+        width: 100% !important;
+      }
+
+      .prices-content figure {
+        width: auto !important;
+      }
+
+      .prices-content figure img {
+        width: 100% !important;
+      }
+
+      main .map figure img {
+        width: 100%;
+      }
+
+    section > * {
+      width: 90vw;
+    }
+    
+    main .hero {
+      flex-direction: column;
+      height: auto;
+      padding: 40px 0;
+    }
+    
+    main .hero .texts {
+      align-items: center;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    main .hero .texts h1 {
+      font-size: 42px;
+      line-height: 52px;
+      width: 100%;
+    }
+    
+    main .hero .texts h4 {
+      font-size: 28px;
+      width: 90%;
+    }
+    
+    main .hero .texts button {
+      width: 50%;
+    }
+    
+    /* Hiding the boat div in responsive views as requested */
+    main .hero .boat {
+      display: none;
+    }
+
+    main .wave {
+        display: none;
+      }
+    
+    main .wave {
+      bottom: 0;
+      left: -30px;
+    }
+    
+    main section {
+      bottom: 0;
+      height: auto;
+      background: linear-gradient(180deg, #111B34 0%, #325798 17.5%, #BCD4F6 35%, #DCE8FA 50%, #BCD4F6 65%, #325798 82.5%, #111B34 100%);
+
+    }
+
+    main section .team .instalaciones-title {
+        color: var(--base-color1) !important;
+    }
+
+    .instalaciones-title2 {
+        color: var(--clear-sky-light2) !important;
+    }
+    
+    main section h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 20px;
+    }
+
+    main .activities h2 {
+        margin-top: 24px;
+    }
+    
+    main .prices .prices-content {
+      flex-direction: column;
+    }
+    
+    main .prices .prices-content figure img {
+      border-radius: 16px 16px 0 0;
+      width: 100%;
+    }
+    
+    main .prices .prices-content div {
+      padding: 30px 0;
+    }
+    
+    main .prices .prices-content div h3 {
+      font-size: 32px;
+      width: 90%;
+    }
+    
+    main .prices .prices-content div button {
+      width: 70%;
+    }
+
+    main .team {
+        width: 100%;
+    }
+    
+    main .team > div {
+      flex-direction: column;
+      padding: 40px 20px;
+      gap: 30px;
+      width: 90%;
+      place-self: center;
+    }
+    
+    main .team > div .team-info {
+      text-align: center;
+    }
+  }
+  
+  /* Mobile Breakpoint */
+  @media screen and (max-width: 576px) {
+    main > * {
+      width: 95vw;
+    }
+    
+    main .hero .texts h1 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+    
+    main .hero .texts h4 {
+      font-size: 22px;
+    }
+    
+    main .hero .texts button {
+      width: 80%;
+      font-size: 18px;
+    }
+    
+    main .wave img {
+      width: 150%;
+    }
+    
+    main section h2 {
+      font-size: 32px;
+      line-height: 36px;
+      margin-bottom: 40px;
+    }
+    
+    main .activities .cards-container .card {
+      width: 90%;
+    }
+    
+    main .map figure {
+      width: 75%;
+      margin: 0 auto;
+    }
+    
+    main .map figure img {
+      width: 100%;
+    }
+    
+    main .prices .prices-content div h3 {
+      font-size: 24px;
+    }
+    
+    main .prices .prices-content div button {
+      font-size: 22px;
+      width: 90%;
+    }
+    
+    main .team > div {
+      padding: 30px 15px;
+    }
+    
+    main .team > div figure img {
+      width: 120px !important;
+      height: 120px !important;
+    }
+    
+    main .team > div .team-info h5 {
+      font-size: 26px;
+    }
+    
+    main .team > div button {
+      width: 90%;
+    }
+  }
+
 /* Responsive styles */
 
 /* Large desktop and down */
@@ -1267,8 +1477,12 @@ main .fade-container .about-place .about-place-content p {
     width: 48%;
 }
 
-.instalaciones-title{
+.instalaciones-title {
     color: var(--clear-sky-light2) !important;
+}
+
+.instalaciones-title2 {
+    color: var(--base-color1);
 }
 
 main .fade-container .about-place .about-place-content figure video {
@@ -1568,23 +1782,17 @@ opacity: 1;
 
 figure:not(.wave figure):not(.map figure) {
     display: inline-block;
-    /* O 'block' si prefieres */
     width: fit-content;
     /* Se ajusta al tamaño de la imagen */
     height: auto;
     /* Ajuste automático de altura */
     margin: 0;
-    /* Opcional, para evitar espacios adicionales */
 }
 
 figure img:not(.wave figure img):not(.map figure img) {
     display: block;
-    /* Evita espacios adicionales por imágenes en línea */
     width: auto;
-    /* O 100% si necesitas responsividad */
     height: auto;
-    /* Mantiene la proporción */
-    
 }
 
 .user-info figure img {
@@ -3075,9 +3283,9 @@ td {
     height: auto;
 }
 
-/* .creacion-grupo{
+.creacion-grupo{
     
-} */
+}
 
 .menu-content-default {
     display: flex;
@@ -4384,4 +4592,273 @@ main .registro-correcto-container {
     main .fade-container .prices .price-cards {
         grid-template-columns: repeat(2, 1fr);
     }
+
+/* RESPONSIVE UBICACION TABLET */
+/* Estilos base para el contenido principal */
+main {
+    width: 100%;
+}
+
+.camp-pic {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.camp-pic figure {
+    width: 100%;
+    margin: 0;
+}
+
+.camp-pic img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.fade-container {
+    padding: 40px 5%;
+}
+
+h2 {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FF9900;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Sección Acerca del lugar */
+.about-place-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.about-place-content p {
+    flex: 1;
+    line-height: 1.6;
+}
+
+.about-place-content figure {
+    flex: 1;
+    max-width: 50%;
+}
+
+.about-place-content video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección Cómo llegar */
+.schedule {
+    margin: 60px 0;
+}
+
+.schedule iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección Instalaciones */
+.facilities {
+    margin: 60px 0;
+}
+
+.facilities > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.facilities-pic {
+    width: 100%;
+    max-width: 840px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.facilities-pic img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilos de las flechas */
+.facilities div figure:first-child img,
+.facilities div figure:last-child img {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.facilities div figure:first-child img:hover,
+.facilities div figure:last-child img:hover {
+    transform: scale(1.1);
+}
+
+/* Animaciones para el slider */
+.initial-fade {
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s forwards;
+}
+
+.image-clone {
+    z-index: 2;
+}
+
+.slide-fade-left {
+    animation: slideFadeLeft 0.8s forwards;
+}
+
+.slide-fade-right {
+    animation: slideFadeRight 0.8s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideFadeLeft {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-50px); }
+}
+
+@keyframes slideFadeRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(50px); }
+}
+
+/* Media query para pantallas grandes (portátiles y mayores) */
+@media screen and (min-width: 1536px) {
+    .fade-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 5%;
+    }
+    
+    .about-place-content {
+        gap: 50px;
+    }
+    
+    .about-place-content p {
+        font-size: 18px;
+    }
+    
+    .schedule iframe {
+        height: 600px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .facilities-pic {
+        max-width: 1000px;
+        height: 500px;
+    }
+    
+    .facilities-pic img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Media query para tablets */
+@media screen and (max-width: 992px) {
+    .fade-container {
+        padding: 30px 5%;
+    }
+    
+    .about-place-content {
+        flex-direction: column;
+    }
+    
+    .about-place-content p {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .about-place-content figure {
+        max-width: 100%;
+    }
+    
+    .schedule iframe {
+        height: 400px;
+    }
+    
+    .facilities > div {
+        gap: 15px;
+    }
+    
+    .facilities-pic {
+        max-width: 600px;
+        height: auto;
+    }
+}
+
+/* Media query para móviles */
+@media screen and (max-width: 480px) {
+    .fade-container {
+        padding: 20px 5%;
+    }
+    
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .about-place-content {
+        gap: 15px;
+    }
+    
+    .about-place-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .about-place-content video {
+        border-radius: 8px;
+    }
+    
+    .schedule {
+        margin: 40px 0;
+    }
+    
+    .schedule iframe {
+        height: 250px;
+        border-radius: 8px;
+    }
+    
+    .facilities {
+        margin: 40px 0;
+    }
+    
+    .facilities > div {
+        gap: 10px;
+    }
+    
+    .facilities div figure:first-child img,
+    .facilities div figure:last-child img {
+        width: 25px;
+        height: auto;
+    }
+    
+    .facilities-pic {
+        max-width: 300px;
+        height: auto;
+        border-radius: 8px;
+    }
+}
 }

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to check if mobile view is active
     function isMobileView() {
-        return window.innerWidth <= 767;
+        return window.innerWidth <= 992;
     }
 
     // Function to update DOM for responsive layout
