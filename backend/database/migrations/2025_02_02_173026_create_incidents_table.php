@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
-            $table->string('description');
+            $table->text('description');
             $table->date('date');
             $table->string('status');
-            $table->string('admin_response')->nullable();
+            $table->text('admin_response')->nullable();
             $table->foreignId('tutor_id')->constrained('tutors')->onDelete('cascade');
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->timestamps();

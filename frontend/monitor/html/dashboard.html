@@ -17,15 +17,17 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="Logo de tesoro perdido" class="logo" id="logo-monitor">
+            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg"
+                alt="Logo de tesoro perdido" class="logo" id="logo-monitor">
             <div class="dashboard-profile">
-                <div class="language-selector">
+                <!-- <div class="language-selector">
                     <img src="https://placehold.co/40x27" alt="Language Flag">
                     <div class="language">Español</div>
-                </div>
+                </div> -->
                 <div class="user-info">
                     <figure class="user-avatar">
-                        <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png" alt="">
+                        <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png"
+                            alt="">
                     </figure>
                     <div class="user-details">
                         <div class="user-name"></div>
@@ -60,10 +62,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                     <button class="pasar-lista" type="button">Pasar lista</button>
+                    <div class="overlay-pasar-lista-correcta" id="overlay-pasar-lista-correcta">
+                        <section class="pasar-lista-correcta-container" id="pasar-lista-correcta-container">
+
+                            <h1>Pasar lista realizado con éxito</h1>
+                            <button class="boton-cerrar-pop-up" id="finalizar-pasar-lista">Finalizar Pasar Lista</button>
+                            <hr>
+                        </section>
+                    </div>
                 </div>
 
                 <div id="tablaCronograma" style="display: none;">
@@ -75,15 +85,15 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                
+
                     <div class="overlay"></div>
-                    
+
                     <div class="activity-form">
                         <div class="form-header">
                             <button class="mode-switch active" data-mode="new">➕ Nueva Actividad</button>
                             <button class="mode-switch" data-mode="reuse">♻ Reutilizar Actividad</button>
                         </div>
-                        
+
                         <div class="form-content active" data-mode="new">
                             <input type="text" id="activity-title" placeholder="Título de la actividad">
                             <input type="date" id="activity-date">
@@ -91,7 +101,7 @@
                             <input type="number" id="activity-duration" placeholder="Duración (minutos)" step="60">
                             <textarea id="activity-notes" placeholder="Notas" rows="3"></textarea>
                         </div>
-                
+
                         <div class="form-content" data-mode="reuse">
                             <select id="existing-activities">
                                 <option value="" selected disabled>Selecciona una actividad</option>
@@ -101,31 +111,40 @@
                             <input type="number" id="reuse-duration" placeholder="Duración (minutos)" step="60">
                             <textarea id="reuse-notes" placeholder="Notas" rows="3"></textarea>
                         </div>
-                
+
                         <div class="contenedor-botones-actividad">
                             <button class="save-activity">Guardar</button>
                             <button class="close-activity">Cancelar</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="info-grupos" class="info-grupos" style="display: none;">
                     <div id="nombre-grupos" class="nombre-grupos">Equipo Pistola Agua</div>
                     <div class="contenedor-oculto">
                         <div class="contenedor-perfiles"></div>
                         <div id="contacto-alumno" class="contacto-alumno" style="display: none;">
-                            <p>Contacto</p>
+                            <div class="info-contacto-alumno">
+                                <p>Contacto</p>
                             <div class="input-icon" id="mail-icon">
-                                <img src="https://placehold.co/40x40" alt="mailContacto" class="img-contacto">
+                                <!-- <img src="https://placehold.co/40x40" alt="mailContacto" class="img-contacto"> -->
                                 <p class="tutor-phone"></p>
                             </div>
                             <div class="input-icon" id="telf-icon">
-                                <img src="https://placehold.co/40x40" alt="telfContacto" class="img-contacto">
+                                <!-- <img src="https://placehold.co/40x40" alt="telfContacto" class="img-contacto"> -->
                                 <p class="tutor-email"></p>
                             </div>
                             <p>Comentarios</p>
                             <textarea name="comentarios" id="comentarios"></textarea>
                             <button type="button" id="enviar-comentarios" class="enviar-comentarios">Enviar</button>
+                            </div>
+                        </div>
+                        <div class="overlay-enviar-comentario-correcta" id="overlay-enviar-comentario-correcta">
+                            <section class="enviar-comentario-correcta-container" id="enviar-comentario-correcta-container">
+                                <h1>Comentario enviado con éxito</h1>
+                                <button class="boton-cerrar-pop-up" id="finalizar-enviar-comentario">Cerrar</button>
+                                <hr>
+                            </section>
                         </div>
                     </div>
                 </div>

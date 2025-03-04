@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         body: JSON.stringify({
             role: localStorage.getItem('role'),
-            role_id: localStorage.getItem('role_id') 
+            role_id: localStorage.getItem('role_id')
         }) //Se convierte el objeto JS a una cadena JSON
     })
         .then(response => {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch(`http://127.0.0.1:8000/api/groups/${localStorage.getItem('role_id')}`)
         .then(response => {
-            return response.json(); 
+            return response.json();
         })
         .then(group => {
             nombreGrupo.textContent = group.name;
@@ -191,6 +191,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     console.log(comentarioData);
                     comentarioProgreso(comentarioData);
+                    const finEnviarComentario = document.getElementById("finalizar-enviar-comentario");
+                    const overlayEnviarComentario = document.getElementById("overlay-enviar-comentario-correcta");
+                    const contenedorEnviarComentarioCorrecta = document.getElementById("enviar-comentario-correcta-container");
+
+                    if (finEnviarComentario) {
+                        overlayEnviarComentario.style.display = "flex";
+                        contenedorEnviarComentarioCorrecta.style.display = "block";
+                        finEnviarComentario.addEventListener('click', function () {
+                            console.log("fufa?");
+                            document.getElementById('comentarios').value = "";
+                            // formIncidencia.reset();
+                            // href = "../../index.html";
+                            overlayEnviarComentario.style.display = "none";
+                            contenedorEnviarComentarioCorrecta.style.display = "block";
+                        });
+                    }
                 } else {
                     console.log("No se ha seleccionado ningún niño.");
                 }
@@ -215,27 +231,27 @@ document.addEventListener('DOMContentLoaded', function () {
                         const child = attendanceData.attendaces.filter(row => data.children[i].id == row.child_id);
 
                         console.log(attendanceData.attendaces.filter(row => data.children[i].id == row.child_id));
-                        
 
-                        
+
+
                         let elementoTabla = document.createElement("tr");
                         elementoTabla.className = "table-column";
                         elementoTabla.setAttribute('id', data.children[i].id);
-                        
+
                         let elementoCheckBox = document.createElement("td");
                         elementoCheckBox.className = "table-row";
-                        
+
                         let elementoNombre = document.createElement("td");
                         elementoNombre.className = "table-name-row";
                         elementoNombre.textContent = data.children[i].name + " " + data.children[i].lastname;
-                        
+
                         let elementoListaCheckbox = document.createElement("input");
                         elementoListaCheckbox.className = "asistencia";
                         elementoListaCheckbox.type = "checkbox";
-                        
+
                         if (child.length > 0) {
                             wasDataStoredInDB = true;
-                            
+
                             if (child[0].attendance) elementoListaCheckbox.checked = true;
                         };
 
@@ -243,13 +259,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         elementoTabla.appendChild(elementoNombre);
                         elementoTabla.appendChild(elementoCheckBox);
                         tablaAsistencia.appendChild(elementoTabla);
-                    }                        
+                    }
                 })
                 .catch(error => {
                     console.log(error);
                 })
 
-            
+
         })
         .then(() => {
             addListenersToGroupInformation();
@@ -259,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     //FETCH Editar datos comentarios
-        function comentarioProgreso(comentarioData) {
+    function comentarioProgreso(comentarioData) {
         return fetch(`http://127.0.0.1:8000/api/attendances/comments`, {
             method: 'PUT', //Método para enviar los datos al servidor
             headers: {
@@ -295,29 +311,43 @@ document.addEventListener('DOMContentLoaded', function () {
         rows.map(row => {
             const asistencia = {
                 timeline_id: localStorage.getItem('role_id'),
-                date:  new Date(Date.now()).toISOString().split('T')[0],
+                date: new Date(Date.now()).toISOString().split('T')[0],
                 child_id: row.getAttribute('id')
             }
 
             // console.log([row.childNodes[1], row.childNodes[1].selected]);
-            
+
 
             if (row.childNodes[1].childNodes[0].checked) {
                 asistencia.attendance = 1;
             } else {
                 asistencia.attendance = 0;
             }
-            
+
             registrarAsistencia(method, asistencia);
         })
 
-        alert('Asistencia registrada con exito');
+        const finPasarLista = document.getElementById("finalizar-pasar-lista");
+        const overlayPasarLista = document.getElementById("overlay-pasar-lista-correcta");
+        const contenedorPasarListaCorrecta = document.getElementById("pasar-lista-correcta-container");
+
+        if (finPasarLista) {
+            overlayPasarLista.style.display = "flex";
+            contenedorPasarListaCorrecta.style.display = "block";
+            finPasarLista.addEventListener('click', function () {
+                console.log("fufa?");
+                // href = "../../index.html";
+                overlayPasarLista.style.display = "none";
+                contenedorPasarListaCorrecta.style.display = "block";
+            });
+        }
+        // alert('Asistencia registrada con exito');
     })
 
     //Fetch para crear el cronorama
     function registrarAsistencia(method, attendance) {
         console.log([method, attendance]);
-        
+
 
         return fetch(`http://127.0.0.1:8000/api/attendances`, {
             method: method,
@@ -409,10 +439,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.info-perfil').forEach(function (elemento) {
             elemento.addEventListener('click', (e) => {
                 console.log([elemento.getAttribute('tutor_id'), elemento.getAttribute('tutor_phone'), elemento.getAttribute('tutor_email')]);
-                
+
                 tutorPhone.innerText = elemento.getAttribute('tutor_phone');
                 tutorEmail.innerText = elemento.getAttribute('tutor_email');
-                
+
                 let contacto = document.getElementById('contacto-alumno');
                 if (window.getComputedStyle(contacto).display === "none") {
                     contacto.style.display = "flex";
@@ -469,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const times = ['08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
+    const times = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
     const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
     // const activityTemplates = {};
 
@@ -487,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const today = new Date();
         const dayOfWeek = today.getDay();
         const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-        
+
         const weekDates = [];
         for (let i = 0; i < 5; i++) {
             const date = new Date(today);
@@ -511,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function () {
         times.forEach(time => {
             const row = document.createElement('tr');
             row.innerHTML = `<td>${time}</td>`;
-            
+
             dates.forEach(date => {
                 const cell = document.createElement('td');
                 cell.dataset.date = date;
@@ -519,14 +549,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 cell.addEventListener('click', openForm);
                 row.appendChild(cell);
             });
-            
+
             tbody.appendChild(row);
         });
     }
 
     function findCell(date, time) {
-        return Array.from(document.querySelectorAll('td[data-date]')).find(cell => 
-            cell.dataset.date === date && 
+        return Array.from(document.querySelectorAll('td[data-date]')).find(cell =>
+            cell.dataset.date === date &&
             cell.dataset.time === time
         );
     }
@@ -540,22 +570,22 @@ document.addEventListener('DOMContentLoaded', function () {
     function openForm(event) {
         const cell = event.target;
         if (cell.classList.contains('occupied')) return;
-        
+
         selectedCell = cell;
         form.classList.add('active');
         overlay.classList.add('active');
 
         const currentDate = cell.dataset.date;
         const currentTime = cell.dataset.time;
-        
-        document.querySelectorAll('input[type="date"]').forEach(input => 
+
+        document.querySelectorAll('input[type="date"]').forEach(input =>
             input.value = currentDate
         );
-        
-        document.querySelectorAll('input[type="time"]').forEach(input => 
+
+        document.querySelectorAll('input[type="time"]').forEach(input =>
             input.value = `${currentTime}:00`
         );
-        
+
         document.getElementById('activity-title').focus();
     }
 
@@ -589,10 +619,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const cells = [];
         const startCell = findCell(date, startTime);
         if (!startCell) return cells;
-        
+
         cells.push(startCell);
         const hoursNeeded = Math.ceil(duration / 60) - 1;
-        
+
         if (hoursNeeded > 0) {
             let currentCell = startCell;
             for (let i = 0; i < hoursNeeded; i++) {
@@ -606,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }
-        
+
         return cells;
     }
 
@@ -615,13 +645,13 @@ document.addEventListener('DOMContentLoaded', function () {
         activityDiv.className = 'existing-activity';
         activityDiv.style.height = `${totalHeight}px`;
         activityDiv.style.zIndex = '2';
-        
+
         // Format start and end times
         const startTime = activity.hour.slice(0, 5);
         const endDate = new Date(`2000-01-01T${activity.hour}`);
         endDate.setMinutes(endDate.getMinutes() + activity.duration);
         const endTime = endDate.toTimeString().slice(0, 5);
-        
+
         activityDiv.innerHTML = `
             <div>
                 <strong>${activity.name}</strong>
@@ -629,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             ${activity.description ? `<small>${activity.description}</small>` : ''}
         `;
-        
+
         return activityDiv;
     }
 
@@ -637,7 +667,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/activities_timeline_detailed/${localStorage.getItem('role_id')}`);
             const data = await response.json();
-            
+
             data.forEach(activity => {
                 const cells = getAffectedCells(
                     activity.date,
@@ -646,11 +676,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     activity.name,
                     activity.description,
                 );
-                
+
                 if (cells.length > 0) {
                     const totalHeight = cells.length * 80; // 80px is the cell height
                     const activityDiv = createActivityElement(activity, totalHeight);
-                    
+
                     // Add activity div to first cell and lock all cells
                     cells[0].appendChild(activityDiv);
                     cells.forEach(cell => lockCell(cell));
@@ -691,14 +721,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const activityResponse = await fetch('http://127.0.0.1:8000/api/activities', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: title, description: notes })
                 });
-                
+
                 const activityData = await activityResponse.json();
 
                 await fillSelect();
-                
+
                 payload = {
                     activity_id: activityData.id,
                     timeline_id: roleId,
@@ -738,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const timelineResponse = await fetch('http://127.0.0.1:8000/api/activity_timeline', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
@@ -756,9 +786,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 payload.hour.slice(0, 5),
                 payload.duration
             );
-            
+
             const totalHeight = cells.length * 80; // 80px is the cell height
-            
+
             // Create and append activity element
             const activityDiv = createActivityElement({
                 name: timelineActivityData.name,
@@ -766,11 +796,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 duration: payload.duration,
                 description: timelineActivityData.description
             }, totalHeight);
-            
+
             // Add activity to first cell and lock all affected cells
             cells[0].appendChild(activityDiv);
             cells.forEach(cell => lockCell(cell));
-            
+
             closeForm();
         } catch (error) {
             console.error('Error saving activity:', error);
@@ -788,24 +818,24 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.mode-switch[data-mode="new"]').classList.add('active');
         document.querySelectorAll('.form-content').forEach(form => {
             form.classList.remove('active');
-            if(form.dataset.mode === 'new') form.classList.add('active');
+            if (form.dataset.mode === 'new') form.classList.add('active');
         });
     }
 
     // Event Listeners
     document.querySelectorAll('.mode-switch').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             document.querySelectorAll('.mode-switch').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
             const mode = e.target.dataset.mode;
             document.querySelectorAll('.form-content').forEach(form => {
                 form.classList.remove('active');
-                if(form.dataset.mode === mode) form.classList.add('active');
+                if (form.dataset.mode === mode) form.classList.add('active');
             });
         });
     });
 
-    select.addEventListener('change', function() {
+    select.addEventListener('change', function () {
         const description = this.options[this.selectedIndex]?.getAttribute('description') || '';
         document.getElementById('reuse-notes').value = description;
     });
