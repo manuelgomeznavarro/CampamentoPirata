@@ -5630,3 +5630,187 @@ input[type="radio"]:checked + .plan-card::after {
         font-size: 1rem;
     }
 }
+
+/* Responsive Monitor */
+
+/* Responsive Styles for Monitor Dashboard */
+
+@media screen and (max-width: 992px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .dashboard-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .notes-changes-container {
+        flex-direction: column;
+    }
+
+    .notes-card, .changes-card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .timeline-table {
+        font-size: 13px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 8px;
+    }
+
+    .contenedor-perfiles {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .dashboard-title {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-profile {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contenedor-perfiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .activity-card {
+        padding: 10px;
+    }
+
+    .timeline-table {
+        font-size: 10px;
+    }
+
+    .form-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mode-switch {
+        width: 100%;
+    }
+
+    .activity-form input, 
+    .activity-form select, 
+    .activity-form textarea {
+        width: 100%;
+    }
+
+    .exit-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .dashboard-title {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsive Menu Navigation for Mobile */
+@media screen and (max-width: 992px) {
+    .dashboard-mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f0f0f0;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .dashboard-mobile-nav-item img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 5px;
+    }
+
+    .dashboard-mobile-nav-item.active {
+        color: #007bff;
+    }
+}
+
+/* Common Responsive Adjustments */
+.activity-form .form-content {
+    display: none;
+}
+
+.activity-form .form-content.active {
+    display: block;
+}
+
+.mode-switch {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mode-switch.active {
+    background-color: #e0e0e0;
+}
+
+/* Ensure touch targets are large enough */
+@media (max-width: 992px) {
+    .menu-item, 
+    .asistencia, 
+    .save-activity, 
+    .close-activity,
+    .mode-switch {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
