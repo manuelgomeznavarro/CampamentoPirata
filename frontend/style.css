@@ -4560,7 +4560,7 @@ main .registro-correcto-container {
     margin: 24px 0;
 }
 
-.error-message{
+.error-message2 {
     color: var(--error-message);
     font-weight: 600;
 }
