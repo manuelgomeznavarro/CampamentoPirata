@@ -145,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         } else {
+            location.assign('../../error/404.html');
+
             const inicio = document.getElementById("sign-in");
             const registrar = document.getElementById("sign-up");
         

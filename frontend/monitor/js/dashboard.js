@@ -1,5 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    function checkRole() {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            switch (role) {
+                case 'tutor':
+                    location.assign('../../index.html');
+
+                    break;
+
+                case 'monitor':
+
+                    break;
+
+                case 'admin':
+                    location.assign('../../admin/dashboard.html');
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    checkRole();
+
     const btnAsistencia = document.getElementById('btnAsistencia');
     const btnDashboard = document.getElementById('btnDashboard');
     const btnCronograma = document.getElementById('btnCronograma');
@@ -26,16 +52,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const headerBtnsContainer = document.querySelector('.dashboard-profile');
     const btnSalir = document.createElement('button');
-                    const imgSalir = document.createElement('img');
-                    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
-                    btnSalir.appendChild(imgSalir);
+    btnSalir.className = "exit-button";
 
-                    btnSalir.addEventListener('click', () => {
-                        localStorage.removeItem('role');
-                        localStorage.removeItem('role_id');
-                        location.assign('../../index.html');
-                    });
-                    headerBtnsContainer.appendChild(btnSalir);
+    const imgSalir = document.createElement('img');
+    imgSalir.src = 'https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/logout-icon2.png';
+    btnSalir.appendChild(imgSalir);
+
+    btnSalir.addEventListener('click', () => {
+        localStorage.removeItem('role');
+        localStorage.removeItem('role_id');
+        location.assign('../../index.html');
+    });
+    headerBtnsContainer.appendChild(btnSalir);
 
     fetch(`http://127.0.0.1:8000/api/get_user_pic`, {
         method: 'POST', //Método para enviar los datos al servidor
@@ -282,6 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
             
             registrarAsistencia(method, asistencia);
         })
+
+        alert('Asistencia registrada con exito');
     })
 
     //Fetch para crear el cronorama
@@ -541,6 +571,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await fetch('http://127.0.0.1:8000/api/activities');
             const data = await response.json();
 
+            select.innerHTML = "";
+
             data.forEach(activity => {
                 const option = document.createElement("option");
                 option.value = activity.id;
@@ -664,6 +696,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 
                 const activityData = await activityResponse.json();
+
+                await fillSelect();
                 
                 payload = {
                     activity_id: activityData.id,

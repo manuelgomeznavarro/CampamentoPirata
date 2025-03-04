@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../monitor/html/dashboard.html');
 
                     break;
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (data.url) {
                                 profilePic.src = data.url;
                             } else {
-                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png";
+                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png";
                             }
                         })
                         .catch(error => {
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById("nombre-editar-monitor").value = item.name;
                         document.getElementById("apellidos-editar-monitor").value = item.lastname;
                         // document.getElementById("correo-editar-monitor").value = item.email;
-                        document.getElementById("password-editar-monitor").value = item.password;
+                        // document.getElementById("password-editar-monitor").value = item.password;
                         document.getElementById("dni-editar-monitor").value = item.dni;
                         document.getElementById("telf1-editar-monitor").value = item.phone;
                         document.getElementById("telf2-editar-monitor").value = item.phone2;
@@ -313,23 +313,40 @@ document.addEventListener('DOMContentLoaded', function () {
         // } else {
         //     console.log("Registro fallido");
         // }
-        console.log(monitorData);
+
+        const formData = new FormData();
+
+        const fileInput = document.getElementById('image-input');
+        const file = fileInput.files[0] ?? null;
+
+        // Add the file
+        formData.append('image', file);
+
+        // Convert JSON to string and append to FormData
+        formData.append('json_data', JSON.stringify(monitorData));
+
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+            console.log(key);
+            console.log(value);
+            
+            
+        }
+        
+        // console.log(monitorData);
 
         const isFormValid = validateForm();
         if (isFormValid) {
-            crearMonitor(monitorData);
+            crearMonitor(formData);
         }
 
         // crearCuentaMonitor(userData)
     })
     
-    function crearMonitor(monitorData) {
+    function crearMonitor(formData) {
         return fetch('http://127.0.0.1:8000/api/monitors', {
             method: 'POST', //Método para enviar los datos al servidor
-            headers: {
-                'Content-Type': 'application/json' //Envío de datos en formato JSON
-            },
-            body: JSON.stringify(monitorData) //Se convierte el objeto JS a una cadena JSON
+            body: formData //Se convierte el objeto JS a una cadena JSON
         })
             .then(response => {
                 console.log(response);
@@ -342,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log(data);
                 console.log("Monitor creado con éxito", data);
-                window.location.href = "monitores.html";
+                window.location.href = "./monitores.html";
             })
             .catch(error => {
                 console.log(error);
@@ -583,39 +600,32 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 console.log("Datos introducidos con éxito", data);
+                location.assign('./monitores.html');
             })
             .catch(error => {
                 console.error('Error al introducir datos', error);
             });
     }
 
-    editarMonitorButton.addEventListener('click', function () {
-        console.log("Hola");
-        if (formEditarMonitores.style.display === "flex") {
-            console.log("Hola");
-            formCrearMonitores.style.display = "none";
-            formEditarMonitores.style.display = "none";
-            grupos.style.display = "none";
-            listaMonitores.style.display = "block";
-            creacionGrupo.style.display = "none";
-
-            const monitorData = {
-                name: document.getElementById("nombre-editar-monitor").value,
-                lastname: document.getElementById("apellidos-editar-monitor").value,
-                password: document.getElementById("password-editar-monitor").value,
-                dni: document.getElementById("dni-editar-monitor").value,
-                phone: document.getElementById("telf1-editar-monitor").value,
-                phone2: document.getElementById("telf2-editar-monitor").value,
-                description: document.getElementById("description-editar-monitor").value,
-                name_group: document.getElementById("editar-nombre-grupo").value,
-                admin_id: localStorage.getItem('role_id')
-            };
-            console.log(monitorData);
-            introducirDatos(monitorData);
-
-        } else {
-            formEditarMonitores.style.display = "none";
+    editarMonitorButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!validateFormEditar()) {
+            return;
         }
+        
+        const monitorData = {
+            name: document.getElementById("nombre-editar-monitor").value,
+            lastname: document.getElementById("apellidos-editar-monitor").value,
+            dni: document.getElementById("dni-editar-monitor").value,
+            phone: document.getElementById("telf1-editar-monitor").value,
+            phone2: document.getElementById("telf2-editar-monitor").value,
+            description: document.getElementById("description-editar-monitor").value,
+            name_group: document.getElementById("editar-nombre-grupo").value,
+            admin_id: localStorage.getItem('role_id')
+        };
+        
+        introducirDatos(monitorData)
+            .then(() => window.location.href = "monitores.html");
     });
 
 });
@@ -677,6 +687,36 @@ const errorPhone2 = document.querySelector('#errorPhone2');
 const errorPassword = document.querySelector('#errorPassword');
 
 
+const errorDescription = document.querySelector('#errorDescription');
+const errorGroupName = document.querySelector('#errorGroupName');
+
+function validateDescription() {
+    const description = document.getElementById('description-nuevo-monitor').value.trim();
+    if (description === "") {
+        errorDescription.style.color = "red";
+        errorDescription.innerHTML = "Por favor, introduzca una descripción.";
+        return false;
+    } else {
+        errorDescription.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("description-nuevo-monitor").addEventListener("blur", validateDescription);
+
+function validateGroupName() {
+    const groupName = document.getElementById('nuevo-nombre-grupo').value.trim();
+    if (groupName === "") {
+        errorGroupName.style.color = "red";
+        errorGroupName.innerHTML = "Por favor, introduzca un nombre de grupo.";
+        return false;
+    } else {
+        errorGroupName.innerHTML = "";
+        return true;
+    }
+}
+
+document.getElementById("nuevo-nombre-grupo").addEventListener("blur", validateGroupName);
 
 document.getElementById("nombre-nuevo-monitor").addEventListener("blur", validateName);
 
@@ -773,14 +813,15 @@ function validateDni() {
     }
 }
 
-document.getElementById("password-nuevo-monitor").addEventListener("blur", validateDni);
+document.getElementById("password-nuevo-monitor").addEventListener("blur", validatePassword);
+
 
 function validatePassword() {
-    const password = document.querySelector('#password-nuevo-monitor').value;
-    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    const password = document.getElementById('password-nuevo-monitor').value;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
         errorPassword.style.color = "red";
-        errorPassword.innerHTML = "Introduzca un Password válido.";
+        errorPassword.innerHTML = "Mínimo 8 caracteres, una mayúscula, un número y un símbolo.";
         return false;
     } else {
         errorPassword.innerHTML = "";
@@ -788,25 +829,98 @@ function validatePassword() {
     }
 }
 
+const errorImage = document.querySelector('#errorImage');
+
+function validateImage() {
+    const fileInput = document.getElementById('image-input');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        errorImage.style.color = "red";
+        errorImage.innerHTML = "Por favor, seleccione una imagen.";
+        return false;
+    } else {
+        const file = fileInput.files[0];
+
+        if (file) {
+            // Consistent file types for both validations
+            const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+            if (!validTypes.includes(file.type)) {
+                errorImage.innerHTML = 'Formato de imagen no válido. Utilice JPEG, PNG, GIF o WEBP.';
+                errorImage.style.color = "red";
+                fileInput.value = ""; // Clear the input
+                return false;
+            } 
+            
+            // Add consistent file size validation (5MB)
+            if (file.size > 5 * 1024 * 1024) { // 5MB max
+                errorImage.innerHTML = 'La imagen es demasiado grande. Máximo 5MB';
+                errorImage.style.color = "red";
+                fileInput.value = ""; // Clear the input
+                return false;
+            }
+            
+            errorImage.innerHTML = "";
+            return true;
+        }
+
+    }
+}
+document.getElementById("image-input").addEventListener("change", validateImage);
+
 
 function validateForm() {
-
     const isNameCorrect = validateName();
     const isLastNameCorrect = validateLastName();
     const isEmailCorrect = validateEmail();
     const isPhoneCorrect1 = validatePhone1();
     const isPhoneCorrect2 = validatePhone2();
     const isDniCorrect = validateDni();
-    // const isPasswordCorrect = validatePassword();
+    const isPasswordCorrect = validatePassword();
+    const isDescriptionCorrect = validateDescription();
+    const isGroupNameCorrect = validateGroupName();
+    const isImageCorrect = validateImage(); 
 
-
-    if (isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect) {
-        return true;
-    } else {
-        return false;
-    }
+    return isNameCorrect && isLastNameCorrect && isEmailCorrect && isPhoneCorrect1 && isDniCorrect && isPasswordCorrect && isDescriptionCorrect && isGroupNameCorrect && isImageCorrect;
 }
 
+const errorDescriptionEditar = document.querySelector('#errorDescriptionEditar');
+const errorGroupEditar = document.querySelector('#errorGroupEditar');
+
+
+function validateDescriptionEditar() {
+    const description = document.getElementById('description-editar-monitor').value.trim();
+    if (description === "") {
+        errorDescriptionEditar.style.color = "red";
+        errorDescriptionEditar.innerHTML = "Por favor, introduzca una descripción.";
+        return false;
+    } else {
+        errorDescriptionEditar.innerHTML = "";
+        return true;
+    }
+}
+document.getElementById("description-editar-monitor").addEventListener("blur", validateDescriptionEditar);
+
+function validateGroupNameEditar() {
+    const groupName = document.getElementById('editar-nombre-grupo').value.trim();
+    if (groupName === "") {
+        errorGroupEditar.style.color = "red"; // Shared ID in HTML
+        errorGroupEditar.innerHTML = "Por favor, introduzca un nombre de grupo.";
+        return false;
+    } else {
+        errorGroupEditar.innerHTML = "";
+        return true;
+    }
+}
+document.getElementById("editar-nombre-grupo").addEventListener("blur", validateGroupNameEditar);
+
+
+document.getElementById("nombre-editar-monitor").addEventListener("blur", validateNameEditar);
+document.getElementById("apellidos-editar-monitor").addEventListener("blur", validateLastNameEditar);
+document.getElementById("telf1-editar-monitor").addEventListener("blur", validatePhone1Editar);
+document.getElementById("telf2-editar-monitor").addEventListener("blur", validatePhone2Editar);
+document.getElementById("dni-editar-monitor").addEventListener("blur", validateDniEditar);
+// document.getElementById("password-editar-monitor").addEventListener("blur", validatePasswordEditar);
+document.getElementById("description-editar-monitor").addEventListener("blur", validateDescriptionEditar);
+document.getElementById("editar-nombre-grupo").addEventListener("blur", validateGroupNameEditar);
 
 // Validación Editar Monitor
 
@@ -821,13 +935,13 @@ const botonEditarMonitor = document.querySelector('#editar-monitor');
 //     }
 // });
 
-botonEditarMonitor.addEventListener('click', function (event) {
-    event.preventDefault();
-    validateFormEditar();
-    if (validateFormEditar() == true) {
-        window.location.href = "monitores.html";
-    }
-});
+// botonEditarMonitor.addEventListener('click', function (event) {
+//     event.preventDefault();
+//     validateFormEditar();
+//     if (validateFormEditar() == true) {
+//         window.location.href = "monitores.html";
+//     }
+// });
 // const nextButton = document.querySelector('#nextButton');
 const errorNameEditar = document.querySelector('#errorNameEditar');
 const errorLastNameEditar = document.querySelector('#errorLastNameEditar');
@@ -947,36 +1061,8 @@ function validateDniEditar() {
     }
 }
 
-document.getElementById("password-editar-monitor").addEventListener("blur", validateDniEditar);
-
-function validatePasswordEditar() {
-    const password = document.querySelector('#password-editar-monitor').value;
-    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-        errorPasswordEditar.style.color = "red";
-        errorPasswordEditar.innerHTML = "Introduzca un Password válido.";
-        return false;
-    } else {
-        errorPasswordEditar.innerHTML = "";
-        return true;
-    }
-}
 
 
 function validateFormEditar() {
-
-    const isNameCorrect = validateNameEditar();
-    const isLastNameCorrect = validateLastNameEditar();
-    // const isEmailCorrect = validateEmailEditar();
-    const isPhoneCorrect1 = validatePhone1Editar();
-    const isPhoneCorrect2 = validatePhone2Editar();
-    const isDniCorrect = validateDniEditar();
-    const isPasswordCorrect = validatePasswordEditar();
-
-
-    if (isNameCorrect && isLastNameCorrect && isPhoneCorrect1 && isPhoneCorrect2 && isDniCorrect && isPasswordCorrect) {
-        return true;
-    } else {
-        return false;
-    }
+    return validateNameEditar() && validateLastNameEditar() && validatePhone1Editar() && validatePhone2Editar() && validateDniEditar() && validateDescriptionEditar() && validateGroupNameEditar();
 }

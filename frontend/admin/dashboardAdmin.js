@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
 
                 case 'monitor':
-                    location.assign('./monitor/html/dashboard.html');
+                    location.assign('../monitor/html/dashboard.html');
 
                     break;
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (data.url) {
                                 profilePic.src = data.url;
                             } else {
-                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile.png";
+                                profilePic.src = "https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png";
                             }
                         })
                         .catch(error => {

@@ -9,7 +9,9 @@ use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Type\Time;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class MonitorController extends Controller
 {
@@ -36,44 +38,80 @@ class MonitorController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Monitor request:', $request->all()); // Log input
+        Log::info('Monitor file:', $request->file()); 
         try {
-            $existingUser = User::where('email', $request->email)->first();
+            $request->validate([
+                'image' => 'required|image|max:5120', // 5MB max
+                'json_data' => 'required|json'
+            ]);
 
-            if ($existingUser) {
-                return response()->json([
-                    'message' => 'Este email ya esta siendo usado',
-                    'error' => 'Duplicate email'
-                ], 422);
-            }
+            // Parse the JSON data
+            $jsonData = json_decode($request->json_data, true);
+
+            // $existingUser = User::where('email', $jsonData->email)->first();
+
+            // if ($existingUser) {
+            //     return response()->json([
+            //         'message' => 'Este email ya esta siendo usado',
+            //         'error' => 'Duplicate email'
+            //     ], 422);
+            // }
 
             DB::beginTransaction();
 
             // Create the monitor
             $monitor = Monitor::create([
-                'name' => $request->name,
-                'lastname' => $request->lastname,
-                'dni' => $request->dni,
-                'phone' => $request->phone,
-                'phone2' => $request->phone2,
-                'description' => $request->description,
-                'admin_id' => $request->admin_id,
+                'name' => $jsonData['name'],
+                'lastname' => $jsonData['lastname'],
+                'dni' => $jsonData['dni'],
+                'phone' => $jsonData['phone'],
+                'phone2' => $jsonData['phone2'],
+                'description' => $jsonData['description'],
+                'admin_id' => $jsonData['admin_id'],
             ]);
 
             // Create the associated user
             $user = User::create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'email' => $jsonData['email'],
+                'password' => Hash::make($jsonData['password']),
                 'role' => 'monitor',
                 'role_id' => $monitor->id
             ]);
 
+            $file = $request->file('image');
+
+            $originalName = $file->getClientOriginalName();
+            $filename = Str::uuid() . '_' . $originalName;
+            $path = 'user_images/' . $user->id . '/' . $filename;
+            
+            // Upload to DigitalOcean Spaces
+            $uploaded = Storage::disk('s3')->put($path, file_get_contents($file), 'public');
+            
+            if (!$uploaded) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to upload image'
+                ], 500);
+            }
+            
+            // Generate the public URL
+            $bucket = env('DO_SPACES_BUCKET');
+            $region = env('DO_SPACES_REGION');
+            $url = "https://{$bucket}.{$region}.cdn.digitaloceanspaces.com/campamento-tesoro-perdido-image-hosting/{$path}";
+            
+            // Update the user's url_pic
+            $user->url_pic = $url;
+            $user->save();
+
             $timeline = Timeline::create([
-                'admin_id' => $request->admin_id
+                'admin_id' => $jsonData['admin_id']
             ]);
 
             $group = Group::create([
-                'name' => $request->name_group,
-                'administrator_id' => $request->admin_id,
+                'name' => $jsonData['name_group'],
+                'administrator_id' => $jsonData['admin_id'],
                 'monitor_id' => $monitor->id,
                 'timeline_id' => $timeline->id
             ]);
@@ -91,7 +129,11 @@ class MonitorController extends Controller
             DB::rollBack();
             return response()->json([
                 'message' => 'Error creating monitor',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'error2' => $e->getCode(),
+                'error3' => $e->getFile(),
+                'error4' => $e->getLine(),
+                'error5' => $e->getPrevious(),
             ], 500);
         }
 

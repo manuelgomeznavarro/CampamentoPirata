@@ -25,7 +25,7 @@
                 </div> -->
                 <div class="user-info">
                     <figure class="user-avatar">
-                        <img src="" alt="">
+                        <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png" alt="">
                     </figure>
                     <div class="user-details">
                         <div class="user-name"></div>
@@ -96,12 +96,15 @@
                             </div>
                             <div>
                                 <label for="nuevo-nombre-grupo">Nombre del grupo*</label>
-                                <input name="nuevo-nombre-grupo" id="nuevo-nombre-grupo"></iid="errorDescriptionEditar"></span>
+                                <input name="nuevo-nombre-grupo" id="nuevo-nombre-grupo"><span id="errorGroupName"></span>
+                            </div>
+                            <div>
+                                <label for="image-input">Añade una imagen de perfil al niño</label>
+                                <input type="file" id="image-input" name="image" accept="image/*"><span id="errorImage"></span>
                             </div>
                         </form>
                         <div class="info-monitor-card">
                             <p>Información Monitor</p>
-                            <img class="" src="https://placehold.co/200x200" alt="">
                             <button id="crear-monitor">Añadir monitor</button>
                         </div>
                     </div>
@@ -146,10 +149,10 @@
                                 <label for="correo-editar-monitor">Correo electrónico*</label>
                                 <input type="text" name="correo-editar-monitor" id="correo-editar-monitor"><span id="errorEmailEditar"></span>
                             </div> -->
-                            <div>
+                            <!-- <div>
                                 <label for="password-editar-monitor">Contraseña*</label>
                                 <input type="password" name="password-editar-monitor" id="password-editar-monitor"><span id="errorPasswordEditar"></span>
-                            </div>
+                            </div> -->
                             <div>
                                 <label for="dni-editar-monitor">DNI*</label>
                                 <input type="text" name="dni-editar-monitor" id="dni-editar-monitor"><span id="errorDniEditar"></span>
@@ -168,12 +171,11 @@
                             </div>
                             <div>
                                 <label for="editar-nombre-grupo">Nombre del grupo*</label>
-                                <input name="editar-nombre-grupo" id="editar-nombre-grupo"></input><span id="errorDescriptionEditar"></span>
+                                <input name="editar-nombre-grupo" id="editar-nombre-grupo"></input><span id="errorGroupEditar"></span>
                             </div>
                         </form>
                         <div class="info-monitor-card">
                             <p>Información Monitor</p>
-                            <img class="" src="https://placehold.co/200x200" alt="">
                             <button id="editar-monitor">Guardar Cambios</button>
                             <button id="eliminar-monitor">Eliminar Monitor</button>
                         </div>
