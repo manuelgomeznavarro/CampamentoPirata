@@ -5913,13 +5913,69 @@ input[type="radio"]:checked + .plan-card::after {
     .error-description {
         font-size: 1rem;
     }
+
+    .sidebar {
+        width: 22vw;
+        height: 92vh;
+    }
+
+    .activity-title {
+        font-size: 22px;
+        line-height: 36px;
+    }
+
+    .activity-time {
+        font-size: 21px;
+        line-height: 64.32px;
+        white-space: nowrap;
+    }
+
+    .nombre-grupos {
+        height: 50px;
+        padding: 12px;
+        width: auto;
+    }
+
+    .contenedor-oculto {
+        gap: 32px;
+    }
+
+    .contacto-alumno {
+        width: auto;
+        padding: 12px;
+        height: auto;
+    }
+
+    #comentarios {
+        width: 23vw;
+        height: 6vh;
+    }
+
+    .dashboard-container {
+        padding: 16px 44px 16px 30px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 6px;
+        min-width: 100px;
+        height: 64px;
+        font-size: 14px;
+    }
+
+    input {
+        width: 450px;
+    }
+
+    .pasar-lista {
+        width: 100% !important;
+    }
 }
 
 /* Responsive Monitor */
 
 /* Responsive Styles for Monitor Dashboard */
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .sidebar {
         display: none;
     }
@@ -5959,9 +6015,11 @@ input[type="radio"]:checked + .plan-card::after {
     .dashboard-title {
         text-align: center;
     }
-}
+} */
 
-@media screen and (max-width: 576px) {
+
+
+/* @media screen and (max-width: 576px) {
     .container {
         padding: 10px;
     }
@@ -6023,16 +6081,15 @@ input[type="radio"]:checked + .plan-card::after {
     }
 
     .exit-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        position: static;
+        width: auto !important;
     }
 
     .dashboard-title {
         text-align: center;
         font-size: 1.2rem;
     }
-}
+} */
 
 /* Responsive Menu Navigation for Mobile */
 @media screen and (max-width: 992px) {
@@ -6081,10 +6138,6 @@ input[type="radio"]:checked + .plan-card::after {
 .mode-switch {
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.mode-switch.active {
-    background-color: #e0e0e0;
 }
 
 @media (max-width: 992px) {
@@ -6332,6 +6385,78 @@ input[type="radio"]:checked + .plan-card::after {
 
     main .fade-container .facilities div {
         gap: 24px;
+    }
+
+    .user-info {
+        gap: 10px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .dashboard-profile {
+        gap: 20px;
+        align-items: center;
+    }
+
+    #header-monitor {
+        gap: 20px;
+    }
+
+    .menu {
+        margin-top: 24px;
+    }
+
+    .dashboard-container {
+        width: 100vw;
+        height: auto;
+        padding: 16px 30px 16px 30px;
+    }
+    
+    .activity-details {
+        flex-direction: column;
+    }
+
+    .card-header {
+        text-align: center;
+    }
+
+    .activity-title {
+        text-align: center;
+    }
+
+    .notes-changes-container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        overflow-y: scroll;
+    }
+
+    input {
+        width: 240px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 4px;
+        min-width: 48px;
+        height: 64px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #btnInfoGrupos.activo {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .contenedor-perfiles div p {
+        width: 70%;
+    }
+
+    .contenedor-oculto {
+        gap: 16px;
+        flex-direction: column;
     }
 }
 
