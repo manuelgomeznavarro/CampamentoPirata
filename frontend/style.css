@@ -1366,8 +1366,8 @@ main .programming-cards-container .cards-container .card div h6 {
     }
     
     main .fade-container .facilities div .facilities-pic img {
-        width: 400px !important;
-        height: 220px !important;
+        width: 100% !important;
+        height: 320px !important;
     }
     
     main .fade-container .facilities div figure:first-child img,
@@ -4963,7 +4963,6 @@ main .registro-correcto-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
-
 /* RESPONSIVE UBICACION TABLET */
 /* Estilos base para el contenido principal */
 main {
@@ -5052,8 +5051,8 @@ h2 {
 }
 
 .facilities-pic {
-    width: 100%;
-    max-width: 840px;
+    width: 100% !important;
+    max-width: 600px !important;
     height: auto;
     position: relative;
     overflow: hidden;
@@ -5062,7 +5061,7 @@ h2 {
 }
 
 .facilities-pic img {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     display: block;
 }
@@ -6046,12 +6045,8 @@ input[type="radio"]:checked + .plan-card::after {
 
 @media screen and (max-width: 768px) {
     .map-container {
-    position: relative;
-    padding-bottom: 26%;
-    overflow: hidden;
-    width: 80vw;
-    height: 20vh;
-    place-self: center;
+    width: 78vw !important;
+    height: 40vh !important;
 }
 }
 
@@ -6144,6 +6139,22 @@ input[type="radio"]:checked + .plan-card::after {
         font-size: 20px;
         font-weight: 500;
     }
+
+    .text-activities {
+        width: 90vw;
+        display: flex;
+        height: auto;
+        justify-content: center;
+    }
+
+    .contenedor-comentarios {
+        width: 100vw;
+    }
+
+    .contenedor-elementos-progreso {
+        max-width: 85vw;
+    }
+
 }
 
 @media screen and (max-width: 425px) {
@@ -6203,6 +6214,8 @@ input[type="radio"]:checked + .plan-card::after {
         gap: 24px;
     }
 }
+
+
 
 
 
