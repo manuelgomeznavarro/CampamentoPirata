@@ -1157,6 +1157,8 @@ main .programming-cards-container .cards-container .card div h6 {
       text-align: center;
     }
   }
+
+
   
   /* Mobile Breakpoint */
   @media screen and (max-width: 576px) {
@@ -1193,12 +1195,15 @@ main .programming-cards-container .cards-container .card div h6 {
     }
     
     main .map figure {
+        height:  240px;
       width: 75%;
       margin: 0 auto;
     }
     
     main .map figure img {
       width: 100%;
+      height: 100%;
+    object-fit: cover;
     }
     
     main .prices .prices-content div h3 {
@@ -3471,6 +3476,10 @@ td {
     left:60px;
 } */
 
+.info-monitor-card{
+    
+}
+
 .nombre-grupo {
     display: flex;
     flex-direction: column;
@@ -3484,7 +3493,33 @@ td {
     border-radius: 8px;
     background: var(--Cielo-sereno-oscuro-1, #5A7A94);
     font-weight: bold;
+    color: var(--base-color1);
 }
+
+.nombre-alumno:hover {
+    background: var(--brand-color);
+    color: var(--base-color1);
+    transform: scale(1.05);
+}
+
+.nombre-alumno {
+    cursor: pointer;
+    margin: 12px auto;
+    border-radius: 8px;
+    background: var(--brand-color);
+    padding: 10px 20px;
+    color: var(--base-color1);
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nombre-grupo:hover {
+    background: var(--base-color1);
+    color: var(--brand-color);
+    transform: scale(1.05);
+}
+
 
 .button-crear-grupo {
     display: flex;
@@ -3508,13 +3543,33 @@ td {
     justify-content: center;
     /* align-items: center; */
     gap: 569px;
+    font-weight: bold;
+    color: var(--base-color1);
     align-self: stretch;
     flex-direction: column;
-    max-width: 800px;
-    max-height: 40px;
+    width:80%;
     margin: 12px auto;
     border-radius: 8px;
     background: var(--Cielo-sereno-oscuro-1, #5A7A94);
+    cursor: pointer;
+}
+
+.info-monitor-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#eliminar-monitor{
+    display: flex;
+    /* justify-content: space-between; */
+    margin-top: 20px;
+}
+
+.nombre-monitor:hover {
+    background: var(--base-color1);
+    color: var(--brand-color);
+    transform: scale(1.05);
 }
 
 .contenedor-botones-actividad{
@@ -4497,6 +4552,7 @@ input[type="radio"]+.plan-card {
     align-items: center;
     cursor: pointer;
     width: 80%;
+    padding:8px;
 }
 
 .incidenciaResuelta{
@@ -4509,6 +4565,7 @@ input[type="radio"]+.plan-card {
     align-items: center;
     width: 80%;
     margin-bottom: 20px;
+    padding:8px;
 }
 
 #btn-responder-incidencia {
@@ -5958,7 +6015,6 @@ input[type="radio"]:checked + .plan-card::after {
     background-color: #e0e0e0;
 }
 
-/* Ensure touch targets are large enough */
 @media (max-width: 992px) {
     .menu-item, 
     .asistencia, 
@@ -5968,4 +6024,185 @@ input[type="radio"]:checked + .plan-card::after {
         min-height: 44px;
         min-width: 44px;
     }
+    
 }
+
+@media (max-width: 768px) {
+    footer .footer-info {
+        gap: 20px;
+    }    
+}
+
+@media screen and (max-width: 480px) {
+    .map-container {
+    position: relative;
+    padding-bottom: 26%;
+    overflow: hidden;
+    width: 60vw;
+    height: 20vh;
+    place-self: center;
+}
+}
+
+@media screen and (max-width: 768px) {
+    .map-container {
+    position: relative;
+    padding-bottom: 26%;
+    overflow: hidden;
+    width: 80vw;
+    height: 20vh;
+    place-self: center;
+}
+}
+
+@media screen and (max-width: 1024px) {
+    .map-container {
+    position: relative;
+    padding-bottom: 26%;
+    overflow: hidden;
+    width: 90vw;
+    height: 20vh;
+    place-self: center;
+}
+}
+
+@media screen and (max-width: 1024px) {
+    .plan-card {
+        background: var(--clear-sky-light2);
+        border: 1px solid #bbb;
+        border-radius: 16px;
+        padding: 30px 16px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 250ms ease-in-out;
+        min-height: 515px;
+        min-width: 227px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .plan-card {
+        background: var(--clear-sky-light2);
+        border: 1px solid #bbb;
+        border-radius: 16px;
+        padding: 30px 16px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 250ms ease-in-out;
+        min-height: 515px;
+        min-width: 305px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .plan-card {
+        background: var(--clear-sky-light2);
+        border: 1px solid #bbb;
+        border-radius: 16px;
+        padding: 30px 16px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 250ms ease-in-out;
+        min-height: 515px;
+        min-width: 350px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .our-monitors-container{
+        width:100%;
+    }
+    .quienes-somos-main .fade-container .our-monitors-container .our-monitors-cards-container {
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 16px;
+        justify-content: center;
+        place-self: baseline;
+    }
+
+    .faq-cards-container{
+        width: 90vw !important;
+    }
+
+    .quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card .faq-card-content h6{
+        font-size: 20px;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card p {
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card hr{
+        width: 290px;
+        height: 1px;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card{
+        flex-direction: column;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container figure {
+        width: auto;
+        height: auto;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-i {
+    border-radius: 16px 16px 0px 0px;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .right-i {
+        border-radius: 0px 0px 16px 16px;
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card p {
+        font-size: 16px;
+        margin-left: 0 !important;
+        margin-right: 0 !important; 
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .right-t {
+        padding: 0px 16px 16px 16px;
+
+    }
+
+    .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .left-t {
+        padding: 16px 16px 0px 16px;
+    }
+
+    .quienes-somos-main .fade-container .faqs-container .faq-cards-container .faq-card .faq-card-content h6 {
+        font-size: 18px;
+    }
+
+    .quienes-somos-main .fade-container .contact-container .ways-to-contact-container {
+        flex-direction: column;
+        max-width: 90vw;
+    }
+
+    .quienes-somos-main .fade-container .contact-container .incident-form-container h4 {
+        font-size: 38px;
+        text-align: center;
+    }
+
+    main .fade-container .facilities div {
+        gap: 24px;
+    }
+}
+
+
+
