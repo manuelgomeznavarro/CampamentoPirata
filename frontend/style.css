@@ -5969,3 +5969,147 @@ input[type="radio"]:checked + .plan-card::after {
         min-width: 44px;
     }
 }
+
+/* Existing styles remain the same */
+
+/* Responsive Styles */
+/* Laptop (1536px) */
+@media screen and (max-width: 1536px) {
+    .sign-up-container,
+    .sign-in-container {
+        width: 90%;
+        max-width: 600px;
+        padding: 24px;
+        margin: 0 auto;
+    }
+
+    .sign-up-container h1,
+    .sign-in-container h1 {
+        font-size: 48px;
+    }
+
+    .sign-up-container form div label,
+    .sign-in-container form div label {
+        font-size: 18px;
+    }
+
+    .sign-up-container form div label+input,
+    .sign-in-container form div label+input {
+        height: 45px;
+    }
+
+    .sign-up-container form button,
+    .sign-in-container form button {
+        font-size: 22px;
+        padding: 8px;
+    }
+
+    .sign-up-container .sign-up-social-media .sign-up-social-media-icons div,
+    .sign-in-container .sign-up-social-media .sign-up-social-media-icons div {
+        padding: 7px 13px;
+    }
+}
+
+/* Tablet (992px) */
+@media screen and (max-width: 992px) {
+    .sign-up-container,
+    .sign-in-container {
+        width: 85%;
+        padding: 20px;
+    }
+
+    .sign-up-container h1,
+    .sign-in-container h1 {
+        font-size: 40px;
+    }
+
+    .sign-up-container form div label,
+    .sign-in-container form div label {
+        font-size: 16px;
+    }
+
+    .sign-up-container form div label+input,
+    .sign-in-container form div label+input {
+        height: 40px;
+    }
+
+    .sign-up-container form button,
+    .sign-in-container form button {
+        font-size: 20px;
+        padding: 6px;
+    }
+
+    .sign-up-container .sign-up-social-media .sign-up-social-media-icons,
+    .sign-in-container .sign-up-social-media .sign-up-social-media-icons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .sign-up-container .sign-up-social-media .sign-up-social-media-icons div,
+    .sign-in-container .sign-up-social-media .sign-up-social-media-icons div {
+        width: 70px;
+        height: 70px;
+        padding: 7px 13px;
+    }
+}
+
+/* Mobile (425px) */
+@media screen and (max-width: 425px) {
+    .sign-up-container,
+    .sign-in-container {
+        width: 95%;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .sign-up-container h1,
+    .sign-in-container h1 {
+        font-size: 32px;
+        margin: 16px 0;
+    }
+
+    .sign-up-container form div,
+    .sign-in-container form div {
+        margin-bottom: 16px;
+    }
+
+    .sign-up-container form div label,
+    .sign-in-container form div label {
+        font-size: 14px;
+    }
+
+    .sign-up-container form div label+input,
+    .sign-in-container form div label+input {
+        height: 35px;
+    }
+
+    .sign-up-container form p,
+    .sign-in-container form p {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .sign-up-container form button,
+    .sign-in-container form button {
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .sign-up-container .sign-up-social-media h3,
+    .sign-in-container .sign-up-social-media h3 {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .sign-up-container .sign-up-social-media .sign-up-social-media-icons,
+    .sign-in-container .sign-up-social-media .sign-up-social-media-icons {
+        gap: 8px;
+    }
+
+    .sign-up-container .sign-up-social-media .sign-up-social-media-icons div,
+    .sign-in-container .sign-up-social-media .sign-up-social-media-icons div {
+        width: 60px;
+        height: 60px;
+        padding: 7px 13px;
+    }
+}
