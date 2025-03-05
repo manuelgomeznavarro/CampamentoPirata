@@ -17,7 +17,8 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg" alt="Logo de tesoro perdido" class="logo" id="logo-dashboard">
+            <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/pics/logo.svg"
+                alt="Logo de tesoro perdido" class="logo" id="logo-dashboard">
             <div class="dashboard-profile">
                 <!-- <div class="language-selector">
                     <img src="https://placehold.co/40x27" alt="Language Flag">
@@ -25,7 +26,8 @@
                 </div> -->
                 <div class="user-info">
                     <figure class="user-avatar">
-                        <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png" alt="">
+                        <img src="https://campamento-tesoro-perdido-image-hosting.fra1.cdn.digitaloceanspaces.com/icons/default-profile2.png"
+                            alt="">
                     </figure>
                     <div class="user-details">
                         <div class="user-name"></div>
@@ -52,7 +54,7 @@
                 <!-- Dashboard Title -->
                 <h3 class="dashboard-title">Monitores</h3>
                 <!-- Activity Card -->
-                
+
                 <!-- <div class="contenedor-menu-content"></div> -->
                 <div class="menu-options">
                     <button class="button-options" id="btnCrearMonitores">Crear Monitores</button>
@@ -64,49 +66,60 @@
                         <form action="">
                             <div>
                                 <label for="nombre-nuevo-monitor">Nombre*</label>
-                                <input type="text" name="nombre-nuevo-monitor" id="nombre-nuevo-monitor"><span id="errorName"></span>
+                                <input type="text" name="nombre-nuevo-monitor" id="nombre-nuevo-monitor"><span
+                                    id="errorName"></span>
                             </div>
                             <div>
                                 <label for="apellidos-nuevo-monitor">Apellidos*</label>
-                                <input type="text" name="apellidos-nuevo-monitor" id="apellidos-nuevo-monitor"><span id="errorLastName"></span>
+                                <input type="text" name="apellidos-nuevo-monitor" id="apellidos-nuevo-monitor"><span
+                                    id="errorLastName"></span>
                             </div>
                             <div>
                                 <label for="correo-nuevo-monitor">Correo electrónico*</label>
-                                <input type="text" name="correo-nuevo-monitor" id="correo-nuevo-monitor"><span id="errorEmail"></span>
+                                <input type="text" name="correo-nuevo-monitor" id="correo-nuevo-monitor"><span
+                                    id="errorEmail"></span>
                             </div>
                             <div>
                                 <label for="password-nuevo-monitor">Contraseña*</label>
-                                <input type="password" name="password-nuevo-monitor" id="password-nuevo-monitor"><span id="errorPassword"></span>
+                                <input type="password" name="password-nuevo-monitor" id="password-nuevo-monitor"><span
+                                    id="errorPassword"></span>
                             </div>
                             <div>
                                 <label for="dni-nuevo-monitor">DNI*</label>
-                                <input type="text" name="dni-nuevo-monitor" id="dni-nuevo-monitor"><span id="errorDni"></span>
+                                <input type="text" name="dni-nuevo-monitor" id="dni-nuevo-monitor"><span
+                                    id="errorDni"></span>
                             </div>
                             <div>
                                 <label for="telf1-nuevo-monitor">Teléfono 1*</label>
-                                <input type="text" name="telf1-nuevo-monitor" id="telf1-nuevo-monitor"><span id="errorPhone1"></span>
+                                <input type="text" name="telf1-nuevo-monitor" id="telf1-nuevo-monitor"><span
+                                    id="errorPhone1"></span>
                             </div>
                             <div>
                                 <label for="telf2-nuevo-monitor">Teléfono 2</label>
-                                <input type="text" name="telf2-nuevo-monitor" id="telf2-nuevo-monitor"><span id="errorPhone2"></span>
+                                <input type="text" name="telf2-nuevo-monitor" id="telf2-nuevo-monitor"><span
+                                    id="errorPhone2"></span>
                             </div>
                             <div>
                                 <label for="description-nuevo-monitor">Descripción*</label>
-                                <textarea name="description-nuevo-monitor" id="description-nuevo-monitor"></textarea><span id="errorDescription"></span>
+                                <textarea name="description-nuevo-monitor"
+                                    id="description-nuevo-monitor"></textarea><span id="errorDescription"></span>
                             </div>
                             <div>
                                 <label for="nuevo-nombre-grupo">Nombre del grupo*</label>
-                                <input name="nuevo-nombre-grupo" id="nuevo-nombre-grupo"><span id="errorGroupName"></span>
+                                <input name="nuevo-nombre-grupo" id="nuevo-nombre-grupo"><span
+                                    id="errorGroupName"></span>
                             </div>
                             <div>
                                 <label for="image-input">Añade una imagen de perfil al niño</label>
-                                <input type="file" id="image-input" name="image" accept="image/*"><span id="errorImage"></span>
+                                <input type="file" id="image-input" name="image" accept="image/*"><span
+                                    id="errorImage"></span>
                             </div>
-                            <div class="contenedor-btn-crear-monitor"><button id="crear-monitor">Añadir monitor</button></div>
+                            <div class="contenedor-btn-crear-monitor"><button id="crear-monitor">Añadir monitor</button>
+                            </div>
                         </form>
                         <div class="info-monitor-card">
                             <!-- <p>Información Monitor</p> -->
-                            
+
                         </div>
                     </div>
                     <div class="grupos" id="grupos" style="display: none;">
@@ -119,7 +132,7 @@
                         <div id="botones-crear-grupo">
                             <button class="button-crear-grupo" id="button-crear-grupo">Guardar cambios</button>
                             <div class="contenedor-listas">
-                                
+
                                 <div class="lista-grupo" id="lista-grupo">
                                 </div>
                                 <div class="lista-sin-grupo" id="lista-sin-grupo">
@@ -127,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="lista-monitores" id="lista-monitores" style="display: none;">
                         <p class="menu-content-default-title" id="lista-monitor">Lista de Monitores</p>
                         <!-- <div class="nombre-monitor">Monitor 1</div>
@@ -139,11 +152,13 @@
                         <form action="">
                             <div>
                                 <label for="nombre-editar-monitor">Nombre*</label>
-                                <input type="text" name="nombre-editar-monitor" id="nombre-editar-monitor"><span id="errorNameEditar"></span>
+                                <input type="text" name="nombre-editar-monitor" id="nombre-editar-monitor"><span
+                                    id="errorNameEditar"></span>
                             </div>
                             <div>
                                 <label for="apellidos-editar-monitor">Apellidos*</label>
-                                <input type="text" name="apellidos-editar-monitor" id="apellidos-editar-monitor"><span id="errorLastNameEditar"></span>
+                                <input type="text" name="apellidos-editar-monitor" id="apellidos-editar-monitor"><span
+                                    id="errorLastNameEditar"></span>
                             </div>
                             <!-- <div>
                                 <label for="correo-editar-monitor">Correo electrónico*</label>
@@ -155,30 +170,36 @@
                             </div> -->
                             <div>
                                 <label for="dni-editar-monitor">DNI*</label>
-                                <input type="text" name="dni-editar-monitor" id="dni-editar-monitor"><span id="errorDniEditar"></span>
+                                <input type="text" name="dni-editar-monitor" id="dni-editar-monitor"><span
+                                    id="errorDniEditar"></span>
                             </div>
                             <div>
                                 <label for="telf1-editar-monitor">Teléfono 1*</label>
-                                <input type="text" name="telf1-editar-monitor" id="telf1-editar-monitor"><span id="errorPhone1Editar"></span>
+                                <input type="text" name="telf1-editar-monitor" id="telf1-editar-monitor"><span
+                                    id="errorPhone1Editar"></span>
                             </div>
                             <div>
                                 <label for="telf2-editar-monitor">Teléfono 2</label>
-                                <input type="text" name="telf2-editar-monitor" id="telf2-editar-monitor"><span id="errorPhone2Editar"></span>
+                                <input type="text" name="telf2-editar-monitor" id="telf2-editar-monitor"><span
+                                    id="errorPhone2Editar"></span>
                             </div>
                             <div>
                                 <label for="description-editar-monitor">Descripción*</label>
-                                <textarea name="description-editar-monitor" id="description-editar-monitor"></textarea><span id="errorDescriptionEditar"></span>
+                                <textarea name="description-editar-monitor"
+                                    id="description-editar-monitor"></textarea><span id="errorDescriptionEditar"></span>
                             </div>
                             <div>
                                 <label for="editar-nombre-grupo">Nombre del grupo*</label>
-                                <input name="editar-nombre-grupo" id="editar-nombre-grupo"></input><span id="errorGroupEditar"></span>
+                                <input name="editar-nombre-grupo" id="editar-nombre-grupo"></input><span
+                                    id="errorGroupEditar"></span>
+                                <div class="info-monitor-card">
+                                    <!-- <p>Información Monitor</p> -->
+                                    <button id="editar-monitor">Guardar Cambios</button>
+                                    <button id="eliminar-monitor">Eliminar Monitor</button>
+                                </div>
                             </div>
                         </form>
-                        <div class="info-monitor-card">
-                            <p>Información Monitor</p>
-                            <button id="editar-monitor">Guardar Cambios</button>
-                            <button id="eliminar-monitor">Eliminar Monitor</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
