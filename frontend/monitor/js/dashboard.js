@@ -1,5 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    function isMobileView() {
+        return window.innerWidth <= 425;
+    }
+
+    // Function to update DOM for responsive layout
+    function updateResponsiveLayout() {
+        if (isMobileView()) {
+            const menu = document.querySelector(".menu");
+            const mainContent = document.querySelector(".main-content");
+            
+            if (menu && mainContent) {
+                mainContent.parentNode.insertBefore(menu, mainContent);
+            }
+        }
+    }
+
+    updateResponsiveLayout();
+
+
     function checkRole() {
         const role = localStorage.getItem('role');
 

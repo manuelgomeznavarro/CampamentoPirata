@@ -5982,8 +5982,187 @@ input[type="radio"]:checked + .plan-card::after {
     .error-description {
         font-size: 1rem;
     }
+
+    .sidebar {
+        width: 22vw;
+        height: 92vh;
+    }
+
+    .activity-title {
+        font-size: 22px;
+        line-height: 36px;
+    }
+
+    .activity-time {
+        font-size: 21px;
+        line-height: 64.32px;
+        white-space: nowrap;
+    }
+
+    .nombre-grupos {
+        height: 50px;
+        padding: 12px;
+        width: auto;
+    }
+
+    .contenedor-oculto {
+        gap: 32px;
+    }
+
+    .contacto-alumno {
+        width: auto;
+        padding: 12px;
+        height: auto;
+    }
+
+    #comentarios {
+        width: 23vw;
+        height: 6vh;
+    }
+
+    .dashboard-container {
+        padding: 16px 44px 16px 30px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 6px;
+        min-width: 100px;
+        height: 64px;
+        font-size: 14px;
+    }
+
+    input {
+        width: 450px;
+    }
+
+    .pasar-lista {
+        width: 100% !important;
+    }
 }
 
+<<<<<<< HEAD
+=======
+/* Responsive Monitor */
+
+/* Responsive Styles for Monitor Dashboard */
+
+/* @media screen and (max-width: 992px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .dashboard-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .notes-changes-container {
+        flex-direction: column;
+    }
+
+    .notes-card, .changes-card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .timeline-table {
+        font-size: 13px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 8px;
+    }
+
+    .contenedor-perfiles {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .dashboard-title {
+        text-align: center;
+    }
+} */
+
+
+
+/* @media screen and (max-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-profile {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contenedor-perfiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .activity-card {
+        padding: 10px;
+    }
+
+    .timeline-table {
+        font-size: 10px;
+    }
+
+    .form-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mode-switch {
+        width: 100%;
+    }
+
+    .activity-form input, 
+    .activity-form select, 
+    .activity-form textarea {
+        width: 100%;
+    }
+
+    .exit-button {
+        position: static;
+        width: auto !important;
+    }
+
+    .dashboard-title {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+} */
+
+>>>>>>> 18686305030e61d1f1e682b9092d12c1b75e1d2d
 /* Responsive Menu Navigation for Mobile */
 @media screen and (max-width: 992px) {
     .dashboard-mobile-nav {
@@ -6033,8 +6212,21 @@ input[type="radio"]:checked + .plan-card::after {
     transition: background-color 0.3s ease;
 }
 
+<<<<<<< HEAD
 .mode-switch.active {
     background-color: #e0e0e0;
+=======
+@media (max-width: 992px) {
+    .menu-item, 
+    .asistencia, 
+    .save-activity, 
+    .close-activity,
+    .mode-switch {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+>>>>>>> 18686305030e61d1f1e682b9092d12c1b75e1d2d
 }
 
 @media (max-width: 768px) {
@@ -6270,6 +6462,78 @@ input[type="radio"]:checked + .plan-card::after {
 
     main .fade-container .facilities div {
         gap: 24px;
+    }
+
+    .user-info {
+        gap: 10px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .dashboard-profile {
+        gap: 20px;
+        align-items: center;
+    }
+
+    #header-monitor {
+        gap: 20px;
+    }
+
+    .menu {
+        margin-top: 24px;
+    }
+
+    .dashboard-container {
+        width: 100vw;
+        height: auto;
+        padding: 16px 30px 16px 30px;
+    }
+    
+    .activity-details {
+        flex-direction: column;
+    }
+
+    .card-header {
+        text-align: center;
+    }
+
+    .activity-title {
+        text-align: center;
+    }
+
+    .notes-changes-container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        overflow-y: scroll;
+    }
+
+    input {
+        width: 240px;
+    }
+
+    .timeline-table th, .timeline-table td {
+        padding: 4px;
+        min-width: 48px;
+        height: 64px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #btnInfoGrupos.activo {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .contenedor-perfiles div p {
+        width: 70%;
+    }
+
+    .contenedor-oculto {
+        gap: 16px;
+        flex-direction: column;
     }
 }
 
