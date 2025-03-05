@@ -616,8 +616,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const siguienteStep2 = document.querySelector('#siguiente-step2');
+    const priceCardsContainer = document.querySelector('.incription-prices-container');
+
     siguienteStep2.addEventListener('click', (e) => {
         e.preventDefault();
+        priceCardsContainer.style.display = 'flex'
         if (validarStep2()) {
             if (currentStep < steps.length - 1) {
                 currentStep++;
@@ -625,6 +628,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    const backSummaryDataBtn = document.querySelector('#back-summary-data-btn');
+    backSummaryDataBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        priceCardsContainer.style.display = 'none';
+    })
 
     // Validar nombre en tiempo real (blur)
     const inputNameChild = document.querySelector('#child-name');
@@ -779,6 +788,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     insertSummaryDataBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        priceCardsContainer.style.display = 'none';
+
     
         if (validarPricesCards()) {
             const formInputs = [...form.querySelectorAll('input, select')];

@@ -210,6 +210,10 @@ button:hover {
     display: block;
 }
 
+h2{
+
+}
+
 /* Responsive CSS */
 @media screen and (max-width: 1024px) {
     header {
@@ -3918,6 +3922,14 @@ td {
     background-color: var(--brand-color);
 }
 
+.inscription-container h2 {
+    color: rgba(17, 27, 52,0.9);
+    text-align: center;
+    font-family: "Luckiest Guy";
+    font-size: 32px;
+    margin: 32px 0;
+}
+
 .inscription-container h1 {
     color: var(--base-color1);
     text-align: center;
@@ -6155,9 +6167,56 @@ input[type="radio"]:checked + .plan-card::after {
         max-width: 85vw;
     }
 
+    .incription-prices {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .inscription-summary-card>div div h6 {
+        white-space: wrap;
+    }
+
+    .inscription-summary-card {
+        width: 93vw;
+    }
+
+    .incription-prices-container {
+        display: none;
+    }
+
+    #finalizar-inscripcion {
+        width: 23vw;
+    }
+
+    .registro-correcto-container h1 {
+        font-size: 47px;
+    }
 }
 
 @media screen and (max-width: 425px) {
+
+    #finalizar-inscripcion {
+        width: 33vw;
+    }
+
+    .inscription-container h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .inscription-container .navigation-buttons {
+        gap: 36px;
+    }
+
+    .inscription-container button {
+        width: 44vw;
+    }
+
+    .inscription-container .form-section .form-data-container>div {
+        grid-template-columns: 1fr;
+    }
 
     .quienes-somos-main .fade-container .who-we-are-container .who-we-are-cards-container .who-we-are-card hr{
         width: 290px;
