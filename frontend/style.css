@@ -4162,6 +4162,22 @@ td {
     box-shadow: 0px 0px 10px rgba(80, 113, 219, 0.8);
 }
 
+/* .siguiente {
+    background-color: var(--base-color1);
+    color: var(--background-color3);
+    font-size: 24px;
+    padding: 10px;
+    width: 26%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.siguiente:hover {
+    color: var(--background-color3);
+    background-color: #0f182e;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(80, 113, 219, 0.8);
+} */
+
 .inscription-container .navigation-buttons {
     display: flex;
     align-items: center;
@@ -6040,8 +6056,7 @@ input[type="radio"]:checked + .plan-card::after {
     }
 }
 
-<<<<<<< HEAD
-=======
+
 /* Responsive Monitor */
 
 /* Responsive Styles for Monitor Dashboard */
@@ -6162,7 +6177,6 @@ input[type="radio"]:checked + .plan-card::after {
     }
 } */
 
->>>>>>> 18686305030e61d1f1e682b9092d12c1b75e1d2d
 /* Responsive Menu Navigation for Mobile */
 @media screen and (max-width: 992px) {
     .dashboard-mobile-nav {
@@ -6212,10 +6226,9 @@ input[type="radio"]:checked + .plan-card::after {
     transition: background-color 0.3s ease;
 }
 
-<<<<<<< HEAD
 .mode-switch.active {
     background-color: #e0e0e0;
-=======
+}
 @media (max-width: 992px) {
     .menu-item, 
     .asistencia, 
@@ -6225,14 +6238,22 @@ input[type="radio"]:checked + .plan-card::after {
         min-height: 44px;
         min-width: 44px;
     }
-    
->>>>>>> 18686305030e61d1f1e682b9092d12c1b75e1d2d
 }
+
 
 @media (max-width: 768px) {
     footer .footer-info {
         gap: 20px;
     }    
+
+    .dashboard-container button {
+        width: 35%;
+        place-self: center;
+    }
+
+    .pasar-lista-correcta-container h1 {
+        font-size: 38px;
+}
 }
 
 @media screen and (max-width: 480px) {
