@@ -130,6 +130,16 @@ button {
     cursor: pointer;
     z-index: 200;
     font-family: 'Poppins', sans-serif;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+
+/* hover de .btn-reservation */
+button:hover {
+    background-color: rgba(238, 73, 73, 0.884); /* Más translúcido */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(209, 62, 67, 0.8);
 }
 
 /* Hamburger menu - hidden by default */
@@ -945,6 +955,7 @@ main .fade-container {
     height: auto;
     background: linear-gradient(180deg, #BCD4F6 0%, #325798 66.71%, #111B34 100%);
     width: 99vw;
+    margin-bottom: 86px;
 }
 
 main .programming-cards-container {
@@ -1484,7 +1495,7 @@ main .fade-container .about-place .about-place-content {
 }
 
 main .fade-container .about-place .about-place-content p {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 44px;
     color: var(--base-color1);
@@ -2388,7 +2399,10 @@ figure img:not(.wave figure img):not(.map figure img) {
     cursor: pointer;
     z-index: 200;
     font-family: 'Poppins', sans-serif;
+    width:14vw;
+    text-decoration: none;
 }
+
 
 .login-container {
     /* justify-content: center; */
@@ -2517,7 +2531,6 @@ figure img:not(.wave figure img):not(.map figure img) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
 }
 
 .profile-header p {
@@ -2528,6 +2541,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    margin-bottom: 22px;
 }
 
 .profile {
@@ -2653,15 +2667,16 @@ figure img:not(.wave figure img):not(.map figure img) {
 .children-card {
     display: flex;
     width: 270px;
-    height: 335px; /* Fixed height for all cards */
+    /* height: auto; */
     padding: 16px;
     flex-direction: column;
     gap: 8px;
-    align-items: center;
+    align-items: stretch;
     border-radius: 12px;
     background: #FFF;
     box-shadow: 0px 0px 4px 0px rgba(113, 113, 113, 0.25);
-    position: relative; /* For absolute positioning of button */
+    position: relative;
+    min-height: 469px;
 }
 
 .children-header {
@@ -2691,7 +2706,7 @@ figure img:not(.wave figure img):not(.map figure img) {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    overflow-y: auto; /* Allow scrolling if content is too large */
+    /* overflow-y: auto; Allow scrolling if content is too large */
     max-height: 162px; /* Limited height to leave space for the button */
 }
 
@@ -3143,7 +3158,8 @@ figure img:not(.wave figure img):not(.map figure img) {
     border-radius: 8px;
     color: #111B34;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
+
 }
 
 /* Changes Card */
@@ -3165,9 +3181,9 @@ figure img:not(.wave figure img):not(.map figure img) {
     background: #EED47E;
     padding: 9px 16px;
     border-radius: 8px;
-    color: black;
+    color: var(--base-color1);
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 /* Cambios botones para el JS */
@@ -3327,8 +3343,15 @@ td {
     height: auto;
 }
 
-.creacion-grupo{
-    
+#crear-monitor{
+    width:15vw;
+    margin: 16px auto 0;
+}
+
+.contenedor-btn-crear-monitor {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 16px; /* Espacio arriba opcional */
 }
 
 .menu-content-default {
@@ -3432,7 +3455,7 @@ td {
     flex-direction: column;
 }
 
-.info-monitor-card {
+/* .info-monitor-card {
     margin-top: 23px;
     display: flex;
     width: 277px;
@@ -3444,14 +3467,15 @@ td {
     border-radius: 12px;
     background: var(--clear-sky-light3);
     box-shadow: 0px 0px 4px 0px rgba(70, 70, 70, 0.25);
-}
+    position: relative;
+    left:60px;
+} */
 
 .nombre-grupo {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    max-width: 800px;
-    max-height: 40px;
+    width: 80%;
     padding: 9px 16px 12px 16px;
     margin: 12px auto;
     /* align-items: center; */
@@ -3459,6 +3483,7 @@ td {
     align-self: stretch;
     border-radius: 8px;
     background: var(--Cielo-sereno-oscuro-1, #5A7A94);
+    font-weight: bold;
 }
 
 .button-crear-grupo {
@@ -3473,7 +3498,8 @@ td {
     flex-shrink: 0;
     color: var(--Cielo-sereno-claro-3, #D9E9F5);
     ;
-    background: #141414;
+    background: var(--burning-coral);
+    color:var(--base-color1);
 }
 
 .nombre-monitor {
@@ -3530,7 +3556,7 @@ display: flex;
     background-color: var(--dark-blue);
     border-radius: 15px;
     height: 50px;
-    width: auto;
+    width: 24vw;
     color: white;
     place-self: center;
     font-size: 18px;
@@ -3569,12 +3595,13 @@ display: flex;
 
 .contacto-alumno {
     display: flex;
-    width: 20vw;
-    height: 40vh;
+    width: 16vw;
+    height: 42vh;
     flex-direction: column;
     border: 3px solid var(--dark-blue);
     background: var(--clear-sky-light2);
     margin-top: 25px;
+    font-weight: bold;
 }
 
 .contenedor-oculto {
@@ -3783,6 +3810,12 @@ display: flex;
 
 #button-crear-grupo-enviar {
     margin: 40px auto;
+}
+
+.table-name-row{
+    background-color: #5A7A94;
+    color: var(--base-color1);
+    font-weight: bold;
 }
 
 /* Sección Excursiones */
@@ -4303,12 +4336,12 @@ input[type="radio"]+.plan-card {
 /* EDITAR PERFIL TUTOR */
 
 .editarPerfilTutor {
-    width: 15vw;
+    width: auto;
     height: 3vh;
 }
 
 .editarPerfilAlumno {
-    width: 15vw;
+    width: auto;
     height: 3vh;
 }
 
@@ -4440,6 +4473,17 @@ input[type="radio"]+.plan-card {
 .lista-alumnos-sin-grupo {
     width: 45%; /* Ajusta el ancho de cada lista */
     text-align: center; /* Centra el texto */
+    font-weight: bold;
+    color:var(--base-color1);
+    
+}
+
+.lista-sin-grupo{
+    
+    font-weight: bold;
+    color:var(--base-color1);
+    
+
 }
 
 .incidencia{
@@ -4510,7 +4554,7 @@ main .registro-correcto-container {
     color: var(--dark-blue);
     text-align: center;
     font-family: "Luckiest Guy", serif;
-    font-size: 64px;
+    font-size: 56px;
     font-weight: 700;
     margin: 24px 0;
 }
@@ -5217,10 +5261,9 @@ h2 {
 /* Google Maps Responsive Container */
 .map-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
+    padding-bottom: 26%; /* 16:9 aspect ratio */
     overflow: hidden;
-    width: 90%;
+    width: 45vw;
     place-self: center;
 }
   

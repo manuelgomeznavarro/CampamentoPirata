@@ -523,13 +523,13 @@ document.addEventListener('DOMContentLoaded', () => {
         crearCampo('Otros:', 'text', `editarOtros-${item.id}`, 'Otros datos relevantes');
     
         // Agregar el grupo como texto plano
-        const labelGrupo = document.createElement('label');
-        labelGrupo.textContent = 'Grupo:';
-        childrenText.appendChild(labelGrupo);
+        // const labelGrupo = document.createElement('label');
+        // labelGrupo.textContent = 'Grupo:';
+        // childrenText.appendChild(labelGrupo);
         
-        const grupoText = document.createElement('p');
-        grupoText.textContent = 'Pingüino Emperador';
-        childrenText.appendChild(grupoText);
+        // const grupoText = document.createElement('p');
+        // grupoText.textContent = 'Pingüino Emperador';
+        // childrenText.appendChild(grupoText);
     
         // Agregar el contenido al contenedor principal de la tarjeta
         editChildrenCard.appendChild(childrenText);

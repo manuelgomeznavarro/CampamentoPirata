@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const infoTarifas = document.getElementById('info-tarifas');
     const infoDescuentos = document.getElementById('info-descuentos');
     const menuContent = document.getElementById('menu-content');
+    const infoDefault = document.getElementById('info-default');
     const btnGuardarTarifas1 = document.getElementById('btnGuardarTarifas1');
     const btnGuardarTarifas2 = document.getElementById('btnGuardarTarifas2');
     const btnGuardarTarifas3 = document.getElementById('btnGuardarTarifas3');
@@ -252,12 +253,15 @@ document.addEventListener('DOMContentLoaded', function () {
         listaInscripciones.appendChild(elementoInscripcion);
     }
 
+    const tituloDefecto = document.getElementById('titulo-defecto-pagos');
+
     btnPagos.addEventListener('click', function () {
         if (infoPagos.style.display === "none") {
             infoPagos.style.display = "block";
             infoTarifas.style.display = "none";
             menuContent.style.display = "block";
             infoDescuentos.style.display = "none";
+            tituloDefecto.style.display = "none";
         } else {
             infoPagos.style.display = "none";
         }

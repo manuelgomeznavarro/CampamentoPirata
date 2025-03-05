@@ -220,13 +220,13 @@ document.addEventListener('DOMContentLoaded', function () {
         childrenText.appendChild(infoFechaNacimiento);
 
         // Crear y agregar el label y el texto para el grupo
-        const labelGrupo = document.createElement('label');
-        labelGrupo.htmlFor = 'grupo-child';
-        labelGrupo.textContent = 'Grupo:';
-        childrenText.appendChild(labelGrupo);
+        // const labelGrupo = document.createElement('label');
+        // labelGrupo.htmlFor = 'grupo-child';
+        // labelGrupo.textContent = 'Grupo:';
+        // childrenText.appendChild(labelGrupo);
 
-        const grupoText = document.createTextNode('Pingüino Emperador');
-        childrenText.appendChild(grupoText);
+        // const grupoText = document.createTextNode('Pingüino Emperador');
+        // childrenText.appendChild(grupoText);
 
         // Crear y agregar el label y el párrafo para las alergias
         const labelAlergias = document.createElement('label');
